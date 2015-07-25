@@ -1,6 +1,6 @@
 from django.shortcuts import render
 def home(request , username = ''):
-    return render(request, 'present_trip/home.html', {'username':username})
+    return render(request, 'home.html', {'username':username})
 
 def show_one_trip(request, kind = '' ,username = ''):
     if kind == 'service':

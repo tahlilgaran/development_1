@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace('\\','/')
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +37,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'accounting',
+    # 'buy_cancel',
+    # 'define_trip',
+    # 'informing',
+    # 'manager_dashboard',
+    # 'present_trip',
+    # 'quality_control',
+    # 'user',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +63,17 @@ ROOT_URLCONF = 'SepasIran_m.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,  'templates') ,
+                 os.path.join(BASE_DIR,  'present_trip/templates'),
+                 os.path.join(BASE_DIR,  'informing/templates'),
+                 os.path.join(BASE_DIR,  'user/templates'),
+                 os.path.join(BASE_DIR,  'buy_cancel/templates'),
+                 os.path.join(BASE_DIR,  'define_trip/templates'),
+                 os.path.join(BASE_DIR,  'manager_dashboard/templates'),
+                 os.path.join(BASE_DIR,  'quality_control/templates'),
+                 os.path.join(BASE_DIR,  'accounting/templates'),
+                 ],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,6 +118,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR , "static"),
+)
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
