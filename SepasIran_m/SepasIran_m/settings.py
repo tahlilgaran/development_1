@@ -39,12 +39,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 'accounting',
     # 'buy_cancel',
-    # 'define_trip',
+    'define_trip',
     # 'informing',
     # 'manager_dashboard',
     # 'present_trip',
     # 'quality_control',
-    # 'user',
+    'user',
 )
 
 MIDDLEWARE_CLASSES = (

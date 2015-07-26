@@ -4,8 +4,26 @@ from django.contrib import admin
 
 
 urlpatterns = [
+
+    # present trip urls :
     url(r'home/$', 'present_trip.views.home'),
     url(r'home/(\w+)/$', 'present_trip.views.home'),
+    url(r'show/(P?<kind>\w+)/(P?<id>\d+)/$' , 'present_trip.views.show_one_trip'),
+    url(r'show/(\w+)/$', 'present_trip.views.show_one_trip'),
+    url(r'show/(\w+)/(\w+)$', 'present_trip.views.show_one_trip'),
+    url(r'show/(\w+)/(\w+)/status/$', 'present_trip.views.show_one_trip_status'),
+    url(r'search/form/$', 'present_trip.views.start_search'),
+    url(r'search/form/(\w+)/$', 'present_trip.views.start_search'),
+    url(r'search/result/$', 'present_trip.views.search'),
+    url(r'search/result/(\w+)/$', 'present_trip.views.search'),
+    url(r'search/result/(\w+)/(\w+)$', 'present_trip.views.search'),
+
+    #informing urls:
+    url(r'userpage/$', 'informing.views.account'),
+    url(r'userpage/(\w+)$', 'informing.views.account'),
+
+
+
     # url(r'help/$', 'informing.views.help'),
     url(r'cancelselling/(\w+)$','define_trip.views.cancel'),
     url(r'tourdefine/$', 'define_trip.views.tarif_kind'),
@@ -25,11 +43,7 @@ urlpatterns = [
     url(r'profile/tourist/(\w+)$','user.views.tourist_profile'),
     url(r'profile/tourbuilder/(\w+)$','user.views.tourbuilder_profile'),
     url(r'edit/tourbuilder/(\w+)$','user.views.edit_tourbuilder'),
-    url(r'userpage/$', 'informing.views.account'),
-    url(r'userpage/(\w+)$', 'informing.views.account'),
-    url(r'show/(\w+)/$', 'present_trip.views.show_one_trip'),
-    url(r'show/(\w+)/(\w+)$', 'present_trip.views.show_one_trip'),
-    url(r'show/(\w+)/(\w+)/status/$', 'present_trip.views.show_one_trip_status'),
+
    # url(r'reserve/(P?<tour_id>\d+)/$', 'buy_cancel.views.reserve'),
 
      url(r'reserve/(\w+)/$', 'buy_cancel.views.reserve'),
@@ -37,11 +51,6 @@ urlpatterns = [
    url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
      url(r'purchase/(\w+)/$', 'buy_cancel.views.purchase'),
      url(r'purchase/$', 'buy_cancel.views.purchase'),
-    url(r'search/form/$', 'present_trip.views.start_search'),
-    url(r'search/form/(\w+)/$', 'present_trip.views.start_search'),
-    url(r'search/result/$', 'present_trip.views.search'),
-    url(r'search/result/(\w+)/$', 'present_trip.views.search'),
-    url(r'search/result/(\w+)/(\w+)$', 'present_trip.views.search'),
     url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
     url(r'cancel/(\w+)/$', 'accounting.views.cancel'),
     url(r'payment/(P?<id>\d+)/$', 'accounting.views.payment'),
@@ -50,6 +59,6 @@ urlpatterns = [
     url(r'payment/confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
     url(r'payment/confirm/$', 'accounting.views.confirm'),
     url(r'^manager/', include('manager_dashboard.urls')),
-    url(r'^quality/', include('quality_control.urls')),
+    # url(r'^quality/', include('quality_control.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
