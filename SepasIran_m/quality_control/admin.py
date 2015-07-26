@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from SepasIran_m.quality_control.models import OnlineComment, RatingComment
+
+
+class OnlineCommentAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(OnlineComment, OnlineCommentAdmin)
+
+class RatingCommentAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(RatingComment, RatingCommentAdmin)

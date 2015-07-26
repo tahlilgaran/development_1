@@ -2,6 +2,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'home/$', 'present_trip.views.home'),
     url(r'home/(\w+)/$', 'present_trip.views.home'),
@@ -47,15 +48,8 @@ urlpatterns = [
     url(r'payment/Confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
     url(r'payment/$', 'accounting.views.payment'),
     url(r'payment/confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
-     url(r'payment/confirm/$', 'accounting.views.confirm'),
-     url(r'manager/Dashboard/$', 'manager_dashboard.views.Dashboard'),
-    url(r'manager/tourLists/$', 'manager_dashboard.views.tourLists'),
-    url(r'manager/tourRating/$', 'manager_dashboard.views.tourRating'),
-    url(r'manager/userLists/$', 'manager_dashboard.views.userLists'),
-    url(r'manager/paymentsList/$', 'manager_dashboard.views.paymentLists'),
-    url(r'manager/contractPercent/$', 'manager_dashboard.views.contractPercent'),
-    url(r'manager/OnlineComments/$', 'manager_dashboard.views.showOnlineComments'),
-    url(r'quality/onlineComment/$', 'quality_control.views.onlineComment'),
-    url(r'quality/userRating/$', 'quality_control.views.userRating'),
+    url(r'payment/confirm/$', 'accounting.views.confirm'),
+    url(r'^manager/', include('manager_dashboard.urls')),
+    url(r'^quality/', include('quality_control.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
