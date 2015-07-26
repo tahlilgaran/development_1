@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 
 class TouristProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(UserM)
     location = models.CharField(max_length=250, null=True,blank=True)
-    picture = models.FileField(upload_to="static/users/img/", default="static/users/img/default.jpg" , null=True, blank=True)
-    birthday = models.DateField()
+    birthday = models.DateField(null=True,blank=True)
     gender = models.BooleanField()
+    account = models.IntegerField(default=0)
 
     def __str__(self):
         return "{}".format(self.user.username)
@@ -20,18 +20,26 @@ class TouristProfile(models.Model):
 
 
 class TourBuilderProfile(models.Model):
-    user = models.OneToOneField(User)
-    location = models.CharField(max_length=250, null=True,blank=True)
-    picture = models.FileField(upload_to="static/users/img/", default="static/users/img/default.jpg" , null=True, blank=True)
-    kind = models.CharField()   #service or tour
+    user = models.OneToOneField(UserM)  # username is sabt number
+    location = models.CharField(max_length=250)
+    main_kind = models.CharField()   # service or tour
+    service_kind = models.CharField()  # h / a / r / t
+    account = models.IntegerField(default=0)
 
     def __str__(self):
         return "{}".format(self.user.last_name)
 
 
 class ManagerProfile(models.Model):
-    user = models.OneToOneField(User)
-    #maryam poresh kon
+    user = models.OneToOneField(UserM)
+    # maryam poresh kon
 
     def __str__(self):
         return "{}".format(self.user.username)
+
+
+class UserM(models.Model):
+    user = models.OneToOneField(User)
+    register_time = models.DateTimeField(default=datetime.now)
+    picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
+    kind = models.CharField(max_length=10)
