@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'accounting',
-    # 'buy_cancel',
+    'buy_cancel',
     'define_trip',
     # 'informing',
     # 'manager_dashboard',
