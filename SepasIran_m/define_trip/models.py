@@ -37,8 +37,8 @@ class Tour(models.Model):
     name = models.CharField(max_length=255)
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
     tour_kind = models.CharField(max_length=30)      # nat / inter / holly
-    destination = models.ForeignKey(City)    # city name
-    source = models.ForeignKey(City)         # city name
+    destination = models.ForeignKey(City , related_name='tour_dest')    # city name
+    source = models.ForeignKey(City , related_name='tour_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     end = models.DateField()
@@ -73,8 +73,8 @@ class Picture(models.Model):
 
 class AirPlane(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
-    destination = models.ForeignKey(City , related_name='air_plain')    # city name
-    source = models.ForeignKey(City , related_name='air_plain')         # city name
+    destination = models.ForeignKey(City , related_name='airplain_dest')    # city name
+    source = models.ForeignKey(City , related_name='airplain_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate parvaz
@@ -89,9 +89,9 @@ class AirplaneSeat(models.Model):
 
 
 class Train(models.Model):
-    gardesh = models.ForeignKey(Gardesh, related_name='airplane')
-    destination = models.ForeignKey(City)    # city name
-    source = models.ForeignKey(City)         # city name
+    gardesh = models.ForeignKey(Gardesh, related_name='train')
+    destination = models.ForeignKey(City , related_name='train_dest')    # city name
+    source = models.ForeignKey(City , related_name='train_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate harekat
@@ -126,7 +126,7 @@ class TableReserve(models.Model):
 
 
 class Hotel(models.Model):
-    gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
+    gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
 
