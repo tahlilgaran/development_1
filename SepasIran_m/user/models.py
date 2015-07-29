@@ -2,6 +2,11 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 
+class UserM(models.Model):
+    user = models.OneToOneField(User)
+    register_time = models.DateTimeField(default=datetime.now)
+    picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
+    kind = models.CharField(max_length=10)
 
 class TouristProfile(models.Model):
     user = models.OneToOneField(UserM)
@@ -22,8 +27,8 @@ class TouristProfile(models.Model):
 class TourBuilderProfile(models.Model):
     user = models.OneToOneField(UserM)  # username is sabt number
     location = models.CharField(max_length=250)
-    main_kind = models.CharField()   # service or tour
-    service_kind = models.CharField()  # h / a / r / t
+    main_kind = models.CharField(max_length= 20)   # service or tour
+    service_kind = models.CharField(max_length= 30)  # h / a / r / t
     account = models.IntegerField(default=0)
 
     def __str__(self):
@@ -37,9 +42,3 @@ class ManagerProfile(models.Model):
     def __str__(self):
         return "{}".format(self.user.username)
 
-
-class UserM(models.Model):
-    user = models.OneToOneField(User)
-    register_time = models.DateTimeField(default=datetime.now)
-    picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
-    kind = models.CharField(max_length=10)

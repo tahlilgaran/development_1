@@ -5,25 +5,37 @@ from user.models import TourBuilderProfile
 
 class Agreement(models.Model):
     percent = models.FloatField()    # between 0 and 1
-    kind = models.CharField()   # tr-b /tr-s /tr-g/ a-b /...
+    kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
 
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
-    kind = models.CharField()   # t/tr/a/h/r
-    degree = models.CharField()     # g/s/b
+    kind = models.CharField(max_length=30)   # t/tr/a/h/r
+    degree = models.CharField(max_length=30)     # g/s/b
     max_cancel_time = models.IntegerField(default= 2)
-    free = models.FloatField(default=1)     # between 0 and 1
+    free = models.FloatField(default=1)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
 
+class TransferDevice(models.Model):
+    kind = models.CharField(max_length=1)    # a/t/b
+    degree = models.CharField(max_length=2)      # g/s/b
+    name = models.CharField(max_length=255)
+
+class Location(models.Model):
+    kind = models.CharField(max_length=1)    # h/a/m
+    degree = models.CharField(max_length=2)      # g/s/b
+    name = models.CharField(max_length=255)
+
+class City(models.Model):
+    name = models.CharField(max_length=255)
 
 class Tour(models.Model):
     name = models.CharField(max_length=255)
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
-    tour_kind = models.CharField()      # nat / inter / holly
-    destination = models.CharField()    # city name
-    source = models.CharField()         # city name
+    tour_kind = models.CharField(max_length=30)      # nat / inter / holly
+    destination = models.ForeignKey(City , related_name='tour_dest')    # city name
+    source = models.ForeignKey(City , related_name='tour_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     end = models.DateField()
@@ -31,11 +43,11 @@ class Tour(models.Model):
     capacity = models.IntegerField()    # tedadi ke mitavanim befrooshim
     has_sold = models.IntegerField(default=0)   # if = capacity or intire=0 => stop selling
     entire_capacity = models.IntegerField()     # mizani ke hanooz az zarfiate kol mande
-    leader = models.CharField()
-    leader_c = models.CharField(null=True, blank=True)
+    leader = models.CharField(max_length=30)
+    leader_c = models.CharField(null=True, blank=True , max_length=50)
     transfer_device = models.ForeignKey(TransferDevice)
     stay_location = models.ForeignKey(Location)
-    exclusive_cost = models.IntegerField()  # with out bazdid
+    exclusive_cost = models.IntegerField()  # with out bazdid --> tour ha chenin apptioni gharar nemidan bara melat. age chizi mazad bar hazine bashe hamoonja khode mosafera hazine ash ro midan.
     entire_cost = models.IntegerField()
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
@@ -45,16 +57,6 @@ class Tour(models.Model):
     comment_rank = models.FloatField(null=True,blank=True)
 
 
-class TransferDevice(models.Model):
-    kind = models.CharField(max_length=1)    # a/t/b
-    degree = models.CharField(max_length=2)      # g/s/b
-    name = models.CharField(max_length=255)
-
-
-class Location(models.Model):
-    kind = models.CharField(max_length=1)    # h/a/m
-    degree = models.CharField(max_length=2)      # g/s/b
-    name = models.CharField(max_length=255)
 
 
 class Bazdid(models.Model):
@@ -71,8 +73,8 @@ class Picture(models.Model):
 
 class AirPlane(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
-    destination = models.CharField()    # city name
-    source = models.CharField()         # city name
+    destination = models.ForeignKey(City , related_name='airplain_dest')    # city name
+    source = models.ForeignKey(City , related_name='airplain_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate parvaz
@@ -86,9 +88,9 @@ class AirplaneSeat(models.Model):
 
 
 class Train(models.Model):
-    gardesh = models.ForeignKey(Gardesh, related_name='airplane')
-    destination = models.CharField()    # city name
-    source = models.CharField()         # city name
+    gardesh = models.ForeignKey(Gardesh, related_name='train')
+    destination = models.ForeignKey(City , related_name='train_dest')    # city name
+    source = models.ForeignKey(City , related_name='train_source')         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate harekat
@@ -123,7 +125,7 @@ class TableReserve(models.Model):
 
 
 class Hotel(models.Model):
-    gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
+    gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
 
