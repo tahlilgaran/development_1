@@ -11,9 +11,6 @@ class Agreement(models.Model):
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
     kind = models.CharField()   # t/tr/a/h/r
-    final_rank = models.FloatField(null=True,blank=True)
-    order_rank = models.FloatField(null=True,blank=True)
-    comment_rank = models.FloatField(null=True,blank=True)
     degree = models.CharField()     # g/s/b
     max_cancel_time = models.IntegerField(default= 2)
     free = models.FloatField(default=1)     # between 0 and 1
@@ -43,6 +40,9 @@ class Tour(models.Model):
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
     other_explain = models.TextField(null=True, blank=True)
+    final_rank = models.FloatField(null=True,blank=True)
+    order_rank = models.FloatField(null=True,blank=True)
+    comment_rank = models.FloatField(null=True,blank=True)
 
 
 class TransferDevice(models.Model):
@@ -76,7 +76,6 @@ class AirPlane(models.Model):
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate parvaz
-    capacity = models.IntegerField()    # number of un sell seats
 
 
 class AirplaneSeat(models.Model):
