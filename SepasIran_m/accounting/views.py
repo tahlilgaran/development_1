@@ -15,6 +15,6 @@ def cancel(request ,kind=''):
         return render(request , "canceling.html", {'kind':kind})
     elif kind == 'tour':
         return render(request, "canceling.html" , {'kind':kind})
-    elif kind == 'confirm':
-        return render(request, "canceling.html" , {'kind':kind})
+
+    return render(request, "canceling.html" , {'kind':kind})
 

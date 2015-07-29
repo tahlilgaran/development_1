@@ -7,27 +7,67 @@ class Agreement(models.Model):
     percent = models.FloatField()    # between 0 and 1
     kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
+KIND = (
+    ('T', 'tour'),
+    ('TR', ''),
+    ('A', 'airplane'),
+    ('H', 'hotel'),
+    ('R', 'resturant'),
+)
+DEGREE = (
+    ('G', 'golden'),
+    ('S', 'silver'),
+    ('B', 'bronze'),
+
+)
+
+T_KIND = (
+    ('A', 'airplane'),
+    ('T', 'train'),
+    ('B', 'bus'),
+
+)
+
+L_KIND = (
+    ('H', 'h'),
+    ('A', 'a'),
+    ('M', 'm'),
+
+)
+TOUR_KIND = (
+    ('NAT', 'natrual'),
+    ('INTER', 'international'),
+    ('HOLLY', 'holly'),
+
+)
 
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
-    kind = models.CharField(max_length=30)   # t/tr/a/h/r
+    kind = models.CharField(max_length=2,
+                                      choices=KIND)   # t/tr/a/h/r
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
     comment_rank = models.FloatField(null=True,blank=True)
-    degree = models.CharField(max_length=30)     # g/s/b
+    degree = models.CharField(max_length=2,
+                                      choices=DEGREE)     # g/s/b
     max_cancel_time = models.IntegerField(default= 2)
     free = models.FloatField(default=1)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
 
+
 class TransferDevice(models.Model):
-    kind = models.CharField(max_length=1)    # a/t/b
-    degree = models.CharField(max_length=2)      # g/s/b
+    kind = models.CharField(max_length=2,
+                                      choices=T_KIND)    # a/t/b
+    degree = models.CharField(max_length=2,
+                                      choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
 
 class Location(models.Model):
-    kind = models.CharField(max_length=1)    # h/a/m
-    degree = models.CharField(max_length=2)      # g/s/b
+    kind = models.CharField(max_length=2,
+                                      choices=L_KIND)    # h/a/m
+    degree = models.CharField(max_length=2,
+                                      choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
 
 class City(models.Model):
@@ -72,6 +112,7 @@ class Picture(models.Model):
 
 
 class AirPlane(models.Model):
+    name = models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
     destination = models.ForeignKey(City , related_name='airplain_dest')    # city name
     source = models.ForeignKey(City , related_name='airplain_source')         # city name
@@ -79,16 +120,17 @@ class AirPlane(models.Model):
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate parvaz
     capacity = models.IntegerField()    # number of un sell seats
+    cost = models.IntegerField()
 
 
 class AirplaneSeat(models.Model):
     airplane = models.ForeignKey(AirPlane, related_name='seat')
     number = models.IntegerField()
-    cost = models.IntegerField()        # gheimat ro joda begiram bara sandali ha?????
     full = models.BooleanField(default=False)
 
 
 class Train(models.Model):
+    name = models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='train')
     destination = models.ForeignKey(City , related_name='train_dest')    # city name
     source = models.ForeignKey(City , related_name='train_source')         # city name
@@ -106,9 +148,12 @@ class TrainSeat(models.Model):
 
 
 class Restaurant(models.Model):
+    name = models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+    def __str__(self):
+        return self.name#bug fixed by yeganeh
 
 
 class Table(models.Model):
@@ -116,16 +161,20 @@ class Table(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     capacity = models.IntegerField()    # zarfiate miz
     cost_perClock = models.IntegerField()
-
+    def __str__(self):
+        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
+        return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
 
 class TableReserve(models.Model):
     reserve_date = models.DateField()
     start_reserve = models.TimeField()
     end_reserve = models.TimeField()
     table = models.ForeignKey(Table)
-
+    def __str__(self):
+        return str(self.table)
 
 class Hotel(models.Model):
+    name=models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()

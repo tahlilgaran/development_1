@@ -6,7 +6,10 @@ class UserM(models.Model):
     user = models.OneToOneField(User)
     register_time = models.DateTimeField(default=datetime.now)
     picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
-    kind = models.CharField(max_length=10)
+    kind = models.CharField(max_length=10) #? what is this? redundant
+
+    def __str__(self):
+     return str(self.user)
 
 class TouristProfile(models.Model):
     user = models.OneToOneField(UserM)
@@ -16,7 +19,7 @@ class TouristProfile(models.Model):
     account = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}".format(self.user.username)
+        return "{}".format(self.user)
 
     def age(self):
         year = datetime.now().year
@@ -32,7 +35,7 @@ class TourBuilderProfile(models.Model):
     account = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}".format(self.user.last_name)
+        return "{}".format(self.user)#bug fixed by yeganeh
 
 
 class ManagerProfile(models.Model):

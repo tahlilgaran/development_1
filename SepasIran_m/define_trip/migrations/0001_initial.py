@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
             name='AirPlane',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=100)),
                 ('start', models.DateField()),
                 ('start_t', models.TimeField()),
                 ('time', models.IntegerField()),
@@ -76,6 +77,7 @@ class Migration(migrations.Migration):
             name='Hotel',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=100)),
                 ('start_day', models.DateField()),
                 ('end_day', models.DateField()),
                 ('gardesh', models.ForeignKey(related_name='hotel', to='define_trip.Gardesh')),
@@ -102,6 +104,7 @@ class Migration(migrations.Migration):
             name='Restaurant',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=100)),
                 ('start_day', models.DateField()),
                 ('end_day', models.DateField()),
                 ('gardesh', models.ForeignKey(related_name='restaurant', to='define_trip.Gardesh')),
@@ -176,6 +179,7 @@ class Migration(migrations.Migration):
             name='Train',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=100)),
                 ('start', models.DateField()),
                 ('start_t', models.TimeField()),
                 ('time', models.IntegerField()),
