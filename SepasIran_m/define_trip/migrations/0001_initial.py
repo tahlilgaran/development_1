@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
             name='Agreement',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=300)),
                 ('percent', models.FloatField()),
                 ('kind', models.CharField(max_length=30)),
             ],

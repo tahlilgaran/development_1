@@ -4,6 +4,7 @@ from user.models import TourBuilderProfile
 
 
 class Agreement(models.Model):
+    name = models.CharField(max_length=300)
     percent = models.FloatField()    # between 0 and 1
     kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
@@ -76,7 +77,7 @@ class City(models.Model):
 class Tour(models.Model):
     name = models.CharField(max_length=255)
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
-    tour_kind = models.CharField(max_length=30)      # nat / inter / holly
+    tour_kind = models.CharField(max_length=30, choices=TOUR_KIND)      # nat / inter / holly
     destination = models.ForeignKey(City , related_name='tour_dest')    # city name
     source = models.ForeignKey(City , related_name='tour_source')         # city name
     start = models.DateField()
