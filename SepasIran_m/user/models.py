@@ -31,8 +31,8 @@ class TouristProfile(models.Model):
 class TourBuilderProfile(models.Model):
     user = models.OneToOneField(UserM)  # username is sabt number
     location = models.CharField(max_length=250)
-    main_kind = models.CharField(max_length= 20)   # service or tour
-    service_kind = models.CharField(max_length= 30)  # h / a / r / t
+    main_kind = models.CharField(max_length= 20)   # service or tour be nazaram ina ezafe ast
+    service_kind = models.CharField(max_length= 30)  # h / a / r / t be nazarm ina ezafe ast
     account = models.IntegerField(default=0)
 
     def __str__(self):

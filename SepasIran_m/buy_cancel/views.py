@@ -111,18 +111,18 @@ def confirmreserve(request,id=''):
     date = request.POST.get("date","")
 
 
-    TableReserve.filter(table=table,date=date,end_time=end_time,start_time=start_time)
+    # TableReserve.filter(table=table,date=date,end_time=end_time,start_time=start_time)
     # check
-    res = False
+    # res = False
 
-    if ! res:
-        msg = "this table is already reserved"
-        return render(request,
-                      {'msg':msg,
-                       }
-                      )
-
-
+    # if ! res:
+    #     msg = "this table is already reserved"
+    #     return render(request,
+    #                   {'msg':msg,
+    #                    }
+    #                   )
+    #
+    #
 
 
 
