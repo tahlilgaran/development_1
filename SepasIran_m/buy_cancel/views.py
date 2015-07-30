@@ -4,45 +4,55 @@ from define_trip.models import *
 # Create your views here.
 def purchase(request ,kind='',username='',id=''):
 
+ # these 2 line for test
+    id = 1
+    username = "unique"
+    kind = 'tour'# notice!
+
 
     if kind=='tour':
-             tour=Tour.objects.get(id = id)[0];
-             return render(request, "information_of_buyer_tour.html" , {
-                 'username':username,
-                 'kind':kind,
-                 'tour':tour,
-             })
-
+         tour=Tour.objects.get(id = id);
+         return render(request, "information_of_buyer_tour.html" , {
+             'username':username,
+             'tour':tour,
+         })
     else:
-            if kind=='airplane':
-                airplane=AirPlane.objects.get(id =id)[0];
-                return render(request, "information_of_buyer_service.html" , {
-                 'username':username,
-                 'kind':kind,
-                 'airplane':airplane,
-                })
-            elif kind=='train':
-                train=Train.objects.get(id =id)[0];
-                return render(request, "information_of_buyer_service.html" , {
-                'username':username,
-                 'kind':kind,
-                 'train':train,
-                })
-            elif kind=='resturant':
-                resturant=Restaurant.objects.filter(id =id)[0];
-                table=Table.objects.filter(resturant_name = resturant)
-                return render(request, "information_of_buyer_service.html" , {
-                 'username':username,
-                 'kind':kind,
-                 'resturant':resturant,
-                 'table':table,
-                })
+        if kind=='airplane':
+            airplaneseat=AirplaneSeat.objects.get(id = id);
+            airplane=airplaneseat.airplane
+            return render(request, "information_of_buyer_service.html" , {
+             'username':username,
+             'kind':kind,
+             'airplane':airplane,
+             'airplanesear': airplaneseat,
+            })
+        elif kind=='train':
+            trainseat=TrainSeat.objects.get(id = id);
+            train=trainseat.train
+            return render(request, "information_of_buyer_service.html" , {
+            'username':username,
+             'kind':kind,
+             'train':train,
+             'trainsear': trainseat,
+            })
+        elif kind == 'resturant':
+            table = Table.objects.get(id = id);
+            resturant =table.restaurant
+            return render(request, "information_of_buyer_service.html" , {
+             'username': username,
+             'kind': kind,
+             'resturant': resturant,
+             'table': table,
+            })
 
-    hotel=Hotel.objects.get(id =id)[0];
-    return render(request , "information_of_reserver_service.html" , {
-                'username': username,
-                'kind':kind,
-                'hotel':hotel,
+        room=Room.objects.get(id = id);
+        hotel=room.hotel
+        return render(request , "information_of_buyer_service.html" , {
+           'username': username,
+           'kind': kind,
+           'room': room,
+           'hotel': hotel,
+
         })
 
           #return render(request, "reservation-status.html")
@@ -61,7 +71,6 @@ def reserve(request ,kind='',username='',id=''):
          tour=Tour.objects.get(id = id);
          return render(request, "information_of_reserver_tour.html" , {
              'username':username,
-             'kind':kind,
              'tour':tour,
          })
     else:
@@ -93,7 +102,7 @@ def reserve(request ,kind='',username='',id=''):
              'table': table,
             })
 
-        room=Hotel.objects.get(id = id);
+        room=Room.objects.get(id = id);
         hotel=room.hotel
         return render(request , "information_of_reserver_service.html" , {
            'username': username,

@@ -101,6 +101,8 @@ class Tour(models.Model):
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
     other_explain = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.name#bug fixed by yeganeh
 
 
 
@@ -127,12 +129,17 @@ class AirPlane(models.Model):
     time = models.IntegerField()        # moddate parvaz
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+    def __str__(self):
+        return self.name#bug fixed by yeganeh
 
 
 class AirplaneSeat(models.Model):
     airplane = models.ForeignKey(AirPlane, related_name='seat')
     number = models.IntegerField()
     full = models.BooleanField(default=False)
+    def __str__(self):
+        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
+        return str(self.train) + str(self.number)#bug fixed by yeganeh
 
 
 class Train(models.Model):
@@ -145,12 +152,17 @@ class Train(models.Model):
     time = models.IntegerField()        # moddate harekat
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+    def __str__(self):
+        return str(self.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
 
 class TrainSeat(models.Model):
     train = models.ForeignKey(Train, related_name='seat')
     number = models.IntegerField()
     full = models.BooleanField(default=False)
+    def __str__(self):
+        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
+        return str(self.train) + str(self.number)#bug fixed by yeganeh
 
 
 class Restaurant(models.Model):
@@ -184,6 +196,8 @@ class Hotel(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+    def __str__(self):
+        return str(self.name)
 
 
 class Room(models.Model):
@@ -191,9 +205,15 @@ class Room(models.Model):
     hotel = models.ForeignKey(Hotel)
     capacity = models.IntegerField()    # zarfiate otagh
     cost_perNight = models.IntegerField()
+    full = models.BooleanField(default=False)
+    def __str__(self):
+        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
+        return str(self.hotel) + str(self.number)#bug fixed by yeganeh
 
 
 class RoomReserve(models.Model):
     reserve_start = models.DateField()
     reserve_end = models.DateField()
     room = models.ForeignKey(Room)
+    def __str__(self):
+        return str(self.room)

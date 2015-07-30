@@ -9,28 +9,27 @@
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
 
-                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما</h2>
-                        <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام شرکت گردشگری تور:</span> دالاهو
-                            <p>
-                            <span style="font-weight: bold;">نام تور :</span>تور باداب سورت تا دریاچه چورت (اقامت کمپ)
-                            </p>
+            <div id="top_part" class="col-md-12">
+                   <!-- <div class="col-md-10">-->
+
+                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما</h2>{{ username }}
+                        <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ tour.name }}
 
                             <p>
-                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>۲۵۵۰۰۰۰ ریال
+                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>{{ tour.entire_cost }}ریال
                             </p>
 
                         </div>
             </div>
              <div id="down_part" class="col-md-12" style="right: 20px;">
-                         <form action="/payment/" >
-
+                         <form action="/payment/(P?<tour_id>\d+)" method="POST">
+                            {% csrf_token %}
                             <p>
                             <span style="font-weight: bold;">تعداد افراد:</span>
-                                 <input type="text" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
+                                 <input type="text" name="number-of-buyer" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"  value={{number}}/>
                                  <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
                                     <p> توجه : اولین نفری که نام او در فرم اطلاعات خریداران وارد میشود سرپرست محسوب میگردد</p>
                                   <div id="t" class="col-md-12" ></div>
-                                    <div style="top: 100px;font-weight: bold;">جمع کل مبلغ پرداختی:<span id="final"></span>ریال</div>
 
 
                             </p>
@@ -38,6 +37,8 @@
                              <div id="total"></div>
 
                          </form>
+             </div>
+    </div>
     </div>
     <div class="col-md-1">
     </div>
@@ -57,8 +58,14 @@
                                  '<td class="col-md-1">نام</td><td class="col-md-1">نام خانوادگی</td><td class="col-md-1">شماره ی ملی</td>';
                          for( var i=0; i<num_rows;i++)
                          {
-                             console.log(i)
-                             tbody += '<tr>';
+
+                             if(i==0)
+                                tbody += '<tr name="first-name" value="first-name">';
+                             else if (i==1)
+                                tbody += '<tr name="last-name" value="last-name">';
+                             else if (i==2)
+                                tbody += '<tr name="melli-id" value="melli-id">';
+
                              for( var j=0; j<num_cols;j++)
                              {
                                  tbody += '<td class="col-md-1">';
@@ -69,7 +76,7 @@
                          }
                          var tfooter = '</table>';
                           document.getElementById('t').innerHTML = theader + tbody + tfooter;
-                          document.getElementById('final').innerHTML=parseInt(num_rows)*2550000;
+                         <!-- document.getElementById('final').innerHTML=parseInt(num_rows)*2550000;-->
                           document.getElementById('total').innerHTML = '<input type="submit" class="btn btn-success" value="تایید خرید" style="float:left;margin-left:20px;"/>';
                      }
 
