@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class UserM(models.Model):
     user = models.OneToOneField(User)
+    name = models.CharField(max_length=255)
     register_time = models.DateTimeField(default=datetime.now)
     picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
     kind = models.CharField(max_length=10) #? what is this? redundant
@@ -30,8 +31,8 @@ class TouristProfile(models.Model):
 class TourBuilderProfile(models.Model):
     user = models.OneToOneField(UserM)  # username is sabt number
     location = models.CharField(max_length=250)
-    main_kind = models.CharField(max_length= 20)   # service or tour
-    service_kind = models.CharField(max_length= 30)  # h / a / r / t
+    main_kind = models.CharField(max_length= 20)   # service or tour be nazaram ina ezafe ast
+    service_kind = models.CharField(max_length= 30)  # h / a / r / t be nazarm ina ezafe ast
     account = models.IntegerField(default=0)
 
     def __str__(self):

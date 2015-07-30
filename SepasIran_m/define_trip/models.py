@@ -4,48 +4,56 @@ from user.models import TourBuilderProfile
 
 
 class Agreement(models.Model):
-    name = models.CharField(max_length=300)
     percent = models.FloatField()    # between 0 and 1
     kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
 KIND = (
-    ('T', 'tour'),
-    ('TR', ''),
-    ('A', 'airplane'),
-    ('H', 'hotel'),
-    ('R', 'resturant'),
+    ('T', 'تور'),
+    ('TR', 'قطار'),
+    ('A', 'هواپیما'),
+    ('H', 'هتل'),
+    ('R', 'رستوران'),
 )
 DEGREE = (
-    ('G', 'golden'),
-    ('S', 'silver'),
-    ('B', 'bronze'),
+    ('G', 'طلایی'),
+    ('S', 'نقره ای'),
+    ('B', 'برنز'),
 
 )
 
 T_KIND = (
-    ('A', 'airplane'),
-    ('T', 'train'),
-    ('B', 'bus'),
+    ('A', 'هواپیما'),
+    ('T', 'قطار'),
+    ('B', 'اتوبوس'),
 
 )
 
 L_KIND = (
-    ('H', 'h'),
-    ('A', 'a'),
-    ('M', 'm'),
+    ('H', 'هتل'),
+    ('A', 'هتل آپارتمان'),
+    ('M', 'مسافرخانه'),
+    ('C', 'چادر'),
 
 )
 TOUR_KIND = (
-    ('NAT', 'natrual'),
-    ('INTER', 'international'),
-    ('HOLLY', 'holly'),
+    ('NAT', 'طبیعت گردی'),
+    ('INTER', 'ایران گردی'),
+    ('OUTER', 'جهان گردی'),
+    ('HOLLY', 'زیارتی'),
 
+)
+
+CITY = (
+    ('Tehran' , 'تهران'),
+    ('Mashad' , 'مشهد'),
+    ('Kish' , 'کیش'),
+    ('Semnan' , 'سمنان'),
 )
 
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
-    kind = models.CharField(max_length=2,
-                                      choices=KIND)   # t/tr/a/h/r
+    # kind = models.CharField(max_length=2,
+    #                                   choices=KIND)   # t/tr/a/h/r copy to line:78
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
     comment_rank = models.FloatField(null=True,blank=True)
@@ -71,15 +79,13 @@ class Location(models.Model):
                                       choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
 
-class City(models.Model):
-    name = models.CharField(max_length=255)
-
 class Tour(models.Model):
     name = models.CharField(max_length=255)
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
-    tour_kind = models.CharField(max_length=30, choices=TOUR_KIND)      # nat / inter / holly
-    destination = models.ForeignKey(City , related_name='tour_dest')    # city name
-    source = models.ForeignKey(City , related_name='tour_source')         # city name
+    kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r
+    tour_kind = models.CharField(max_length=30 , choices=TOUR_KIND)      # nat / inter / holly
+    destination = models.CharField(max_length=255, choices=CITY)    # city name
+    source = models.CharField(max_length=255,choices=CITY)         # city name
     start = models.DateField()
     start_t = models.TimeField()
     end = models.DateField()
@@ -91,7 +97,6 @@ class Tour(models.Model):
     leader_c = models.CharField(null=True, blank=True , max_length=50)
     transfer_device = models.ForeignKey(TransferDevice)
     stay_location = models.ForeignKey(Location)
-    exclusive_cost = models.IntegerField()  # with out bazdid --> tour ha chenin apptioni gharar nemidan bara melat. age chizi mazad bar hazine bashe hamoonja khode mosafera hazine ash ro midan.
     entire_cost = models.IntegerField()
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
@@ -115,8 +120,8 @@ class Picture(models.Model):
 class AirPlane(models.Model):
     name = models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
-    destination = models.ForeignKey(City , related_name='airplain_dest')    # city name
-    source = models.ForeignKey(City , related_name='airplain_source')         # city name
+    destination = models.CharField(max_length=255,choices=CITY)    # city name
+    source = models.CharField(max_length=255,choices=CITY)         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate parvaz
@@ -133,8 +138,8 @@ class AirplaneSeat(models.Model):
 class Train(models.Model):
     name = models.CharField(max_length=100)
     gardesh = models.ForeignKey(Gardesh, related_name='train')
-    destination = models.ForeignKey(City , related_name='train_dest')    # city name
-    source = models.ForeignKey(City , related_name='train_source')         # city name
+    destination = models.CharField(max_length=255,choices=CITY)    # city name
+    source = models.CharField(max_length=255,choices=CITY)         # city name
     start = models.DateField()
     start_t = models.TimeField()
     time = models.IntegerField()        # moddate harekat
