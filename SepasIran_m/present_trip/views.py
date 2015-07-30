@@ -3,19 +3,21 @@ from define_trip.models import *
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
 
-def show_one_trip(request, kind = '' ,username = '' , id = ''):
+def show_one_trip(request, kind = ''  , id = 0):
+    # print("tourist_profile: {}".format(request.user.userm.kind))
     returned_dic = {}
     if request.method == "GET":
         returned_dic['kind'] = kind
         returned_dic['user'] = request.user
-        returned_dic['username'] = 'username'
+        # returned_dic['username'] = 'username'
+        print(returned_dic)
         if kind == 'service':
-            return render(request , "one_trip.html", {'kind':kind , 'username':username})
+            return render(request , "one_trip.html", {'kind':kind})
         elif kind == 'tour':
-            returned_dic['tour'] = Tour.objects.filter( id = id )[0]
+            returned_dic['tour'] = Tour.objects.filter(id = id)[0]
             return render(request , "one_trip.html", returned_dic )
         elif kind == 'pack':
-            return render(request , "one_trip.html", {'kind':kind , 'username':username})
+            return render(request , "one_trip.html", {'kind':kind})
 
     else:
         return None

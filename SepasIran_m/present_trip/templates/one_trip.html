@@ -203,57 +203,50 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
-                      <P>
-                          چشمه های اسرار آمیز باداب سورت اروست مشتمل بر دوازده چشمه با آب های کاملاً متفاوت از لحاظ رنگ بو مزه می باشند.باداب سورت [Badab Soort] نیز به معنی شدت اثر آب گاز دار است که در زبان محلی به آن اروست وائو یا بادو می گویند. همچنین ادعای روستاهای اطراف مبنی بر مالکیت باداب سورت نیز کاملا بی اساس است و در اصل نام چندین و چند هزار ساله این چشمه ها باداب اروست می باشد.
-                      </P>
+                      <P>{{ tour.destination_explain }}</P>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledBy="profile-tab">
-                      <P>
-محل حرکت: جنوب میدان ونک،روبروی فروشگاه چرم مشهد
- زمان حرکت: چهارشنبه 1394/04/17 -	ساعت 05:00 صبح (لطفا نیم ساعت قبل از حرکت در محل حضور داشته باشید)
- وسیله نقلیه اصلی: وسیلۀ نقلیۀ توریستی
-                      </P>
+                      <P>{{ tour.move_explain }}</P>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledBy="profile-tab">
+                      <P>{{ tour.other_explain }}</P>
                   </div>
                 </div>
             </div><!-- /example -->
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>
-                    تور باداب سورت تا دریاچه چورت (اقامت کمپ)
-                    </thead>
+                    <thead>{{ tour.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شرکت گردشگری:
                             </td>
-                            <td>
-دالاهو
-                            </td>
+                            <td>{{ tour.gardesh.builder.user.name }}</td>
                         </tr>
                         <tr>
                             <td>
 مکان:
                             </td>
-                            <td>
-استان مازندران
-                            </td>
+                            <td>{{ tour.destination }}</td>
                         </tr>
                         <tr>
                             <td>
                                 زمان:
                             </td>
-                            <td>
-                                ۱۷ و ۱۸ تیرماه
-                            </td>
+                            <td>{{ tour.end }} تا {{ tour.start }}</td>
                         </tr>
                         <tr>
                             <td>
                                 نوع تور:
                             </td>
+                            <td>{{ tour.tour_kind }}</td>
+                        </tr>
+                        <tr>
                             <td>
-                                طبیعت گردی
+                                قیمت:
                             </td>
+                            <td>{{ tour.entire_cost }} تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -268,14 +261,14 @@
         </div>
     {% endif %}
 
-    {% if username == 'gardeshgar' %}
+    {% if user.userm.kind == 'gardeshgar' %}
     <div class="col-md-6"  style="float: left; direction: ltr">
-        <a type="button" href="/cancel/{{ kind }}/" class="btn btn-danger">انصراف</a>
-        <a type="button" href="/reserve/{{ kind }}/" class="btn btn-warning">رزرو</a>
-        <a type="button" href="/purchase/{{ kind }}/" class="btn btn-success">خرید</a>
+        <a type="button" href="/cancel/{{ kind }}/{{ tour.id }}" class="btn btn-danger">انصراف</a>
+        <a type="button" href="/reserving/{{ kind }}/{{ tour.id }}" class="btn btn-warning">رزرو</a>
+        <a type="button" href="/purchase/{{ kind }}/{{ tour.id }}" class="btn btn-success">خرید</a>
     </div>
-    {% elif username == 'gardeshsaz'%}
-       <a type="button" href="show/{{ kind }}/{{ username }}/status" class="btn btn-info , col-md-3">
+    {% elif user.userm.kind == 'gardeshsaz'%}
+       <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
        وضعیت گردش
         </a>
     {% else %}
