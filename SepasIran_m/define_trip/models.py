@@ -118,7 +118,7 @@ class Bazdid(models.Model):
 
 
 class Picture(models.Model):
-    picture = models.FileField(upload_to="/static/define_trip/img/", default="/static/define_trip/img/default.jpg")
+    picture = models.FileField(upload_to="static/define_trip/img/")
     gardesh = models.ForeignKey(Gardesh)
 
 
@@ -171,6 +171,7 @@ class TrainSeat(models.Model):
 class Restaurant(models.Model):
     # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
+    city = models.CharField(max_length=255, choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
     def __str__(self):
@@ -197,11 +198,12 @@ class TableReserve(models.Model):
 class Hotel(models.Model):
     # name=models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
+    city = models.CharField(max_length=255 , choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
     other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
-        return str(self.name)
+        return str(self.gardesh.builder.user.name)
 
 
 class Room(models.Model):
