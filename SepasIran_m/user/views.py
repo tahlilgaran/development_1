@@ -1,32 +1,54 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login,logout
 # Create your views here.
 
 
 def signin(request):
 
-    if request.POST.get("login","")!= "":
-        username = request.POST.get("username")
-        if(username == 'admin'):
-            return HttpResponseRedirect('/manager/Dashboard/')
-        return HttpResponseRedirect('/userpage/'+username)
-
-    if request.method == 'GET' :
-        username = ""
     if request.POST.get("signup","") != "":
         return HttpResponseRedirect('/signup/')
     if request.POST.get("forget","") != "":
         return HttpResponseRedirect('/forgetpassword/')
+    wrong = False
+    if request.POST.get("login","")!= "":
+        username = request.POST.get("username", "")
+        password = request.POST.get("pwd", "")
+        user = authenticate(username=username,password=password)
+
+        if user:
+            login(request, user)
+            if username == 'admin':
+                return HttpResponseRedirect('/manager/Dashboard/')
+            return HttpResponseRedirect('/userpage/'+username)
+        else:
+            wrong = True
 
     return render(request, "login.html",{
-        'username':username,
+        'username': "",
+        'wrong': wrong,
     })
 
 
 def forget_password(request):
+    sended = 1
 
-    return render(request, "forget.html",{
-        # 'username':username,
+    if request.POST.get("cancel","") != "":
+        return HttpResponseRedirect('/signIn/')
+
+    if request.method == 'POST':
+        u = User.objects.filter(email=request.POST.get("email", ""))
+
+        if not u:
+            sended=0
+        else:
+            sended = 2
+            u[0].set_password('123456')
+            u[0].save()
+    return render(request, "forget.html", {
+            'has_send': sended,
+            'username': "",
     })
 
 
