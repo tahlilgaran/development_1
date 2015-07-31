@@ -28,15 +28,16 @@ def show_one_trip(request, kind = ''  , id = 0):
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
             tables = Table.objects.filter(restaurant = trip)
+            print(tables)
             returned_dic['tables'] = tables
 
         elif kind == 'airplane':
-            trip = AirPlane.objects.filter(id = id)
+            trip = AirPlane.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
 
         elif kind == 'train':
-            trip = Train.objects.filter(id = id)
-            pic_q = Picture.objects.filter(gardesh = trip)
+            trip = Train.objects.filter(id = id)[0]
+            pic_q = Picture.objects.filter(gardesh = trip.gardesh)
 
         elif kind == 'pack':
             return render(request , "one_trip.html", {'kind':kind})

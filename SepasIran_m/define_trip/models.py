@@ -53,6 +53,7 @@ CITY = (
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
     kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r
+    name = models.CharField(max_length=255)
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
     comment_rank = models.FloatField(null=True,blank=True)
@@ -66,7 +67,7 @@ class Gardesh(models.Model):
 
 
     def __str__(self):
-        return "{}".format(self.builder)
+        return "{} - {}".format(self.name , self.builder)
 
 
 class TransferDevice(models.Model):
@@ -157,7 +158,7 @@ class Train(models.Model):
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
     def __str__(self):
-        return str(self.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
+        return str(self.gardesh.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
 
 class TrainSeat(models.Model):

@@ -71,7 +71,7 @@
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>هتل {{ trip.gardesh.builder.user.name }}</thead>
+                    <thead>هتل {{ trip.gardesh.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
@@ -197,13 +197,13 @@
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>{{ trip.name }}</thead>
+                    <thead>{{ trip.gardesh.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شرکت گردشگری:
                             </td>
-                            <td>{{ trip.gardesh.builder.user.name }}</td>
+                            <td>{{ trip.gardesh.name }}</td>
                         </tr>
                         <tr>
                             <td>
@@ -247,7 +247,7 @@
                 </h4>
               </div>
               <div class="modal-body">
-                {% if not rooms %}
+                {% if not tables %}
 متاسفانه در تاریخ مورد نظر میز خالی وجود ندارد.
                 {% else %}
                     {% for table in tables %}
@@ -282,7 +282,7 @@
                                 <tr><td>
                                     قیمت:
                                 </td>
-                                <td>{{ room.cost_perClock }} تومان</td>
+                                <td>{{ table.cost_perClock }} تومان</td>
                                 </tr>
 
                             </tbody>
@@ -308,7 +308,142 @@
 
     {% endif %}
 {#*********** ========================= Airplane =========================== **************#}
+    {% if kind == 'airplane' %}
+        <div id="down_part" class="box , col-md-12">
+            <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
+                <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
+                      <P>{{ trip.gardesh.other_explain }}</P>
+                  </div>
+                </div>
+            </div><!-- /example -->
+
+
+            <div class="col-md-5">
+                <table class="table">
+                    <thead>{{ trip.gardesh.name }}</thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                شرکت گردشگری:
+                            </td>
+                            <td>{{ trip.gardesh.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+مبدا:
+                            </td>
+                            <td>{{ trip.source }}</td>
+                        </tr>
+                        <tr>
+                            <td>مقصد:</td>
+                            <td>{{ trip.destination }}</td>
+                        </tr>
+                        <tr>
+                            <td>روز:</td>
+                            <td>{{ trip.start }}</td>
+                        </tr>
+                        <tr>
+                            <td>ساعت:</td>
+                            <td>{{ trip.start_t }}</td>
+                        </tr>
+                        <tr>
+                            <td>قیمت:</td>
+                            <td>{{ trip.cost }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if user.userm.kind == 'gardeshgar' %}
+                <div class="col-md-6"  style="float: left; direction: ltr">
+                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
+                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
+                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
+                </div>
+            {% elif user.userm.kind == 'gardeshsaz'%}
+                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
+                   وضعیت گردش
+                    </a>
+            {% else %}
+                <div class="col-md-3" style="color: red">
+                    برای خرید باید وارد سایت شوید.
+                </div>
+            {% endif %}
+
+        </div>
+    {% endif %}
 {#*********** ========================= Train =========================== **************#}
+    {% if kind == 'train' %}
+        <div id="down_part" class="box , col-md-12">
+            <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
+                <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
+                      <P>{{ trip.gardesh.other_explain }}</P>
+                  </div>
+                </div>
+            </div><!-- /example -->
+
+
+            <div class="col-md-5">
+                <table class="table">
+                    <thead>{{ trip.gardesh.name }}</thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                شرکت گردشگری:
+                            </td>
+                            <td>{{ trip.gardesh.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+مبدا:
+                            </td>
+                            <td>{{ trip.source }}</td>
+                        </tr>
+                        <tr>
+                            <td>مقصد:</td>
+                            <td>{{ trip.destination }}</td>
+                        </tr>
+                        <tr>
+                            <td>روز:</td>
+                            <td>{{ trip.start }}</td>
+                        </tr>
+                        <tr>
+                            <td>ساعت:</td>
+                            <td>{{ trip.start_t }}</td>
+                        </tr>
+                        <tr>
+                            <td>قیمت:</td>
+                            <td>{{ trip.cost }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if user.userm.kind == 'gardeshgar' %}
+                <div class="col-md-6"  style="float: left; direction: ltr">
+                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
+                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
+                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
+                </div>
+            {% elif user.userm.kind == 'gardeshsaz'%}
+                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
+                   وضعیت گردش
+                    </a>
+            {% else %}
+                <div class="col-md-3" style="color: red">
+                    برای خرید باید وارد سایت شوید.
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
 {#*********** ========================= tour =========================== **************#}{# TODO: namayesh mohtavaye etelaAt Harekar-MAKAN-EZAFE #}
     {% if kind == 'tour'%}
         <div id="down_part" class="box , col-md-12">
@@ -332,13 +467,13 @@
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>{{ trip.name }}</thead>
+                    <thead>{{ trip.gardesh.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شرکت گردشگری:
                             </td>
-                            <td>{{ trip.gardesh.builder.user.name }}</td>
+                            <td>{{ trip.gardesh.name }}</td>
                         </tr>
                         <tr>
                             <td>
