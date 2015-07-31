@@ -118,7 +118,7 @@ class Bazdid(models.Model):
 
 
 class Picture(models.Model):
-    picture = models.FileField(upload_to="/static/define_trip/img/", default="/static/define_trip/img/default.jpg")
+    picture = models.FileField(upload_to="static/define_trip/img/")
     gardesh = models.ForeignKey(Gardesh)
 
 

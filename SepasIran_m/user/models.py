@@ -11,7 +11,7 @@ class UserM(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=255)
     register_time = models.DateTimeField(default=datetime.now)
-    picture = models.FileField(upload_to="/static/user/img/", default="/static/user/img/default.jpg" , null=True, blank=True)
+    picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
     kind = models.CharField(max_length=10, choices=USER_KIND) #? what is this? redundant
 
     def __str__(self):

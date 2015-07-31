@@ -11,22 +11,26 @@ def show_one_trip(request, kind = ''  , id = 0):
         returned_dic['user'] = request.user
         # returned_dic['username'] = 'username'
         trip =''
-        pic_list = ''
+        pic_list = []
+        pic_q = ''
+
         if kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
-            pic_list = Picture.objects.filter(gardesh = trip.gardesh)
-            print(pic_list)
-            if(pic_list == []):
-                print('khalie')
-                pic_list = trip.gardesh.builder.user.picture
+            pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
         elif kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
-            pic_list = Picture.objects.filter(gardesh = trip.gardesh)
-            if(pic_list == []):
-                pic_list = trip.gardesh.builder.user.picture
+            pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
         elif kind == 'pack':
             return render(request , "one_trip.html", {'kind':kind})
 
+
+        if not pic_q:
+            pic_list.append(trip.gardesh.builder.user.picture)
+        else:
+            for i in pic_q:
+                pic_list.append(i.picture)
         returned_dic['trip'] = trip
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
