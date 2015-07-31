@@ -2,119 +2,134 @@ from django.shortcuts import render
 from define_trip.models import *
 
 # Create your views here.
-def purchase(request ,kind='',username='',id=''):
 
- # these 2 line for test
-    id = 1
-    username = "unique"
-    kind = 'tour'# notice!
+def purchaseResturant(request ,capacity='',id='',username=''):
+    resturant=Restaurant.objects.get(id = id)
+    table=Table.objects.filter(resturant = resturant).get(capacity = capacity)[0]
+    gardesh=resturant.gardesh
 
-
-    if kind=='tour':
-         tour=Tour.objects.get(id = id);
-         return render(request, "information_of_buyer_tour.html" , {
+    return render(request, "information_of_buyer_service.html" , {
              'username':username,
-             'tour':tour,
-         })
-    else:
-        if kind=='airplane':
-            airplaneseat=AirplaneSeat.objects.get(id = id);
-            airplane=airplaneseat.airplane
-            return render(request, "information_of_buyer_service.html" , {
-             'username':username,
-             'kind':kind,
-             'airplane':airplane,
-             'airplanesear': airplaneseat,
-            })
-        elif kind=='train':
-            trainseat=TrainSeat.objects.get(id = id);
-            train=trainseat.train
-            return render(request, "information_of_buyer_service.html" , {
-            'username':username,
-             'kind':kind,
-             'train':train,
-             'trainsear': trainseat,
-            })
-        elif kind == 'resturant':
-            table = Table.objects.get(id = id);
-            resturant =table.restaurant
-            return render(request, "information_of_buyer_service.html" , {
-             'username': username,
-             'kind': kind,
+             'kind': 'resturant',
              'resturant': resturant,
              'table': table,
+             'gardesh': gardesh,
+
             })
 
-        room=Room.objects.get(id = id);
-        hotel=room.hotel
-        return render(request , "information_of_buyer_service.html" , {
+
+def purchaseTour(request ,id='',username=''):
+    tour=Tour.objects.get(id = id);
+    return render(request, "information_of_buyer_tour.html" , {
+             'username':username,
+             'tour':tour,
+    })
+
+
+def purchaseAirplane(request ,id='', username=''):
+         airplane=AirPlane.objects.get(id = id);
+         airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
+         gardesh=airplane.gardesh
+         return render(request, "information_of_buyer_service.html" , {
+             'username':username,
+             'kind':'airplane',
+             'airplane':airplane,
+             'airplaneseat': airplaneseat,
+             'gardesh': gardesh,
+            })
+
+def purchaseTrain(request ,id='', username=''):
+    train=Train.objects.get(id = id);
+    trainseat=TrainSeat.objects.filter(train = train).filter(full = False)[0]
+    gardesh = train.gardesh
+    return render(request, "information_of_buyer_service.html" , {
+            'username':username,
+             'kind':'train',
+             'train':train,
+             'trainsear': trainseat,
+             'gardesh': gardesh,
+
+            })
+
+def purchaseHotel(request ,id='', username=''):
+    room=Room.objects.get(id = id);
+    hotel=room.hotel
+    gardesh=hotel.gardesh
+    return render(request , "information_of_buyer_service.html" , {
            'username': username,
-           'kind': kind,
+           'kind': 'hotel',
            'room': room,
            'hotel': hotel,
+           'gardesh': gardesh,
+
 
         })
 
-          #return render(request, "reservation-status.html")
 
+def reserveResturant(request ,capacity='',id='',username=''):
+    resturant=Restaurant.objects.get(id = id)
+    table=Table.objects.filter(resturant = resturant).get(capacity = capacity)[0]
+    gardesh=resturant.gardesh
 
-
-def reserve(request ,kind='',username='',id=''):
-
-    # these 2 line for test
-    id = 1
-    username = "unique"
-    kind = 'resturant'# notice!
-
-
-    if kind=='tour':
-         tour=Tour.objects.get(id = id);
-         return render(request, "information_of_reserver_tour.html" , {
+    return render(request, "information_of_reserver_service.html" , {
              'username':username,
-             'tour':tour,
-         })
-    else:
-        if kind=='airplane':
-            airplaneseat=AirplaneSeat.objects.get(id = id);
-            airplane=airplaneseat.airplane
-            return render(request, "information_of_reserver_service.html" , {
-             'username':username,
-             'kind':kind,
-             'airplane':airplane,
-             'airplanesear': airplaneseat,
-            })
-        elif kind=='train':
-            trainseat=TrainSeat.objects.get(id = id);
-            train=trainseat.train
-            return render(request, "information_of_reserver_service.html" , {
-            'username':username,
-             'kind':kind,
-             'train':train,
-             'trainsear': trainseat,
-            })
-        elif kind == 'resturant':
-            table = Table.objects.get(id = id);
-            resturant =table.restaurant
-            return render(request, "information_of_reserver_service.html" , {
-             'username': username,
-             'kind': kind,
+             'kind': 'resturant',
              'resturant': resturant,
              'table': table,
+             'gardesh': gardesh,
+
             })
 
-        room=Room.objects.get(id = id);
-        hotel=room.hotel
-        return render(request , "information_of_reserver_service.html" , {
+
+def reserveTour(request ,id='',username=''):
+    tour=Tour.objects.get(id = id);
+    return render(request, "information_of_reserver_tour.html" , {
+             'username':username,
+             'tour':tour,
+    })
+
+
+def reserveAirplane(request ,id='', username=''):
+         airplane=AirPlane.objects.get(id = id);
+         airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
+         gardesh=airplane.gardesh
+         return render(request, "information_of_reserver_service.html" , {
+             'username':username,
+             'kind':'airplane',
+             'airplane':airplane,
+             'airplaneseat': airplaneseat,
+             'gardesh': gardesh,
+            })
+
+def reserveTrain(request ,id='', username=''):
+    train=Train.objects.get(id = id);
+    trainseat=TrainSeat.objects.filter(train = train).filter(full = False)[0]
+    gardesh = train.gardesh
+    return render(request, "information_of_reserver_service.html" , {
+            'username':username,
+             'kind':'train',
+             'train':train,
+             'trainsear': trainseat,
+             'gardesh': gardesh,
+
+            })
+
+def reserveHotel(request ,id='', username=''):
+    room=Room.objects.get(id = id);
+    hotel=room.hotel
+    gardesh=hotel.gardesh
+    return render(request , "information_of_reserver_service.html" , {
            'username': username,
-           'kind': kind,
+           'kind': 'hotel',
            'room': room,
            'hotel': hotel,
+           'gardesh': gardesh,
+
 
         })
 
-  # return render(request, "reservation-status.html" )
 
-def confirmreserve(request,id=''):
+def confirmReserve(request,id=''):
     start_time = request.POST.get("start_time","")
     end_time = request.POST.get("end_time","")
     date = request.POST.get("date","")

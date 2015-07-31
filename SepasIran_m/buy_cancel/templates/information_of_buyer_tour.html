@@ -22,7 +22,7 @@
                         </div>
             </div>
              <div id="down_part" class="col-md-12" style="right: 20px;">
-                         <form action="/payment/(P?<tour_id>\d+)" method="POST">
+                         <form action="/payment/{{ tour.id }}/{{ number-of-buyer }}" method="POST">
                             {% csrf_token %}
                             <p>
                             <span style="font-weight: bold;">تعداد افراد:</span>

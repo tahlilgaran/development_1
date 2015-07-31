@@ -50,10 +50,10 @@ CITY = (
     ('Semnan' , 'سمنان'),
 )
 
+
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
-    # kind = models.CharField(max_length=2,
-    #                                   choices=KIND)   # t/tr/a/h/r copy to line:78
+    kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r copy to line:78
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
     comment_rank = models.FloatField(null=True,blank=True)
@@ -77,12 +77,14 @@ class TransferDevice(models.Model):
                                       choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
 
+
 class Location(models.Model):
     kind = models.CharField(max_length=2,
                                       choices=L_KIND)    # h/a/m
     degree = models.CharField(max_length=2,
                                       choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
+
 
 class Tour(models.Model):
     name = models.CharField(max_length=255)
@@ -116,7 +118,6 @@ class Bazdid(models.Model):
     tour = models.ForeignKey(Tour)
     location_name = models.CharField(max_length=255)
     time = models.DateField()
-    cost = models.IntegerField()
 
 
 class Picture(models.Model):
@@ -125,7 +126,6 @@ class Picture(models.Model):
 
 
 class AirPlane(models.Model):
-    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
     destination = models.CharField(max_length=255,choices=CITY)    # city name
     source = models.CharField(max_length=255,choices=CITY)         # city name
@@ -134,21 +134,21 @@ class AirPlane(models.Model):
     time = models.IntegerField()        # moddate parvaz
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+
     def __str__(self):
-        return self.name#bug fixed by yeganeh
+        return self.gardesh.builder.user.user.last_name
 
 
 class AirplaneSeat(models.Model):
     airplane = models.ForeignKey(AirPlane, related_name='seat')
     number = models.IntegerField()
     full = models.BooleanField(default=False)
+
     def __str__(self):
-        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
-        return str(self.train) + str(self.number)#bug fixed by yeganeh
+        return str(self.airplane) + str(self.number)
 
 
 class Train(models.Model):
-    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='train')
     destination = models.CharField(max_length=255,choices=CITY)    # city name
     source = models.CharField(max_length=255,choices=CITY)         # city name
@@ -157,6 +157,7 @@ class Train(models.Model):
     time = models.IntegerField()        # moddate harekat
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+
     def __str__(self):
         return str(self.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
@@ -165,45 +166,40 @@ class TrainSeat(models.Model):
     train = models.ForeignKey(Train, related_name='seat')
     number = models.IntegerField()
     full = models.BooleanField(default=False)
+
     def __str__(self):
-        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
         return str(self.train) + str(self.number)#bug fixed by yeganeh
 
 
 class Restaurant(models.Model):
-    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     city = models.CharField(max_length=255, choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
-    # def __str__(self):
-    #     return self.name#bug fixed by yeganeh
+
+    def __str__(self):
+        return self.gardesh.builder.user.user.last_name
 
 
 class Table(models.Model):
     number = models.IntegerField()
+    reserve_date = models.DateField()
+    start_clock = models.IntegerField()
     restaurant = models.ForeignKey(Restaurant)
     capacity = models.IntegerField()    # zarfiate miz
     cost_perClock = models.IntegerField()
+    full = models.BooleanField(default= False)
+
     def __str__(self):
-        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
         return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
 
-class TableReserve(models.Model):
-    reserve_date = models.DateField()
-    start_reserve = models.TimeField()
-    end_reserve = models.TimeField()
-    table = models.ForeignKey(Table)
-    def __str__(self):
-        return str(self.table)
 
 class Hotel(models.Model):
-    # name=models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     city = models.CharField(max_length=255 , choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField() #in field bara chie????? FARZANEH
-    # other_explain = models.TextField(blank=True , null=True) #farzaneh add
+
     def __str__(self):
         return str(self.gardesh.builder.user.name)
 
@@ -211,17 +207,11 @@ class Hotel(models.Model):
 class Room(models.Model):
     number = models.IntegerField()
     hotel = models.ForeignKey(Hotel)
+    reserve_date = models.DateField()
+    full = models.BooleanField(default=False)
     capacity = models.IntegerField()    # zarfiate otagh
     cost_perNight = models.IntegerField()
-    full = models.BooleanField(default=False)
+
     def __str__(self):
-        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
         return str(self.hotel) + str(self.number)#bug fixed by yeganeh
 
-
-class RoomReserve(models.Model):
-    reserve_start = models.DateField()
-    reserve_end = models.DateField()
-    room = models.ForeignKey(Room)
-    def __str__(self):
-        return str(self.room)
