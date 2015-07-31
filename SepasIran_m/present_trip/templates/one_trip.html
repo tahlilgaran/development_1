@@ -60,43 +60,24 @@
 
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">امکانات</a></li>
                   <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">خدمات هتل</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
-                      <P>
-                          سالن بيليارد - استخر سونا - جكوزى - آرايشگاه مردانه - آرايشگاه بانوان - كافى شاپ - كافى نت - فروشگاه - سالن همايش با ظرفيت 200 نفر - ترانسفر رفت و برگشت فرودگاهى - صبحانه بوفه رايگان - سرو ميوه و آب معدنى رايگان هر روزه - استفاده از اينترنت در اتاق ها
-                      </P>
-                  </div>
-                  <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledBy="profile-tab">
-                      <P>
-                          - صبحانه و ناهار به صورت بوفه
-    - ترانسفر فرودگاهی
-    - سرو میوه و آب معدنی در عصر
-    - استخر
-    - سونا
-    - جکوزی
-    - چای و نسکافه (در اتاق)
-
-                      </P>
+                      <P>{{ trip.other_explain }}</P>
                   </div>
                 </div>
             </div><!-- /example -->
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>
-                    هتل پارمیس کیش
-                    </thead>
+                    <thead>{{ trip.gardesh.builder.user.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شهر:
                             </td>
-                            <td>
-                                کیش
-                            </td>
+                            <td>{{ trip. }}</td>
                         </tr>
                         <tr>
                             <td>
