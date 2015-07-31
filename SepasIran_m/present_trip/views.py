@@ -11,8 +11,9 @@ def show_one_trip(request, kind = ''  , id = 0):
         returned_dic['user'] = request.user
         # returned_dic['username'] = 'username'
         print(returned_dic)
-        if kind == 'service':
-            return render(request , "one_trip.html", {'kind':kind})
+        if kind == 'hotel':
+            returned_dic['hotel'] = Hotel.objects.filter(id = id)[0]
+            return render(request , "one_trip.html", returned_dic)
         elif kind == 'tour':
             returned_dic['tour'] = Tour.objects.filter(id = id)[0]
             return render(request , "one_trip.html", returned_dic )

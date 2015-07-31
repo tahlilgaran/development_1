@@ -101,6 +101,7 @@ class Tour(models.Model):
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
     other_explain = models.TextField(null=True, blank=True)
+    picture = models.FileField(upload_to="static/define_trip/tour/img/", default="static/define_trip/img/default.jpg")
     def __str__(self):
         return self.name#bug fixed by yeganeh
 
@@ -114,9 +115,9 @@ class Bazdid(models.Model):
     cost = models.IntegerField()
 
 
-class Picture(models.Model):
-    pict = models.FileField(upload_to="static/define_trip/img/", default="static/define_trip/img/default.jpg")
-    gardesh = models.ForeignKey(Gardesh)
+# class Picture(models.Model):
+#     pict = models.FileField(upload_to="static/define_trip/img/", default="static/define_trip/img/default.jpg")
+#     gardesh = models.ForeignKey(Gardesh)
 
 
 class AirPlane(models.Model):
@@ -129,6 +130,7 @@ class AirPlane(models.Model):
     time = models.IntegerField()        # moddate parvaz
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+    picture = models.FileField(upload_to="static/define_trip/airplane/img/", default="static/define_trip/img/default.jpg")
     def __str__(self):
         return self.name#bug fixed by yeganeh
 
@@ -152,6 +154,7 @@ class Train(models.Model):
     time = models.IntegerField()        # moddate harekat
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
+    picture = models.FileField(upload_to="static/define_trip/train/img/", default="static/define_trip/img/default.jpg")
     def __str__(self):
         return str(self.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
@@ -170,6 +173,7 @@ class Restaurant(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+    picture = models.FileField(upload_to="static/define_trip/restaurant/img/", default="static/define_trip/img/default.jpg")
     def __str__(self):
         return self.name#bug fixed by yeganeh
 
@@ -196,6 +200,7 @@ class Hotel(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+    picture = models.FileField(upload_to="static/define_trip/hotel/img/", default="static/define_trip/img/default.jpg")
     def __str__(self):
         return str(self.name)
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel,Restaurant,Train,AirPlane,Agreement,AirplaneSeat,Bazdid,Gardesh,Picture,Location
+from .models import Hotel,Restaurant,Train,AirPlane,Agreement,AirplaneSeat,Bazdid,Gardesh,Location
 from .models import TransferDevice,Room,RoomReserve,TrainSeat,Tour,Table,TableReserve
 
 admin.site.register(TableReserve)
@@ -14,7 +14,7 @@ admin.site.register(Gardesh)
 admin.site.register(Hotel)
 admin.site.register(Train)
 admin.site.register(Location)
-admin.site.register(Picture)
+# admin.site.register(Picture)
 admin.site.register(TransferDevice)
 admin.site.register(Room)
 admin.site.register(RoomReserve)
