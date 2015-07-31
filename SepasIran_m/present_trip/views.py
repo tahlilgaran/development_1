@@ -15,7 +15,9 @@ def show_one_trip(request, kind = ''  , id = 0):
         if kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_list = Picture.objects.filter(gardesh = trip.gardesh)
+            print(pic_list)
             if(pic_list == []):
+                print('khalie')
                 pic_list = trip.gardesh.builder.user.picture
         elif kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]

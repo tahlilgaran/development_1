@@ -201,7 +201,7 @@ class Hotel(models.Model):
     end_day = models.DateField()
     other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
-        return str(self.name)
+        return str(self.gardesh.builder.user.name)
 
 
 class Room(models.Model):
