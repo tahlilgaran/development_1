@@ -23,42 +23,15 @@
                           </ol>
 
                           <div class="carousel-inner" role="listbox">
-                              {% for pic in {{ kind }}. %}
-                            <div class="item active , picture">
-                              <img class="first-slide" src="{% static 'define_and_validate_trip/img/1.jpg' %}" alt="First slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="second-slide" src="{% static 'define_and_validate_trip/img/2.jpg' %}" alt="Second slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/3.jpg' %}" alt="Third slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/4.jpg' %}" alt="Third slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/ax7.jpg' %}" alt="Third slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
+{#                              {% for pic in  trip.picture %}#}
+                                  <div class="item active , picture">
+                                      <img class="first-slide" src='/{{ trip.picture }}' alt="First slide">
+                                      <div class="container">
+                                        <div class="carousel-caption">
+                                        </div>
+                                      </div>
+                                  </div>
+{#                              {% endfor %}#}
                           </div>
                           <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -145,62 +118,62 @@
     {% endif %}
 {#*********** ========================= tour =========================== **************#}
     {% if kind == 'tour'%}
-        <div id="top_part" class="col-md-12">
-            <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                                <!-- Carousel
-                        ================================================== -->
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                          <!-- Indicators -->
-                          <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                            <li data-target="#myCarousel" data-slide-to="3"></li>
-                          </ol>
-
-                          <div class="carousel-inner" role="listbox">
-                            <div class="item active , picture">
-                              <img class="first-slide" src="{% static 'define_and_validate_trip/img/t1.jpg' %}" alt="First slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="second-slide" src="{% static 'define_and_validate_trip/img/t2.jpg' %}" alt="Second slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/t3.jpg' %}" alt="Third slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item , picture">
-                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/t4.jpg' %}" alt="Third slide">
-                              <div class="container">
-                                <div class="carousel-caption">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                          </a>
-                        </div><!-- /.carousel -->
-                    </div>
-                    <div class="col-md-1"></div>
-        </div>
+{#        <div id="top_part" class="col-md-12">#}
+{#            <div class="col-md-1"></div>#}
+{#                    <div class="col-md-10">#}
+{#                                <!-- Carousel#}
+{#                        ================================================== -->#}
+{#                        <div id="myCarousel" class="carousel slide" data-ride="carousel">#}
+{#                          <!-- Indicators -->#}
+{#                          <ol class="carousel-indicators">#}
+{#                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>#}
+{#                            <li data-target="#myCarousel" data-slide-to="1"></li>#}
+{#                            <li data-target="#myCarousel" data-slide-to="2"></li>#}
+{#                            <li data-target="#myCarousel" data-slide-to="3"></li>#}
+{#                          </ol>#}
+{##}
+{#                          <div class="carousel-inner" role="listbox">#}
+{#                            <div class="item active , picture">#}
+{#                              <img class="first-slide" src="{% static 'define_and_validate_trip/img/t1.jpg' %}" alt="First slide">#}
+{#                              <div class="container">#}
+{#                                <div class="carousel-caption">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="item , picture">#}
+{#                              <img class="second-slide" src="{% static 'define_and_validate_trip/img/t2.jpg' %}" alt="Second slide">#}
+{#                              <div class="container">#}
+{#                                <div class="carousel-caption">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="item , picture">#}
+{#                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/t3.jpg' %}" alt="Third slide">#}
+{#                              <div class="container">#}
+{#                                <div class="carousel-caption">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="item , picture">#}
+{#                              <img class="third-slide" src="{% static 'define_and_validate_trip/img/t4.jpg' %}" alt="Third slide">#}
+{#                              <div class="container">#}
+{#                                <div class="carousel-caption">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">#}
+{#                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>#}
+{#                            <span class="sr-only">Previous</span>#}
+{#                          </a>#}
+{#                          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">#}
+{#                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>#}
+{#                            <span class="sr-only">Next</span>#}
+{#                          </a>#}
+{#                        </div><!-- /.carousel -->#}
+{#                    </div>#}
+{#                    <div class="col-md-1"></div>#}
+{#        </div>#}
         <div id="down_part" class="box , col-md-12">
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
@@ -209,50 +182,50 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
-                      <P>{{ tour.destination_explain }}</P>
+                      <P>{{ trip.destination_explain }}</P>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledBy="profile-tab">
-                      <P>{{ tour.move_explain }}</P>
+                      <P>{{ trip.move_explain }}</P>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledBy="profile-tab">
-                      <P>{{ tour.other_explain }}</P>
+                      <P>{{ trip.other_explain }}</P>
                   </div>
                 </div>
             </div><!-- /example -->
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>{{ tour.name }}</thead>
+                    <thead>{{ trip.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شرکت گردشگری:
                             </td>
-                            <td>{{ tour.gardesh.builder.user.name }}</td>
+                            <td>{{ trip.gardesh.builder.user.name }}</td>
                         </tr>
                         <tr>
                             <td>
 مکان:
                             </td>
-                            <td>{{ tour.destination }}</td>
+                            <td>{{ trip.destination }}</td>
                         </tr>
                         <tr>
                             <td>
                                 زمان:
                             </td>
-                            <td>{{ tour.end }} تا {{ tour.start }}</td>
+                            <td>{{ trip.end }} تا {{ trip.start }}</td>
                         </tr>
                         <tr>
                             <td>
                                 نوع تور:
                             </td>
-                            <td>{{ tour.tour_kind }}</td>
+                            <td>{{ trip.tour_kind }}</td>
                         </tr>
                         <tr>
                             <td>
                                 قیمت:
                             </td>
-                            <td>{{ tour.entire_cost }} تومان</td>
+                            <td>{{ trip.entire_cost }} تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -269,9 +242,9 @@
 
     {% if user.userm.kind == 'gardeshgar' %}
     <div class="col-md-6"  style="float: left; direction: ltr">
-        <a type="button" href="/cancel/{{ kind }}/{{ tour.id }}" class="btn btn-danger">انصراف</a>
-        <a type="button" href="/reserving/{{ kind }}/{{ tour.id }}" class="btn btn-warning">رزرو</a>
-        <a type="button" href="/purchase/{{ kind }}/{{ tour.id }}" class="btn btn-success">خرید</a>
+        <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
+        <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
+        <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
     </div>
     {% elif user.userm.kind == 'gardeshsaz'%}
        <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
