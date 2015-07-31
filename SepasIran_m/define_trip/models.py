@@ -63,6 +63,8 @@ class Gardesh(models.Model):
     free = models.FloatField(default=1)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
+    other_explain = models.TextField(blank=True , null=True) #farzaneh add
+
 
     def __str__(self):
         return "{}".format(self.builder)
@@ -103,7 +105,7 @@ class Tour(models.Model):
     entire_cost = models.IntegerField()
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
-    other_explain = models.TextField(null=True, blank=True)
+    # other_explain = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.name#bug fixed by yeganeh
 
@@ -174,8 +176,8 @@ class Restaurant(models.Model):
     city = models.CharField(max_length=255, choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
-    def __str__(self):
-        return self.name#bug fixed by yeganeh
+    # def __str__(self):
+    #     return self.name#bug fixed by yeganeh
 
 
 class Table(models.Model):
@@ -201,7 +203,7 @@ class Hotel(models.Model):
     city = models.CharField(max_length=255 , choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField() #in field bara chie????? FARZANEH
-    other_explain = models.TextField(blank=True , null=True) #farzaneh add
+    # other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
         return str(self.gardesh.builder.user.name)
 

@@ -14,15 +14,29 @@ def show_one_trip(request, kind = ''  , id = 0):
         pic_list = []
         pic_q = ''
 
-        if kind == 'hotel':
+        if kind == 'tour':
+            trip = Tour.objects.filter(id = id)[0]
+            pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
+        elif kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
             rooms = Room.objects.filter(hotel = trip)
-            returned_dic['rooms'] = rooms
+            returned_dic['rooms'] = rooms #TODO: room haro ba tavajoh be voroodi neshoon bede.
 
-        elif kind == 'tour':
-            trip = Tour.objects.filter(id = id)[0]
+        elif kind == 'restaurant':
+            trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+            tables = Table.objects.filter(restaurant = trip)
+            returned_dic['tables'] = tables
+
+        elif kind == 'airplane':
+            trip = AirPlane.objects.filter(id = id)
+            pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
+        elif kind == 'train':
+            trip = Train.objects.filter(id = id)
+            pic_q = Picture.objects.filter(gardesh = trip)
 
         elif kind == 'pack':
             return render(request , "one_trip.html", {'kind':kind})
