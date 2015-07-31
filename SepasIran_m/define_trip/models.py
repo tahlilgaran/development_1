@@ -53,6 +53,7 @@ CITY = (
 
 class Gardesh(models.Model):
     builder = models.ForeignKey(TourBuilderProfile)
+    name = models.CharField(max_length = 255)
     kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r copy to line:78
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
@@ -87,7 +88,6 @@ class Location(models.Model):
 
 
 class Tour(models.Model):
-    name = models.CharField(max_length=255)
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
     kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r
     tour_kind = models.CharField(max_length=30 , choices=TOUR_KIND)      # nat / inter / holly
