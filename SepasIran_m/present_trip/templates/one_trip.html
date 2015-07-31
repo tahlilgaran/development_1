@@ -71,38 +71,116 @@
 
             <div class="col-md-5">
                 <table class="table">
-                    <thead>{{ trip.gardesh.builder.user.name }}</thead>
+                    <thead>هتل {{ trip.gardesh.builder.user.name }}</thead>
                     <tbody>
                         <tr>
                             <td>
                                 شهر:
                             </td>
-                            <td>{{ trip. }}</td>
+                            <td>{{ trip.city }}</td>
                         </tr>
                         <tr>
                             <td>
                                 درجه:
                             </td>
-                            <td>
-                                ۵ ستاره
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                زمان:
-                            </td>
-                            <td>
-                                ۲۰ الی ۲۵ تیر
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
+                            <td>{{ trip.gardesh.degree }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <form class="col-md-12" action="rooms/" method="GET">{% csrf_token %}
+
+            <button type="button" class="btn btn-warning , col-md-4" data-toggle="modal" data-target="#myModal">
+                    برای مشاهده ی اطلاعات اتاق ها کلید کنید.
+        </button>
+            <div class="col-md-4">
+                <div class="col-md-10"><input type="date" class="col-md-8 , form-control"/></div>
+                <label class="col-md-2">
+تا:
+                </label>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-10"><input type="date"  class="form-control"/></div>
+                <label class="col-md-2">
+از:
+                </label>
+            </div>
+        </form>
+        <div class="col-md-12" id="room">
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    اطلاعات اتاق ها
+                </h4>
+              </div>
+              <div class="modal-body">
+                {% if not rooms %}
+                    متاسفانه در تاریخ مورد نظر اتاق خالی وجود ندارد.
+                {% else %}
+                    {% for room in rooms %}
+                        <div class="box , col-md-12">
+                        <div class="col-md-4">
+                            {% if user.userm.kind == 'gardeshgar' %}
+                                <div class="col-md-12"  style="float: left; direction: ltr">
+                                    <a type="button" href="/cancel/{{ kind }}/{{ room.id }}" class="btn btn-danger , col-md-12"> انصراف</a>
+                                    <a type="button" href="/reserving/{{ kind }}/{{ room.id }}" class="btn btn-warning , col-md-12">رزرو</a>
+                                    <a type="button" href="/purchase/{{ kind }}/{{ room.id }}" class="btn btn-success , col-md-12">خرید</a>
+                                </div>
+                                {% elif user.userm.kind == 'gardeshsaz'%}
+                                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-12">
+                                   وضعیت گردش
+                                    </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <table class="table ">
+                            <thead>
+                            اتاق
+                            {{ room.number }}
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ظرفیت اتاق:
+                                    </td>
+                                <td>{{ room.capacity }}
+                                 نفر
+                                </td></tr>
+                                <tr><td>
+                                    قیمت:
+                                </td>
+                                <td>{{ room.cost_perNight }} تومان</td>
+                                </tr>
+
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+              </div>
+              <div class="modal-footer">
+                  {% if user.userm.kind != 'gardeshsaz' %}
+                      {% if user.userm.kind != 'gardeshgar'%}
+                          <a type="button" class="btn btn-primary , col-md-3" href="/signIn">ورود</a>
+                              <div class="col-md-9" style="color: red">
+                                    برای خرید باید وارد سایت شوید.
+                              </div>
+                      {% endif %}
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
     {% endif %}
 {#*********** ========================= tour =========================== **************#}{# TODO: namayesh mohtavaye etelaAt Harekar-MAKAN-EZAFE #}
     {% if kind == 'tour'%}
@@ -161,7 +239,25 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
+
+            {% if user.userm.kind == 'gardeshgar' %}
+                <div class="col-md-6"  style="float: left; direction: ltr">
+                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
+                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
+                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
+                </div>
+            {% elif user.userm.kind == 'gardeshsaz'%}
+                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
+                   وضعیت گردش
+                    </a>
+            {% else %}
+                <div class="col-md-3" style="color: red">
+                    برای خرید باید وارد سایت شوید.
+                </div>
+            {% endif %}
+
         </div>
 
     {% endif %}
@@ -172,23 +268,34 @@
         </div>
     {% endif %}
 
-    {% if user.userm.kind == 'gardeshgar' %}
-    <div class="col-md-6"  style="float: left; direction: ltr">
-        <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
-        <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
-        <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
-    </div>
-    {% elif user.userm.kind == 'gardeshsaz'%}
-       <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">
-       وضعیت گردش
-        </a>
-    {% else %}
-        <div class="col-md-3" style="color: red">
-        برای خرید باید وارد سایت شوید.
-        </div>
+{#    {% if user.userm.kind == 'gardeshgar' %}#}
+{#    <div class="col-md-6"  style="float: left; direction: ltr">#}
+{#        <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>#}
+{#        <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>#}
+{#        <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>#}
+{#    </div>#}
+{#    {% elif user.userm.kind == 'gardeshsaz'%}#}
+{#       <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-3">#}
+{#       وضعیت گردش#}
+{#        </a>#}
+{#    {% else %}#}
+{#        <div class="col-md-3" style="color: red">#}
+{#        برای خرید باید وارد سایت شوید.#}
+{#        </div>#}
+{##}
+{#    {% endif %}#}
 
-    {% endif %}
 
 
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        function showroom(a){
+            room_div = document.querySelector('#room');
+            room_div.innerHTML = "{{ room }}"
+        }
+    </script>
 
 {% endblock %}

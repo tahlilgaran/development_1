@@ -17,6 +17,8 @@ def show_one_trip(request, kind = ''  , id = 0):
         if kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+            rooms = Room.objects.filter(hotel = trip)
+            returned_dic['rooms'] = rooms
 
         elif kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]

@@ -200,7 +200,7 @@ class Hotel(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     city = models.CharField(max_length=255 , choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
-    end_day = models.DateField()
+    end_day = models.DateField() #in field bara chie????? FARZANEH
     other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
         return str(self.gardesh.builder.user.name)
