@@ -205,13 +205,14 @@ class Hotel(models.Model):
 
 
 class Room(models.Model):
+
     number = models.IntegerField()
     hotel = models.ForeignKey(Hotel)
     capacity = models.IntegerField()    # zarfiate otagh
     cost_perNight = models.IntegerField()
     full = models.BooleanField(default=False)
     def __str__(self):
-        #return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
+
         return str(self.hotel) + str(self.number)#bug fixed by yeganeh
 
 

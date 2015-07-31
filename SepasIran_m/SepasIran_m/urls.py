@@ -46,8 +46,12 @@ urlpatterns = [
 
    # url(r'reserve/(P?<tour_id>\d+)/$', 'buy_cancel.views.reserve'),
 
-   url(r'reserving/(\w+)/$', 'buy_cancel.views.reserve'),
-   url(r'reserveing/(\w+)/confirm$', 'buy_cancel.views.confirmreserve'),
+   url(r'reserving/resturant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.reserveResturant'),
+   url(r'reserving/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.reserveHotel'),
+   url(r'reserving/tour/<(P?<tour_id>\d+)>/$', 'buy_cancel.views.reserveTour'),
+   url(r'reserving/airplane/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveAirplane'),
+   url(r'reserving/train/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveTrain'),
+   url(r'reserveing/(<P?<kind>\w+>)/confirm$', 'buy_cancel.views.confirmReserve'),
 
    #  url(r'reserve/([service][tour])/$', 'buy_cancel.views.reserve'),
   # url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
@@ -55,10 +59,10 @@ urlpatterns = [
   # url(r'purchase/$', 'buy_cancel.views.purchase'),
    url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
    url(r'cancel/(\w+)/$', 'accounting.views.cancel'),
-   url(r'payment/(P?<tour_id>\d+)/$', 'accounting.views.payment'),
+   url(r'payment/(P?<tour_id>\d+)/(p?<number>\d+)/$', 'accounting.views.paymentTour'),
    url(r'payment/Confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
    url(r'payment/$', 'accounting.views.payment'),
-   url(r'payment/confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
+   url(r'payment/confirm/(P?<tour_id>\d+)/$', 'accounting.views.confirmTour'),
    url(r'payment/confirm/$', 'accounting.views.confirm'),
    url(r'^manager/', include('manager_dashboard.urls')),
    # url(r'^quality/', include('quality_control.urls')),
