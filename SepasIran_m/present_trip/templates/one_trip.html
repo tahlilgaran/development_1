@@ -255,9 +255,9 @@
                         <div class="col-md-4">
                             {% if user.userm.kind == 'gardeshgar' %}
                                 <div class="col-md-12"  style="float: left; direction: ltr">
-                                    <a type="button" href="/cancel/{{ kind }}/{{ room.id }}" class="btn btn-danger , col-md-12"> انصراف</a>
-                                    <a type="button" href="/reserving/{{ kind }}/{{ room.id }}" class="btn btn-warning , col-md-12">رزرو</a>
-                                    <a type="button" href="/purchase/{{ kind }}/{{ room.id }}" class="btn btn-success , col-md-12">خرید</a>
+                                    <a type="button" href="/cancel/{{ kind }}/{{ table.id }}" class="btn btn-danger , col-md-12"> انصراف</a>
+                                    <a type="button" href="/reserving/{{ kind }}/{{ table.id }}" class="btn btn-warning , col-md-12">رزرو</a>
+                                    <a type="button" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</a>
                                 </div>
                                 {% elif user.userm.kind == 'gardeshsaz'%}
                                    <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-12">
