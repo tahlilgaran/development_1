@@ -1,5 +1,5 @@
 from django.db import models
-from define_trip.models import AirplaneSeat,TrainSeat,TableReserve,RoomReserve,Tour
+from define_trip.models import AirplaneSeat,TrainSeat,Table,Room,Tour
 from user.models import TouristProfile
 
 #jadavel gardesh Haye kharidari shode,
@@ -16,11 +16,11 @@ class Wanted_Tour(models.Model):
     info = models.OneToOneField(Wanted_Trip)
 
 class Wanted_Hotel(models.Model):
-    gardesh = models.ForeignKey(RoomReserve)
+    gardesh = models.ForeignKey(Room)
     info = models.OneToOneField(Wanted_Trip)
 
 class Wanted_Restaurant(models.Model):
-    gardesh = models.ForeignKey(TableReserve)
+    gardesh = models.ForeignKey(Table)
     info = models.OneToOneField(Wanted_Trip)
 
 class Wanted_Airplane(models.Model):

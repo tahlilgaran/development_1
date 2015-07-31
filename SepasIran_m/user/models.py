@@ -7,28 +7,25 @@ USER_KIND = (
     ('gardeshsaz', 'گردشساز'),
     ('manager' , 'مدیر')
 )
-
-
 class UserM(models.Model):
-    user = models.OneToOneField(User,related_name='muser')
+    user = models.OneToOneField(User)
+    name = models.CharField(max_length=255)
     register_time = models.DateTimeField(default=datetime.now)
     picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
     kind = models.CharField(max_length=10, choices=USER_KIND) #? what is this? redundant
 
     def __str__(self):
-        return str(self.user)
-
+     return str(self.user)
 
 class TouristProfile(models.Model):
-    user = models.OneToOneField(UserM, related_name='tprofile')
+    user = models.OneToOneField(UserM)
     location = models.CharField(max_length=250, null=True,blank=True)
     birthday = models.DateField(null=True,blank=True)
     gender = models.BooleanField()
     account = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}".format(self.user.user.username)
-
+        return "{}".format(self.user)
 
     def age(self):
         year = datetime.now().year
@@ -37,21 +34,20 @@ class TouristProfile(models.Model):
 
 
 class TourBuilderProfile(models.Model):
-    user = models.OneToOneField(UserM, related_name='bprofile')  # username is sabt number
+    user = models.OneToOneField(UserM)  # username is sabt number
     location = models.CharField(max_length=250)
     main_kind = models.CharField(max_length= 20)   # service or tour be nazaram ina ezafe ast
     service_kind = models.CharField(max_length= 30)  # h / a / r / t be nazarm ina ezafe ast
     account = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}".format(self.user.user.last_name)
-
+        return "{}".format(self.user)#bug fixed by yeganeh
 
 
 class ManagerProfile(models.Model):
-    user = models.OneToOneField(UserM,related_name= 'mprofile')
+    user = models.OneToOneField(UserM)
     # maryam poresh kon
 
     def __str__(self):
-        return "{}".format(self.user.user.username)
+        return "{}".format(self.user.username)
 
