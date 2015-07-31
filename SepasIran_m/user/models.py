@@ -7,22 +7,38 @@ USER_KIND = (
     ('gardeshsaz', 'گردشساز'),
     ('manager' , 'مدیر')
 )
+
+KIND = (
+    ('T', 'تور'),
+    ('TR', 'قطار'),
+    ('A', 'هواپیما'),
+    ('H', 'هتل'),
+    ('R', 'رستوران'),
+)
+
+GENDER = (
+    ('female','زن'),
+    ('male','مرد'),
+)
+
+
 class UserM(models.Model):
     user = models.OneToOneField(User)
-    name = models.CharField(max_length=255)
     register_time = models.DateTimeField(default=datetime.now)
     picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
     kind = models.CharField(max_length=10, choices=USER_KIND) #? what is this? redundant
 
     def __str__(self):
-     return str(self.user)
+        return str(self.user)
+
 
 class TouristProfile(models.Model):
     user = models.OneToOneField(UserM)
     location = models.CharField(max_length=250, null=True,blank=True)
     birthday = models.DateField(null=True,blank=True)
-    gender = models.BooleanField()
+    gender = models.CharField(max_length=10, choices=GENDER)
     account = models.IntegerField(default=0)
+    has_payed = models.BooleanField(default=False)
 
     def __str__(self):
         return "{}".format(self.user)
@@ -35,9 +51,7 @@ class TouristProfile(models.Model):
 
 class TourBuilderProfile(models.Model):
     user = models.OneToOneField(UserM)  # username is sabt number
-    location = models.CharField(max_length=250)
-    main_kind = models.CharField(max_length= 20)   # service or tour be nazaram ina ezafe ast
-    service_kind = models.CharField(max_length= 30)  # h / a / r / t be nazarm ina ezafe ast
+    kind = models.CharField(max_length= 20 , choices=KIND)
     account = models.IntegerField(default=0)
 
     def __str__(self):

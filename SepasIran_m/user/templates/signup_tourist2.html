@@ -6,12 +6,12 @@
 {% block content %}
 
 <h1>
-    ثبت نام گردشگر
+تایید اطلاعات ثبت نام
     </h1>
 
     <p>
-    لطفا اطلاعات زیر را با دقت تکمیل نمایید.<br>
-    فیلدهای ستاره دار الزامی هستند.
+ لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت درستی به صفحه پرداخت حق عضویت وارد شوید<br>
+مبلغ لازم برای عضویت در سایت و بهره گیری از امکانات سایت 5000 تومان می باشد
     </p>
 <form method="post" action="">
 {% csrf_token %}
@@ -19,33 +19,35 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        {{ form.email }}
+                        {{ user.email }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.email.label }}
+ایمیل
                     </label>
 
             </div>
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.username }}
+{{ user.username }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.username.label }}                    </label>
+نام کاربری
+                   </label>
 
             </div>
 
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.firstname }}
+{{ user.firstname }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.firstname.label }}                    </label>
+نام
+                   </label>
 
 
             </div>
@@ -53,53 +55,26 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.lastname }}                        <span class="error"></span>
+{{ user.lastname }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.lastname.label }}                    </label>
+نام خانوادگی
+                   </label>
 
 
             </div>
 
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.password }}
-                    <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-{{ form.password.label }}         </label>
-            </div>
 
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.confirm_password }}
-                    <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-{{ form.confirm_password.label }}                    </label>
 
-
-            </div>
-
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{#                        <select class="form-control">#}
-{#                      <option>#}
-{#زن#}
-{#                      </option>#}
-{#                      <option>#}
-{#مرد#}
-{#                      </option>#}
-{##}
-{#                    </select>#}
-                    {{ form.gender }}
+                    {{ profile.gender }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.gender.label }}                    </label>
+جنسیت
+                  </label>
 
 
             </div>
@@ -107,44 +82,47 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.birthday }}
+{{ profile.birthday }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.birthday.label }}                    </label>
+تاریخ تولد
+                    </label>
 
             </div>
 
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.location }}                        <span class="error"></span>
+{{ profile.location }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.location.label }}                    </label>
+شهر
+                    </label>
 
 
             </div>
 
-{#    <div class="col-md-12 , form-group">#}
-{#                <div class="col-md-6"></div>#}
-{#                <div class="col-md-4">#}
-{#                        <a class="btn btn-success" href="\payment\" name ="send">#}
-{#پرداخت#}
-{#    </a>#}
-{#                        <span class="error"></span>#}
-{#                    </div>#}
-{#                    <label  class="col-md-2 ">#}
-{#ورود به صفحه پرداخت حق عضویت#}
-{#                    </label>#}
+    <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                        <a class="btn btn-success" href="\payment\" name ="send">
+پرداخت
+    </a>
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+ورود به صفحه پرداخت حق عضویت
+                    </label>
 
 
-{#            </div>#}
+            </div>
 
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-    <input class="btn btn-success" type="submit" name="save"   value = "گام بعد">
+
+    <input class="btn btn-success" type="submit" name="return"   value = "بازگشت">
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 
 </div>
