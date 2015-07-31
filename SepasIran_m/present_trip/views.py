@@ -15,7 +15,11 @@ def show_one_trip(request, kind = ''  , id = 0):
             returned_dic['trip'] = Hotel.objects.filter(id = id)[0]
             return render(request , "one_trip.html", returned_dic)
         elif kind == 'tour':
-            returned_dic['trip'] = Tour.objects.filter(id = id)[0]
+            trip = Tour.objects.filter(id = id)[0]
+            pic_list = Picture.objects.filter(gardesh = trip.gardesh)
+            returned_dic['trip'] = trip
+            returned_dic['pic_list'] = pic_list
+            returned_dic['pic_range'] = range(0,pic_list.__len__())
             return render(request , "one_trip.html", returned_dic )
         elif kind == 'pack':
             return render(request , "one_trip.html", {'kind':kind})
