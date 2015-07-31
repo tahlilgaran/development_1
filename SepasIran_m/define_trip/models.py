@@ -64,6 +64,9 @@ class Gardesh(models.Model):
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
 
+    def __str__(self):
+        return "{}".format(self.builder)
+
 
 class TransferDevice(models.Model):
     kind = models.CharField(max_length=2,
@@ -115,12 +118,12 @@ class Bazdid(models.Model):
 
 
 class Picture(models.Model):
-    picture = models.FileField(upload_to="static/define_trip/img/", default="static/define_trip/img/default.jpg")
+    picture = models.FileField(upload_to="/static/define_trip/img/", default="/static/define_trip/img/default.jpg")
     gardesh = models.ForeignKey(Gardesh)
 
 
 class AirPlane(models.Model):
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='airplane')
     destination = models.CharField(max_length=255,choices=CITY)    # city name
     source = models.CharField(max_length=255,choices=CITY)         # city name
@@ -143,7 +146,7 @@ class AirplaneSeat(models.Model):
 
 
 class Train(models.Model):
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='train')
     destination = models.CharField(max_length=255,choices=CITY)    # city name
     source = models.CharField(max_length=255,choices=CITY)         # city name
@@ -166,7 +169,7 @@ class TrainSeat(models.Model):
 
 
 class Restaurant(models.Model):
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
@@ -192,10 +195,11 @@ class TableReserve(models.Model):
         return str(self.table)
 
 class Hotel(models.Model):
-    name=models.CharField(max_length=100)
+    # name=models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+    other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
         return str(self.name)
 
