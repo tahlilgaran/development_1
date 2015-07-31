@@ -7,41 +7,151 @@
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
 
-                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما</h2>
-                        <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نوع خدمت:</span> هتل
-                            <p>
-                            <span style="font-weight: bold;">نام ارایه دهنده ی خدمت :</span>هتل پارمیس کیش
-                            </p>
+                       <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما:{{ username }}</h2>
+<!--###############################----HOTEL-----#########################################################################-->
+                     {% if kind == 'hotel' %}
+                            < style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}
 
-                            <p>
-                            <div><span style="font-weight: bold;">درجه ی اتاق: </span>A</div>
-                            <div><span style="font-weight: bold;">قیمت هر  اتاق:</span>۲۵۵۰۰۰۰ ریال</div>
-                            <div><span style="font-weight: bold;">تاریخ اقامت:</span>
-                            <input type="text" name="daterange" value="06/01/2015 - 06/07/2015" style="width:200px;"/></div>
 
-                        </div>
+                            <div><span style="font-weight: bold;">شماره ی اتاق: </span>{{ room.number }}</div>
+                            <div><span style="font-weight: bold;">قیمت اتاق:</span>{{ room.cost_perNight }}</div>
+                            <div><span style="font-weight: bold;">ظرفیت اتاق:</span>{{ room.capacity }}</div>
 
-                            </p>
 
-                        </div>
-            </div>
-             <div id="down_part" class="col-md-12" style="right: 20px;">
-                         <form action="/payment/" >
 
-                            <p>
-                            <span style="font-weight: bold;">تعداد افراد:</span>
-                                 <input type="text" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
-                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
-                                    <p> توجه : اولین نفری که نام او در فرم اطلاعات خریداران وارد میشود سرپرست محسوب میگردد</p>
-                                  <div id="t" class="col-md-12" ></div>
+                             <> id="down_part" class="col-md-12" style="right: 20px;">
+                                         <form action="reserve/hotel/(P?<id>\d+)" method="POST">
 
-                            </p>
+                                            {%  csrf_token %}
+                                            <p>
+                                                <div><span style="font-weight: bold;">مدت زمان اقامت:</span><input type="text" style="width:200px;" name="numberDay"></div>
+                                                <div><span style="font-weight: bold;">تاریخ اقامت:</span></div>
+                                               از:
+                                                <input type="text" name="daterange" value="06/01/2015 - 06/07/2015" style="width:70px;"/>
+                                               تا:
+                                                <input type="text" name="daterange" value="06/01/2015 - 06/07/2015" style="width:70px;"/>
 
-                             <div id="total"></div>
+                                                <span style="font-weight: bold;">تعداد افراد:</span>
+                                                 <input type="text" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
+                                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+                                                    <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+                                                  <div id="t" class="col-md-12" ></div>
+                                                    <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
+                                             </p>
 
-                         </form>
-    </div>
+                                             <div id="total"></div>
+
+                                         </form>
+                             </div>
+                             </div>
+
+<!--###############################----RESTURANT-----#########################################################################-->
+                          {% elif kind == 'resturant' %}
+                               <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}
+
+
+                                <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}</div>
+                                <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}</div>
+
+                                <div id="down_part" class="col-md-12" style="right: 20px;">
+                                     <form action="/reserve/resturant/confirm/" method="POST">
+
+                                        {%  csrf_token %}
+                                        <p>
+                                         <div><span style="font-weight: bold;">تاریخ رزرو:</span></div>
+                                         <div class="col-md-10"><input type="date" name="reserve_date" class="col-md-8 , form-control"/></div>
+
+                                         <div><span style="font-weight: bold;">ساعت رزرو:</span></div>
+                                             از:
+                                         <div class="col-md-10"><input type="datetime" name="start_time" class="col-md-8 , form-control"/></div>
+
+                                               تا:
+                                         <div class="col-md-10"><input type="datetime" name="end_time" class="col-md-8 , form-control"/></div>
+
+
+
+                                         <div><span style="font-weight: bold;">نام رزرو کننده:</span></div>
+                                             <div class="col-md-10"><input type="text" class="col-md-8 , form-control"/></div>
+                                         <div><span style="font-weight: bold;">نام خانوادگی رزرو کننده:</span></div>
+                                             <div class="col-md-10"><input type="text" class="col-md-8 , form-control"/></div>
+
+
+                                         <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
+                                         </p>
+
+                                         <div id="total"></div>
+
+                                     </form>
+                                </div>
+
+
+<!--###############################----TRAIN-----#########################################################################-->
+                          {% elif kind == 'train' %}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام قطار:</span> {{ gardesh.name }}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">مبدا:</span> {{ train.source }}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">مقصد:</span> {{ train.destination }}
+
+
+                                <p>
+
+                                <div><span style="font-weight: bold;">قیمت:</span>{{ train.cost}}ریال</div>
+                                <div><span style="font-weight: bold;">تاریخ حرکت:</span>{{ train.start }}</div>
+                                <div><span style="font-weight: bold;">مدت زمان حرکت:</span>{{ train.time }}ساعت</div>
+                                <div><span style="font-weight: bold;">زمان حرکت:</span>{{ train.start_t }}</div>
+                                <div id="down_part" class="col-md-12" style="right: 20px;">
+                                     <form action="/reserve/confirm/" method="POST">
+
+                                        {%  csrf_token %}
+                                        <p>
+                                        <span style="font-weight: bold;">تعداد افراد:</span>
+                                             <input type="text" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
+                                             <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+                                                <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+                                              <div id="t" class="col-md-12" ></div>
+                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
+                                         </p>
+
+                                         <div id="total"></div>
+
+                                     </form>
+                                </div>
+                         </div>
+                                </div>
+<!--###############################----AIRPLANE-----#########################################################################-->
+                          {% elif kind == 'airplane' %}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام هواپیما:</span> {{ gardesh.name }}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">مبدا:</span> {{ airplane.source }}
+                                 <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">مقصد:</span> {{ airplane.destination }}
+
+
+                                <p>
+
+                                <div><span style="font-weight: bold;">قیمت:</span>{{ airplane.cost}}ریال</div>
+                                <div><span style="font-weight: bold;">تاریخ حرکت:</span>{{ airplane.start }}</div>
+                                <div><span style="font-weight: bold;">مدت زمان حرکت:</span>{{ airplane.time }}ساعت</div>
+                                <div><span style="font-weight: bold;">زمان حرکت:</span>{{ airplane.start_t }}</div>
+                                <div id="down_part" class="col-md-12" style="right: 20px;">
+                                     <form action="/reserve/confirm/" method="POST">
+
+                                        {%  csrf_token %}
+                                        <p>
+                                        <span style="font-weight: bold;">تعداد افراد:</span>
+                                             <input type="text" id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
+                                             <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+                                                <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+                                              <div id="t" class="col-md-12" ></div>
+                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
+                                         </p>
+
+                                         <div id="total"></div>
+
+                                     </form>
+                                </div>
+                         </div>
+                                </div>
+                          {% endif %}
     <div class="col-md-1">
+    </div>
     </div>
 {% endblock %}
 
@@ -60,8 +170,13 @@
                                  '<td class="col-md-1">نام</td><td class="col-md-1">نام خانوادگی</td><td class="col-md-1">شماره ی ملی</td>';
                          for( var i=0; i<num_rows;i++)
                          {
-                             console.log(i)
-                             tbody += '<tr>';
+                             if(i==0)
+                                tbody += '<tr name="first-name" value="first-name">';
+                             else if (i==1)
+                                tbody += '<tr name="last-name" value="last-name">';
+                             else if (i==2)
+                                tbody += '<tr name="melli-id" value="melli-id">';
+
                              for( var j=0; j<num_cols;j++)
                              {
                                  tbody += '<td class="col-md-1">';

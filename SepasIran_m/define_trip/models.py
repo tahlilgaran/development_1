@@ -180,21 +180,15 @@ class Restaurant(models.Model):
 
 class Table(models.Model):
     number = models.IntegerField()
+    reserve_date = models.DateField()
+    start_clock = models.IntegerField()
     restaurant = models.ForeignKey(Restaurant)
     capacity = models.IntegerField()    # zarfiate miz
     cost_perClock = models.IntegerField()
+    full = models.BooleanField(default= False)
 
     def __str__(self):
         return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
-
-class TableReserve(models.Model):
-    reserve_date = models.DateField()
-    start_reserve = models.TimeField()
-    end_reserve = models.TimeField()
-    table = models.ForeignKey(Table)
-
-    def __str__(self):
-        return str(self.table)
 
 
 class Hotel(models.Model):
@@ -211,17 +205,11 @@ class Hotel(models.Model):
 class Room(models.Model):
     number = models.IntegerField()
     hotel = models.ForeignKey(Hotel)
+    reserve_date = models.DateField()
+    full = models.BooleanField(default=False)
     capacity = models.IntegerField()    # zarfiate otagh
     cost_perNight = models.IntegerField()
-    full = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.hotel) + str(self.number)#bug fixed by yeganeh
 
-
-class RoomReserve(models.Model):
-    reserve_start = models.DateField()
-    reserve_end = models.DateField()
-    room = models.ForeignKey(Room)
-    def __str__(self):
-        return str(self.room)
