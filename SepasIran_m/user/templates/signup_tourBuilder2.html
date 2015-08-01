@@ -6,12 +6,16 @@
 {% block content %}
 
 <h1>
-ثبت نام گردش سازان
+تایید ثبت نام
     </h1>
 
     <p>
-    لطفا اطلاعات زیر را با دقت تکمیل نمایید.<br>
-    فیلدهای ستاره دار الزامی هستند.
+لطفا اطلاعات ورودی خود را بررسی نمایید و در صورت تایید و قبول شرایط زیر ثبت نام خود را تکمیل نمایید.        درصورت انصراف از ثبت نام کلید انصراف را بزنید.
+        <br>
+در سامانه سپاس ایران میتوانید پس از عضویت گردش هایی را به عرضه فروش بگذارید. این گردش ها را همچنین میتوانید در مرکز خود نیز بفروشید اما با هر فروش در مرکز
+    در صفحه کاربری خود با استفاده از نمایه ساده موجود به ما اطلاع دهید تا فروش دوباره ای رخ ندهد.
+    <br>
+    به ازای هر فروش در سامانه سپاس ایران درصد اندکی از مبلغ خریداری شده که در قرار داد گردش ذکر می شود به حساب سامانه ریخته می شود.
     </p>
 <form method="post" action="">
 {% csrf_token %}
@@ -19,22 +23,22 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        {{ form.email }}
+                        {{ user.email }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.email.label }}
+ایمیل
                     </label>
 
             </div>
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.lastname }}
+{{ user.last_name }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-{{ form.lastname.label }}
+نام شرکت
                     </label>
 
             </div>
@@ -42,36 +46,11 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.username }}
+{{ user.username }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-                        {{ form.username.label }}
-                    </label>
-
-
-            </div>
-
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.password }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-                        {{ form.password.label }}
-                    </label>
-
-            </div>
-
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.confirm_password }}
-                    <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-{{ form.confirm_password.label }}
+شماره ثبت
                     </label>
 
 
@@ -82,17 +61,18 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
 
-                        {{ form.kind }}
+                        {{ profile.kind }}
                 </div>
         <label  class="col-md-2 ">
-{{ form.kind.label }}
+نوع اصلی گردش
                     </label>
         </div>
 
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-    <input class="btn btn-success" type="submit" name="save"   value = "گام بعد">
+    <input class="btn btn-success" type="submit" name="save"   value = "ثبت نام">
+    <input class="btn btn-info" type="submit" name="return"   value = "بازگشت">
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 
 </div>

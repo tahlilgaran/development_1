@@ -9,11 +9,11 @@ USER_KIND = (
 )
 
 KIND = (
-    ('T', 'تور'),
-    ('TR', 'قطار'),
-    ('A', 'هواپیما'),
-    ('H', 'هتل'),
-    ('R', 'رستوران'),
+    ('Tour', 'تور'),
+    ('Train', 'قطار'),
+    ('AirPlane', 'هواپیما'),
+    ('Hotel', 'هتل'),
+    ('Restaurant', 'رستوران'),
 )
 
 GENDER = (
@@ -27,7 +27,7 @@ class UserM(models.Model):
     kind = models.CharField(max_length=10, choices=USER_KIND) #? what is this? redundant
 
     def __str__(self):
-     return str(self.user)
+        return str(self.user)
 
 class TouristProfile(models.Model):
     user = models.OneToOneField(UserM,related_name='tprofile')

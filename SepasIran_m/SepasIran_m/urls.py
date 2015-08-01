@@ -41,6 +41,8 @@ urlpatterns = [
     url(r'signup/tourist/$', 'user.views.tourist_signup'),
     url(r'signup/tourist/2/(\w+)/$', 'user.views.tourist_signup_2'),
     url(r'signup/tourBuilder/(\w+)$', 'user.views.servant_signup'),
+    url(r'signup/tourBuilder/$', 'user.views.servant_signup'),
+    url(r'signup/tourBuilder/2/(\d+)/(\d+)$', 'user.views.servant_signup_2'),
     url(r'edit/tourist/(\w+)$','user.views.edit_tourist'),
     url(r'profile/tourist/(\w+)$','user.views.tourist_profile'),
     url(r'profile/tourbuilder/(\w+)$','user.views.tourbuilder_profile'),

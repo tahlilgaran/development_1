@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from .forms import TouristSignUpForm
+from .forms import TouristSignUpForm ,TourBuilderSignUpForm
 from .models import TouristProfile,TourBuilderProfile,UserM
 # Create your views here.
 
@@ -91,7 +91,7 @@ def tourist_signup(request):
         form = TouristSignUpForm()
 
     return render(request, "signup_tourist.html",{
-        'username':'gardeshgar',
+        'username':'',
         'form': form,
     })
 
@@ -107,6 +107,9 @@ def tourist_signup_2(request,username):
         user.delete()
         return HttpResponseRedirect('/signup/tourist/')
     if request.POST.get("cancel","") != "":
+        profile.delete()
+        userm.delete()
+        user.delete()
         return HttpResponseRedirect('/signIn/')
 
     return render(request,"signup_tourist2.html",{
@@ -121,10 +124,52 @@ def logout_view(request):
     return HttpResponseRedirect('/signIn/')
 
 
-def servant_signup(request,username):
+def servant_signup(request):
+
+    if request.POST.get("save","") != "":
+        form = TourBuilderSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            return HttpResponseRedirect('/signup/tourBuilder/2/'+username+'/'+password)
+
+    elif request.POST.get("cancel","")!= "":
+        return HttpResponseRedirect('/signIn/')
+    else:
+        form = TourBuilderSignUpForm()
 
     return render(request, "signup_tourBuilder.html",{
-        'username':username,
+        'username': "",
+        'form': form,
+    })
+
+
+def servant_signup_2(request,username,password):
+    user = User.objects.get(username = username)
+    userm = UserM.objects.get(user = user)
+    profile = TourBuilderProfile.objects.get(user = userm)
+
+    if request.POST.get("return","") != "":
+        profile.delete()
+        userm.delete()
+        user.delete()
+        return HttpResponseRedirect('/signup/tourBuilder/')
+    if request.POST.get("cancel","") != "":
+        profile.delete()
+        userm.delete()
+        user.delete()
+        return HttpResponseRedirect('/signIn/')
+    if request.POST.get("save","") != "":
+        userl = authenticate(username=username,password=password)
+        if user:
+            login(request, userl)
+            return HttpResponseRedirect('/userpage/')
+
+    return render(request, "signup_tourBuilder2.html",{
+        'user': user,
+        'profile': profile,
+        'username':"",
     })
 
 
@@ -133,6 +178,7 @@ def edit_tourist(request,username):
     return render(request, "edit_tourist.html",{
         'username':username,
     })
+
 
 def edit_tourbuilder(request,username):
     print('edit')
