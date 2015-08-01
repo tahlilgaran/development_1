@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='tourbuilderprofile',
-            name='location',
+            name='account',
         ),
         migrations.RemoveField(
             model_name='tourbuilderprofile',
@@ -23,14 +23,10 @@ class Migration(migrations.Migration):
             model_name='tourbuilderprofile',
             name='service_kind',
         ),
-        migrations.RemoveField(
-            model_name='userm',
-            name='name',
-        ),
         migrations.AddField(
             model_name='tourbuilderprofile',
             name='kind',
-            field=models.CharField(choices=[('T', 'تور'), ('TR', 'قطار'), ('A', 'هواپیما'), ('H', 'هتل'), ('R', 'رستوران')], max_length=20, default=0),
+            field=models.CharField(default=0, max_length=20, choices=[('T', 'تور'), ('TR', 'قطار'), ('A', 'هواپیما'), ('H', 'هتل'), ('R', 'رستوران')]),
             preserve_default=False,
         ),
         migrations.AddField(
@@ -41,6 +37,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='touristprofile',
             name='gender',
-            field=models.CharField(choices=[('female', 'زن'), ('male', 'مرد')], max_length=10),
+            field=models.CharField(max_length=10, choices=[('female', 'زن'), ('male', 'مرد')]),
         ),
     ]

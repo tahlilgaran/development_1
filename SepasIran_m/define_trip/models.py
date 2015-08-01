@@ -50,7 +50,6 @@ CITY = (
     ('Semnan' , 'سمنان'),
 )
 
-
 class Gardesh(models.Model):
     name = models.CharField(max_length=255)
     builder = models.ForeignKey(TourBuilderProfile)
@@ -64,6 +63,8 @@ class Gardesh(models.Model):
     free = models.FloatField(default=1)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
+    other_explain = models.TextField(blank=True , null=True) #farzaneh add
+
 
     def __str__(self):
         return "{} - {}".format(self.builder , self.name)
@@ -79,7 +80,6 @@ class TransferDevice(models.Model):
     def __str__(self):
         return "{}-{}".format(self.kind , self.degree)
 
-
 class Location(models.Model):
     kind = models.CharField(max_length=2,
                                       choices=L_KIND)    # h/a/m
@@ -89,7 +89,6 @@ class Location(models.Model):
 
     def __self__(self):
         return "{}-{}".format(self.kind , self.name)
-
 
 class Tour(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
@@ -110,10 +109,10 @@ class Tour(models.Model):
     cost = models.IntegerField()
     destination_explain = models.TextField(null=True, blank=True)
     move_explain = models.TextField(null=True, blank=True)
-    other_explain = models.TextField(null=True, blank=True)
-
     def __str__(self):
         return "{}-{}".format(self.gardesh.name , self.gardesh.builder.user.user.last_name)#bug fixed by yeganeh
+
+
 
 
 class Bazdid(models.Model):
@@ -125,12 +124,15 @@ class Bazdid(models.Model):
         return "{}".format(self.tour)
 
 
+
+
 class Picture(models.Model):
     picture = models.FileField(upload_to="static/define_trip/img/")
     gardesh = models.ForeignKey(Gardesh)
 
     def __str__(self):
         return "{}".format(self.gardesh.name)
+
 
 
 class AirPlane(models.Model):
@@ -161,7 +163,6 @@ class Train(models.Model):
     start_t = models.TimeField()
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
-
     def __str__(self):
         return str(self.gardesh.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
@@ -183,27 +184,25 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.gardesh.name
 
-
 class Table(models.Model):
     number = models.IntegerField()
     restaurant = models.ForeignKey(Restaurant)
-    date = models.DateField()
-    start_clock = models.IntegerField()
     capacity = models.IntegerField()    # zarfiate miz
     cost_perClock = models.IntegerField()
+    date = models.DateField()
+    start_clock = models.TimeField()
     full = models.BooleanField(default=False)
-
     def __str__(self):
         return str(self.restaurant) + str(self.number)#bug fixed by yeganeh
 
 
 class Hotel(models.Model):
+    # name=models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     city = models.CharField(max_length=255 , choices=CITY)
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField() #in field bara chie????? FARZANEH
     # other_explain = models.TextField(blank=True , null=True) #farzaneh add
-
     def __str__(self):
         return str(self.gardesh.name)
 
@@ -215,7 +214,6 @@ class Room(models.Model):
     cost_perNight = models.IntegerField()
     date = models.DateField()
     full = models.BooleanField(default=False)
-
     def __str__(self):
         return str(self.hotel) + str(self.number)#bug fixed by yeganeh
 
