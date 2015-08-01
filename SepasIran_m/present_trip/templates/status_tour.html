@@ -7,12 +7,30 @@
      {% if not error %}
         <div id="down_part" class="col-md-12">
             <h3>{{ trip.gardesh.name }}</h3>
-            {% if trip.gardesh.kind != 'T' %}
+            {% if trip.gardesh.kind == 'TR' %}
                 <span>
                     {{ trip.source }}
                 به
                 {{ trip.destination }}
                 </span>
+            {% elif trip.gardesh.kind == 'A' %}
+                <span>
+                    {{ trip.source }}
+                به
+                {{ trip.destination }}
+                </span>
+            {% elif trip.gardesh.kind == 'R' %}
+                <span>
+                میز شماره
+                {{ sub_trip.number }}
+                ظرفیت
+                {{ sub_trip.capacity }}
+                </span>
+            {% elif trip.gardesh.kind == 'H' %}
+                اتاق شماره
+                {{ sub_trip.number }}
+                ظرفیت
+                {{ sub_trip.capacity }}
             {% endif %}
             <div class="box , col-md-12">
                 <h4>
@@ -21,6 +39,15 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        {% if trip.gardesh.kind == 'R' %}
+                            <td>
+                            ساعت
+                            </td>
+                        {% elif trip.gardesh.kind == 'H' %}
+                            <td>
+                            تاریخ
+                            </td>
+                        {% endif %}
                         <td>
                             نام و نام خانوادگی
                         </td>
@@ -35,11 +62,11 @@
                     <tbody>
                     {% for buyer in buy_trips %}
                         <tr>
-{#                            <td>#}
-{#                                <div class="btn-group btn-group-xs" aria-label="Extra-small button group">#}
-{#                                    <button type="button" class="btn btn-default , glyphicon glyphicon-plus" onclick="togglelist(this)" name="1">#}
-{#                                    </button></div>#}
-{#                                <span>{{ buyer.info.gardeshgar.user.user.last_name }}</span>#}
+                            {% if trip.gardesh.kind == 'R' %}
+                                <td>{{ buyer.gardesh.start_clock }}</td>
+                            {% elif trip.gardesh.kind == 'H' %}
+                                <td>{{ buyer.gardesh.date }}</td>
+                            {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
                             <td>{{ buyer.info.meli_code }}</td>
                             <td>{{ buyer.info.peygiry_code }}</td>
@@ -61,6 +88,15 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        {% if trip.gardesh.kind == 'R' %}
+                            <td>
+                            ساعت
+                            </td>
+                        {% elif trip.gardesh.kind == 'H' %}
+                            <td>
+                            تاریخ
+                            </td>
+                        {% endif %}
                         <td>
                             نام و نام خانوادگی
                         </td>
@@ -75,11 +111,11 @@
                     <tbody>
                     {% for buyer in reserve_trip %}
                         <tr>
-{#                            <td>#}
-{#                                <div class="btn-group btn-group-xs" aria-label="Extra-small button group">#}
-{#                                    <button type="button" class="btn btn-default , glyphicon glyphicon-plus" onclick="togglelist(this)" name="1">#}
-{#                                    </button></div>#}
-{#                                <span>{{ buyer.info.gardeshgar.user.user.last_name }}</span>#}
+                            {% if trip.gardesh.kind == 'R' %}
+                                <td>{{ buyer.gardesh.start_clock }}</td>
+                            {% elif trip.gardesh.kind == 'H' %}
+                                <td>{{ buyer.gardesh.date }}</td>
+                            {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
                             <td>{{ buyer.info.meli_code }}</td>
                             <td>{{ buyer.info.peygiry_code }}</td>
@@ -108,9 +144,13 @@
         </a>
     </div>
     <div class="col-md-6">
+    {% if zarfiat == -1 %}
+
+    {% else %}
             ظرفیت باقی مانده در سامانه:
             {{ zarfiat }}
     عدد
+        {% endif %}
     </div>
     {% endif %}
     {% else %}

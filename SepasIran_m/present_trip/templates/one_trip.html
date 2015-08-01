@@ -132,7 +132,7 @@
                                     <a type="button" href="/purchase/{{ kind }}/{{ room.id }}" class="btn btn-success , col-md-12">خرید</a>
                                 </div>
                                 {% elif user.userm.kind == 'gardeshsaz'%}
-                                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-12">
+                                   <a type="button" href="show/{{ kind }}/{{ trip.id }}/{{ room.number }}/status" class="btn btn-info , col-md-12">
                                    وضعیت گردش
                                     </a>
                             {% endif %}
@@ -260,7 +260,7 @@
                                     <a type="button" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</a>
                                 </div>
                                 {% elif user.userm.kind == 'gardeshsaz'%}
-                                   <a type="button" href="show/{{ kind }}/{{ user.userm.kind }}/status" class="btn btn-info , col-md-12">
+                                   <a type="button" href="show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
                                    وضعیت گردش
                                     </a>
                             {% endif %}
