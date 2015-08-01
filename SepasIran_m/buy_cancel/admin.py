@@ -1,6 +1,7 @@
 from django.contrib import admin
 from buy_cancel.models import *
 
+admin.site.register(Wanted_Trip)
 admin.site.register(Wanted_Airplane)
 admin.site.register(Wanted_Hotel)
 admin.site.register(Wanted_Restaurant)

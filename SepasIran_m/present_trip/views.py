@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from define_trip.models import *
+from buy_cancel.models import *
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
 
 def show_one_trip(request, kind = ''  , id = 0):
-    # print("tourist_profile: {}".format(request.user.userm.kind))
     returned_dic = {}
     if request.method == "GET":
         returned_dic['kind'] = kind
@@ -58,8 +58,62 @@ def show_one_trip(request, kind = ''  , id = 0):
 
 
 
-def show_one_trip_status(request , kind = '' , username = ''):
-    return render(request , "status_trip.html" , {'username':username , 'kind':kind})
+def show_one_trip_status(request , kind = '', id = 0 , sub_kind = '' , sub_id = 0):
+    return_dic = {}
+    trip = ''
+    html_file = ''
+    builder = request.user.userm.bprofile
+    return_dic['builder'] = builder
+    if request.method == 'GET':
+        if kind == 'tour':
+            trip = Tour.objects.filter(id = id)[0]
+            print(trip.gardesh.name)
+            html_file = 'status_tour.html'
+            if trip.gardesh.builder == builder:
+                buy_trips = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'buy')
+                reserve_trip = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'reserve')
+                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
+
+
+        if kind == 'restaurant':
+            trip = Restaurant.objects.filter(id = id)[0]
+            html_file = 'status_restaurant.html'
+            if trip.gardesh.builder == builder:
+                wanted_trip = Wanted_Restaurant.objects.filter(gardesh = trip)
+
+        if kind == 'hotel':
+            trip = Hotel.objects.filter(id = id)[0]
+            html_file = 'status_hotel.html'
+            if trip.gardesh.builder == builder:
+                wanted_trip = Wanted_Hotel.objects.filter(gardesh = trip)
+
+        if kind == 'airplain':
+            trip = AirPlane.objects.filter(id = id )[0]
+            html_file = 'status_airplane'
+            if trip.gardesh.builder == builder:
+                wanted_trip = Wanted_Airplane.objects.filter(gardesh = trip)
+
+        if kind == 'train':
+            trip = Train.objects.filter(id = id )[0]
+            html_file = 'status_train.html'
+            if trip.gardesh.builder == builder:
+                wanted_trip = Wanted_Train.objects.filter(gardesh = trip)
+
+        if trip.gardesh.builder != builder:
+            return_dic['error'] = 'نمایش وضعیت گردش به گردشساز آن گردش امکان پذیر است.'
+        else:
+            # print(trip.gardesh.name)
+            return_dic['trip'] = trip
+            return_dic['buy_trips'] = buy_trips
+            return_dic['reserve_trip'] = reserve_trip
+            return_dic['zarfiat'] = zarfiat
+        return render(request , html_file , return_dic)
+    else:
+        return None
+
+
+
+
 
 def search(request , username = '' , ispack = ''):
 
