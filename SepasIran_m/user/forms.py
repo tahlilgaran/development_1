@@ -143,3 +143,87 @@ class TourBuilderSignUpForm(forms.ModelForm):
         profile.user = muser
         profile.kind = self.cleaned_data['kind']
         profile.save()
+
+
+class TourBuilderEditForm(forms.ModelForm):
+    lastname = forms.CharField( label="نام شرکت (مرکز ارائه)")
+    email = forms.EmailField(label="ایمیل شرکت")
+    password = forms.CharField(label="رمز عبور")
+    confirm_password = forms.CharField(label="تکرار رمز عبور")
+
+    class Meta:
+        model = TourBuilderProfile
+        fields = ('kind',)
+
+    def __init__(self , *args , **kwargs):
+        super(TourBuilderEditForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget = forms.EmailInput(attrs={
+            'class': 'form-control','placeholder': 'ایمیل جدید خود را وارد کنید'})
+        self.fields['lastname'].widget = forms.TextInput(attrs={
+            'class': 'form-control','placeholder': 'نام تغییر یافته سازمان را وارد کنید'})
+        self.fields['password'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control','placeholder': 'رمز عبوری حداقل 6 حرفی'})
+        self.fields['confirm_password'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control','placeholder': 'رمز عبور خود را دوباره وارد نمایید'})
+        self.fields['kind'].label = "نوع گردش ارائه شده در سازمان"
+        self.fields.keyOrder = ['email','lastname','password','confirm_password', 'kind']
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        if len(password) < 6:
+            raise forms.ValidationError("your password's length must be more than 6 character")
+        return password
+
+    def clean_confirm_password(self):
+
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('confirm_password')
+        if password1 != password2:
+            raise forms.ValidationError(" the passwords doesn't match")
+        return password2
+
+
+class TouristEditForm(forms.ModelForm):
+    firstname = forms.CharField(label="نام")
+    lastname = forms.CharField(label="نام خانوادگی")
+    email = forms.EmailField(label="ایمیل")
+    password = forms.CharField(label="رمز عبور")
+    confirm_password = forms.CharField(label="تکرار رمز عبور")
+
+    class Meta:
+        model = TouristProfile
+        fields = ('birthday','location',)
+
+    def __init__(self , *args , **kwargs):
+        super(TouristEditForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget = forms.EmailInput(attrs={
+            'class': 'form-control','placeholder': 'ایمیل جدید خود را وارد کنید'})
+        self.fields['firstname'].widget = forms.TextInput(attrs={
+            'class': 'form-control','placeholder': 'اسم خود را وارد کنید'})
+        self.fields['lastname'].widget = forms.TextInput(attrs={
+            'class': 'form-control','placeholder': 'نام خانوادگی خود را وارد کنید'})
+        self.fields['password'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control','placeholder': 'رمز عبوری حداقل 6 حرفی'})
+        self.fields['confirm_password'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control','placeholder': 'رمز عبور خود را دوباره وارد نمایید'})
+        self.fields['birthday'].widget = forms.DateInput(attrs={
+            'class': 'form-control','placeholder': 'yyyy-mm-dd'})
+        self.fields['location'].widget = forms.TextInput(attrs={
+            'class': 'form-control' ,'label':'شهر','placeholder': 'نام شهر محل سکونت خود را وارد نمایید'})
+        self.fields['location'].label = "شهر"
+        self.fields['birthday'].label = "تاریخ تولد"
+        self.fields.keyOrder = ['email','firstname', 'lastname','password','confirm_password', 'birthday', 'location']
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        if len(password) < 6:
+            raise forms.ValidationError("your password's length must be more than 6 character")
+        return password
+
+    def clean_confirm_password(self):
+
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('confirm_password')
+        if password1 != password2:
+            raise forms.ValidationError(" the passwords doesn't match")
+        return password2
