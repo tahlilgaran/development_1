@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     # 'informing',
     # 'manager_dashboard',
     # 'present_trip',
-    # 'quality_control',
+    'quality_control',
     'user',
 )
 
