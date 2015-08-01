@@ -20,8 +20,8 @@ urlpatterns = [
     url(r'search/result/(\w+)/(\w+)$', 'present_trip.views.search'),
 
     #informing urls:
-    url(r'userpage/$', 'informing.views.account'),
-    url(r'userpage/(\w+)$', 'informing.views.account'),
+    # url(r'userpage/$', 'informing.views.account'),
+    url(r'userpage/\w+/$', 'informing.views.account'),
 
 
 
