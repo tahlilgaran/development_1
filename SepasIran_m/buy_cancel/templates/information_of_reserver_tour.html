@@ -9,33 +9,45 @@
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
 
-                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما</h2>{{ username }}
-                        <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ tour.name }}
+                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما{{ username }}</h2>
+                        <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ gardesh.name }}
 
                             <p>
-                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>{{ tour.entire_cost }}ریال
+                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>{{ tour.cost }}ریال
                             </p>
 
                         </div>
             </div>
              <div id="down_part" class="col-md-12" style="right: 20px;">
-                         <form action="/reserving/confirm/" method="POST">
+                         <form action="/reserving/status/tour/{{ tour.id }}/" method="POST">
 
                             {%  csrf_token %}
                             <p>
                             <span style="font-weight: bold;">تعداد افراد:</span>
-                                 <input type="text" name="number-of-resrver" value={{ number }} id="rows" style="width: 70px;margin:10px; border-radius: 2px;"/>
-                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+
+                                {{ form.number }}
+
+
+                                <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+
+
+
+                                 <!--<input type="text" name="number" id ="rows" style="width: 70px;margin:10px; border-radius: 2px;" value={{ number }} />
+                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>-->
                                     <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
                                   <div id="t" class="col-md-12" ></div>
-                                    <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
-                             </p>
+                                    <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
-                             <div id="total"></div>
+
+                                    <div id="total"></div>
 
                          </form>
-    </div>
+             </div>
     <div class="col-md-1">
+        {% if error %}
+            <p style="font-weight: 200 ; color: red;">{{ msg }}</p>
+            <a href="/reserving/tour/{{ tour.id }}" >بازگشت </a>
+        {% endif %}
     </div>
     </div>
 {% endblock %}
@@ -46,28 +58,24 @@
         function createTable()
                      {
 
-                       var num_rows = document.getElementById('rows').value;
+                         var num_rows =document.getElementById('id_number').value;
+
+                         console.log(num_rows)
+
                          var num_cols = 3;
-                         var theader = '<table border="1" class="table-bordered col-md-8" style="border-color: #CD6600">\n';
+                         var theader = '<table border="1" class="table-bordered col-md-10" style="float:right;width:350px;border-color: #CD6600">\n';
                          console.log(theader)
                          var tbody =
                                  '<td class="col-md-1">نام</td><td class="col-md-1">نام خانوادگی</td><td class="col-md-1">شماره ی ملی</td>';
                          for( var i=0; i<num_rows;i++)
                          {
-                             if(i==0)
-                                tbody += '<tr name="first-name" value="first-name">';
-                             else if (i==1)
-                                tbody += '<tr name="last-name" value="last-name">';
-                             else if (i==2)
-                                tbody += '<tr name="melli-id" value="melli-id">';
 
-                             for( var j=0; j<num_cols;j++)
-                             {
-                                 tbody += '<td class="col-md-1">';
-                                 tbody += '<input type="text" style="width: 250px;border:0px white;">';
-                                 tbody += '</td>'
-                             }
-                             tbody += '</tr>\n';
+                                tbody += '<tr><td> {{ peopleform.first_name }} </td>';
+
+                                tbody += '<td>{{ peopleform.last_name }}</td>';
+
+                                tbody += '<td>{{ peopleform.melli_number }}</td></tr>';
+
                          }
                          var tfooter = '</table>';
                           document.getElementById('t').innerHTML = theader + tbody + tfooter;

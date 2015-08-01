@@ -50,21 +50,34 @@ urlpatterns = [
 
    # url(r'reserve/(P?<tour_id>\d+)/$', 'buy_cancel.views.reserve'),
 
-   url(r'reserving/resturant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.reserveResturant'),
-   url(r'reserving/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.reserveHotel'),
-   url(r'reserving/tour/<(P?<tour_id>\d+)>/$', 'buy_cancel.views.reserveTour'),
-   url(r'reserving/airplane/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveAirplane'),
-   url(r'reserving/train/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveTrain'),
-   url(r'reserveing/(<P?<kind>\w+>)/confirm$', 'buy_cancel.views.confirmReserve'),
+   url(r'reserving/restaurant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.reserveResturant'),
+    url(r'reserving/restaurant/(\d+)/(\d+)/$', 'buy_cancel.views.reserveResturant'),
 
-   url(r'purchase/resturant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.purchaseResturant'),
+   url(r'reserving/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.reserveHotel'),
+       url(r'reserving/hotel/(\d+)/$', 'buy_cancel.views.reserveHotel'),
+
+   url(r'reserving/tour/<(P?<tour_id>\d+)>/$', 'buy_cancel.views.reserveTour'),
+     url(r'reserving/tour/(\d+)/$', 'buy_cancel.views.reserveTour'),
+     url(r'reserving/tour/(\d+)/number/$', 'buy_cancel.views.reserveTour'),
+
+   url(r'reserving/airplane/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveAirplane'),
+    url(r'reserving/airplane/(\d+)/$', 'buy_cancel.views.reserveAirplane'),
+
+   url(r'reserving/train/<(P?<id>\d+)>/$', 'buy_cancel.views.reserveTrain'),
+    url(r'reserving/train/(\d+)/$', 'buy_cancel.views.reserveTrain'),
+  # url(r'reserving/status/(<P?<kind>\w+>)/(<P?<id>\d+>)/$', 'buy_cancel.views.statusReserve'),
+
+     url(r'reserving/status/(\w+)/(\d+)/$', 'buy_cancel.views.statusReserve'),
+
+
+   url(r'purchase/restaurant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.purchaseResturant'),
    url(r'purchase/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.purchaseHotel'),
    url(r'purchase/tour/<(P?<tour_id>\d+)>/$', 'buy_cancel.views.purchaseTour'),
    url(r'purchase/airplane/<(P?<id>\d+)>/$', 'buy_cancel.views.purchaseAirplane'),
    url(r'purchase/train/<(P?<id>\d+)>/$', 'buy_cancel.views.purchaseTrain'),
    #url(r'purchase/(<P?<kind>\w+>)/confirm$', 'buy_cancel.views.confirmPurchase'),
 
-   #  url(r'reserve/([service][tour])/$', 'buy_cancel.views.reserve'),
+   # url(r'reserve/([service][tour])/$', 'buy_cancel.views.reserve'),
   # url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
   # url(r'purchase/(\w+)/$', 'buy_cancel.views.purchase'),
   # url(r'purchase/$', 'buy_cancel.views.purchase'),

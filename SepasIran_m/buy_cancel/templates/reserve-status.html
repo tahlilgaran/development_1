@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>وضعیت تراکنش</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css'  %}">
+
+<link rel="stylesheet" type="text/css" href="css/transaction-status.css">
+</head>
+<body>
+<div class="col-md-8">
+<p>
+    {% if kind == 'tour' %}
+
+    {{ gardesh.name }}برای شما به تعداد {{ number }}رزرو شد .
+        <p class="random-number">
+        کد پیگیری :{{ tour.id}}-{{ kind }}
+        </p>
+    {% elif kind == 'restaurant' %}
+        میز شما در رستوران{{ gardesh.name }}انجام شد.
+        <p class="random-number">
+        کد پیگیری :{{ table.id}}-{{ kind }}
+        </p>
+    {% endif %}
+</p>
+
+</div>
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="css/transaction-status.css"></script>
+{% endblock %}
