@@ -4,9 +4,16 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
 {% block content %}
-
+     {% if not error %}
         <div id="down_part" class="col-md-12">
             <h3>{{ trip.gardesh.name }}</h3>
+            {% if trip.gardesh.kind != 'T' %}
+                <span>
+                    {{ trip.source }}
+                به
+                {{ trip.destination }}
+                </span>
+            {% endif %}
             <div class="box , col-md-12">
                 <h4>
                     لیست خرید
@@ -105,6 +112,9 @@
             {{ zarfiat }}
     عدد
     </div>
+    {% endif %}
+    {% else %}
+         <div>{{ error }}</div>
     {% endif %}
 {% endblock %}
 

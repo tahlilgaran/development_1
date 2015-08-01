@@ -67,7 +67,6 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_kind = '' , sub_id = 
     if request.method == 'GET':
         if kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
-            print(trip.gardesh.name)
             html_file = 'status_tour.html'
             if trip.gardesh.builder == builder:
                 buy_trips = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'buy')
@@ -87,17 +86,21 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_kind = '' , sub_id = 
             if trip.gardesh.builder == builder:
                 wanted_trip = Wanted_Hotel.objects.filter(gardesh = trip)
 
-        if kind == 'airplain':
+        if kind == 'airplane':
             trip = AirPlane.objects.filter(id = id )[0]
-            html_file = 'status_airplane'
+            html_file = 'status_tour.html'
             if trip.gardesh.builder == builder:
-                wanted_trip = Wanted_Airplane.objects.filter(gardesh = trip)
+                buy_trips = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'buy')
+                reserve_trip = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'reserve')
+                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
 
         if kind == 'train':
             trip = Train.objects.filter(id = id )[0]
-            html_file = 'status_train.html'
+            html_file = 'status_tour.html'
             if trip.gardesh.builder == builder:
-                wanted_trip = Wanted_Train.objects.filter(gardesh = trip)
+                buy_trips = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'buy')
+                reserve_trip = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'reserve')
+                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
 
         if trip.gardesh.builder != builder:
             return_dic['error'] = 'نمایش وضعیت گردش به گردشساز آن گردش امکان پذیر است.'
