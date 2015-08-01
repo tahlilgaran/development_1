@@ -66,7 +66,7 @@ class Gardesh(models.Model):
     agreement = models.ForeignKey(Agreement)
 
     def __str__(self):
-        return "{}".format(self.builder)
+        return "{} - {}".format(self.builder , self.name)
 
 
 class TransferDevice(models.Model):
@@ -76,6 +76,9 @@ class TransferDevice(models.Model):
                                       choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return "{}-{}".format(self.kind , self.degree)
+
 
 class Location(models.Model):
     kind = models.CharField(max_length=2,
@@ -83,6 +86,9 @@ class Location(models.Model):
     degree = models.CharField(max_length=2,
                                       choices=DEGREE)      # g/s/b
     name = models.CharField(max_length=255)
+
+    def __self__(self):
+        return "{}-{}".format(self.kind , self.name)
 
 
 class Tour(models.Model):
@@ -107,7 +113,7 @@ class Tour(models.Model):
     other_explain = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.name#bug fixed by yeganeh
+        return "{}-{}".format(self.gardesh.name , self.gardesh.builder.user.user.last_name)#bug fixed by yeganeh
 
 
 class Bazdid(models.Model):
@@ -115,10 +121,16 @@ class Bazdid(models.Model):
     location_name = models.CharField(max_length=255)
     time = models.DateField()
 
+    def __str__(self):
+        return "{}".format(self.tour)
+
 
 class Picture(models.Model):
     picture = models.FileField(upload_to="static/define_trip/img/")
     gardesh = models.ForeignKey(Gardesh)
+
+    def __str__(self):
+        return "{}".format(self.gardesh.name)
 
 
 class AirPlane(models.Model):
@@ -130,7 +142,7 @@ class AirPlane(models.Model):
     capacity = models.IntegerField()    # number of un sell seats
     cost = models.IntegerField()
     def __str__(self):
-        return self.gardesh.name#bug fixed by yeganeh
+        return "{}".format(self.gardesh.name)#bug fixed by yeganeh
 
 
 class AirplaneSeat(models.Model):
@@ -151,7 +163,7 @@ class Train(models.Model):
     cost = models.IntegerField()
 
     def __str__(self):
-        return str(self.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
+        return str(self.gardesh.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
 
 
 class TrainSeat(models.Model):
@@ -169,7 +181,7 @@ class Restaurant(models.Model):
     end_day = models.DateField()
 
     def __str__(self):
-        return self.gardesh.builder.user.user.last_name
+        return self.gardesh.name
 
 
 class Table(models.Model):
