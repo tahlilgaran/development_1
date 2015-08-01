@@ -18,20 +18,20 @@ class Wanted_Trip(models.Model):
 
 class Wanted_Tour(models.Model):
     gardesh = models.ForeignKey(Tour)
-    info = models.OneToOneField(Wanted_Trip)
+    info = models.OneToOneField(Wanted_Trip , related_name='wanted_tour')
 
 class Wanted_Hotel(models.Model):
     gardesh = models.ForeignKey(Room )
-    info = models.OneToOneField(Wanted_Trip)
+    info = models.OneToOneField(Wanted_Trip , related_name='wanted_hotel')
 
 class Wanted_Restaurant(models.Model):
     gardesh = models.ForeignKey(Table)
-    info = models.OneToOneField(Wanted_Trip)
+    info = models.OneToOneField(Wanted_Trip , related_name='wanted_restaurant')
 
 class Wanted_Airplane(models.Model):
-    gardesh = models.ForeignKey(AirplaneSeat)
+    gardesh = models.ForeignKey(AirplaneSeat ,related_name='wanted_airplane')
     info = models.OneToOneField(Wanted_Trip)
 
 class Wanted_Train(models.Model):
     gardesh = models.ForeignKey(TrainSeat)
-    info = models.OneToOneField(Wanted_Trip)
+    info = models.OneToOneField(Wanted_Trip , related_name='wanted_train')
