@@ -89,6 +89,6 @@ urlpatterns = [
    url(r'payment/confirm/(P?<tour_id>\d+)/$', 'accounting.views.confirmTour'),
    # url(r'payment/confirm/$', 'accounting.views.confirm'),
    url(r'^manager/', include('manager_dashboard.urls')),
-   # url(r'^quality/', include('quality_control.urls')),
+   url(r'^quality/', include('quality_control.urls')),
    url(r'^admin/', include(admin.site.urls)),
 ]
