@@ -9,34 +9,36 @@ from .models import TouristProfile,TourBuilderProfile,UserM
 
 def signin(request):
 
-    if request.POST.get("login","")!= "":
-        username = request.POST.get("username")
-        if(username == 'admin'):
-            return HttpResponseRedirect('/manager/Dashboard/')
-        return HttpResponseRedirect('/userpage/'+username)
-
-    if request.method == 'GET' :
-        username = ""
     if request.POST.get("signup","") != "":
         return HttpResponseRedirect('/signup/')
     if request.POST.get("forget","") != "":
         return HttpResponseRedirect('/forgetpassword/')
-    wrong = False
+    wrong = 'false'
     if request.POST.get("login","")!= "":
         username = request.POST.get("username", "")
         password = request.POST.get("pwd", "")
         user = authenticate(username=username,password=password)
 
         if user:
-            login(request, user)
+            u = User.objects.get(username = username)
+            userm = UserM.objects.get(user = u)
+            if userm.kind == 'gardeshgar':
+                if u.userm.tprofile.has_payed:
+                    login(request, user)
+                    return HttpResponseRedirect('/userpage/')
+                else:
+                    wrong = 'notpayed'
+            else :
+                login(request, user)
+                return HttpResponseRedirect('/userpage/')
             if username == 'admin':
                 return HttpResponseRedirect('/manager/Dashboard/')
-            return HttpResponseRedirect('/userpage/')
+
         else:
-            wrong = True
+            wrong = "wrongpass"
 
     return render(request, "login.html",{
-        'username':username,
+        'username': "",
         'wrong':wrong,
     })
 
@@ -74,8 +76,9 @@ def tourist_signup(request):
         form = TouristSignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/signup/tourist/2/'+form.username)
-            # username = form.cleaned_data['username']
+            username = form.cleaned_data['username']
+            return HttpResponseRedirect('/signup/tourist/2/'+username)
+
             # password = form.cleaned_data['password']
             # user = authenticate(username=username,password=password)
             # if user:

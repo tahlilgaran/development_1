@@ -65,8 +65,10 @@ class TouristSignUpForm(forms.ModelForm):
                                         ,email=self.cleaned_data['email'])
         muser = UserM()
         muser.user = user
-        muser.user.first_name = self.cleaned_data['firstname']
-        muser.user.last_name = self.cleaned_data['lastname']
+        if self.cleaned_data['firstname']:
+            muser.user.first_name = self.cleaned_data['firstname']
+        if self.cleaned_data['lastname']:
+            muser.user.last_name = self.cleaned_data['lastname']
         muser.user.save()
         muser.kind = 'gardeshgar'
         muser.save()

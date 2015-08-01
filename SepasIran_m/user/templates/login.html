@@ -16,6 +16,14 @@
     با ثبت نام در سایت ما از امکانات فراوانی برخوردار شوید.<br>
     نام کاربری گردش سازان شماره ثبت شرکت می باشد.
     </p>
+
+    <p style="color: red">
+    {% if wrong == "wrongpass" %}
+        نام کاربری یا رمز عبور اشتباه است
+        {% elif wrong == "notpayed" %}
+        هزینه عضویت پرداخت نشده است
+    {% endif %}
+    </p>
 <form method="post">
 {% csrf_token %}
     <div class="col-md-12 , form-group">
