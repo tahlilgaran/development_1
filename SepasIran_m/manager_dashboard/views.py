@@ -1,9 +1,10 @@
 from django.shortcuts import render
-
+from quality_control.models import OnlineComment
 # Create your views here.
 
 def Dashboard(request):
-    return render(request, "manager_dashboard.html", {"username": "admin"})
+    onlineComments = OnlineComment.objects.all()
+    return render(request, "manager_dashboard.html", {"onlineComments": onlineComments})
 
 
 def tourLists(request):
@@ -15,7 +16,8 @@ def tourRating(request):
 
 
 def showOnlineComments(request):
-    return render(request, "manager_online_comments.html", {"username": "admin"})
+    onlineComments = OnlineComment.objects.all()
+    return render(request, "manager_online_comments.html", {"onlineComments": onlineComments})
 
 
 def userLists(request):

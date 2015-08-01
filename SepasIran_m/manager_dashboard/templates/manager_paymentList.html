@@ -12,62 +12,15 @@
         <td>مقدار</td>
         <td>تاریخ</td>
     </tr>
-    <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-           <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
+ {% for payment in paymentList %}
         <tr class="payment_table">
-        <td>234</td>
+        <td>{{ payment.id }}</td>
          <td><a>شرکت مسافرتی آسمان</a></td>
          <td><a>سپاس ایران</a></td>
          <td>20 میلیون تومان</td>
          <td>25 خرداد 1394</td>
     </tr>
-        <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-        <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-        <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-        <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-        <tr class="payment_table">
-        <td>234</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
+    {% endfor %}
 </table>
 
 
