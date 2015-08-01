@@ -11,13 +11,22 @@
     <p>
     ایمیل خود را در کادر وارد کنید تا رمز عبور جدید به شما ارسال گردد.
     </p>
+
+    {% if has_send == 0 %}
+    <p style="color: red">
+    ایمیل وارد شده در سیستم موجود نمی باشد.
+    </p>
+    {% elif has_send == 2 %}
+    <p style="color: green">
+    رمز عبور جدید به ایمیل شما فرستاده شد.
+    </p>
+    {% endif %}
 <form method="post">
 {% csrf_token %}
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="email"  name="username" class="form-control" id="des" placeholder="ایمیل وارد شده هنگام ثبت نام">
-                        <span class="error"></span>
+                <input type="email"  name="email" class="form-control" id="des" placeholder="ایمیل وارد شده هنگام ثبت نام">                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 ایمیل
@@ -26,12 +35,8 @@
             </div>
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-    <a class="btn btn-success" href="\signIn\" name ="send">
-    ارسال رمز عبور
-    </a>
-    <a class="btn btn-danger" href="\signIn\" name ="cancel">
-    انصراف
-    </a>
+    <input type="submit" class="btn btn-success"  name ="send" value="ارسال رمز عبور">
+    <input class="btn btn-danger" type="submit" name ="cancel" value="بازگشت">
 
 </div>
 </form>

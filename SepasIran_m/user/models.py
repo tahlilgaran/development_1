@@ -23,7 +23,7 @@ GENDER = (
 
 
 class UserM(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='userm')
     register_time = models.DateTimeField(default=datetime.now)
     picture = models.FileField(upload_to="static/user/img/", default="static/user/img/default.jpg" , null=True, blank=True)
     kind = models.CharField(max_length=10, choices=USER_KIND) #? what is this? redundant
@@ -33,7 +33,7 @@ class UserM(models.Model):
 
 
 class TouristProfile(models.Model):
-    user = models.OneToOneField(UserM)
+    user = models.OneToOneField(UserM,related_name='tprofile')
     location = models.CharField(max_length=250, null=True,blank=True)
     birthday = models.DateField(null=True,blank=True)
     gender = models.CharField(max_length=10, choices=GENDER)
@@ -50,7 +50,7 @@ class TouristProfile(models.Model):
 
 
 class TourBuilderProfile(models.Model):
-    user = models.OneToOneField(UserM)  # username is sabt number
+    user = models.OneToOneField(UserM,related_name='bprofile')  # username is sabt number
     kind = models.CharField(max_length= 20 , choices=KIND)
     account = models.IntegerField(default=0)
 
@@ -59,7 +59,7 @@ class TourBuilderProfile(models.Model):
 
 
 class ManagerProfile(models.Model):
-    user = models.OneToOneField(UserM)
+    user = models.OneToOneField(UserM,related_name='mprofile')
     # maryam poresh kon
 
     def __str__(self):
