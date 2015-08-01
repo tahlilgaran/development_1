@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from .forms import TouristSignUpForm ,TourBuilderSignUpForm
+from .forms import TouristSignUpForm ,TourBuilderSignUpForm,TourBuilderEditForm,TouristEditForm
 from .models import TouristProfile,TourBuilderProfile,UserM
 # Create your views here.
 
@@ -78,12 +78,6 @@ def tourist_signup(request):
             form.save()
             username = form.cleaned_data['username']
             return HttpResponseRedirect('/signup/tourist/2/'+username)
-
-            # password = form.cleaned_data['password']
-            # user = authenticate(username=username,password=password)
-            # if user:
-            #     login(request, user)
-            #     return HttpResponseRedirect('/userpage/')
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/signIn/')
@@ -174,26 +168,139 @@ def servant_signup_2(request,username,password):
 
 
 def edit_tourist(request,username):
+    user = request.user
+    user2 = User.objects.get(username = username)
+    if user != user2:
+        return HttpResponseRedirect('/profile/tourist/'+username)
+    muser = UserM.objects.get(user = user)
+    profile = TouristProfile.objects.get(user = muser)
+    if request.POST.get("edit","") != "":
+        form = TouristEditForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            if password:
+                user.set_password(password)
+            email = form.cleaned_data['email']
+            if email:
+                user.email = email
+            lastname = form.cleaned_data['lastname']
+            if lastname:
+                user.last_name = lastname
+            firstname = form.cleaned_data['firstname']
+            if firstname:
+                user.first_name = firstname
+            user.save()
+            birthday = form.cleaned_data['birthday']
+            if birthday:
+                profile.birthday = birthday
+            location = form.cleaned_data['location']
+            if location:
+                profile.location = location
+            muser.save()
+            profile.save()
+            u = authenticate(username = username,password = password)
+            if u:
+                login(request,u)
+            return HttpResponseRedirect('/profile/tourist/'+username)
+
+    elif request.POST.get("cancel","")!= "":
+        return HttpResponseRedirect('/profile/tourist/'+username)
+    else:
+        form = TouristEditForm()
 
     return render(request, "edit_tourist.html",{
-        'username':username,
+        'username':"gardeshgar",
+        'form': form,
     })
 
 
 def edit_tourbuilder(request,username):
-    print('edit')
+    user = request.user
+    user2 = User.objects.get(username = username)
+    if user != user2:
+        return HttpResponseRedirect('/profile/tourbuilder/'+username)
+    muser = UserM.objects.get(user = user)
+    profile = TourBuilderProfile.objects.get(user = muser)
+    if request.POST.get("edit","") != "":
+        form = TourBuilderEditForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            if password:
+                user.set_password(password)
+            email = form.cleaned_data['email']
+            if email:
+                user.email = email
+            lastname = form.cleaned_data['lastname']
+            if lastname:
+                user.last_name = lastname
+            user.save()
+            kind = form.cleaned_data['kind']
+            if kind:
+                profile.kind = kind
+            muser.save()
+            profile.save()
+            u = authenticate(username = username,password = password)
+            if u:
+                login(request,u)
+            return HttpResponseRedirect('/profile/tourbuilder/'+username)
+
+    elif request.POST.get("cancel","")!= "":
+        return HttpResponseRedirect('/profile/tourbuilder/'+username)
+    else:
+        form = TourBuilderEditForm()
+
     return render(request, "edit_tourbuilder.html",{
-        'username':username,
+        'username':"gardeshsaz",
+        'form': form,
     })
 
 
 def tourist_profile(request,username):
 
+    if User.objects.filter(username = username):
+        user = User.objects.filter(username = username)[0]
+        user2 = request.user
+        if user != user2:
+            return HttpResponseRedirect('/signIn/')
+        muser = UserM.objects.get(user = user)
+        profile = TouristProfile.objects.get(user = muser)
+    else:
+        return HttpResponse("<html><head></head><body>there is no user with this username</body></html>")
+
+    if request.POST.get("edit","") != "":
+        return HttpResponseRedirect('/edit/tourist/'+username)
+    if request.POST.get("cancel","") != "":
+        return HttpResponseRedirect('/userpage/')
+
     return render(request, "tourist_profile.html",{
-        'username':username,
+        'username': "gardeshgar",
+        'profile': profile,
+        'user': user,
     })
+
 def tourbuilder_profile(request,username):
-    print('profile.')
+    user2 = request.user
+    me= False
+
+    if User.objects.filter(username = username):
+        user = User.objects.filter(username = username)[0]
+        muser = UserM.objects.get(user = user)
+        profile = TourBuilderProfile.objects.get(user = muser)
+
+    else:
+        return HttpResponse("<html><head></head><body>there is no user with this username</body></html>")
+    if user == user2:
+        me = True
+    if request.POST.get("edit","") != "":
+        return HttpResponseRedirect('/edit/tourbuilder/'+username)
+    if request.POST.get("cancel","") != "":
+        if me:
+            return HttpResponseRedirect('/userpage/')
+        else:
+            return HttpResponseRedirect('/home/')
     return render(request, "tourbuilder_profile.html",{
-        'username':username,
+        'username': "gardeshsaz",
+        'profile': profile,
+        'user': user,
+        'me': me,
     })
