@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'manager_dashboard/css/main.css' %}">
+{% endblock %}
+
+{% block manager_content %}
+    <div class="finish_nav , rtl ">
+        {% block content_dashboard %}
+
+        {% endblock content_dashboard %}
+
+        <div class="col-md-3 right-sidebar">
+            <div class="col-md-12">
+                <strong>
+                    <img class="logo" src="{% static 'manager_dashboard/image/sepas_logo.jpg' %}">
+                    <br>
+                    داشبورد مدیریتی سامانه سپاس ایران
+                </strong>
+            </div>
+            <div class="col-md-12 ">
+                <hr>
+                <table>
+                    <tr>
+                        <td>
+                            <strong><a href="/manager/Dashboard/">
+                                صفحه ی اصلی
+                            </a></strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/manager/tourLists">
+                                تورهای درحال اجرا
+                            </a></td>
+                    </tr>
+
+                    <tr>
+                        <td><a href="/manager/tourRating">
+                            رتبه بندی تورها
+                        </a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/manager/OnlineComments/">
+                            نظرات برخط کاربران
+                        </a></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class=" col-md-12">
+                <hr>
+                <table>
+                    <tr>
+                        <td>
+                            <strong>
+                                مالی
+                            </strong></td>
+                    </tr>
+
+                    <tr>
+                        <td><a href="/manager/paymentsList/">
+                            تراکنش ها
+                        </a></td>
+                    </tr>
+
+                    <tr>
+                        <td><a href="/manager/contractPercent/">
+                            درصد قراردادها
+                        </a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-12 ">
+                <hr>
+                <table>
+     <tr>
+                        <td>
+                            <strong>اداری</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td><a href="/manager/userLists/">
+                            اطلاعات گردشگران
+                        </a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/manager/userLists/">
+                            اطلاعات گردش سازان
+                        </a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>   {#    end Wrapper#}
+
+{% endblock manager_content %}
+
+
+{% block script %}
+{% endblock script %}
