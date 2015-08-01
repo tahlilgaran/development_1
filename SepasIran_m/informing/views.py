@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from define_trip.models import Train,Tour,AirPlane,Room,Table
-
+from buy_cancel.models import Wanted_Trip
 @login_required()
 def account(requst):
     if requst.method == 'GET':
@@ -15,6 +15,8 @@ def account(requst):
         returned_dic['user_kind'] = user_kind
         if user_kind == 'gardeshgar':
             user = requst.user.userm.tprofile # gardeshgar
+            gardeshgar_list = Wanted_Trip.objects.filter(gardeshgar = user)[:10]
+            returned_dic['gardeshgar_list'] = gardeshgar_list
         elif user_kind == 'gardeshsaz':
             user = requst.user.userm.bprofile # gardeshsaz
             tour_list = Tour.objects.filter(gardesh__builder = user , start__range = future_ten_day)

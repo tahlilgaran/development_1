@@ -122,7 +122,55 @@
                     {% endfor %}
                 {% endif %}
                 {% if gardeshgar_list %}
-                    
+                    {% for item in gardeshgar_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                            {% if item.wanted_tour %}
+تور
+                                {{ item.wanted_tour.gardesh.gardesh.name }}
+                                زمان
+                                {{ item.wanted_tour.gardesh.start }}
+                                الی
+                                {{ item.wanted_tour.gardesh.end }}
+                            {% elif item.wanted_hotel %}
+هتل
+                                {{ item.wanted_hotel.gardesh.hotel.gardesh.name }}
+                                اتاق
+                                {{ item.wanted_hotel.gardesh.number }}
+تاریخ
+                                {{ item.wanted_hotel.gardesh.date }}
+
+                            {% elif item.wanted_restaurant %}
+رستوران
+                                {{ item.wanted_restaurant.gardesh.restaurant.gardesh.name }}
+                                میز
+                                {{ item.wanted_restaurant.gardesh.number }}
+تاریخ
+                                {{ item.wanted_restaurant.gardesh.date }}
+                                زمان
+                                {{ item.wanted_restaurant.gardesh.start_clock }}
+                            {% elif item.wanted_airplane %}
+                                هواپیمای
+                                {{ item.wanted_airplane.gardesh.airpalne.gardesh.name }}
+                                تاریخ
+                                {{ item.wanted_airplane.gardesh.airpalne.start }}
+                                زمان
+                                {{ item.wanted_airplane.gardesh.airpalne.start_t }}
+                                شماره صندلی
+                                {{ item.wanted_airplane.gardesh.number }}
+                            {% elif item.wanted_train %}
+                                قطار
+                                {{ item.wanted_train.gardesh.train.gardesh.name }}
+                                تاریخ
+                                {{ item.wanted_train.gardesh.train.start }}
+                                زمان
+                                {{ item.wanted_train.gardesh.train.start_t }}
+                                شماره صندلی
+                                {{ item.wanted_train.gardesh.number }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
                 {% endif %}
                 </ul>
         </div>

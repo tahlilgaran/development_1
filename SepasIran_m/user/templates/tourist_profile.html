@@ -12,13 +12,13 @@
     <p>
 اطلاعات کاربری شما به شرح زیر است
     </p>
-<form method="post" action="/userpage/gardeshgar">
+<form method="post" action="">
 {% csrf_token %}
 
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        niloofarmahzoon@gmail.com
+{{ user.email }}
                     </div>
                     <label  class="col-md-2 ">
 ایمیل
@@ -28,7 +28,7 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        nmahzoon
+{{ user.username }}
                     </div>
                     <label  class="col-md-2 ">
 نام کاربری
@@ -39,7 +39,7 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        نیلوفر
+{{ user.first_name }}
                     </div>
                     <label  class="col-md-2 ">
 نام
@@ -51,7 +51,7 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        محزون
+                    {{ user.last_name }}
                     </div>
                     <label  class="col-md-2 ">
 نام خانوادگی
@@ -64,7 +64,7 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        زن
+{{ profile.gender }}
                     </div>
                     <label  class="col-md-2 ">
 جنسیت
@@ -76,10 +76,9 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        21
-                    </div>
+{{ profile.birthday }}                    </div>
                     <label  class="col-md-2 ">
-سن
+تاریخ تولد
                     </label>
 
             </div>
@@ -87,7 +86,7 @@
     <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        تهران
+{{ profile.location }}
                     </div>
                     <label  class="col-md-2 ">
 شهر
@@ -99,12 +98,8 @@
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-    <a class="btn btn-success" href="/edit/tourist/gardeshgar" name ="send">
-تغییر اطلاعات
-    </a>
-    <a class="btn btn-danger" href="/userpage/gardeshgar" name ="cancel">
-    بازگشت
-    </a>
+    <input class="btn btn-info" type="submit" name="edit"   value = "ویرایش اطلاعات">
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="بازگشت"  >
 
 </div>
 
