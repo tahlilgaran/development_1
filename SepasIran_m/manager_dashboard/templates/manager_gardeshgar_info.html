@@ -2,44 +2,53 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-<div class="col-md-9">
-    <h2>اطلاعات
-        {{ header }}</h2>
+    <div class="col-md-9">
+        <h2>اطلاعات
+            {{ header }}</h2>
 
-    {% ifequal header "گردش سازان" %}
-        <form method="get" action="/manager/tourBuilder/search/">
-    {% endifequal %}
-    {% ifequal header "گردشگران" %}
-    {% endifequal %}
-    <form method="get" action="/manager/tourist/search/">
+        {% ifequal header "گردش سازان" %}
+            <form method="get" action="/manager/tourBuilder/search/">
+        {% endifequal %}
+        {% ifequal header "گردشگران" %}
+            <form method="get" action="/manager/tourist/search/">
+        {% endifequal %}
+
         <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
 
         <input type="submit" value="جستجو" class="btn btn-success">
-    </form>
+        </form>
 
 
-    <table>
-        {% for tourist in list %}
-            <tr>
+        <table>
+            {% for tourist in list %}
+                <tr>
 
-                <td>
+                    <td>
                 <span>
 
                     <img class="tour_image_med" src="/{{ tourist.user.picture }}">
                 </span>
-                </td>
-                <td>
-                    <a href="profile/tourist/{{ tourist.user.user.username }}">نام کاربری :{{ tourist.user.user.username}} </a>
-                    <br>
-                    {{ tourist.user.user.first_name}} {{ tourist.user.user.last_name }}
-                </td>
+                    </td>
+                    <td>
+                        {% ifequal header "گردش سازان" %}
+                            <a href="profile/tourbuilder/{{ tourist.user.user.username }}">نام کاربری
+                            :{{ tourist.user.user.username }} </a>
+                        {% endifequal %}
+                        {% ifequal header "گردشگران" %}
+                            <a href="profile/tourist/{{ tourist.user.user.username }}">نام کاربری
+                            :{{ tourist.user.user.username }} </a>
+                        {% endifequal %}
 
-            </tr>
-        {% endfor %}
-    </table>
+                        <br>
+                        {{ tourist.user.user.first_name }} {{ tourist.user.user.last_name }}
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
 
 
-</div>
+    </div>
 
 
 {% endblock content_dashboard %}
