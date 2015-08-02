@@ -13,7 +13,7 @@
 
 </head>
 <body style="background-color:#FFE4C4;font-family: 'B Mitra';">
-<form action="/payment/tour/confirm/{{ tour.id }}/" method="POST">
+<form action="/userpage/" method="POST">
     {% csrf_token %}}
     <div class="container" style="direction: rtl" >
     <div class='row'>
@@ -62,8 +62,8 @@
             </div>
             <div class='form-row'>
               <div class='col-md-12 form-group'>
-                <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
-;background-color:#CD6600;"/>
+                <a class='form-control btn btn-primary submit-button' href="/userpage/"style=" margin-top: 10px;
+;background-color:#CD6600;">پرداخت</a>
               </div>
             </div>
             <div class='form-row'>
