@@ -17,7 +17,7 @@ class OnlineComment(models.Model):
     date = models.DateTimeField()
 
     def __str__(self):
-        return "{}".format(self.user.username) #todo
+        return "{}".format(self.user) #todo
 
 
 class RatingComment(models.Model):
@@ -31,7 +31,7 @@ class RatingComment(models.Model):
     date = models.DateTimeField()
 
     def __str__(self):
-        return "{}".format(self.user.username) #todo
+        return "{}".format(self.user) #todo
 
 
 class OnlineCommentForm(ModelForm):

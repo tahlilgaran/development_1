@@ -70,7 +70,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     if (user_kind == 'gardeshsaz'):
         builder = request.user.userm.bprofile
     elif(user_kind == 'manager'):
-        builder = request.userm.mprofile
+        builder = request.user.userm.mprofile
     else:
         builder = ''
     if request.method == 'GET':
@@ -142,8 +142,8 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
 
 
 def search(request , username = '' , ispack = ''):
-
-    return render(request , "search_result.html" , {'username':username , 'ispack':ispack})
+    trip = Gardesh.objects.all()
+    return render(request , "search_result.html" , {'trip':trip })
 
 def start_search(request , username =''):
     return render(request,"search.html" , {'username':username})

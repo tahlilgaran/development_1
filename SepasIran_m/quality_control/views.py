@@ -1,7 +1,8 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
+from define_trip.models import Tour
 from quality_control.models import  OnlineCommentForm, OnlineComment , RatingComment
 
 
@@ -43,13 +44,13 @@ def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
         #f = OnlineCommentForm(request.POST)
         new_comment = OnlineComment()
         new_comment.body = request.POST.get('body')
-        new_comment.user = request.user
-        #tour = Tour.objects.get(id=tour_id)  #todo
-        #new_comment.tour = tour   #todo
+        new_comment.user = request.user.userm
+        tour = Tour.objects.get(id=2)  #todo
+        new_comment.tour = tour   #todo
         new_comment.date = datetime.datetime.now()
         new_comment.save()
 
-    return render(request, "quality_online_comment.html", {"username": "gardeshgar"})  #todo RENDER SUCCESS MSG  /userpage/gardeshgar
+    return redirect("/userpage/")
 
 
 def show_online_comment_form(request):

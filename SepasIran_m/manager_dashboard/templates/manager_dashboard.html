@@ -17,10 +17,10 @@
                     <img class="gardeshgar_img" src="../../{{comment.user.picture}}">
                 </span>
                 <span class="gardeshgar_name_box">
-               <a href="profile/tourist/{{ comment.user.user.username }}">{{ comment.user.user.username }} </a>
+               <a href="profile/tourist/{{ comment.user.user.username }}">{{ comment.user.user.first_name}} {{ comment.user.user.last_name }} </a>
                     <br>
                     تور
-                  <a href="/show/tour/status/{{ comment.tour.id }}"> {{ comment.tour.gardesh.name }}</a>
+                  <a href="/show/tour/{{ comment.tour.id }}/status/"> {{ comment.tour.gardesh.name }}</a>
 {#                    todo #}
                 </span>
 
@@ -79,42 +79,42 @@
             </table>
         <a href="/manager/tourLists/">مشاهده ی همه ی تورها</a>
         </div>
-        <div class="box col-md-12">
-            <table>
-                <tr>
-                    <td><strong>
-                       تورهای برتر
-                    </strong></td>
-                </tr>
-
-                          {% for tour in runningTours %}
-                <tr>
-
-                    <td>
-                <span>
-
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
-                </span>
-                        </td>
-
-                    <td>
-                  تور
-                    {{ tour.name  }}
-                    <br>
-                        مسئول تور :
-                    {{ tour.person }}
-                    <br>
-                    <a href="http://127.0.0.1:8000//show/tour/status/{{ tour.id }}" >
-
-                    اطلاعات تور
-
-                    </a> </td>
-
-                </tr>
-    {% endfor %}
-
-            </table>
-        </div>
+{#        <div class="box col-md-12">#}
+{#            <table>#}
+{#                <tr>#}
+{#                    <td><strong>#}
+{#                       تورهای برتر#}
+{#                    </strong></td>#}
+{#                </tr>#}
+{##}
+{#                          {% for tour in runningTours %}#}
+{#                <tr>#}
+{##}
+{#                    <td>#}
+{#                <span>#}
+{##}
+{#                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">#}
+{#                </span>#}
+{#                        </td>#}
+{##}
+{#                    <td>#}
+{#                  تور#}
+{#                    {{ tour.name  }}#}
+{#                    <br>#}
+{#                        مسئول تور :#}
+{#                    {{ tour.person }}#}
+{#                    <br>#}
+{#                    <a href="http://127.0.0.1:8000//show/tour/status/{{ tour.id }}" >#}
+{##}
+{#                    اطلاعات تور#}
+{##}
+{#                    </a> </td>#}
+{##}
+{#                </tr>#}
+{#    {% endfor %}#}
+{##}
+{#            </table>#}
+{#        </div>#}
     </div>
 {% endblock content_dashboard %}
 

@@ -1,6 +1,6 @@
 import datetime
 import time
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from define_trip.models import Train,Tour,AirPlane,Room,Table
@@ -13,7 +13,9 @@ def account(requst):
         returned_dic = {}
         user_kind = requst.user.userm.kind
         returned_dic['user_kind'] = user_kind
-        if user_kind == 'gardeshgar':
+        if user_kind == 'manager':
+            return redirect("/manager/Dashboard")
+        elif user_kind == 'gardeshgar':
             user = requst.user.userm.tprofile # gardeshgar
             gardeshgar_list = Wanted_Trip.objects.filter(gardeshgar = user)[:10]
             returned_dic['gardeshgar_list'] = gardeshgar_list
@@ -29,6 +31,7 @@ def account(requst):
             returned_dic['airplane_list'] = airplane_list
             returned_dic['train_list'] = train_list
             returned_dic['restaurant_list'] = restaurant_list
+
         else:
             raise Http404("Page not found")
         print(user_kind)
