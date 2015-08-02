@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'home/(\w+)/$', 'present_trip.views.home'),
     url(r'show/(\w+)/(\d+)/$' , 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),
+    url(r'show/(\w+)/(\d+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),
     # url(r'show/(\w+)/$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)/status/$', 'present_trip.views.show_one_trip_status'),
