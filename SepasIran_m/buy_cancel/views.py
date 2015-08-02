@@ -213,7 +213,8 @@ def statusReserve(request,kind='', id=''):
     #tour.capacity = tour.capacity - int(number)
     #tour.entire_capacity= tour.entire_capacity-int(number)
     #tour.save()
-    for i in int(number):
+    number=int(number)
+    for i in range(number):
 
         userm=request.user.userm
         gardeshgar=TouristProfile.objects.get(user =userm)
