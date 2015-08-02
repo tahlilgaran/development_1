@@ -94,7 +94,7 @@ urlpatterns = [
    # url(r'payment/Confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
    # url(r'payment/$', 'accounting.views.payment'),
    url(r'payment/tour/confirm/(\d+)/$', 'accounting.views.confirmTour'),
-    url(r'payment/(\w+)/(\w+)/$', 'accounting.views.ozviyat'),
+    url(r'payment/$', 'accounting.views.ozviyat'),
 
    # url(r'payment/confirm/$', 'accounting.views.confirm'),
    url(r'^manager/', include('manager_dashboard.urls')),
