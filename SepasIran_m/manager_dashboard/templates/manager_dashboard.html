@@ -14,14 +14,20 @@
                 <td>
                     <div>
                 <span>
-                    <img class="gardeshgar_img" src="{% static 'manager_dashboard/image/girl.jpg' %}">
+                    <img class="gardeshgar_img" src="../../{{comment.user.picture}}">
                 </span>
                 <span class="gardeshgar_name_box">
-                {{ comment.user.username }}
+               <a href="profile/tourist/{{ comment.user.user.username }}">{{ comment.user.user.username }} </a>
+                    <br>
+                    تور
+                  <a href="/show/tour/status/{{ comment.tour.id }}"> {{ comment.tour.gardesh.name }}</a>
+{#                    todo #}
                 </span>
 
                         <div class="col-md-12 gardeshgar_comment_box">
                             {{ comment.body }}
+                            <br>
+                            {{ comment.date }}
                         </div>
                     </div>
                 </td>
@@ -30,6 +36,7 @@
 {% endfor %}
 
         </table>
+    <a href="/manager/OnlineComments"> نظرات بیشتر</a>
     </div>
 
     <div class="col-md-5" style="padding-right: 60px">
@@ -42,32 +49,35 @@
                 </tr>
 
                 {% for tour in runningTours %}
-                    <tr>
+                   <tr>
 
-                        <td>
+                    <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+                    <img class="tour_image_large" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+{#                    todo #}
                 </span>
-                        </td>
+                    </td>
+                    <td>
+                        تور
+                        {{ tour.gardesh.name }}
+                        <br>
+                        مسئول تور :
+                        {{ tour.leader }}
+                        <br>
+                        ظرفیت فروش :
+                        {{ tour.capacity }}
+                        <br>
+                        <a href="/show/tour/{{ tour.id }}/status">
+{#                            todo #}
+                            اطلاعات بیشتر
+                        </a></td>
 
-                        <td>
-                            تور
-                            {{ tour.name }}
-                            <br>
-                            مسئول تور :
-                            {{ tour.person }}
-                            <br>
-                            <a href="http://127.0.0.1:8000//show/tour/status/{{ tour.id }}">
-
-                                اطلاعات تور
-
-                            </a></td>
-
-                    </tr>
+                </tr>
                 {% endfor %}
 
             </table>
+        <a href="/manager/tourLists/">مشاهده ی همه ی تورها</a>
         </div>
         <div class="box col-md-12">
             <table>

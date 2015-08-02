@@ -7,5 +7,6 @@ from django.conf.urls import url
 urlpatterns = [
     url(r'onlineComment/$', 'quality_control.views.show_online_comment_form'),
     url(r'saveOnlineComment/$', 'quality_control.views.online_comment'),
-    url(r'userRating/$', 'quality_control.views.user_rating'),
+    url(r'userRating/$', 'quality_control.views.show_user_rating_form'),
+     url(r'saveUserRating/$', 'quality_control.views.user_rating'),
 ]

@@ -8,8 +8,11 @@ urlpatterns = [
     url(r'Dashboard/$', 'manager_dashboard.views.Dashboard'),
     url(r'tourLists/$', 'manager_dashboard.views.tourLists'),
     url(r'tourRating/$', 'manager_dashboard.views.tourRating'),
-    url(r'userLists/$', 'manager_dashboard.views.userLists'),
+    url(r'touristList/$', 'manager_dashboard.views.showTouristList'),
+    url(r'tourBuilderList/$', 'manager_dashboard.views.showTourBuilderList'),
     url(r'paymentsList/$', 'manager_dashboard.views.paymentLists'),
     url(r'contractPercent/$', 'manager_dashboard.views.contractPercent'),
     url(r'OnlineComments/$', 'manager_dashboard.views.showOnlineComments'),
+    url(r'tourBuilder/search/$', 'manager_dashboard.views.tourBuilderSearch'),
+    url(r'tourist/search/$', 'manager_dashboard.views.touristSearch'),
 ]

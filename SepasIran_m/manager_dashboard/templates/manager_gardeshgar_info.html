@@ -2,39 +2,42 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-    <div class="col-md-9">
-        <h2> اطلاعات گردشگران</h2>
+<div class="col-md-9">
+    <h2>اطلاعات
+        {{ header }}</h2>
 
-        <div class="input-group" style="width: 400px ; margin: 30px">
-            <span class="input-group-addon" id="basic-addon1">جستجو</span>
-            <input type="text" class="form-control" placeholder="نام " aria-describedby="basic-addon1">
-        </div>
+    {% ifequal header "گردش سازان" %}
+        <form method="get" action="/manager/tourBuilder/search/">
+    {% endifequal %}
+    {% ifequal header "گردشگران" %}
+    {% endifequal %}
+    <form method="get" action="/manager/tourist/search/">
+        <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
+        <br>
+        <input type="submit" value="جستجو" class="btn btn-success">
+    </form>
 
-            <table>
 
-                <tr>
+    <table>
+        {% for tourist in list %}
+            <tr>
 
-                    <td>
+                <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/girl.jpg' %}">
+                    <img class="tour_image_med" src="../../{{ tourist.user.picture }}">
                 </span>
-                    </td>
-                    <td>
-                        {{ gardeshgar.name }}
-                        <a href="/profile/tourist/gardeshgar">
-                            اطلاعات بیشتر</a></td>
+                </td>
+                <td>
+                    <a href="profile/tourist/{{ tourist.user.user.username }}">{{ tourist.user.user.username }}</a>
+                </td>
 
-                </tr>
-
-            </table>
-
+            </tr>
+        {% endfor %}
+    </table>
 
 
-    </div>
+</div>
 
-
-
-    </div>
 
 {% endblock content_dashboard %}

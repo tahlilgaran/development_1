@@ -10,26 +10,28 @@
               </h2>
             </tr>
 
-            {% for tour in runningTour %}
+            {% for tour in runningTours %}
                 <tr>
 
                     <td>
                 <span>
 
                     <img class="tour_image_large" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+{#                    todo #}
                 </span>
                     </td>
                     <td>
                         تور
-                        {{ tour.name }}
+                        {{ tour.gardesh.name }}
                         <br>
                         مسئول تور :
-                        {{ tour.person }}
+                        {{ tour.leader }}
                         <br>
-                        ظرفیت اولیه :
+                        ظرفیت فروش :
                         {{ tour.capacity }}
                         <br>
                         <a href="/show/tour/admin/status">
+{#                            todo #}
                             اطلاعات بیشتر
                         </a></td>
 

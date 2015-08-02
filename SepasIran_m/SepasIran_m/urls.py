@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'home/(\w+)/$', 'present_trip.views.home'),
     url(r'show/(\w+)/(\d+)/$' , 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),
+    url(r'show/(\w+)/(\d+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),
     # url(r'show/(\w+)/$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)/status/$', 'present_trip.views.show_one_trip_status'),
@@ -21,7 +22,7 @@ urlpatterns = [
 
     #informing urls:
     # url(r'userpage/$', 'informing.views.account'),
-    url(r'userpage/\w+/$', 'informing.views.account'),
+    url(r'userpage/$', 'informing.views.account'),
 
 
 
@@ -97,6 +98,6 @@ urlpatterns = [
 
    # url(r'payment/confirm/$', 'accounting.views.confirm'),
    url(r'^manager/', include('manager_dashboard.urls')),
-   # url(r'^quality/', include('quality_control.urls')),
+   url(r'^quality/', include('quality_control.urls')),
    url(r'^admin/', include(admin.site.urls)),
 ]
