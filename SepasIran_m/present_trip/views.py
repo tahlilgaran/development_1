@@ -2,6 +2,7 @@ from django.shortcuts import render
 from define_trip.models import *
 from buy_cancel.models import *
 from django.http import Http404
+import datetime
 
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
@@ -65,15 +66,21 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     trip = ''
     html_file = ''
     sub_trip = ''
-    builder = request.user.userm.bprofile
-    return_dic['builder'] = builder
+    user_kind = request.user.userm.kind
+    if (user_kind == 'gardeshsaz'):
+        builder = request.user.userm.bprofile
+    elif(user_kind == 'manager'):
+        builder = request.userm.mprofile
+    else:
+        builder = ''
     if request.method == 'GET':
+        print (builder)
         now = datetime.datetime.now()
         future_ten_days = [now , now + datetime.timedelta(days=10)]
         if kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
             html_file = 'status_tour.html'
-            if trip.gardesh.builder == builder:
+            if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'buy')
                 reserve_trip = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'reserve')
                 zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
@@ -82,25 +89,25 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
         if kind == 'restaurant':#todo: nahve ye namayesh bayad behtar beshe.
             trip = Restaurant.objects.filter(id = id)[0]
             html_file = 'status_tour.html'
-            if trip.gardesh.builder == builder:
+            if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 sub_trip = Table.objects.filter(number = sub_number , restaurant = trip)[0]
-                buy_trips = Wanted_Restaurant.objects.filter(gardesh = sub_trip , date__range = now , info__status = 'buy')
-                reserve_trip = Table.objects.filter(gardesh = sub_trip, date__range = now , info__status = 'reserve')
+                buy_trips = Wanted_Restaurant.objects.filter(gardesh = sub_trip , gardesh__date = datetime.datetime.today() , info__status = 'buy')
+                reserve_trip = Wanted_Restaurant.objects.filter(gardesh = sub_trip, gardesh__date = datetime.datetime.today() , info__status = 'reserve')
                 zarfiat = -1
 
         if kind == 'hotel':#todo: nahve namayesheshoon bayad behtar beshe. :|
             trip = Hotel.objects.filter(id = id)[0]
             html_file = 'status_tour.html'
-            if trip.gardesh.builder == builder:
-                sub_trip = Room.objects.filter(number = sub_number , hotel = trip)
-                buy_trips = Wanted_Hotel.objects.filter(gardesh = sub_trip ,date__rang = future_ten_days, info__status = 'buy')
-                reserve_trip = Wanted_Hotel.objects.filter(gardesh = sub_trip ,date__rang = future_ten_days, info__status = 'reserve')
+            if trip.gardesh.builder == builder or builder.user.kind == 'manager':
+                sub_trip = Room.objects.filter(number = sub_number , hotel = trip)[0]
+                buy_trips = Wanted_Hotel.objects.filter(gardesh = sub_trip ,gardesh__date__range = future_ten_days, info__status = 'buy')
+                reserve_trip = Wanted_Hotel.objects.filter(gardesh = sub_trip ,gardesh__date__range = future_ten_days, info__status = 'reserve')
                 zarfiat = -1
 
         if kind == 'airplane':
             trip = AirPlane.objects.filter(id = id )[0]
             html_file = 'status_tour.html'
-            if trip.gardesh.builder == builder:
+            if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'buy')
                 reserve_trip = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'reserve')
                 zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
@@ -108,21 +115,24 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
         if kind == 'train':
             trip = Train.objects.filter(id = id )[0]
             html_file = 'status_tour.html'
-            if trip.gardesh.builder == builder:
+            if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'buy')
                 reserve_trip = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'reserve')
                 zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
-        else:
-            raise Http404("Page not found")
+        # else:
+        #     raise Http404("Page not found")
 
-        if trip.gardesh.builder != builder:
-            return_dic['error'] = 'نمایش وضعیت گردش به گردشساز آن گردش امکان پذیر است.'
-        else:
+        if trip.gardesh.builder == builder or user_kind == 'manager':
+            return_dic['builder'] = trip.gardesh.builder
+            print(trip)
             return_dic['trip'] = trip
             return_dic['buy_trips'] = buy_trips
             return_dic['reserve_trip'] = reserve_trip
             return_dic['zarfiat'] = zarfiat
             return_dic['sub_trip'] = sub_trip
+        else:
+            return_dic['error'] = 'نمایش وضعیت گردش به گردشساز آن گردش امکان پذیر است.'
+
         return render(request , html_file , return_dic)
     else:
         return None

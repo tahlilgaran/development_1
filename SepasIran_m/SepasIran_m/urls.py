@@ -22,7 +22,7 @@ urlpatterns = [
 
     #informing urls:
     # url(r'userpage/$', 'informing.views.account'),
-    url(r'userpage/\w+/$', 'informing.views.account'),
+    url(r'userpage/$', 'informing.views.account'),
 
 
 
