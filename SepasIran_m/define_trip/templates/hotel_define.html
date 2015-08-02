@@ -18,9 +18,12 @@
 {% else %}
 
     <p>
-لطفا اطلاعات قطاری را که میخواهید در اینجا عرضه کنید وارد نمایید
+لطفا اطلاعات اتاق هایی را که میخواهید در اینجا عرضه کنید وارد نمایید
             پر کردن فیلدهای ستاره دار الزامی می باشد.<br>
-
+    در قسمت قیمت ، قیمت رزرو اتاق به ازای هر شب را وارد نمایید. قیمت ها به ریال باشند.
+    <br>
+در صورت ورود شماره اتاقها تمام فیلدهایش را پر نمایید
+    <br>
     </p>
 
     <div class="col-md-11">
@@ -31,77 +34,45 @@
 {{ b.user.user.last_name }}
                     </div>
                     <label  class="col-md-2 ">
-                نام شرکت
+نام هتل
                     </label>
 
-
-            </div>
-<div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.name }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*نام قطار
-                    </label>
-
-            </div>
-            <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.source }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*مبدا حرکت
-                    </label>
 
             </div>
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.destination }}
+{{ form.city }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*مقصد حرکت
+*نام شهر مکان هتل
                     </label>
 
-
             </div>
+
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
-{{ form.start_t }}
+{{ form.start_day }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*ساعت حرکت
+*تاریخ شروع رزرو
                         </label>
                 <div class="col-md-4">
-{{ form.start }}
+{{ form.end_day }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*تاریخ حرکت
+*تاریخ پایان رزرو
                     </label>
 
             </div>
 
-            <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.cost }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*قیمت هر بلیت
-                    </label>
 
-            </div>
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
@@ -136,7 +107,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-*شماره صندلی هایی که می خواهید بفروشید
+*شماره اتاق هایی که میخواهید به عرضه فروش بگذارید به همراه قیمت:
                 </div>
 
             </div>
@@ -159,14 +130,32 @@
                     <td class="col-md-1">
                         <input type="text" class="form-control ,i">
                     </td>
-                                        <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+                    <td class="col-md-1">
+                        <label>
+                            قیمت
+                        </label>
+                    </td>
 
-                                        <td class="col-md-7"></td>
+                    <td class="col-md-2">
+                        <input type="text" class="form-control ,i">
+                    </td>
 
+                    <td class="col-md-2">
+                        <label>
+ظرفیت (تعداد افراد)
+                        </label>
+                    </td>
+
+                    <td class="col-md-1">
+                        <input type="text" class="form-control ,i">
+                    </td>
+                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+
+                    <td class="col-md-1"></td>
 
                 </tr>
             </table>
-
+<p><br></p>
 <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
@@ -174,7 +163,7 @@
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
+تمامی توضیحات باقیمانده در مورد شرایط مکان را در اینجا درج کنید
                     </label>
 
             </div>
@@ -182,7 +171,7 @@
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
 {#<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-    <a href="/tourdefine/train/2/سیمرغ" class="btn btn-success">
+    <a href="/tourdefine/hotel/2/پارمیس" class="btn btn-success">
         گام بعد
     </a>
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
@@ -200,7 +189,7 @@
     var length = table.getElementsByTagName("tr").length;
     var newrow = table.insertRow(length-1);
         newrow.setAttribute("class","col-md-12");
-    var cells = ["","","","","",""];
+    var cells = ["","","","","","",""];
 
         cells[0] = newrow.insertCell(0);
         cells[0].innerHTML = "<label>از </label>";
@@ -219,8 +208,24 @@
         cells[3].setAttribute("class","col-md-1");
 
         cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = ".";
-        cells[4].setAttribute("class","col-md-8");
+        cells[4].innerHTML = "<label> قیمت </label>";
+        cells[4].setAttribute("class","col-md-1");
+
+        cells[5] = newrow.insertCell(5);
+        cells[5].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[5].setAttribute("class","col-md-2");
+
+        cells[6] = newrow.insertCell(6);
+        cells[6].innerHTML = "<label> ظرفیت (تعداد افراد) </label>";
+        cells[6].setAttribute("class","col-md-2");
+
+        cells[7] = newrow.insertCell(7);
+        cells[7].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[7].setAttribute("class","col-md-1");
+
+        cells[8] = newrow.insertCell(8);
+        cells[8].innerHTML = ".";
+        cells[8].setAttribute("class","col-md-2");
 
 }
     </script>

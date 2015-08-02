@@ -8,7 +8,7 @@
     <h1>
 تعریف خدمت    </h1>
 
-    {% if username != 'gardeshsaz' %}
+{% if username != 'gardeshsaz' %}
     <p>
         این صفحه مخصوص گردشسازان می باشد.
     </p>
@@ -18,17 +18,21 @@
 {% else %}
 
     <p>
-لطفا اطلاعات قطاری را که میخواهید در اینجا عرضه کنید وارد نمایید
-            پر کردن فیلدهای ستاره دار الزامی می باشد.<br>
-
+لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
+        <br>
+درجه خدمت ارائه شده توسط شما
+    {{ gardesh.degree }}
+    تشخیص داده شده است و درصد قرارداد به ازای هر خرید 10 درصد می باشد.
+    <br>
+مبلغ دریافت شده از خریداران پس از هر خرید به حساب شما واریز خواهد شد.
     </p>
-
     <div class="col-md-11">
         <form method="post" action="">
+            {% csrf_token %}
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ b.user.user.last_name }}
+                    {{ gardesh.builder.user.user.last_name }}
                     </div>
                     <label  class="col-md-2 ">
                 نام شرکت
@@ -39,22 +43,22 @@
 <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.name }}
+{{ gardesh.name }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*نام قطار
+نام هواپیما
                     </label>
 
             </div>
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.source }}
+{{ airplane.source }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*مبدا حرکت
+مبدا پرواز
                     </label>
 
             </div>
@@ -62,11 +66,11 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.destination }}
+{{ airplane.destination }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*مقصد حرکت
+مقصد پرواز
                     </label>
 
 
@@ -75,18 +79,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
-{{ form.start_t }}
+{{ airplane.start_t }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*ساعت حرکت
+ساعت حرکت
                         </label>
                 <div class="col-md-4">
-{{ form.start }}
+{{ airplane.start }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*تاریخ حرکت
+تاریخ حرکت
                     </label>
 
             </div>
@@ -94,18 +98,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.cost }}
+{{ airplane.cost }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*قیمت هر بلیت
+قیمت هر بلیت
                     </label>
 
             </div>
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
-{{ form.free }}
+                    {{ gardesh.free }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
@@ -113,30 +117,24 @@
                     </label>
 
             </div>
-            <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    این تخفیف اجباری نیست اما در صورت لحاظ شدن از تبلیغات گسترده تری برخوردار خواهید شد
-                </div>
-
-            </div>
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
-                    {{ form.max_cancel_time }}
+                    {{ gardesh.max_cancel_time }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟
+امکان انصراف اعضا
                     </label>
 
             </div>
 
+
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-*شماره صندلی هایی که می خواهید بفروشید
+شماره صندلی هایی که می خواهید بفروشید
                 </div>
 
             </div>
@@ -149,42 +147,55 @@
                         </label>
                     </td>
                     <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
-                    </td>
+120                    </td>
                     <td class="col-md-1">
                         <label>
                             تا
                         </label>
                     </td>
                     <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
+127                    </td>
+
+                                        <td class="col-md-7"></td>
+
+
+                </tr>
+                <tr class="col-md-12">
+                    <td class="col-md-1">
+                        <label>
+                            از
+                        </label>
                     </td>
-                                        <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+                    <td class="col-md-1">
+130                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            تا
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+150                    </td>
 
                                         <td class="col-md-7"></td>
 
 
                 </tr>
             </table>
-
-<div class="col-md-12 , form-group">
+            <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
-                    <textarea  style=" min-width: 300px"  name="other_explain" id="tourexplain" ></textarea>
-                        <span class="error"></span>
+{{ gardesh.other_explain }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
+توضیحات تکمیلی
                     </label>
 
             </div>
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-{#<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-    <a href="/tourdefine/train/2/سیمرغ" class="btn btn-success">
-        گام بعد
-    </a>
+ <input class="btn btn-success" type="submit" name="save"   value = "ثبت">
+    <input class="btn btn-success" type="submit" name="return"   value = "بازگشت">
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 </div>
 
@@ -192,37 +203,6 @@
 </form>
     </div>
 
-    {% endif %}
-
-    <script>
-    function add1(button){
-    var table = button.parentNode.parentNode.parentNode;
-    var length = table.getElementsByTagName("tr").length;
-    var newrow = table.insertRow(length-1);
-        newrow.setAttribute("class","col-md-12");
-    var cells = ["","","","","",""];
-
-        cells[0] = newrow.insertCell(0);
-        cells[0].innerHTML = "<label>از </label>";
-        cells[0].setAttribute("class","col-md-1");
-
-        cells[1] = newrow.insertCell(1);
-        cells[1].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[1].setAttribute("class","col-md-1");
-
-        cells[2] = newrow.insertCell(2);
-        cells[2].innerHTML = "<label> تا </label>";
-        cells[2].setAttribute("class","col-md-1");
-
-        cells[3] = newrow.insertCell(3);
-        cells[3].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[3].setAttribute("class","col-md-1");
-
-        cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = ".";
-        cells[4].setAttribute("class","col-md-8");
-
-}
-    </script>
+{% endif %}
 
 {% endblock %}

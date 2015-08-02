@@ -13,7 +13,7 @@
     <br>
     عضویت در سایت برای گردشسازان رایگان بوده و برای گردشگران با پرداخت تنها 5000 تومان امکان پذیر است.
     </p>
-
+{{ m }}
     <div class="col-md-11">
     <div class="col-md-4"></div>
     <form method="post">
@@ -21,18 +21,19 @@
     <div class="col-md-8">
 
 <div class="radio">
-  <label><input type="radio" name="optradio">
+  <label><input type="radio" name="optradio" value="1" checked>
   <p style="display: inline-block">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ثبت نام گردشگر
       </p>
   </label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="optradio">
+  <label><input type="radio" name="optradio" value="2">
   <p style="display: inline-block">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ثبت نام گردش سازان
       </p>
   </label>
+    {{ form.as_p }}
     </div>
 
 

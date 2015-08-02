@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+
+    <h1>
+تعریف خدمت    </h1>
+
+{% if username != 'gardeshsaz' %}
+    <p>
+        این صفحه مخصوص گردشسازان می باشد.
+    </p>
+    <p>
+        در صورتی که گردشساز هستید وارد سامانه شوید.
+    </p>
+{% else %}
+
+    <p>
+لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
+        <br>
+درجه خدمت ارائه شده توسط شما
+    {{ gardesh.degree }}
+    تشخیص داده شده است و درصد قرارداد به ازای هر خرید 7 درصد می باشد.
+    <br>
+مبلغ دریافت شده از خریداران پس از هر خرید به حساب شما واریز خواهد شد.
+    </p>
+
+<div class="col-md-11">
+        <form method="post" action="">
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ gardesh.builder.user.user.last_name }}
+                    </div>
+                    <label  class="col-md-2 ">
+نام هتل
+                    </label>
+
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ hotel.city }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+نام شهر مکان هتل
+                    </label>
+
+            </div>
+
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+{{ hotel.start_day }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+تاریخ شروع رزرو
+                        </label>
+                <div class="col-md-4">
+{{ hotel.end_day }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+تاریخ پایان رزرو
+                    </label>
+
+            </div>
+
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-3">
+{{ gardesh.free }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+درصد تخفیف برای اعضای سامانه سپاس ایران
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-3">
+                    {{ gardesh.max_cancel_time }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+امکان انصراف اعضا
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+*شماره اتاق هایی که میخواهید به عرضه فروش بگذارید به همراه قیمت:
+                </div>
+
+            </div>
+
+            <table class="col-md-12">
+                <tr class="col-md-12">
+                    <td class="col-md-1">
+                        <label>
+                            از
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+101                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            تا
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+129                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            قیمت
+                        </label>
+                    </td>
+
+                    <td class="col-md-2">
+1000000                    </td>
+                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+
+                    <td class="col-md-4"></td>
+
+
+
+                </tr>
+                <tr class="col-md-12">
+                    <td class="col-md-1">
+                        <label>
+                            از
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+501                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            تا
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+530                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            قیمت
+                        </label>
+                    </td>
+
+                    <td class="col-md-2">
+1500000                    </td>
+                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+
+                    <td class="col-md-4"></td>
+
+
+
+                </tr>
+            </table>
+
+<div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+{{ gardesh.other_explain }}                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+توضیحات تکمیلی
+                    </label>
+
+            </div>
+
+<div class="col-md-10 ">
+                <div class="col-md-6"></div>
+ <input class="btn btn-success" type="submit" name="save"   value = "ثبت">
+    <input class="btn btn-success" type="submit" name="return"   value = "بازگشت">
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
+</div>
+
+
+</form>
+    </div>
+
+{% endif %}
+
+{% endblock %}

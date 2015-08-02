@@ -6,7 +6,7 @@
 {% block content %}
 
 <h1>
-    درخواست تعریف تور یا خدمت
+درخواست تعریف خدمت
 </h1>
 {% if username != 'gardeshsaz' %}
     <p>
@@ -31,28 +31,28 @@
     {#  </label>#}
     {#</div>#}
     <div class="radio">
-      <label><input type="radio" name="optradio">
+      <label><input type="radio" name="optradio" value="1" checked>
       <p style="display: inline-block">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هتل
           </p>
       </label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">
+      <label><input type="radio" name="optradio" value="2">
       <p style="display: inline-block">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رستوران
           </p>
       </label>
         </div>
         <div class="radio">
-      <label><input type="radio" name="optradio">
+      <label><input type="radio" name="optradio" value="3">
         <p style="display: inline-block">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هواپیما
           </p>
       </label>
             </div>
        <div class="radio">
-      <label><input type="radio" name="optradio">
+      <label><input type="radio" name="optradio" value="4">
         <p style="display: inline-block">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; قطار
           </p>
@@ -61,9 +61,7 @@
     </div>
     <div class="col-md-10 , pull-right">
         <input class="btn btn-success" type="submit"  name="next" value="گام بعد">
-        <a class="btn btn-danger" href="\userpage\gardeshsaz" name ="cancel">
-        انصراف
-        </a>
+        <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
     </div>
             </form>
     </div>

@@ -23,12 +23,12 @@
     </p>
 
     <div class="col-md-11">
-        <form method="post" action="tour_define_confirm.html" enctype="multipart/form-data">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        دالاهو
-                    </div>
+{{ b.user.user.last_name }}                    </div>
                     <label  class="col-md-2 ">
                 نام شرکت
                     </label>
@@ -38,18 +38,19 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                    <select class="form-control">
-                      <option>
-                          تفریحی
-                      </option>
-                      <option>
-                          زیارتی
-                      </option>
-                      <option>
-                          طبیعت گردی
-                      </option>
+{{ form.name }}
+                    <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+*نام تور
+                    </label>
 
-                    </select>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                    {{ form.tour_kind }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -61,8 +62,8 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="text" class="form-control" id="des" placeholder="نام شهر مقصد">
-                        <span class="error"></span>
+{{ form.destination }}
+                    <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *                        مقصد تور
@@ -73,7 +74,8 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="text" class="form-control" id="source" placeholder="نام شهر مبدا">
+
+                    {{ form.source }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -84,7 +86,7 @@
                 <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="date" class="form-control" id="start" >
+{{ form.start }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -95,7 +97,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="date" class="form-control" id="end" >
+{{ form.start_t }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+*ساعت حرکت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ form.end }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -106,7 +119,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="text" class="form-control" id="des" placeholder="تعدادی که میخواهید ما بفروشیم">
+{{ form.end_t }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+*ساعت بازگشت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ form.entire_capacity }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -117,7 +141,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="text" class="form-control" id="des" placeholder="نام مدیر اصلی تور">
+{{ form.capacity }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+*تعداد درخواست برای فروش
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ form.leader }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -128,18 +163,18 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                        <input type="text" class="form-control" id="des" placeholder="نام معاون مدیر تور">
+{{ form.leader_c }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-معاون مسئول
+*معاون مسئول
                     </label>
 
             </div>
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" placeholder="نام شرکت هواپیمایی">
+                    <input type="text" class="form-control" id="des" name="company" placeholder="نام شرکت هواپیمایی">
                 </div>
                 <label class="col-md-2">
                     *نام شرکت
@@ -219,7 +254,7 @@ VIP
                     *درجه
                 </Label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" placeholder="نام هتل">
+                    <input type="text" class="form-control" id="des" name="hotel" placeholder="نام هتل">
                 </div>
                 <label class="col-md-2">
                     *نام هتل
@@ -290,38 +325,27 @@ VIP
                 <tr class="col-md-12">
                     <td class="col-md-2">
                         <label >
-*نام مکان
+نام مکان
                 </label>
                     </td>
 
                     <td class="col-md-1">
-                    <input type="text" class="form-control,i" id="des">
+                    <input type="text" class="form-control,i" name="m1" id="des">
                     </td>
 
                     <td class="col-md-2">
                         <label>
-*زمان بازدید
+زمان بازدید
                 </label>
                     </td>
                     <td class="col-md-2">
 
-                    <input type="date" class="form-control,i" id="des">
+                    <input type="date" class="form-control,i" name="d1" id="des">
 
                     </td>
 
 
-                    <td class="col-md-2" >
-                        <label >
-*هزینه بازدید
-                </label>
-                    </td>
-
-                    <td class="col-md-2">
-                     <input type="text" class="form-control ,i" id="des" >
-
-                    </td>
-
-                <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+                <td class="col-md-3"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
 
                 </tr>
             </table>
@@ -329,11 +353,10 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
-                        <input type="text" class="form-control" id="des" placeholder="هزینه به ریال">
-                        <span class="error"></span>
+{{ form.cost }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-*هزینه سفر و مکان (بدون احتساب بازدیدها)
+*هزینه سفر و مکان
                     </label>
 
             </div>
@@ -341,8 +364,7 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
-                        <input type="text" class="form-control" id="des" placeholder="میزان تخفیف از 100">
-                        <span class="error"></span>
+{{ form.free }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 درصد تخفیف برای اعضای سامانه سپاس ایران
@@ -360,8 +382,7 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                        <input type="text" class="form-control" id="des" placeholder="پیش فرض 3 روز است">
-                        <span class="error"></span>
+{{ form.max_cancel_time }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-6 ">
 گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟
@@ -369,17 +390,6 @@ VIP
 
             </div>
 
-            <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
-                <div class="col-md-3">
-                        <input type="text" class="form-control" id="des" placeholder="هزینه به ریال">
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-5 ">
-*هزینه سفر و مکان (بدون احتساب بازدیدها)
-                    </label>
-
-            </div>
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-5"></div>
@@ -399,7 +409,7 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
-                        <textarea  style="min-height: 100px" class="form-control" id="tourexplain" ></textarea>
+{{ form.destination_explain }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
@@ -411,7 +421,7 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
-                        <textarea  style="min-height: 100px" class="form-control" id="tourexplain" ></textarea>
+{{ form.move_explain }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
@@ -423,22 +433,21 @@ VIP
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
-                        <textarea  style="min-height: 100px" class="form-control" id="tourexplain" ></textarea>
+                        <textarea  style="min-height: 100px"  name="other_explain" class="form-control" id="tourexplain" ></textarea>
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-تمامی توضیحات باقیمانده در مورد شرایط سفر و تور را در اینجا درج کنید
+تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
                     </label>
 
             </div>
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-            <a class="btn btn-success" href="/userpage/gardeshsaz" name ="cancel">
-گام بعد
+{#            <input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
+    <a href="/tourdefine/tour/2/باداب سورت" class="btn btn-success">
+        گام بعد
     </a>
-    <a class="btn btn-danger" href="/userpage/gardeshsaz" name ="cancel">
-    انصراف
-    </a>
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 </div>
 
         </form>
@@ -452,10 +461,10 @@ VIP
     var length = table.getElementsByTagName("tr").length;
     var newrow = table.insertRow(length-1);
         newrow.setAttribute("class","col-md-12");
-    var cells = ["","","","","",""];
+    var cells = ["","","",""];
 
         cells[0] = newrow.insertCell(0);
-        cells[0].innerHTML = "<label > *نام مکان </label>";
+        cells[0].innerHTML = "<label > نام مکان </label>";
         cells[0].setAttribute("class","col-md-2");
 
         cells[1] = newrow.insertCell(1);
@@ -463,7 +472,7 @@ VIP
         cells[1].setAttribute("class","col-md-1");
 
         cells[2] = newrow.insertCell(2);
-        cells[2].innerHTML = "<label> *زمان بازدید </label>";
+        cells[2].innerHTML = "<label> زمان بازدید </label>";
         cells[2].setAttribute("class","col-md-2");
 
         cells[3] = newrow.insertCell(3);
@@ -471,16 +480,8 @@ VIP
         cells[3].setAttribute("class","col-md-2");
 
         cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = "<label > *هزینه بازدید </label>";
-        cells[4].setAttribute("class","col-md-2");
-
-        cells[5] = newrow.insertCell(5);
-        cells[5].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[5].setAttribute("class","col-md-2");
-
-        cells[6] = newrow.insertCell(6);
-        cells[6].innerHTML = "";
-        cells[6].setAttribute("class","col-md-1");
+        cells[4].innerHTML = "";
+        cells[4].setAttribute("class","col-md-3");
 }
     </script>
 

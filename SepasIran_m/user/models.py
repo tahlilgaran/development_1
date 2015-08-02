@@ -35,7 +35,7 @@ class TouristProfile(models.Model):
     birthday = models.DateField(null=True,blank=True)
     gender = models.CharField(max_length=10, choices=GENDER)
     account = models.IntegerField(default=0)
-    has_payed = models.BooleanField(default=False)
+    has_payed = models.BooleanField(default=True)
 
     def __str__(self):
         return "{}".format(self.user)
@@ -56,6 +56,8 @@ class TourBuilderProfile(models.Model):
 
 class ManagerProfile(models.Model):
     user = models.OneToOneField(UserM,related_name='mprofile')
+    # maryam poresh kon
+
     def __str__(self):
-        return "{}".format(self.user)
+        return "{}".format(self.user.username)
 

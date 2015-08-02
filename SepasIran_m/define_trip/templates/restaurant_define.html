@@ -18,9 +18,15 @@
 {% else %}
 
     <p>
-لطفا اطلاعات قطاری را که میخواهید در اینجا عرضه کنید وارد نمایید
+لطفا اطلاعات میزهایی را که می خواهید به فروش بگذاریددر اینجا وارد نمایید
             پر کردن فیلدهای ستاره دار الزامی می باشد.<br>
-
+قیمت مربوط به میزها قیمت هرساعت رزرو به ریال می باشد.    <br>
+    در صورت ورود شماره میز باید تمامی فیلدهای آن پر شوند.
+    <br>
+ساعت رزرو را به صورت یک عدد از 24 وارد کنید
+    <br>
+    میزها ساعت به ساعت به مشتریان اختصاص می یابند.
+    <br>
     </p>
 
     <div class="col-md-11">
@@ -28,80 +34,48 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ b.user.user.last_name }}
-                    </div>
-                    <label  class="col-md-2 ">
-                نام شرکت
-                    </label>
-
-
-            </div>
-<div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
 {{ form.name }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*نام قطار
+نام رستوران
                     </label>
 
-            </div>
-            <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.source }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*مبدا حرکت
-                    </label>
 
             </div>
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ form.destination }}
+{{ form.city }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*مقصد حرکت
+*نام شهر مکان رستوران
                     </label>
 
-
             </div>
+
 
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
-{{ form.start_t }}
+{{ form.start_day }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*ساعت حرکت
+*تاریخ شروع رزرو
                         </label>
                 <div class="col-md-4">
-{{ form.start }}
+{{ form.end_day }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*تاریخ حرکت
+*تاریخ پایان رزرو
                     </label>
 
             </div>
 
-            <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-{{ form.cost }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*قیمت هر بلیت
-                    </label>
 
-            </div>
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
@@ -136,7 +110,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-*شماره صندلی هایی که می خواهید بفروشید
+*شماره میزهایی که میخواهید به فروش بگذارید:
                 </div>
 
             </div>
@@ -145,7 +119,7 @@
                 <tr class="col-md-12">
                     <td class="col-md-1">
                         <label>
-                            از
+شماره
                         </label>
                     </td>
                     <td class="col-md-1">
@@ -153,20 +127,44 @@
                     </td>
                     <td class="col-md-1">
                         <label>
-                            تا
+از ساعت
                         </label>
                     </td>
                     <td class="col-md-1">
                         <input type="text" class="form-control ,i">
                     </td>
-                                        <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+                    <td class="col-md-1">
+                        <label>
+تا ساعت
+                        </label>
+                    </td>
+                    <td class="col-md-1">
+                        <input type="text" class="form-control ,i">
+                    </td>
+                    <td class="col-md-1">
+                        <label>
+                            قیمت
+                        </label>
+                    </td>
 
-                                        <td class="col-md-7"></td>
+                    <td class="col-md-2">
+                        <input type="text" class="form-control ,i">
+                    </td>
 
+                    <td class="col-md-1">
+                        <label>
+ظرفیت
+                        </label>
+                    </td>
+
+                    <td class="col-md-1">
+                        <input type="text" class="form-control ,i">
+                    </td>
+                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
 
                 </tr>
             </table>
-
+<p><br></p>
 <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
@@ -174,7 +172,7 @@
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
+تمامی توضیحات باقیمانده در مورد شرایط مکان را در اینجا درج کنید
                     </label>
 
             </div>
@@ -182,7 +180,7 @@
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
 {#<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-    <a href="/tourdefine/train/2/سیمرغ" class="btn btn-success">
+    <a href="/tourdefine/restaurant/2/شاندیز" class="btn btn-success">
         گام بعد
     </a>
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
@@ -200,10 +198,10 @@
     var length = table.getElementsByTagName("tr").length;
     var newrow = table.insertRow(length-1);
         newrow.setAttribute("class","col-md-12");
-    var cells = ["","","","","",""];
+    var cells = ["","","","","","",""];
 
         cells[0] = newrow.insertCell(0);
-        cells[0].innerHTML = "<label>از </label>";
+        cells[0].innerHTML = "<label>شماره </label>";
         cells[0].setAttribute("class","col-md-1");
 
         cells[1] = newrow.insertCell(1);
@@ -211,7 +209,7 @@
         cells[1].setAttribute("class","col-md-1");
 
         cells[2] = newrow.insertCell(2);
-        cells[2].innerHTML = "<label> تا </label>";
+        cells[2].innerHTML = "<label>از </label>";
         cells[2].setAttribute("class","col-md-1");
 
         cells[3] = newrow.insertCell(3);
@@ -219,8 +217,32 @@
         cells[3].setAttribute("class","col-md-1");
 
         cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = ".";
-        cells[4].setAttribute("class","col-md-8");
+        cells[4].innerHTML = "<label> تا </label>";
+        cells[4].setAttribute("class","col-md-1");
+
+        cells[5] = newrow.insertCell(5);
+        cells[5].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[5].setAttribute("class","col-md-1");
+
+        cells[6] = newrow.insertCell(6);
+        cells[6].innerHTML = "<label> قیمت </label>";
+        cells[6].setAttribute("class","col-md-1");
+
+        cells[7] = newrow.insertCell(7);
+        cells[7].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[7].setAttribute("class","col-md-2");
+
+        cells[8] = newrow.insertCell(8);
+        cells[8].innerHTML = "<label> ظرفیت </label>";
+        cells[8].setAttribute("class","col-md-1");
+
+        cells[9] = newrow.insertCell(9);
+        cells[9].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[9].setAttribute("class","col-md-1");
+
+        cells[10] = newrow.insertCell(10);
+        cells[10].innerHTML = ".";
+        cells[10].setAttribute("class","col-md-1");
 
 }
     </script>

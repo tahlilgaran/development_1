@@ -30,9 +30,9 @@ def signin(request):
                     wrong = 'notpayed'
             else :
                 login(request, user)
+                if username == 'admin':
+                    return HttpResponseRedirect('/manager/Dashboard/')
                 return HttpResponseRedirect('/userpage/')
-            if username == 'admin':
-                return HttpResponseRedirect('/manager/Dashboard/')
 
         else:
             wrong = "wrongpass"
@@ -64,9 +64,17 @@ def forget_password(request):
 
 
 def signup(request):
+    if request.POST.get("next","") != "":
+        print(request.POST.get("optradio"))
+        if request.POST.get("optradio")== '1' :
+            return HttpResponseRedirect('/signup/tourist/')
+        else:
+            return HttpResponseRedirect('/signup/tourBuilder/')
 
+    if request.POST.get("cancel","") != "":
+        return HttpResponseRedirect('/signIn/')
     return render(request, "signup.html",{
-        # 'username':username,
+        'username': "",
     })
 
 
@@ -77,7 +85,11 @@ def tourist_signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            return HttpResponseRedirect('/signup/tourist/2/'+username)
+            password = form.cleaned_data['password']
+            userl = authenticate(username=username,password=password)
+            if userl:
+                login(request, userl)
+                return HttpResponseRedirect('/signup/tourist/2/'+username)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/signIn/')
@@ -260,7 +272,8 @@ def tourist_profile(request,username):
     if User.objects.filter(username = username):
         user = User.objects.filter(username = username)[0]
         user2 = request.user
-        if user != user2:
+        userm = UserM.objects.filter(user = user2)[0]
+        if user != user2 and userm.kind != 'manager':
             return HttpResponseRedirect('/signIn/')
         muser = UserM.objects.get(user = user)
         profile = TouristProfile.objects.get(user = muser)
