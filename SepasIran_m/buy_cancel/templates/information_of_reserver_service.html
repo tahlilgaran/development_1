@@ -25,7 +25,7 @@
 
 
                              <div id="down_part" class="col-md-12" style="right: 20px;">
-                                         <form action="reserveing/status/hotel/{{ room.id }}/" method="POST">
+                                         <form action="reserving/status/hotel/{{ room.id }}/" method="POST">
 
                                             {%  csrf_token %}
                                             <p>
@@ -54,23 +54,18 @@
 
 <!--###############################----RESTURANT-----#########################################################################-->
                           {% elif kind == 'resturant' %}
-                               < style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}
+                               <div><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}</div>
 
 
                                 <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}</div>
                                 <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}</div>
 
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/resturant/{{ table.id }}" method="POST">
+                                     <form action="/reserving/status/resturant/{{ table.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                         <p>
-                                         <div><span style="font-weight: bold;">تاریخ رزرو:</span></div>
-                                         {{ tableform.date }}
 
-                                         <div><span style="font-weight: bold;">ساعت رزرو:</span></div>
-
-                                         {{ tableform.clock }}
 
                                          <div><span style="font-weight: bold;">نام رزرو کننده:</span></div>
                                              {{ peopleform.first_name }}
@@ -102,7 +97,7 @@
                                 <div><span style="font-weight: bold;">زمان حرکت:</span>{{ train.start_t }}</div>
                                      </div>
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/train/{{ train.id }}" method="POST">
+                                     <form action="/reserving/status/train/{{ train.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                        <p>
@@ -136,7 +131,7 @@
                                 <div><span style="font-weight: bold;">زمان حرکت:</span>{{ airplane.start_t }}</div>
                                      </div>
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/airplane/{{ airplane.id }}" method="POST">
+                                     <form action="/reserving/status/airplane/{{ airplane.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                        <p>
