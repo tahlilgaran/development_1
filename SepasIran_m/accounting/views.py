@@ -4,38 +4,39 @@ from  accounting.models import *
 from datetime import datetime
 
 # Create your views here.
-def paymentTour(request, tour_id='', number=''):
+def paymentTour(request, tour_id=''):
+
+    number=request.POST.get("number")
     tour= Tour.objects.get(id = tour_id)
-    cost=tour.entire_cost
-    total_cost=cost * number
+    cost=tour.cost
+    total_cost=cost * int(number)
     return render(request, "payment_bank.html",{
-        'total_cost': total_cost
+        'total_cost': total_cost,
+        'tour':tour,
     })
 
 def confirmTour(request,tour_id=''):
 
-    if request.method == 'POST':
-        tour=Tour.objects.get(id=tour_id)
-        #todo : making transaction object kind1
-        sender= request.POST.get("username","");
-        date = datetime.now()
-        ammount=request.POST.get("total_cost","")
-        gardesh=tour.gardesh
-        info=models.Trans_info(date=date, ammount=ammount, gardesh= gardesh)
 
-        transaction = models.Trans_kind1(info=info , sender=sender)
-        transaction.save()
+        tour=Tour.objects.get(id = tour_id)
+        user= request.user.userm
+        sender= TouristProfile.objects.get(user = user)
+        date = datetime.datetime.today()
+        ammount=request.POST.get("total_cost")
+        gardesh=tour.gardesh
+
+        info= Trans_info.objects.create(date=date,ammount=int(ammount),gardesh=gardesh)
+        transaction = Trans_Kind1.objects.create(info=info,sender=sender)
+
         return render(request, "transaction-status.html",{
             'transaction':transaction,
             'kind':'1',
         })
 
-def cancel(request ,kind=''):
+def ozviyat(request ,username='', password=''):
 
-    if kind == 'service':
-        return render(request , "canceling.html", {'kind':kind})
-    elif kind == 'tour':
-        return render(request, "canceling.html" , {'kind':kind})
 
-    return render(request, "canceling.html" , {'kind':kind})
+    return render(request, "payment_bank.html" ,{
+        'total_cost':'۳۰۰۰',
+    })
 

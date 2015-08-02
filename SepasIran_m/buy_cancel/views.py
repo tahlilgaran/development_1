@@ -1,83 +1,114 @@
 from django.shortcuts import render
 from define_trip.models import *
+from buy_cancel.models import *
 from .forms import numberForm,peopleForm,hotelForm,tableForm
 # Create your views here.
 
-def purchaseResturant(request ,capacity='',id='',username=''):
-    resturant=Restaurant.objects.get(id = id)
-    table=Table.objects.filter(resturant = resturant).get(capacity = capacity)[0]
-    gardesh=resturant.gardesh
-
+def purchaseResturant(request ,id=''):
+    username=request.user.username
+    table=Table.objects.get(id = id)
+   # table=Table.objects.filter(restaurant = resturant).get(capacity = capacity)
+    restaurant=table.restaurant
+    gardesh=restaurant.gardesh
+    tableform=tableForm(request.POST)
+    peopleform=peopleForm(request.POST)
     return render(request, "information_of_buyer_service.html" , {
              'username':username,
              'kind': 'resturant',
-             'resturant': resturant,
+             'resturant': restaurant,
              'table': table,
              'gardesh': gardesh,
+             'tableform':tableform,
+             'peopleform': peopleform,
 
             })
 
 
-def purchaseTour(request ,id='',username=''):
+def purchaseTour(request ,id=''):
+
+    username=request.user.username
     tour=Tour.objects.get(id = id);
+    gardesh=tour.gardesh
+    form=numberForm(request.POST)
+    peopleform=peopleForm(request.POST)
+
     return render(request, "information_of_buyer_tour.html" , {
              'username':username,
              'tour':tour,
+             'gardesh':gardesh,
+             'form':form,
+             'peopleform':peopleform,
     })
 
 
-def purchaseAirplane(request ,id='', username=''):
+def purchaseAirplane(request ,id=''):
+         username=request.user.username
          airplane=AirPlane.objects.get(id = id);
-         airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
+        # airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
          gardesh=airplane.gardesh
+         form=numberForm(request.POST)
+         peopleform=peopleForm(request.POST)
          return render(request, "information_of_buyer_service.html" , {
              'username':username,
              'kind':'airplane',
              'airplane':airplane,
-             'airplaneseat': airplaneseat,
+              'form':form,
+             'peopleform':peopleform,
              'gardesh': gardesh,
             })
 
-def purchaseTrain(request ,id='', username=''):
+def purchaseTrain(request ,id=''):
+    username=request.user.username
     train=Train.objects.get(id = id);
-    trainseat=TrainSeat.objects.filter(train = train).filter(full = False)[0]
     gardesh = train.gardesh
+    form=numberForm(request.POST)
+    peopleform=peopleForm(request.POST)
+
     return render(request, "information_of_buyer_service.html" , {
             'username':username,
              'kind':'train',
              'train':train,
-             'trainsear': trainseat,
+             'form':form,
              'gardesh': gardesh,
+             'peopleform':peopleform,
 
             })
 
-def purchaseHotel(request ,id='', username=''):
+def purchaseHotel(request ,id=''):
+    username=request.user.username
     room=Room.objects.get(id = id);
     hotel=room.hotel
     gardesh=hotel.gardesh
+    form=numberForm(request.POST)
+    hotelform=hotelForm(request.POST)
+    peopleform=peopleForm(request.POST)
+
     return render(request , "information_of_buyer_service.html" , {
            'username': username,
            'kind': 'hotel',
            'room': room,
            'hotel': hotel,
            'gardesh': gardesh,
+           'form':form,
+           'hotelform':hotelform,
+           'peopleform':peopleform,
 
 
         })
 
 
-def reserveResturant(request ,id='', capacity=''):
+def reserveResturant(request ,id=''):
     username=request.user.username
-    resturant=Restaurant.objects.get(id = id)
-    table=Table.objects.filter(restaurant = resturant).get(capacity = capacity)
-
-    gardesh=resturant.gardesh
+    table=Table.objects.get(id = id)
+   # table=Table.objects.filter(restaurant = resturant).get(capacity = capacity)
+    restaurant=table.restaurant
+    gardesh=restaurant.gardesh
     tableform=tableForm(request.POST)
     peopleform=peopleForm(request.POST)
     return render(request, "information_of_reserver_service.html" , {
              'username':username,
              'kind': 'resturant',
-             'resturant': resturant,
+             'resturant': restaurant,
              'table': table,
              'gardesh': gardesh,
              'tableform':tableform,
@@ -170,39 +201,36 @@ def reserveHotel(request ,id=''):
 
 def statusReserve(request,kind='', id=''):
 
-    #if kind == 'restaurant':
-     #todo check zarfiyat va taghir an
-  table=Table.objects.get(id = id)
-  restaurant= table.restaurant
-  gardesh=restaurant.gardesh
-  return render("reserve-status.html",{
-            'kind':'restaurant',
-            'table':table,
-            'gardesh':gardesh,
-  })
+
+    username = request.user.username
+    number = request.POST.get("number")
+    first_name = request.POST.get("first_name")
+    last_name = request.POST.get("last_name")
+    melli_num =request.POST.get("melli_number")
+    tour = Tour.objects.get(id = id)
+    gardesh = tour.gardesh
+
+    #tour.capacity = tour.capacity - int(number)
+    #tour.entire_capacity= tour.entire_capacity-int(number)
+    #tour.save()
+    for i in int(number):
+
+        userm=request.user.userm
+        gardeshgar=TouristProfile.objects.get(user =userm)
+        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                               first_name = first_name,last_name= last_name,
+                                               meli_code = melli_num,
+                                               peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
+        wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
 
 
-  if kind == 'tour':
-        error = False
-        number = request.POST.get("number","")
-        tour = Tour.objects.get(id = id)
-        gardesh = tour.gardesh
-        #if tour.capacity < int(number):
-         #   msg = "ظرفیت به اندازه ی کافی برای رزرو شما وجود ندارد"
-          #  error = True
-           # return render ("information_of_reserver_tour.html",{
-            #    'error' : error,
-             #   'msg': msg,
-            #})
-
-       # tour.capacity = int(tour.capacity)- int(number)
-        #tour.save()
-        return render("reserve-status.html", {
+    return render( request , "reserve_status.html",{
+                'username':username,
                 'number': number,
-                'kind': 'tour',
+                'kind': kind,
                 'gardesh': gardesh,
                 'tour': tour,
-        })
+    })
 
 
 

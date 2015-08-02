@@ -14,9 +14,9 @@
 <p>
     {% if kind == 'tour' %}
 
-    {{ gardesh.name }}برای شما به تعداد {{ number }}رزرو شد .
+    {{ gardesh.name }}  برای شما به تعداد  {{ number }} رزرو شد .
         <p class="random-number">
-        کد پیگیری :{{ tour.id}}-{{ kind }}
+        کد پیگیری :{{ kind }}-{{ tour.id }}-{{ username }}
         </p>
     {% elif kind == 'restaurant' %}
         میز شما در رستوران{{ gardesh.name }}انجام شد.

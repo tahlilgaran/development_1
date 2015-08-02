@@ -13,7 +13,7 @@
 
 </head>
 <body style="background-color:#FFE4C4;font-family: 'B Mitra';">
-<form action="/payment/confirm/" method="POST">
+<form action="/payment/tour/confirm/{{ tour.id }}/" method="POST">
     {% csrf_token %}}
     <div class="container" style="direction: rtl" >
     <div class='row'>
@@ -54,6 +54,8 @@
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
                   مبلغ کل پرداختی:{{ total_cost }}ریال
+                    <input name="total" value={{ total_cost }} hidden/>
+
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
               </div>

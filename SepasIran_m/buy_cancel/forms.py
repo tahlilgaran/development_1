@@ -2,7 +2,7 @@ __author__ = 'yeganeh'
 from django import forms
 
 class numberForm(forms.Form):
-    number = forms.IntegerField();
+    number = forms.IntegerField()
 
 class peopleForm(forms.Form):
     first_name= forms.CharField(max_length=200,label="نام")
@@ -11,9 +11,9 @@ class peopleForm(forms.Form):
 
 class hotelForm(forms.Form):
     num_day=forms.IntegerField()
-    start_date=forms.DateInput()
-    end_date=forms.DateInput()
+    start_date=forms.DateField()
+    end_date=forms.DateField()
 
 class tableForm(forms.Form):
-    date=forms.DateInput()
-    clock=forms.TimeInput()
+    date=forms.DateField()
+    clock=forms.DateField()
