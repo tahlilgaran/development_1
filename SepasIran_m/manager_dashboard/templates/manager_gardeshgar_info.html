@@ -3,38 +3,29 @@
 {% block content_dashboard %}
 
     <div class="col-md-9">
-        <h2> اطلاعات گردشگران</h2>
+        <h2>اطلاعات
+        {{ header }}</h2>
 
-        <div class="input-group" style="width: 400px ; margin: 30px">
-            <span class="input-group-addon" id="basic-addon1">جستجو</span>
-            <input type="text" class="form-control" placeholder="نام " aria-describedby="basic-addon1">
-        </div>
 
-            <table>
-
+        <table>
+            {% for tourist in list %}
                 <tr>
 
                     <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/girl.jpg' %}">
+                    <img class="tour_image_med" src="../../{{ tourist.user.picture }}">
                 </span>
                     </td>
                     <td>
-                        {{ gardeshgar.name }}
-                        <a href="/profile/tourist/gardeshgar">
-                            اطلاعات بیشتر</a></td>
+                        <a href="/profile/tourist/gardeshgar">{{ tourist.user.user.username }}</a></td>
 
                 </tr>
-
-            </table>
-
-
-
-    </div>
-
+            {% endfor %}
+        </table>
 
 
     </div>
+
 
 {% endblock content_dashboard %}

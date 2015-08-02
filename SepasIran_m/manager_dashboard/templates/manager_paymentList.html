@@ -2,28 +2,32 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-<div class="col-md-9">
-<h2>صورت تراکنش ها</h2>
-<table class="payment_table">
-    <tr class="payment_table">
-        <td> شماره تراکنش</td>
-        <td>از</td>
-        <td>به</td>
-        <td>مقدار</td>
-        <td>تاریخ</td>
-    </tr>
- {% for payment in paymentList %}
-        <tr class="payment_table">
-        <td>{{ payment.id }}</td>
-         <td><a>شرکت مسافرتی آسمان</a></td>
-         <td><a>سپاس ایران</a></td>
-         <td>20 میلیون تومان</td>
-         <td>25 خرداد 1394</td>
-    </tr>
-    {% endfor %}
-</table>
+    <div class="col-md-9">
+        <h2>صورت تراکنش ها</h2>
+        <table class="payment_table">
+            <tr class="payment_table">
+                <td> شماره تراکنش</td>
+                <td>از</td>
+                <td>به</td>
+                <td>مقدار</td>
+                <td>تاریخ</td>
+            </tr>
+            {% for trans in transList %}
+                <tr class="payment_table">
+                    <td>{{ trans.id }}</td>
+                    <td><a>{{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a></td>
+                    <td><a>{{ trans.trans_kind1.receiver }}{{ trans.trans_kind2.receiver }}{{ trans.trans_kind3.receiver }}</a></td>
+
+                    <td>
+                        {{ trans.amount }}
+                        تومان
+                    </td>
+                    <td>{{ trans.date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
 
 
-</div>
+    </div>
 
 {% endblock content_dashboard %}

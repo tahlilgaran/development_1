@@ -7,24 +7,29 @@
     <h2> نظرات برخط کاربران</h2>
             <table>
                 {% for comment in onlineComments %}
-                    <tr>
-                        <td>
-                            <div>
+             <tr>
+                <td>
+                    <div>
                 <span>
-                    <img class="gardeshgar_img" src="{% static 'manager_dashboard/image/girl.jpg' %}">
+                    <img class="gardeshgar_img" src="../../{{comment.user.picture}}">
                 </span>
                 <span class="gardeshgar_name_box">
-                    <a>{{ comment.user.username }}</a></span>
+               <a href="">{{ comment.user.user.username }} </a>
+{#                    todo#}
+                    <br>
+                    تور
+                  <a href="/show/tour/status/{{ comment.tour.id }}"> {{ comment.tour.gardesh.name }}</a>
+{#                    todo #}
+                </span>
 
-                                <div class="col-md-12 gardeshgar_comment_box">
-                                    {{ comment.body }}
-                                    <br>
-                                    {{ comment.date}}
-{#                                    <br><a>{{ comment.tour }}</a>#}
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                        <div class="col-md-12 gardeshgar_comment_box">
+                            {{ comment.body }}
+                            <br>
+                            {{ comment.date }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
                 {% endfor %}
             </table>
 
