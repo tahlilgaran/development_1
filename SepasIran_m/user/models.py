@@ -59,5 +59,5 @@ class ManagerProfile(models.Model):
     # maryam poresh kon
 
     def __str__(self):
-        return "{}".format(self.user.username)
+        return "{}".format(self.user)
 

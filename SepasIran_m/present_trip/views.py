@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from define_trip.models import *
 from buy_cancel.models import *
+from user.models import *
 from django.http import Http404
 import datetime
 
@@ -61,20 +63,23 @@ def show_one_trip(request, kind = ''  , id = 0):
 
 
 
+@login_required()
 def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     return_dic = {}
     trip = ''
     html_file = ''
     sub_trip = ''
     user_kind = request.user.userm.kind
+    print(user_kind)
     if (user_kind == 'gardeshsaz'):
-        builder = request.user.userm.bprofile
+        builder = TourBuilderProfile.objects.get(user = request.user.userm)
+        # builder = request.user.userm.bprofile
     elif(user_kind == 'manager'):
-        builder = request.user.userm.mprofile
+        builder = ManagerProfile.objects.get(user = request.user.userm)
+        # builder = request.user.userm.mprofile
     else:
-        builder = ''
+        raise Http404("Page not found")
     if request.method == 'GET':
-        print (builder)
         now = datetime.datetime.now()
         future_ten_days = [now , now + datetime.timedelta(days=10)]
         if kind == 'tour':

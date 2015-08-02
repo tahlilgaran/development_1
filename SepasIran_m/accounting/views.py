@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from define_trip.models import *
 from  accounting.models import *
-from datetime import datetime
+import datetime
 
 # Create your views here.
 def paymentTour(request, tour_id=''):
@@ -22,10 +22,11 @@ def confirmTour(request,tour_id=''):
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
         date = datetime.datetime.today()
-        ammount=request.POST.get("total_cost")
+        amount=300000
+            # request.POST.get("total_cost")
         gardesh=tour.gardesh
 
-        info= Trans_info.objects.create(date=date,ammount=int(ammount),gardesh=gardesh)
+        info= Trans_info.objects.create(date=date,amount=amount,gardesh=gardesh)
         transaction = Trans_Kind1.objects.create(info=info,sender=sender)
 
         return render(request, "transaction-status.html",{
