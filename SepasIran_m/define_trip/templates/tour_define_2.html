@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+
+    <h1>
+    تعریف تور
+    </h1>
+{% if username != 'gardeshsaz' %}
+    <p>
+        این صفحه مخصوص گردشسازان می باشد.
+    </p>
+    <p>
+        در صورتی که گردشساز هستید وارد سامانه شوید.
+    </p>
+{% else %}
+    <p>
+لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
+        <br>
+درجه اولیه تور ارائه شده توسط شما
+    {{ gardesh.degree }}
+    تشخیص داده شده است و درصد قرارداد به ازای هر خرید 10 درصد می باشد.
+    <br>
+مبلغ دریافت شده از خریداران پس از پایان تور به حساب شما واریز خواهد شد.
+    </p>
+
+    <div class="col-md-11">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ gardesh.builder.user.user.last_name }}                    </div>
+                    <label  class="col-md-2 ">
+                نام شرکت
+                    </label>
+
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ gardesh.name }}
+                    <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+نام تور
+                    </label>
+
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                    {{ tour.tour_kind }}
+                    <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+نوع تور
+                    </label>
+
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.destination }}
+                    <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+                        مقصد تور
+                    </label>
+
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+
+                    {{ tour.source }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+        محل حرکت
+                    </label>
+                </div>
+
+                <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.start }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+زمان حرکت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.start_t }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+ساعت حرکت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.end }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+زمان بازگشت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.end_t }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+ساعت بازگشت
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.entire_capacity }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+تعداد نفرات
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.capacity }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+تعداد درخواست برای فروش
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.leader }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+نام مسئول
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+{{ tour.leader_c }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+معاون مسئول
+                    </label>
+
+            </div>
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    {{ tour.transfer_device.degree }}
+                </div>
+                <label class="col-md-1">
+                    درجه
+                </label>
+                <div class="col-md-3">
+{{ tour.transfer_device.name }}
+                </div>
+                <label class="col-md-2">
+                    نام شرکت
+                </label>
+
+                <div class="col-md-2">
+                          <label>
+{{ tour.transfer_device.kind }}
+                          </label>
+                    </div>
+                    <label  class="col-md-2 ">
+وسیله حمل ونقل
+                    </label>
+
+
+            </div>
+
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    {{ tour.stay_location.degree }}
+                </div>
+                <label class="col-md-1">
+                    درجه
+                </label>
+                <div class="col-md-3">
+{{ tour.stay_location.name }}
+                </div>
+                <label class="col-md-2">
+{{ tour.stay_location.kind }}                </label>
+
+
+                    <label  class="col-md-2 ">
+محل اقامت
+                    </label>
+
+            </div>
+
+            <table class="col-md-12">
+                {% for bazdid in bazdids %}
+                <tr class="col-md-12">
+                    <td class="col-md-2">
+                        <label >
+نام مکان
+                </label>
+                    </td>
+
+                    <td class="col-md-1">
+{{ bazdid.location_name }}                    </td>
+
+                    <td class="col-md-2">
+                        <label>
+زمان بازدید
+                </label>
+                    </td>
+                    <td class="col-md-2">
+
+{{ bazdid.time }}
+                    </td>
+
+
+                <td class="col-md-3"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
+
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-3">
+{{ tour.cost }}                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+هزینه سفر و مکان
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-3">
+{{ gardesh.free }}                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+درصد تخفیف برای اعضای سامانه سپاس ایران
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+{{ gardesh.max_cancel_time }}                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-6 ">
+امکان انصراف اعضا
+                    </label>
+
+            </div>
+
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+{{ tour.destination_explain }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+توضیحات مقصد تور
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+{{ tour.move_explain }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+توضیحات آغاز سفر
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+{{ gardesh.other_explain }}
+                        <span class="error"></span>
+                    </div>
+                    <label  class="col-md-5 ">
+توضیحات تکمیلی
+                    </label>
+
+            </div>
+<div class="col-md-10 ">
+                <div class="col-md-6"></div>
+            <input class="btn btn-success" type="submit" name="save"   value = "ثبت">
+    <input class="btn btn-success" type="submit" name="return"   value = "بازگشت">
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
+</div>
+
+        </form>
+
+    </div>
+{% endif %}
+
+
+{% endblock %}
