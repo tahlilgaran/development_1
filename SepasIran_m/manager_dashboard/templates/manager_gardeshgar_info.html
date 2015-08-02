@@ -2,30 +2,42 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-    <div class="col-md-9">
-        <h2>اطلاعات
+<div class="col-md-9">
+    <h2>اطلاعات
         {{ header }}</h2>
 
+    {% ifequal header "گردش سازان" %}
+        <form method="get" action="/manager/tourBuilder/search/">
+    {% endifequal %}
+    {% ifequal header "گردشگران" %}
+    {% endifequal %}
+    <form method="get" action="/manager/tourist/search/">
+        <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
+        <br>
+        <input type="submit" value="جستجو" class="btn btn-success">
+    </form>
 
-        <table>
-            {% for tourist in list %}
-                <tr>
 
-                    <td>
+    <table>
+        {% for tourist in list %}
+            <tr>
+
+                <td>
                 <span>
 
                     <img class="tour_image_med" src="../../{{ tourist.user.picture }}">
                 </span>
-                    </td>
-                    <td>
-                        <a href="profile/tourist/{{ tourist.user.user.username }}">{{ tourist.user.user.username }}</a></td>
+                </td>
+                <td>
+                    <a href="profile/tourist/{{ tourist.user.user.username }}">{{ tourist.user.user.username }}</a>
+                </td>
 
-                </tr>
-            {% endfor %}
-        </table>
+            </tr>
+        {% endfor %}
+    </table>
 
 
-    </div>
+</div>
 
 
 {% endblock content_dashboard %}
