@@ -305,7 +305,7 @@ def hotel_define(request):
     })
 
 @login_required()
-def hotel_define_2(request,name):
+def hotel_define_2(request,id):
 
     gardesh = Gardesh.objects.get(id = id)
     hotel = Hotel.objects.get(gardesh = gardesh)
