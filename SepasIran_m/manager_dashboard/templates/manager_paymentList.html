@@ -15,7 +15,7 @@
             {% for trans in transList %}
                 <tr class="payment_table">
                     <td>{{ trans.id }}</td>
-                    <td><a>{{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a></td>
+                    <td><a href="profile/tourist/{{ tourist.user.user.username }}">{{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a></td>
                     <td><a>{{ trans.trans_kind1.receiver }}{{ trans.trans_kind2.receiver }}{{ trans.trans_kind3.receiver }}</a></td>
 
                     <td>
