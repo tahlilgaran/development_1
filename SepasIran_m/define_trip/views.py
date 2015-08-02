@@ -3,26 +3,39 @@ from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
 from user.models import TourBuilderProfile,UserM
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-def tarif_kind(request,username =''):
+
+@login_required()
+def tarif_kind(request):
+    username = ''
+    u1 = request.user
+    if UserM.objects.filter(user = u1):
+        muser = UserM.objects.filter(user = u1)[0]
+        if muser.kind == 'gardeshsaz':
+            username = 'gardeshsaz'
 
     if request.POST.get("next","") != "":
-        print("next")
-        tour = request.POST.getlist("optradio")
-        if tour:
-            print("aval")
-        if 1 in tour:
-            print("write")
-            return HttpResponseRedirect("/home/")
+        print(request.POST.get("optradio"))
+        if request.POST.get("optradio")== '1' :
+            return HttpResponseRedirect('/tourdefine/hotel/')
+        elif request.POST.get("optradio")== '2':
+            return HttpResponseRedirect('/tourdefine/restaurant/')
+        elif request.POST.get("optradio")== '3':
+            return HttpResponseRedirect('/tourdefine/airplane/')
+        elif request.POST.get("optradio")== '4':
+            return HttpResponseRedirect('/tourdefine/train/')
+
+    if request.POST.get("cancel","") != "":
+        return HttpResponseRedirect('/userpage/')
 
     return  render(request,"tarif_kind.html",{
          'username': username,
     })
 
-def tour_define_2(request,):
-    if name == 'badabsoort':
-        name = 'باداب سورت'
-    gardesh = Gardesh.objects.get(name = name)
+@login_required()
+def tour_define_2(request,id):
+    gardesh = Gardesh.objects.get(id = id)
     tour = Tour.objects.get(gardesh = gardesh)
     bazdid = Bazdid.objects.filter(tour = tour)
     if request.POST.get("return","") != "":
@@ -43,7 +56,7 @@ def tour_define_2(request,):
         'username':"gardeshsaz",
     })
 
-
+@login_required()
 def tour_define(request):
     username = ''
     builder = ''
@@ -95,7 +108,7 @@ def tour_define(request):
             l.save()
             f.stay_location = l
             f.save()
-            return HttpResponseRedirect('/tourdefine/tour/2/'+gardesh.name)
+            return HttpResponseRedirect('/tourdefine/tour/2/'+ gardesh.id)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -108,7 +121,7 @@ def tour_define(request):
         'b': builder,
     })
 
-
+@login_required()
 def airplane_define(request):
     username = ''
     builder = ''
@@ -141,7 +154,7 @@ def airplane_define(request):
             gardesh.save()
             f.gardesh = gardesh
             f.save()
-            return HttpResponseRedirect('/tourdefine/airplane/2/'+gardesh.name)
+            return HttpResponseRedirect('/tourdefine/airplane/2/'+ gardesh.id)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -154,10 +167,10 @@ def airplane_define(request):
         'b': builder,
     })
 
+@login_required()
+def airplane_define_2(request,id):
 
-def airplane_define_2(request,name):
-
-    gardesh = Gardesh.objects.get(name = name)
+    gardesh = Gardesh.objects.get(id = id)
     airplane = AirPlane.objects.get(gardesh = gardesh)
     if request.POST.get("return","") != "":
         airplane.delete()
@@ -176,7 +189,7 @@ def airplane_define_2(request,name):
         'username':"gardeshsaz",
     })
 
-
+@login_required()
 def train_define(request):
     username = ''
     builder = ''
@@ -209,7 +222,7 @@ def train_define(request):
             gardesh.save()
             f.gardesh = gardesh
             f.save()
-            return HttpResponseRedirect('/tourdefine/train/2/'+gardesh.name)
+            return HttpResponseRedirect('/tourdefine/train/2/'+gardesh.id)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -222,9 +235,11 @@ def train_define(request):
         'b': builder,
     })
 
-def train_define_2(request,name):
 
-    gardesh = Gardesh.objects.get(name = name)
+@login_required()
+def train_define_2(request,id):
+
+    gardesh = Gardesh.objects.get(id = id)
     train = Train.objects.get(gardesh = gardesh)
     if request.POST.get("return","") != "":
         train.delete()
@@ -243,6 +258,8 @@ def train_define_2(request,name):
         'username':"gardeshsaz",
     })
 
+
+@login_required()
 def hotel_define(request):
     username = ''
     builder = ''
@@ -274,7 +291,7 @@ def hotel_define(request):
             gardesh.save()
             f.gardesh = gardesh
             f.save()
-            return HttpResponseRedirect('/tourdefine/hotel/2/'+gardesh.name)
+            return HttpResponseRedirect('/tourdefine/hotel/2/'+gardesh.id)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -287,9 +304,10 @@ def hotel_define(request):
         'b': builder,
     })
 
+@login_required()
 def hotel_define_2(request,name):
 
-    gardesh = Gardesh.objects.get(name = name)
+    gardesh = Gardesh.objects.get(id = id)
     hotel = Hotel.objects.get(gardesh = gardesh)
     if request.POST.get("return","") != "":
         hotel.delete()
@@ -308,7 +326,7 @@ def hotel_define_2(request,name):
         'username':"gardeshsaz",
     })
 
-
+@login_required()
 def restaurant_define(request):
     username = ''
     builder = ''
@@ -340,7 +358,7 @@ def restaurant_define(request):
             gardesh.save()
             f.gardesh = gardesh
             f.save()
-            return HttpResponseRedirect('/tourdefine/restaurant/2/'+gardesh.name)
+            return HttpResponseRedirect('/tourdefine/restaurant/2/'+gardesh.id)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -353,10 +371,10 @@ def restaurant_define(request):
         'b': builder,
     })
 
+@login_required()
+def restaurant_define_2(request,id):
 
-def restaurant_define_2(request,name):
-
-    gardesh = Gardesh.objects.get(name = name)
+    gardesh = Gardesh.objects.get(id = id)
     restaurant = Restaurant.objects.get(gardesh = gardesh)
     if request.POST.get("return","") != "":
         restaurant.delete()
@@ -375,8 +393,9 @@ def restaurant_define_2(request,name):
         'username':"gardeshsaz",
     })
 
-def cancel(request,username):
+@login_required()
+def cancel(request,name):
 
     return render(request,"cancel.html",{
-        'username': username,
+        'username': 'gardeshsaz',
     })
