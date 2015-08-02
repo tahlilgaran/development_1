@@ -2,7 +2,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from accounting.models import Trans_info
-from define_trip.models import Tour
+from define_trip.models import Tour, Picture
 from quality_control.models import OnlineComment
 # Create your views here.
 from user.models import TouristProfile, TourBuilderProfile, UserM
@@ -17,9 +17,16 @@ def Dashboard(request):
 
 def tourLists(request):
     tours = Tour.objects.filter(end__gt=datetime.datetime.today(),
-                                start__lt=datetime.date.today())
+                            start__lt=datetime.date.today())
+    pics =[]
+    for tour in tours :
+        pic = Picture.objects.filter(gardesh = tour.gardesh)
+        if not pic :
+            pics.append(tour.gardesh.builder.user.picture)
+        else :
+            pics.append(pic)
 
-    return render(request, "manager_tours.html", {"runningTours": tours})
+    return render(request, "manager_tours.html", {"runningTours": tours , "pics" : pics  })
 
 
 def tourRating(request):
