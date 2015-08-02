@@ -13,4 +13,6 @@ urlpatterns = [
     url(r'paymentsList/$', 'manager_dashboard.views.paymentLists'),
     url(r'contractPercent/$', 'manager_dashboard.views.contractPercent'),
     url(r'OnlineComments/$', 'manager_dashboard.views.showOnlineComments'),
+    url(r'tourBuilder/search/$', 'manager_dashboard.views.tourBuilderSearch'),
+    url(r'tourist/search/$', 'manager_dashboard.views.touristSearch'),
 ]
