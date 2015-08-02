@@ -7,32 +7,24 @@ from quality_control.models import  OnlineCommentForm, OnlineComment , RatingCom
 
 
 def user_rating(request):
-        #f = RatingCommentForm(request.POST)
-        #new_comment = f.save()
+
+    #if (request.method == 'POST'):
+        #f = OnlineCommentForm(request.POST)
+        #new_comment = RatingComment()
+        #new_comment.Q1 = request.POST.get('Q1')
+        #new_comment.Q2 = request.POST.get('Q2')
+        #new_comment.Q3 = request.POST.get('Q3')
+        #new_comment.Q4 = request.POST.get('Q4')
+        #new_comment.Q5 = request.POST.get('Q5')
         #new_comment.user = request.user
         ##tour = Tour.objects.get(id=tour_id)  #todo
         ##new_comment.tour = tour   #todo
         #new_comment.date = datetime.datetime.now()
         #new_comment.save()
 
-    if (request.method == 'POST'):
-        #f = OnlineCommentForm(request.POST)
-        new_comment = RatingComment()
-        new_comment.Q1 = request.POST.get('Q1')
-        new_comment.Q2 = request.POST.get('Q2')
-        new_comment.Q3 = request.POST.get('Q3')
-        new_comment.Q4 = request.POST.get('Q4')
-        new_comment.Q5 = request.POST.get('Q5')
-        new_comment.user = request.user
-        #tour = Tour.objects.get(id=tour_id)  #todo
-        #new_comment.tour = tour   #todo
-        new_comment.date = datetime.datetime.now()
-        new_comment.save()
-
-    return render(request, "quality_online_comment.html", {"username": "gardeshgar"})  #todo RENDER SUCCESS MSG  /userpage/gardeshgar
+    return redirect("/userpage/")  #todo RENDER SUCCESS MSG  /userpage/gardeshgar
 
 
-    return render(request, "quality_user_rating.html", {"username": "gardeshgar"})   #todo RENDER SUCCESS MSG
 
 
 def show_user_rating_form(request):

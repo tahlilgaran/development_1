@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'OnlineComments/$', 'manager_dashboard.views.showOnlineComments'),
     url(r'tourBuilder/search/$', 'manager_dashboard.views.tourBuilderSearch'),
     url(r'tourist/search/$', 'manager_dashboard.views.touristSearch'),
+    url(r'saveContractPercent/$', 'manager_dashboard.views.saveContractPercent'),
 ]

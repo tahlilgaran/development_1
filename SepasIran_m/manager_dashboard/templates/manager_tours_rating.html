@@ -15,21 +15,19 @@
                     </strong></td>
                 </tr>
 
-                {% for tour in bronzeTours %}
+
+                {% for tour in bronze_tours %}
                     <tr>
                         <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+                    <img class="tour_image_med" src="/{{ tour.gardesh.builder.user.picture }}">
                 </span>
                         </td>
                         <td>
+                            <a href="/show/tour/{{ tour.id }}/status/">
                             تور
-                            {{ tour.name }}<br>
-                            <a href="http://127.0.0.1:8000//show/tour/status">
-
-                                اطلاعات بیشتر
-                            </a></td>
+                            {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}
@@ -47,21 +45,19 @@
                         نقره ای</strong></td>
                 </tr>
 
-                {% for tour in silverTours %}
+
+                {% for tour in silver_tours %}
                     <tr>
                         <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+                    <img class="tour_image_med" src="/{{ tour.gardesh.builder.user.picture }}">
                 </span>
                         </td>
                         <td>
+                            <a href="/show/tour/{{ tour.id }}/status/">
                             تور
-                            {{ tour.name }}<br>
-                            <a href="http://127.0.0.1:8000//show/tour/status">
-
-                                اطلاعات بیشتر
-                            </a></td>
+                            {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}
@@ -79,21 +75,18 @@
                 </tr>
 
 
-                {% for tour in goldTours %}
+                {% for tour in gold_tours %}
                     <tr>
                         <td>
                 <span>
 
-                    <img class="tour_image_med" src="{% static 'manager_dashboard/image/manzare2.jpg' %}">
+                    <img class="tour_image_med" src="/{{ tour.gardesh.builder.user.picture }}">
                 </span>
                         </td>
                         <td>
+                            <a href="/show/tour/{{ tour.id }}/status/">
                             تور
-                            {{ tour.name }}<br>
-                            <a href="http://127.0.0.1:8000//show/tour/status">
-
-                                اطلاعات بیشتر
-                            </a></td>
+                            {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}

@@ -11,8 +11,8 @@ from user.models import UserM
 CHOICES = (('1', 'عالی',), ('2', 'خوب',),('1', 'متوسط',), ('2', 'بد',),('1', 'خیلی بد',))
 
 class OnlineComment(models.Model):
-    user = models.OneToOneField(UserM)
-    tour = models.OneToOneField(Tour)
+    user = models.ForeignKey(UserM)
+    tour = models.ForeignKey(Tour)
     body = models.CharField( max_length= 100)
     date = models.DateTimeField()
 
@@ -21,8 +21,8 @@ class OnlineComment(models.Model):
 
 
 class RatingComment(models.Model):
-    user = models.OneToOneField(UserM)
-    tour = models.OneToOneField(Tour)
+    user = models.ForeignKey(UserM)
+    tour = models.ForeignKey(Tour)
     Q1 = models.IntegerField()
     Q2 = models.IntegerField()
     Q3 = models.IntegerField()
