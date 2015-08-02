@@ -13,7 +13,7 @@
             <form method="get" action="/manager/tourist/search/">
         {% endifequal %}
 
-        <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
+        <input type="text" style="margin: 10px" name="username" placeholder="نام">
 
         <input type="submit" value="جستجو" class="btn btn-success">
         </form>
@@ -31,8 +31,8 @@
                     </td>
                     <td>
                         {% ifequal header "گردش سازان" %}
-                            <a href="profile/tourbuilder/{{ tourist.user.user.username }}">نام کاربری
-                            :{{ tourist.user.user.username }} </a>
+                            <a href="profile/tourbuilder/{{ tourist.user.user.username }}">شماره ثبت :
+                            {{ tourist.user.user.username }} </a>
                         {% endifequal %}
                         {% ifequal header "گردشگران" %}
                             <a href="profile/tourist/{{ tourist.user.user.username }}">نام کاربری
