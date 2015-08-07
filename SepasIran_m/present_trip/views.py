@@ -154,7 +154,43 @@ def search(request , ispack = '' ):
         returned_dic['form']=search_form;
         return render(request,'search.html',returned_dic)
     else: #request.method == POST
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            source = form.cleaned_data['source']
+            destination = form.cleaned_data['destination']
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
+            kinds = form.cleaned_data['kind']
 
+            #TODO: tomorrow ba tavajoh be in dade ha search kon.
+            for item in kinds:
+                if  item == 'tour':
+                     sub_trip = Tour.objects.filter(source = source , destination = destination
+                                                    , start__gte = start ,end__lte = end, capacity__gt = 0)
+                     print(sub_trip)
+                elif item == 'airplane':
+                    sub_trip = AirPlane.objects.filter(source = source, destination = destination
+                                                       , start__gte = start , start__lte =end , capacity__gt = 0)
+                elif item == 'train':
+                    sub_trip = Train.objects.filter(source = source, destination = destination
+                                                    ,start__gte = start, start__lte = end , capacity__gt = 0)
+                elif item == 'restaurant':
+                    tables = Table.objects.filter(restaurant__city = destination
+                                                  , date__gte = start, date__lte = end , full = 0)
+                    sub_trip =[]
+                    for table in tables:
+                        if not table.restaurant in sub_trip:
+                            sub_trip.append(table.restaurant)
+                elif item == 'hotel':
+                    rooms = Room.objects.filter(hotel__city = destination
+                                                , date__gte = start , date__lte = end , full = 0)
+                    sub_trip = []
+                    for room in rooms:
+                        if not room.hotel in sub_trip:
+                            sub_trip.append(room.hotel)
+
+        else:
+            print("error in form getting")
         trip = Gardesh.objects.all()
         returned_dic['trip']  = trip
         return render(request , "search_result.html" , returned_dic)

@@ -6,65 +6,22 @@
 {% endblock %}
 {% block content %}
     <div class="col-md-12 , box">
-        <form action="result/{{ username }}" class="form-group">{% csrf_token %}
-            {{ form }}
+        <form action="" method="post" class="form-group">{% csrf_token %}
             <table class="table">
                 <tr><td>
                    <div class="col-md-6">
                         <label>
-                            شهری که قصد گردش در آن دارید.
+                            {{ form.destination.label }}
                        </label>
-                       <select class=" form-control">
-                            <option>
-                                تهران
-                            </option>
-                            <option>
-                                سمنان
-                            </option>
-                            <option>
-                                مشهد
-                            </option>
-                            <option>
-                                اصفهان
-                            </option>
-                            <option>
-                                شیراز
-                            </option>
-                            <option>
-            همدان
-                            </option>
-                            <option>
-            کیش
-                            </option>
-                        </select></div>
+                       {{ form.destination }}
+                   </div>
 
                     <div class="col-md-6">
                         <label>
-                                                شهری که در آن هستید.
+                            {{ form.source.label }}
                         </label>
-                        <select class="form-control , col-md-6">
-                            <option>
-                                تهران
-                            </option>
-                            <option>
-                                سمنان
-                            </option>
-                            <option>
-                                مشهد
-                            </option>
-                            <option>
-                                اصفهان
-                            </option>
-                            <option>
-                                شیراز
-                            </option>
-                            <option>
-            همدان
-                            </option>
-                            <option>
-            کیش
-                            </option>
-                    </select></div>
+                        {{ form.source }}
+                    </div>
                 </td></tr>
 
                 <tr><td>
@@ -73,16 +30,12 @@
                         </label>
                         <div class="col-md-2"></div>
                         <div class="col-md-4">
-                            <div class="col-md-10"><input type="date" class="col-md-8 , form-control"/></div>
-                            <label class="col-md-2">
-تا:
-                            </label>
+                            <div class="col-md-10">{{ form.end }}</div>
+                            <label class="col-md-2">{{ form.end.label }}</label>
                         </div>
                         <div class="col-md-4">
-                            <div class="col-md-10"><input type="date"  class="form-control"/></div>
-                            <label class="col-md-2">
-از:
-                            </label>
+                            <div class="col-md-10">{{ form.start }}</div>
+                            <label class="col-md-2">{{ form.start.label }}</label>
                         </div>
                         <div class="col-md-2"></div>
                 </td></tr>
@@ -91,50 +44,51 @@
                     <label class="col-md-12">
 نوع
                     </label>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-7">
-                    <div class="checkbox-inline ">
-                        <label>
-                            <input type="checkbox" value="" onclick="tour_func(this)">
-                            <div class="checkbox_text">
-تور
-                            </div>
-                        </label>
+{#                    <div class="col-md-2"></div>#}
+                    <div class="col-md-12">
+                        {{ form.kind }}
+{#                    <div class="checkbox-inline ">#}
+{#                        <label>#}
+{#                            <input type="checkbox" value="" onclick="tour_func(this)">#}
+{#                            <div class="checkbox_text">#}
+{#تور#}
+{#                            </div>#}
+{#                        </label>#}
+{#                    </div>#}
+{#                        <div class="checkbox-inline">#}
+{#                            <label>#}
+{#                                <input type="checkbox" value="" onclick="hotel_func(this)">#}
+{#                                <div class="checkbox_text">#}
+{#    هتل#}
+{#                                </div>#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="checkbox-inline">#}
+{#                            <label>#}
+{#                                <input type="checkbox" value="" onclick="restooran_func(this)">#}
+{#                                <div class="checkbox_text">#}
+{#    رستوران#}
+{#                                </div>#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="checkbox-inline">#}
+{#                            <label>#}
+{#                                <input type="checkbox" value="" onclick="airplane_func(this)">#}
+{#                                <div class="checkbox_text">#}
+{#    هواپیما#}
+{#                                </div>#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="checkbox-inline">#}
+{#                            <label>#}
+{#                                <input type="checkbox" value=""  onclick="train_func(this)">#}
+{#                                <div class="checkbox_text">#}
+{#    قطار#}
+{#                                </div>#}
+{#                            </label>#}
+{#                        </div>#}
                     </div>
-                        <div class="checkbox-inline">
-                            <label>
-                                <input type="checkbox" value="" onclick="hotel_func(this)">
-                                <div class="checkbox_text">
-    هتل
-                                </div>
-                            </label>
-                        </div>
-                        <div class="checkbox-inline">
-                            <label>
-                                <input type="checkbox" value="" onclick="restooran_func(this)">
-                                <div class="checkbox_text">
-    رستوران
-                                </div>
-                            </label>
-                        </div>
-                        <div class="checkbox-inline">
-                            <label>
-                                <input type="checkbox" value="" onclick="airplane_func(this)">
-                                <div class="checkbox_text">
-    هواپیما
-                                </div>
-                            </label>
-                        </div>
-                        <div class="checkbox-inline">
-                            <label>
-                                <input type="checkbox" value=""  onclick="train_func(this)">
-                                <div class="checkbox_text">
-    قطار
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-3"></div>
+{#                    <div class="col-md-3"></div>#}
                 </td></tr>
 {# =============================== more information ================================== #}
                 <tr class="hidden" id="tour_info"></tr>
@@ -144,9 +98,9 @@
                 <tr class="hidden" id="train_info"></tr>
             </table>
         <div class="col-md-4"></div>
-        <a type="button" href="/search/result/" class="btn btn-success , col-md-4">
+        <button type="submit" class="btn btn-success , col-md-4">
         جستجو
-        </a>
+        </button>
         <div class="col-md-4"></div>
         </form>
     </div>
