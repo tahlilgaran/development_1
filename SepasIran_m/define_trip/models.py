@@ -8,11 +8,11 @@ class Agreement(models.Model):
     kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
 KIND = (
-    ('T', 'تور'),
-    ('TR', 'قطار'),
-    ('A', 'هواپیما'),
-    ('H', 'هتل'),
-    ('R', 'رستوران'),
+    ('tour', 'تور'),
+    ('train', 'قطار'),
+    ('airplane', 'هواپیما'),
+    ('hotel', 'هتل'),
+    ('restaurant', 'رستوران'),
 )
 DEGREE = (
     ('G', 'طلایی'),
@@ -53,7 +53,7 @@ CITY = (
 class Gardesh(models.Model):
     name = models.CharField(max_length=255)
     builder = models.ForeignKey(TourBuilderProfile)
-    kind = models.CharField(max_length=2,choices=KIND)   # t/tr/a/h/r
+    kind = models.CharField(max_length=25,choices=KIND)   # t/tr/a/h/r
     final_rank = models.FloatField(null=True,blank=True)
     order_rank = models.FloatField(null=True,blank=True)
     comment_rank = models.FloatField(null=True,blank=True)
@@ -71,7 +71,7 @@ class Gardesh(models.Model):
 
 
 class TransferDevice(models.Model):
-    kind = models.CharField(max_length=2,
+    kind = models.CharField(max_length=25,
                                       choices=T_KIND)    # a/t/b
     degree = models.CharField(max_length=2,
                                       choices=DEGREE)      # g/s/b
@@ -81,7 +81,7 @@ class TransferDevice(models.Model):
         return "{}-{}".format(self.kind , self.degree)
 
 class Location(models.Model):
-    kind = models.CharField(max_length=2,
+    kind = models.CharField(max_length=25,
                                       choices=L_KIND)    # h/a/m
     degree = models.CharField(max_length=2,
                                       choices=DEGREE)      # g/s/b

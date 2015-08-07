@@ -5,6 +5,7 @@ from buy_cancel.models import *
 from user.models import *
 from django.http import Http404
 import datetime
+from present_trip.forms import SearchForm
 
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
@@ -146,10 +147,18 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
 
 
 
-def search(request , username = '' , ispack = ''):
-    trip = Gardesh.objects.all()
-    return render(request , "search_result.html" , {'trip':trip })
+def search(request , ispack = '' ):
+    returned_dic = {}
+    if request.method == 'GET':
+        search_form = SearchForm()
+        returned_dic['form']=search_form;
+        return render(request,'search.html',returned_dic)
+    else: #request.method == POST
 
-def start_search(request , username =''):
-    return render(request,"search.html" , {'username':username})
+        trip = Gardesh.objects.all()
+        returned_dic['trip']  = trip
+        return render(request , "search_result.html" , returned_dic)
+
+# def (request , username =''):
+#     return render(request,"search.html" , {'username':username})
 # Create your views here.

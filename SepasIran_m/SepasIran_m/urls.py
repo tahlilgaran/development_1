@@ -14,11 +14,11 @@ urlpatterns = [
     # url(r'show/(\w+)/$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)$', 'present_trip.views.show_one_trip'),
     # url(r'show/(\w+)/(\w+)/status/$', 'present_trip.views.show_one_trip_status'),
-    url(r'search/form/$', 'present_trip.views.start_search'),
-    url(r'search/form/(\w+)/$', 'present_trip.views.start_search'),
-    url(r'search/result/$', 'present_trip.views.search'),
-    url(r'search/result/(\w+)/$', 'present_trip.views.search'),
-    url(r'search/result/(\w+)/(\w+)$', 'present_trip.views.search'),
+    # url(r'search/$', 'present_trip.views.start_search'),
+    url(r'search/$', 'present_trip.views.search'),
+    # url(r'search/result/$', 'present_trip.views.search'),
+    # url(r'search/result/(\w+)/$', 'present_trip.views.search'),
+    # url(r'search/result/(\w+)/(\w+)$', 'present_trip.views.search'),
 
     #informing urls:
     # url(r'userpage/$', 'informing.views.account'),
