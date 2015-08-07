@@ -178,8 +178,10 @@ class TrainSeat(models.Model):
 class Restaurant(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     city = models.CharField(max_length=255, choices=CITY)
+    address = models.TextField()
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField()
+
 
     def __str__(self):
         return self.gardesh.name
@@ -200,6 +202,7 @@ class Hotel(models.Model):
     # name=models.CharField(max_length=100) #name hamoon name gardeshsaze nabayad dg in field bashe
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     city = models.CharField(max_length=255 , choices=CITY)
+    address = models.TextField()
     start_day = models.DateField()      # az che roozi bara foroosh mizari
     end_day = models.DateField() #in field bara chie????? FARZANEH
     # other_explain = models.TextField(blank=True , null=True) #farzaneh add
