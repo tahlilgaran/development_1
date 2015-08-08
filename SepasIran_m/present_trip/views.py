@@ -165,34 +165,35 @@ def search(request , ispack = '' ):
             #TODO: tomorrow ba tavajoh be in dade ha search kon.
             for item in kinds:
                 if  item == 'tour':
-                     sub_trip = Tour.objects.filter(source = source , destination = destination
+                     tour = Tour.objects.filter(source = source , destination = destination
                                                     , start__gte = start ,end__lte = end, capacity__gt = 0)
-                     print(sub_trip)
+                     returned_dic['tour'] = tour
                 elif item == 'airplane':
-                    sub_trip = AirPlane.objects.filter(source = source, destination = destination
+                    airplane = AirPlane.objects.filter(source = source, destination = destination
                                                        , start__gte = start , start__lte =end , capacity__gt = 0)
+                    returned_dic['airplane'] = airplane
                 elif item == 'train':
-                    sub_trip = Train.objects.filter(source = source, destination = destination
+                    train = Train.objects.filter(source = source, destination = destination
                                                     ,start__gte = start, start__lte = end , capacity__gt = 0)
+                    returned_dic['train'] = train
                 elif item == 'restaurant':
                     tables = Table.objects.filter(restaurant__city = destination
                                                   , date__gte = start, date__lte = end , full = 0)
-                    sub_trip =[]
+                    restaurant =[]
                     for table in tables:
-                        if not table.restaurant in sub_trip:
-                            sub_trip.append(table.restaurant)
+                        if not table.restaurant in restaurant:
+                            restaurant.append(table.restaurant)
+                    returned_dic['restaurant'] = restaurant
                 elif item == 'hotel':
                     rooms = Room.objects.filter(hotel__city = destination
                                                 , date__gte = start , date__lte = end , full = 0)
-                    sub_trip = []
+                    hotel = []
                     for room in rooms:
-                        if not room.hotel in sub_trip:
-                            sub_trip.append(room.hotel)
-
+                        if not room.hotel in hotel:
+                            hotel.append(room.hotel)
+                    returned_dic['hotel'] = hotel
         else:
             print("error in form getting")
-        trip = Gardesh.objects.all()
-        returned_dic['trip']  = trip
         return render(request , "search_result.html" , returned_dic)
 
 # def (request , username =''):
