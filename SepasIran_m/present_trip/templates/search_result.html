@@ -5,6 +5,29 @@
 {% endblock %}
 {% block content %}
 
+{#    ===========================top part ======================== #}
+<div class="col-md-12">
+    <form class="box" action="" method="post">{% csrf_token %}
+        <ul class="list-group , col-md-4">
+            <li class="col-md-12">{{ form.source.label }}</li>
+            <li class="">{{ form.source }}</li>
+            <li class="col-md-12">{{ form.destination.label }}</li>
+            <li class="">{{ form.destination }}</li>
+        </ul>
+        <ul class="list-group , col-md-4">
+            <li class="col-md-12 ">{{ form.kind.label }}</li>
+            <li class="">{{ form.kind }}</li>
+        </ul>
+        <ul class="list-group , col-md-4">
+            <li class="col-md-12">{{ form.start.label }}</li>
+            <li class="">{{ form.start }}</li>
+            <li class="col-md-12">{{ form.end.label }}</li>
+            <li class="">{{ form.end }}</li>
+        </ul>
+        <button class="btn btn-success" type="submit">جستجوی مجدد</button>
+    </form>
+
+</div>
 {#    =========================== tour =========================== #}
 <div class="col-md-12">
     {% if tour %}

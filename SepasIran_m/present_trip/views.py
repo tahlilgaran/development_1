@@ -184,7 +184,6 @@ def search(request , ispack = '' ):
             end = form.cleaned_data['end']
             kinds = form.cleaned_data['kind']
 
-            #TODO: tomorrow ba tavajoh be in dade ha search kon.
             for item in kinds:
                 if  item == 'tour':
                      tour = Tour.objects.filter(source = source , destination = destination
@@ -214,6 +213,8 @@ def search(request , ispack = '' ):
                         if not room.hotel in hotel:
                             hotel.append(room.hotel)
                     returned_dic['hotel'] = hotel
+
+                returned_dic['form'] = SearchForm(request.POST)
         else:
             print("error in form getting")
         return render(request , "search_result.html" , returned_dic)
