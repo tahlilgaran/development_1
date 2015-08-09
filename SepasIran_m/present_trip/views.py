@@ -19,6 +19,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         trip =''
         pic_list = []
         pic_q = ''
+        html_file = 'one_trip.html'
 
         if kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
@@ -27,14 +28,23 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         elif kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
-            rooms = Room.objects.filter(hotel = trip)
-            returned_dic['rooms'] = rooms #TODO: room haro ba tavajoh be voroodi neshoon bede.
+            all_room_obj = Room.objects.filter(hotel = trip , date__gte = start , date__lte = end)
+
+            rooms = []
+            room_numbers = []
+            for item in all_room_obj:
+                if not item.number in room_numbers:
+                    rooms.append(item)
+                    room_numbers.append(item.number)
+
+            returned_dic['all_room_obj'] = all_room_obj
+            returned_dic['rooms'] = rooms
+            html_file = 'one_trip_hotel.html'
 
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
             all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end )
-            dates = [start.day]
 
             tables = []
             table_numbers = []
@@ -43,13 +53,9 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
                     tables.append(item)
                     table_numbers.append(item.number)
 
-            print(request.GET.get('farzaneh'))
-            print(tables)
-            print(all_table_obj)
-            print(dates)
             returned_dic['all_table_obj'] = all_table_obj
             returned_dic['tables'] = tables
-            returned_dic['dates'] = dates
+            html_file = 'one_trip_restaurant.html'
 
 
         elif kind == 'airplane':
@@ -72,7 +78,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         returned_dic['trip'] = trip
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
-        return render(request,"one_trip.html" , returned_dic)
+        return render(request,html_file , returned_dic)
 
     else:
         print(request.POST.get('returned_id_list'))

@@ -53,318 +53,14 @@
                     <div class="col-md-1"></div>
         </div>
 {#    -------> end top_part #}
-{#*********** ========================= hotel =========================== **************#}
-    {% if kind == 'hotel' %}
+    {% block one_trip_content %}{% endblock %}
 
-        <div id="down_part" class="box , col-md-12">
-
-            <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
-                <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">خدمات هتل</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
-                      <P>{{ trip.gardesh.other_explain }}</P>
-                  </div>
-                </div>
-            </div><!-- /example -->
-
-            <div class="col-md-5">
-                <table class="table">
-                    <thead>هتل {{ trip.gardesh.name }}</thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                شهر:
-                            </td>
-                            <td>{{ trip.city }}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                درجه:
-                            </td>
-                            <td>{{ trip.gardesh.degree }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <form class="col-md-12" action="rooms/" method="GET">{% csrf_token %}
-
-            <button type="button" class="btn btn-warning , col-md-4" data-toggle="modal" data-target="#myModal">
-                    برای مشاهده ی اطلاعات اتاق ها کلید کنید.
-        </button>
-            <div class="col-md-4">
-                <div class="col-md-10"><input type="date" class="col-md-8 , form-control"/></div>
-                <label class="col-md-2">
-تا:
-                </label>
-            </div>
-            <div class="col-md-4">
-                <div class="col-md-10"><input type="date"  class="form-control"/></div>
-                <label class="col-md-2">
-از:
-                </label>
-            </div>
-        </form>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-                    اطلاعات اتاق ها
-                </h4>
-              </div>
-              <div class="modal-body">
-                {% if not rooms %}
-                    متاسفانه در تاریخ مورد نظر اتاق خالی وجود ندارد.
-                {% else %}
-                    {% for room in rooms %}
-                        <div class="box , col-md-12">
-                        <div class="col-md-4">
-                            {% if user.userm.kind == 'gardeshgar' %}
-                                <div class="col-md-12"  style="float: left; direction: ltr">
-                                    <a type="button" href="/cancel/{{ kind }}/{{ room.id }}" class="btn btn-danger , col-md-12"> انصراف</a>
-                                    <a type="button" href="/reserving/{{ kind }}/{{ room.id }}" class="btn btn-warning , col-md-12">رزرو</a>
-                                    <a type="button" href="/purchase/{{ kind }}/{{ room.id }}" class="btn btn-success , col-md-12">خرید</a>
-                                </div>
-                                {% elif user.userm.kind == 'gardeshsaz'%}
-                                   <a type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ room.number }}/status" class="btn btn-info , col-md-12">
-                                   وضعیت گردش
-                                    </a>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-8">
-                            <table class="table ">
-                            <thead>
-                            اتاق
-                            {{ room.number }}
- - تاریخ:
-                            {{ room.date }}
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        ظرفیت اتاق:
-                                    </td>
-                                <td>{{ room.capacity }}
-                                 نفر
-                                </td></tr>
-                                <tr><td>
-                                    قیمت:
-                                </td>
-                                <td>{{ room.cost_perNight }} تومان</td>
-                                </tr>
-
-                            </tbody>
-                            </table>
-                        </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-              </div>
-              <div class="modal-footer">
-                  {% if user.userm.kind != 'gardeshsaz' %}
-                      {% if user.userm.kind != 'gardeshgar'%}
-                          <a type="button" class="btn btn-primary , col-md-3" href="/signIn">ورود</a>
-                              <div class="col-md-9" style="color: red">
-                                    برای خرید باید وارد سایت شوید.
-                              </div>
-                      {% endif %}
-                  {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-    {% endif %}
-
-{#*********** ========================= Restaurant =========================== **************#}
-    {% if kind == 'restaurant' %}
-        <div id="down_part" class="box , col-md-12">
-            <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
-                <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
-                      <P>{{ trip.gardesh.other_explain }}</P>
-                  </div>
-                </div>
-            </div><!-- /example -->
-
-            <div class="col-md-5">
-                <table class="table">
-                    <thead>{{ trip.gardesh.name }}</thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                شرکت گردشگری:
-                            </td>
-                            <td>{{ trip.gardesh.name }}</td>
-                        </tr>
-                        <tr>
-                            <td>
-مکان:
-                            </td>
-                            <td>{{ trip.city }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        <form class="col-md-12" action="rooms/" method="GET">{% csrf_token %}
-
-            <button type="button" class="btn btn-warning , col-md-4" data-toggle="modal" data-target="#myModal">
-برای مشاهده ی میزهای خالی کلیک کنید.
-        </button>
-            <div class="col-md-4">
-                <div class="col-md-10"><input type="date" class="col-md-8 , form-control"/></div>
-                <label class="col-md-2">
-تا:
-                </label>
-            </div>
-            <div class="col-md-4">
-                <div class="col-md-10"><input type="date"  class="form-control"/></div>
-                <label class="col-md-2">
-از:
-                </label>
-            </div>
-        </form>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
-اطلاعات میز ها
-                </h4>
-              </div>
-              <div class="modal-body">
-                {% if not tables %}
-متاسفانه در تاریخ مورد نظر میز خالی وجود ندارد.
-                {% else %}
-                    {% for table in tables %}
-                        <div class="box , col-md-12">
-                        <div class="col-md-12">
-                            <table class="table ">
-                            <thead>
-میز شماره ی
-                            {{ table.number }}
-                            </thead>
-                            <tbody>
-                                <tr><td>
-                                    ظرفیت:
-                                </td>
-                                <td>{{ table.capacity }}</td>
-
-                                <td>
-                                    قیمت:
-                                </td>
-                                <td>{{ table.cost_perClock }} تومان</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <table>
-                            {% for item in all_table_obj %}
-                                {% if forloop.counter == 5 %}
-                                <tr>
-                                {% endif %}
-                                    {% if item.number == table.number %}
-                                        <td><table class="table">{% if item.full == 1 %}
-                                            <tr class="warning">
-                                                <td>
-                                            تاریخ:
-                                                </td>
-                                                <td>{{ item.date }}</td>
-                                            </tr>
-                                            <tr class="info">
-                                                <td>
-                                                    ساعت:
-                                                </td>
-                                                <td>{{ item.start_clock}}</td>
-                                            </tr>
-                                            <tr class="danger">
-                                                <td>وضعیت:</td>
-                                                <td>پر</td>
-                                            </tr>
-                                        {% else %}
-                                            <tr class="warning">
-                                                <td>
-                                            تاریخ:
-                                                </td>
-                                                <td>{{ item.date }}</td>
-                                            </tr>
-                                            <tr class="info">
-                                                <td>
-                                                    ساعت:
-                                                </td>
-                                                <td>{{ item.start_clock}}</td>
-                                            </tr>
-                                            <tr class="success">
-                                                <td>
-                                                <input type="checkbox" class="checkbox" id="{{ item.id }}"/></td>
-                                                <td>خالی</td>
-                                            </tr>
-                                        {% endif %}
-                                            </label>
-                                        </table></td>
-                                    {% endif %}
-                                {% if forloop.counter == 5  %}
-                                </tr>
-                                {% endif %}
-                            {% endfor %}
-                        </table>
-                        </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-              </div>
-              <div class="modal-footer">
-              <form action="" method="post">{% csrf_token %}
-              <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
-                <div class="col-md-4">
-                    {% if user.userm.kind == 'gardeshgar' %}
-                        <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
-                        </div>
-                    {% elif user.userm.kind == 'gardeshsaz'%}
-                        <a type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
-                                   وضعیت گردش
-                        </a>
-                    {% endif %}
-                </div>
-                  {% if user.userm.kind != 'gardeshsaz' %}
-                      {% if user.userm.kind != 'gardeshgar'%}
-                          <a type="button" class="btn btn-primary , col-md-3" href="/signIn">ورود</a>
-                              <div class="col-md-9" style="color: red">
-                                    برای خرید باید وارد سایت شوید.
-                              </div>
-                      {% endif %}
-                  {% endif %}
-
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-    {% endif %}
 {#*********** ========================= Airplane =========================== **************#}
     {% if kind == 'airplane' %}
         <div id="down_part" class="box , col-md-12">
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
+                  <li role="presentation" class="active"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
@@ -412,7 +108,6 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                 <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
                     <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
                     <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
                 </div>
@@ -433,7 +128,7 @@
         <div id="down_part" class="box , col-md-12">
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
+                  <li role="presentation" class="active"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
@@ -481,7 +176,6 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                 <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
                     <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
                     <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
                 </div>
@@ -502,7 +196,8 @@
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
                   <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">درباره مکان</a></li>
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات حرکت</a></li>
+                  <li role="presentation"><a role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات حرکت</a></li>
+                  <li role="presentation"><a role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
@@ -557,7 +252,6 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                 <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/cancel/{{ kind }}/{{ trip.id }}" class="btn btn-danger">انصراف</a>
                     <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
                     <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
                 </div>
@@ -596,6 +290,7 @@
             }
         }
         returned_id_list.value = id_list;
+        console.log(id_list)
     }
 </script>
 {% endblock %}
