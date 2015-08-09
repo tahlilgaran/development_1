@@ -107,18 +107,23 @@
             </div>
 
             {% if user.userm.kind == 'gardeshgar' %}
-                <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
-                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
-                </div>
-            {% elif user.userm.kind == 'gardeshsaz'%}
-                   <a type="button" href="/show/{{ kind }}/{{ trip.id }}/status" class="btn btn-info , col-md-3">
-                   وضعیت گردش
-                    </a>
-            {% else %}
-                <div class="col-md-3" style="color: red">
-                    برای خرید باید وارد سایت شوید.
-                </div>
+                        <div class="col-md-12"  style="float: left; direction: ltr">
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
+                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                        </div>
+                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+
+                                   وضعیت گردش
+                        </button>
+                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                    {% elif user.userm.kind == 'gardeshsaz' %}
+                    {% else %}
+                        <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
+                              <div class="col-md-12" style="color: red">
+                                    برای خرید باید وارد سایت شوید.
+                              </div>
             {% endif %}
 
         </div>
@@ -175,19 +180,24 @@
             </div>
 
             {% if user.userm.kind == 'gardeshgar' %}
-                <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
-                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
-                </div>
-            {% elif user.userm.kind == 'gardeshsaz'%}
-                   <a type="button" href="/show/{{ kind }}/{{ trip.id }}/status" class="btn btn-info , col-md-3">
-                   وضعیت گردش
-                    </a>
-            {% else %}
-                <div class="col-md-3" style="color: red">
-                    برای خرید باید وارد سایت شوید.
-                </div>
-            {% endif %}
+                        <div class="col-md-12"  style="float: left; direction: ltr">
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
+                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                        </div>
+                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+
+                                   وضعیت گردش
+                        </button>
+                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                    {% elif user.userm.kind == 'gardeshsaz' %}
+                    {% else %}
+                        <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
+                              <div class="col-md-12" style="color: red">
+                                    برای خرید باید وارد سایت شوید.
+                              </div>
+                    {% endif %}
         </div>
     {% endif %}
 {#*********** ========================= tour =========================== **************#}{# TODO: namayesh mohtavaye etelaAt Harekar-MAKAN-EZAFE #}
@@ -251,19 +261,24 @@
                 </div>
 
             {% if user.userm.kind == 'gardeshgar' %}
-                <div class="col-md-6"  style="float: left; direction: ltr">
-                    <a type="button" href="/reserving/{{ kind }}/{{ trip.id }}" class="btn btn-warning">رزرو</a>
-                    <a type="button" href="/purchase/{{ kind }}/{{ trip.id }}" class="btn btn-success">خرید</a>
-                </div>
-            {% elif user.userm.kind == 'gardeshsaz'%}
-                   <a type="button" href="/show/{{ kind }}/{{ trip.id }}/status" class="btn btn-info , col-md-3">
-                   وضعیت گردش
-                    </a>
-            {% else %}
-                <div class="col-md-3" style="color: red">
-                    برای خرید باید وارد سایت شوید.
-                </div>
-            {% endif %}
+                        <div class="col-md-12"  style="float: left; direction: ltr">
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
+                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                        </div>
+                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+
+                                   وضعیت گردش
+                        </button>
+                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                    {% elif user.userm.kind == 'gardeshsaz' %}
+                    {% else %}
+                        <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
+                              <div class="col-md-12" style="color: red">
+                                    برای خرید باید وارد سایت شوید.
+                              </div>
+                    {% endif %}
 
         </div>
 

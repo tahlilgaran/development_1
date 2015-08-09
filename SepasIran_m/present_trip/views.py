@@ -15,6 +15,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
     if request.method == "GET":
         returned_dic['kind'] = kind
         returned_dic['user'] = request.user
+
         # returned_dic['username'] = 'username'
         trip =''
         pic_list = []
@@ -78,6 +79,20 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         returned_dic['trip'] = trip
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
+
+
+        # ** access of gardeshsaz **
+        if request.user != '':
+            user_kind = request.user.userm.kind
+            if user_kind == 'gardeshsaz':
+                builder = request.user.userm.bprofile
+                print(builder)
+                trip_builder = trip.gardesh.builder
+                print(trip_builder)
+                if trip_builder == builder:
+                    returned_dic['access'] = True
+                else:
+                    returned_dic['access'] = False
         return render(request,html_file , returned_dic)
 
     else:

@@ -10,7 +10,7 @@
         <div id="down_part" class="box , col-md-12">
             <div class="bs-example bs-example-tabs , col-md-7" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                  <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
+                  <li role="presentation" class="active"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">اطلاعات بیشتر</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
@@ -138,27 +138,30 @@
               <div class="modal-footer">
               <form action="" method="post">{% csrf_token %}
               <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
+                <div class="col-md-4"></div>
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
                             <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz'%}
-                        <a type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+                    {% elif user.userm.kind == 'gardeshsaz' and access == true%}
+                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+
                                    وضعیت گردش
-                        </a>
-                    {% endif %}
-                </div>
-                  {% if user.userm.kind != 'gardeshsaz' %}
-                      {% if user.userm.kind != 'gardeshgar'%}
-                          <a type="button" class="btn btn-primary , col-md-3" href="/signIn">ورود</a>
-                              <div class="col-md-9" style="color: red">
+                        </button>
+                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                    {% elif user.userm.kind == 'gardeshsaz' %}
+
+                    {% else %}
+                        <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
+                              <div class="col-md-12" style="color: red">
                                     برای خرید باید وارد سایت شوید.
                               </div>
-                      {% endif %}
-                  {% endif %}
-
+                    {% endif %}
+                </div>
+                <div class="col-md-4"></div>
               </form>
               </div>
             </div>
