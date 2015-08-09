@@ -10,7 +10,7 @@ from present_trip.forms import SearchForm
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
 
-def show_one_trip(request, kind = ''  , id = 0):
+def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today() , end = datetime.datetime.today()):
     returned_dic = {}
     if request.method == "GET":
         returned_dic['kind'] = kind
@@ -33,9 +33,24 @@ def show_one_trip(request, kind = ''  , id = 0):
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
-            tables = Table.objects.filter(restaurant = trip)
+            all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end )
+            dates = [start.day]
+
+            tables = []
+            table_numbers = []
+            for item in all_table_obj:
+                if not item.number in table_numbers:
+                    tables.append(item)
+                    table_numbers.append(item.number)
+
+            print(request.GET.get('farzaneh'))
             print(tables)
+            print(all_table_obj)
+            print(dates)
+            returned_dic['all_table_obj'] = all_table_obj
             returned_dic['tables'] = tables
+            returned_dic['dates'] = dates
+
 
         elif kind == 'airplane':
             trip = AirPlane.objects.filter(id = id)[0]
@@ -60,6 +75,7 @@ def show_one_trip(request, kind = ''  , id = 0):
         return render(request,"one_trip.html" , returned_dic)
 
     else:
+        print(request.POST.get('returned_id_list'))
         return None
 
 
