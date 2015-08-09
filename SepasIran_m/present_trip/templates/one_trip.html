@@ -310,7 +310,7 @@
                                             </tr>
                                             <tr class="success">
                                                 <td>
-                                                <input type="checkbox" class="checkbox"/></td>
+                                                <input type="checkbox" class="checkbox" id="{{ item.id }}"/></td>
                                                 <td>خالی</td>
                                             </tr>
                                         {% endif %}
@@ -333,7 +333,7 @@
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="sumbit" href="/reserving/{{ kind }}/{{ table.id }}" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz'%}
@@ -590,9 +590,9 @@
         id_list = [];
         check_boxes = document.querySelectorAll('.checkbox');
         returned_id_list = document.querySelector('.returned_id_list');
-        for (var i = 0 ; i < check_boxes.size ; i++){
-            if(check_boxes[i].checked){
-                id_list.push(check_boxes[i]);
+        for (var i = 0 ; i < check_boxes.length ; i++){
+            if(check_boxes[i].checked == true){
+                id_list.push(check_boxes[i].id);
             }
         }
         returned_id_list.value = id_list;
