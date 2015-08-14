@@ -81,28 +81,30 @@ urlpatterns = [
 
    url(r'purchase/restaurant/<(P?<id>\d+)/<(p?<capacity>\d+)>/$', 'buy_cancel.views.purchaseResturant'),
      url(r'purchase/restaurant/(\d+)/$', 'buy_cancel.views.purchaseResturant'),
+      url(r'payment/restaurant/(\d+)/$', 'accounting.views.paymentRestaurant'),
+       url(r'payment/restaurant/confirm/(\d+)/$', 'accounting.views.confirmRestaurant'),
+
    url(r'purchase/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.purchaseHotel'),
     url(r'purchase/hotel/(\d+)/$', 'buy_cancel.views.purchaseHotel'),
-   url(r'purchase/tour/<(P?<tour_id>\d+)>/$', 'buy_cancel.views.purchaseTour'),
-    url(r'purchase/tour/(\d+)/$', 'buy_cancel.views.purchaseTour'),
-   url(r'purchase/airplane/<(P?<id>\d+)>/$', 'buy_cancel.views.purchaseAirplane'),
-    url(r'purchase/airplane/(\d+)/$', 'buy_cancel.views.purchaseAirplane'),
+     url(r'payment/hotel/(\d+)/$', 'accounting.views.paymentHotel'),
+      url(r'payment/hotel/confirm/(\d+)/$', 'accounting.views.confirmHotel'),
+
+
+   url(r'purchase/airplane/(\d+)/$', 'buy_cancel.views.purchaseAirplane'),
+    url(r'payment/airplane/(\d+)/$', 'accounting.views.paymentAirplane'),
+     url(r'payment/airplane/confirm/(\d+)/$', 'accounting.views.confirmAirplane'),
+
    url(r'purchase/train/<(P?<id>\d+)>/$', 'buy_cancel.views.purchaseTrain'),
     url(r'purchase/train/(\d+)/$', 'buy_cancel.views.purchaseTrain'),
-   #url(r'purchase/(<P?<kind>\w+>)/confirm$', 'buy_cancel.views.confirmPurchase'),
+     url(r'payment/train/(\d+)/$', 'accounting.views.paymentTrain'),
+      url(r'payment/train/confirm/(\d+)/$', 'accounting.views.confirmTrain'),
 
-   # url(r'reserve/([service][tour])/$', 'buy_cancel.views.reserve'),
-  # url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
-  # url(r'purchase/(\w+)/$', 'buy_cancel.views.purchase'),
-  # url(r'purchase/$', 'buy_cancel.views.purchase'),
- #  url(r'purchase/(P?<tour_id>\d+)/$', 'buy_cancel.views.purchase'),
- #   url(r'cancel/(\w+)/$', 'accounting.views.cancel'),
-   url(r'payment/tour/(P?<tour_id>\d+)/$', 'accounting.views.paymentTour'),
-     url(r'payment/tour/(\d+)/$', 'accounting.views.paymentTour'),
-   # url(r'payment/Confirm/(P?<id>\d+)/$', 'accounting.views.confirm'),
-   # url(r'payment/$', 'accounting.views.payment'),
-   url(r'payment/tour/confirm/(\d+)/$', 'accounting.views.confirmTour'),
-    url(r'payment/$', 'accounting.views.ozviyat'),
+   #url(r'purchase/(<P?<kind>\w+>)/confirm$', 'buy_cancel.views.confirmPurchase'),
+     url(r'purchase/tour/(\d+)/$', 'buy_cancel.views.purchaseTour'),
+      url(r'payment/tour/(\d+)/$', 'accounting.views.paymentTour'),
+       url(r'payment/tour/confirm/(\d+)/$', 'accounting.views.confirmTour'),
+
+     url(r'payment/$', 'accounting.views.ozviyat'),
 
    # url(r'payment/confirm/$', 'accounting.views.confirm'),
    url(r'^manager/', include('manager_dashboard.urls')),

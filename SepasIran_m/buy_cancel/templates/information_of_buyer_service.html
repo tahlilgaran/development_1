@@ -8,26 +8,29 @@
                    <!-- <div class="col-md-10">-->
 
                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما: {{ username }}</h2>
-
+                        <p> {% if wrong == True %}
+                            ظرفیت خالی به میزان کافی وجود ندارد
+                            {% endif %}
+                        </p>
 <!--###############################----HOTEL-----#########################################################################-->
                      {% if kind == 'hotel' %}
                             <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}</div>
 
 
                             <div><span style="font-weight: bold;">شماره ی اتاق: </span>{{ room.number }}</div>
-                            <div><span style="font-weight: bold;">قیمت اتاق:</span>{{ room.cost_perNight }}</div>
-                            <div><span style="font-weight: bold;">ظرفیت اتاق:</span>{{ room.capacity }}</div>
+                            <div><span style="font-weight: bold;">قیمت اتاق:</span>{{ room.cost_perNight }}تومان</div>
+                            <div><span style="font-weight: bold;">ظرفیت اتاق:</span>{{ room.capacity }}نفر</div>
 
 
 
                              <div id="down_part" class="col-md-12" style="right: 20px;">
-                                         <form action="reserveing/status/hotel/{{ room.id }}/" method="POST">
+                                         <form action="/payment/hotel/{{ room.id }}/" method="POST">
 
                                             {%  csrf_token %}
                                             <p>
                                                 <!--<div><span style="font-weight: bold;">مدت زمان اقامت:</span>{{ hotelform.num_day }} روز</div>-->
 
-                                                <span style="font-weight: bold;">تعداد افراد:</span>
+                                                <span style="font-weight: bold;">تعداد رزرو کنندگان:</span>
                                                  {{ form.number }}
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
@@ -48,11 +51,11 @@
                                <div style=";margin-top: 40px;"><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}</div>
 
 
-                                <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}</div>
-                                <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}</div>
+                                <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}تومان</div>
+                                <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}نفر</div>
 
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/resturant/{{ table.id }}/" method="POST">
+                                     <form action="/payment/restaurant/{{ table.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                         <p>
@@ -82,18 +85,18 @@
 
 
 
-                                <div><span style="font-weight: bold;">قیمت:</span>{{ train.cost}}ریال</div>
+                                <div><span style="font-weight: bold;">قیمت:</span>{{ train.cost}}تومان</div>
                                 <div><span style="font-weight: bold;">تاریخ حرکت:</span>{{ train.start }}</div>
                                 <div><span style="font-weight: bold;">زمان حرکت:</span>{{ train.start_t }}</div>
                                      </div>
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/train/{{ train.id }}/" method="POST">
+                                     <form action="/payment/train/{{ train.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                        <p>
 
 
-                                                <span style="font-weight: bold;">تعداد افراد:</span>
+                                                <span style="font-weight: bold;">تعداد خریداران:</span>
                                                  {{ form.number }}
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
@@ -116,19 +119,19 @@
 
 
 
-                                <div><span style="font-weight: bold;">قیمت:</span>{{ airplane.cost}}ریال</div>
+                                <div><span style="font-weight: bold;">قیمت:</span>{{ airplane.cost}}تومان</div>
                                 <div><span style="font-weight: bold;">تاریخ حرکت:</span>{{ airplane.start }}</div>
                                 <div><span style="font-weight: bold;">زمان حرکت:</span>{{ airplane.start_t }}</div>
                                      </div>
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/airplane/{{ airplane.id }}" method="POST">
+                                     <form action="/payment/airplane/{{ airplane.id }}/" method="POST">
 
                                         {%  csrf_token %}
                                        <p>
 
 
-                                                <span style="font-weight: bold;">تعداد افراد:</span>
-                                                 {{ form.number }}
+                                                <span style="font-weight: bold;">تعداد خریداران:</span>
+                                                 {{ form.number }}نفر
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
                                                 <p> توجه : اولین نفری که نام او در فرم اطلاعات خریداران وارد میشود به عنوان سرپرست محسوب میشود.</p>

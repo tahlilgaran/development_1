@@ -8,7 +8,10 @@
 <div  class="col-md-12 container">
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
-
+                        <p> {% if wrong == True %}
+                            ظرفیت خالی به میزان کافی وجود ندارد
+                            {% endif %}
+                        </p>
                         <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما{{ username }}</h2>
                         <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ gardesh.name }}
 
@@ -23,7 +26,7 @@
 
                             {%  csrf_token %}
                             <p>
-                            <span style="font-weight: bold;">تعداد افراد:</span>
+                            <span style="font-weight: bold;">تعداد افراد رزرو کننده:</span>
 
                                 {{ form.number }}
 

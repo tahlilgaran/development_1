@@ -6,15 +6,17 @@
 
 {% block content %}
 <div  class="col-md-12 container">
-            <div id="top_part" class="col-md-12">
-                   <!-- <div class="col-md-10">-->
 
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
 
                         <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما: {{ username }}</h2>
+                        <p> {% if wrong == True %}
+                            ظرفیت خالی به میزان کافی وجود ندارد
+                            {% endif %}
+                        </p>
                         <div style="margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ tour.gardesh.name }} </div>
-                        <div ><span style="font-weight: bold;">قیمت برای هر نفر:</span> {{ tour.cost }}ریال</div>
+                        <div ><span style="font-weight: bold;">قیمت برای هر نفر:</span> {{ tour.cost }}تومان</div>
 
 
 
@@ -23,9 +25,9 @@
                          <form action="/payment/tour/{{ tour.id }}/" method="POST">
                              {%  csrf_token %}
                             <p>
-                            <span style="font-weight: bold;">تعداد افراد:</span>
+                            <span style="font-weight: bold;">تعداد خریداران:</span>
 
-                                {{ form.number }}
+                                {{ form.number }}نفر
 
 
                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>

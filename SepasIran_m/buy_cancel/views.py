@@ -52,7 +52,7 @@ def purchaseAirplane(request ,id=''):
              'username':username,
              'kind':'airplane',
              'airplane':airplane,
-              'form':form,
+             'form':form,
              'peopleform':peopleform,
              'gardesh': gardesh,
             })
@@ -128,19 +128,11 @@ def reserveTour(request ,id='',number=''):
     return render(request, "information_of_reserver_tour.html" , {
              'username':username,
              'tour':tour,
-             'gardesh':gardesh,
              'form':form,
              'peopleform':peopleform,
     })
 
-    return render(request, "information_of_reserver_tour.html" , {
-             'username':username,
-             'tour':tour,
-             'gardesh':gardesh,
-             'form':form,
-             'peopleform':peopleform,
-             'isclick': True,
-    })
+
 
 
 def reserveAirplane(request ,id=''):
@@ -207,31 +199,226 @@ def statusReserve(request,kind='', id=''):
     first_name = request.POST.get("first_name")
     last_name = request.POST.get("last_name")
     melli_num =request.POST.get("melli_number")
-    tour = Tour.objects.get(id = id)
-    gardesh = tour.gardesh
 
-    #tour.capacity = tour.capacity - int(number)
-    #tour.entire_capacity= tour.entire_capacity-int(number)
-    #tour.save()
-    number=int(number)
-    for i in range(number):
+    if kind == 'tour':
 
-        userm=request.user.userm
-        gardeshgar=TouristProfile.objects.get(user =userm)
-        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
-                                               first_name = first_name,last_name= last_name,
-                                               meli_code = melli_num,
-                                               peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
-        wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
+        tour = Tour.objects.get(id = id)
+        gardesh = tour.gardesh
+        if tour.entire_capacity >= int(number):
+            if tour.capacity >= int(number):
+                tour.capacity = tour.capacity - int(number)
+                tour.entire_capacity= tour.entire_capacity-int(number)
+                tour.save()
+
+                number=int(number)
+                for i in range(number):
+
+                    userm=request.user.userm
+                    gardeshgar=TouristProfile.objects.get(user =userm)
+                    wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                           first_name = first_name,last_name= last_name,
+                                                           meli_code = melli_num,
+                                                           peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
+                    wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
+        else:
+             wrong=True
+             form=numberForm(request.POST)
+             peopleform=peopleForm(request.POST)
+
+             return render(request, "information_of_reserver_tour.html" , {
+                         'username':username,
+                         'tour':tour,
+                         'gardesh':gardesh,
+                         'form':form,
+                         'peopleform':peopleform,
+                         'wrong': wrong,
+             })
+
+        return render(request , "reserve_status.html",{
+                    'username':username,
+                    'number': number,
+                    'kind': kind,
+                    'gardesh': gardesh,
+                    'tour': tour,
+        })
 
 
-    return render( request , "reserve_status.html",{
-                'username':username,
-                'number': number,
-                'kind': kind,
-                'gardesh': gardesh,
-                'tour': tour,
-    })
+    if kind == 'hotel':
+
+            hotel = Hotel.objects.get(id = id)
+            gardesh = hotel.gardesh
+            if hotel.entire_capacity >= int(number):
+                if hotel.capacity >= int(number):
+                    hotel.capacity = hotel.capacity - int(number)
+                    hotel.entire_capacity= hotel.entire_capacity-int(number)
+                    hotel.save()
 
 
+                    for i in range(number):
+
+                        userm=request.user.userm
+                        gardeshgar=TouristProfile.objects.get(user =userm)
+                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                               first_name = first_name,last_name= last_name,
+                                                               meli_code = melli_num,
+                                                               peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
+                        wantedtour = Wanted_Tour.objects.create(gardesh = hotel,info=wantedtrip);
+
+            else:
+             wrong=True
+             form=numberForm(request.POST)
+             peopleform=peopleForm(request.POST)
+
+             return render(request, "information_of_reserver_service.html" , {
+                         'username':username,
+                         'kind': kind,
+                         'hotel':hotel,
+                         'gardesh':gardesh,
+                         'form':form,
+                         'peopleform':peopleform,
+                         'wrong': wrong,
+            })
+            return render( request , "reserve_status.html",{
+                        'username':username,
+                        'number': number,
+                        'kind': kind,
+                        'gardesh': gardesh,
+                        'hotel': hotel,
+            })
+
+    if kind == 'restaurant':
+
+            restaurant = Restaurant.objects.get(id = id)
+            gardesh = restaurant.gardesh
+            if restaurant.entire_capacity >= int(number):
+                if restaurant.capacity >= int(number):
+                    restaurant.capacity = restaurant.capacity - int(number)
+                    restaurant.entire_capacity= restaurant.entire_capacity-int(number)
+                    restaurant.save()
+
+                    number=int(number)
+                    for i in range(number):
+
+                        userm=request.user.userm
+                        gardeshgar=TouristProfile.objects.get(user =userm)
+                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                               first_name = first_name,last_name= last_name,
+                                                               meli_code = melli_num,
+                                                               peygiry_code = 'restaurant'+'-'+str(restaurant.id)+'-'+request.user.username)
+                        wantedrestaurant = Wanted_restaurant.objects.create(gardesh = restaurant,info=wantedtrip);
+               # else render
+            else:
+                 wrong=True
+                 form=numberForm(request.POST)
+                 peopleform=peopleForm(request.POST)
+
+                 return render(request, "information_of_reserver_service.html" , {
+                             'username':username,
+                             'restaurant':restaurant,
+                             'kind':kind,
+                             'gardesh':gardesh,
+                             'form':form,
+                             'peopleform':peopleform,
+                             'wrong': wrong,
+            })
+            return render( request , "reserve_status.html",{
+                        'username':username,
+                        'number': number,
+                        'kind': kind,
+                        'gardesh': gardesh,
+                        'tour': tour,
+            })
+
+
+    if kind == 'airplane':
+
+            airplane = AirPlane.objects.get(id = id)
+            gardesh = airplane.gardesh
+            if airplane.entire_capacity >= int(number):
+                if airplane.capacity >= int(number):
+                    airplane.capacity = airplane.capacity - int(number)
+                    airplane.entire_capacity= airplane.entire_capacity-int(number)
+                    airplane.save()
+                    number=int(number)
+                    seats= AirplaneSeat.objects.filter(AirPlane = airplane).filter(full = False)[number]
+
+                    for i in range(number):
+                        seats[i].full=True
+
+                    for i in range(number):
+
+                        userm=request.user.userm
+                        gardeshgar=TouristProfile.objects.get(user =userm)
+                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                               first_name = first_name,last_name= last_name,
+                                                               meli_code = melli_num,
+                                                               peygiry_code = 'airplane'+'-'+str(airplane.id)+'-'+request.user.username)
+                        wantedairplane = Wanted_airplane.objects.create(gardesh = airplane,info=wantedtrip);
+               # else render
+            else:
+
+                 wrong=True
+                 form=numberForm(request.POST)
+                 peopleform=peopleForm(request.POST)
+
+                 return render(request, "information_of_reserver_service.html" , {
+                             'username':username,
+                             'airplane':airplane,
+                             'kind':kind,
+                             'gardesh':gardesh,
+                             'form':form,
+                             'peopleform':peopleform,
+                             'wrong': wrong,
+            })
+            return render( request , "reserve_status.html",{
+                        'username':username,
+                        'number': number,
+                        'kind': kind,
+                        'gardesh': gardesh,
+                        'airplane': airplane,
+            })
+
+    if kind == 'train':
+
+            train = Train.objects.get(id = id)
+            gardesh = train.gardesh
+            if train.entire_capacity >= int(number):
+                if train.capacity >= int(number):
+                    train.capacity = train.capacity - int(number)
+                    train.entire_capacity= train.entire_capacity-int(number)
+                    train.save()
+
+                    number=int(number)
+                    for i in range(number):
+
+                        userm=request.user.userm
+                        gardeshgar=TouristProfile.objects.get(user =userm)
+                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                               first_name = first_name,last_name= last_name,
+                                                               meli_code = melli_num,
+                                                               peygiry_code = 'train'+'-'+str(train.id)+'-'+request.user.username)
+                        wantedtrain = Wanted_train.objects.create(gardesh = train,info=wantedtrip);
+               # else render
+            else:
+
+                 wrong=True
+                 form=numberForm(request.POST)
+                 peopleform=peopleForm(request.POST)
+
+                 return render(request, "information_of_reserver_service.html" , {
+                             'username':username,
+                             'train':train,
+                             'kind':kind,
+                             'gardesh':gardesh,
+                             'form':form,
+                             'peopleform':peopleform,
+                             'wrong': wrong,
+            })
+            return render( request , "reserve_status.html",{
+                        'username':username,
+                        'number': number,
+                        'kind': kind,
+                        'gardesh': gardesh,
+                        'train': train,
+            })
 
