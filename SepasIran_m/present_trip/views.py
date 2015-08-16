@@ -82,7 +82,10 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
 
 
         # ** access of gardeshsaz **
-        if request.user != '':
+        print(request.user)
+        if request.user == 'AnonymousUser':
+            print('error')
+        else:
             user_kind = request.user.userm.kind
             if user_kind == 'gardeshsaz':
                 builder = request.user.userm.bprofile

@@ -138,7 +138,6 @@
                         </div>
                         </div>
                     {% endfor %}
-                {% endif %}
               </div>
 
               <div class="modal-footer">
@@ -148,16 +147,16 @@
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('reserve')">رزرو</button>
+                            <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('buy')">خرید</button>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and access == true %}
-                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+                        <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
 
                                    وضعیت گردش
                         </button>
-                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
-                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('sell')">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('edit')">تغییر اطلاعات گردش</button>
                     {% elif user.userm.kind == 'gardeshsaz' %}
                     {% else %}
                         <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
@@ -169,6 +168,7 @@
                 <div class="col-md-4"></div>
               </form>
               </div>
+                {% endif %}
             </div>
           </div>
         </div>

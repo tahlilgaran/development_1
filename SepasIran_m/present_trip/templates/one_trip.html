@@ -182,7 +182,7 @@
             {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
                             <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                            <button type="submit" class="btn btn-success , col-md-12">خرید</button>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and access == true %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
@@ -262,16 +262,16 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('reserve')">رزرو</button>
+                            <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('buy')">خرید</button>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and access == true %}
-                        <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
+                        <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
 
                                    وضعیت گردش
                         </button>
-                        <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">فروش در محل عرضه</button>
-                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('sell')">فروش در محل عرضه</button>
+                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('edit')">تغییر اطلاعات گردش</button>
                     {% elif user.userm.kind == 'gardeshsaz' %}
                     {% else %}
                         <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>
@@ -295,10 +295,14 @@
 
 {% block script %}
 <script>
-    function get_checked(){
+    function get_checked(text){
         id_list = [];
         check_boxes = document.querySelectorAll('.checkbox');
         returned_id_list = document.querySelector('.returned_id_list');
+
+        status_input = document.querySelector('.status');
+        status_input.value = text;
+
         for (var i = 0 ; i < check_boxes.length ; i++){
             if(check_boxes[i].checked == true){
                 id_list.push(check_boxes[i].id);
