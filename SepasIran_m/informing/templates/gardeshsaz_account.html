@@ -21,7 +21,8 @@
                     {% for item in hotel_list %}
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/hotel/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                                <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/hotel/{{ item.id }}/"></button></div>
 هتل
                         {{ item.hotel.gardesh.name }}
                         {% if user_kind == 'gardeshsaz' %}
@@ -38,7 +39,8 @@
                     {% for item in restaurant_list %}
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/restaurant/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                                <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/restaurant/{{ item.id }}/"></button></div>
 رستوران
                         {{ item.restaurant.gardesh.name }}
                         {% if user_kind == 'gardeshsaz' %}

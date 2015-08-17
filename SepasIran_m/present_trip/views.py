@@ -12,16 +12,15 @@ def home(request , username = ''):
 
 def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',start_day='',end_year='',end_month='',end_day=''):
     returned_dic = {}
+    returned_dic['kind'] = kind
+    returned_dic['user'] = request.user
+
+    trip =''
+    pic_list = []
+    pic_q = ''
+    html_file = 'one_trip.html'
+
     if request.method == "GET":
-        returned_dic['kind'] = kind
-        returned_dic['user'] = request.user
-
-        # returned_dic['username'] = 'username'
-        trip =''
-        pic_list = []
-        pic_q = ''
-        html_file = 'one_trip.html'
-
         if kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
@@ -29,8 +28,12 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         elif kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
-            start = datetime.datetime(int(start_year),int(start_month),int(start_day))
-            end = datetime.datetime(int(end_year),int(end_month),int(end_day))
+            if start_year == '':
+                start = request.GET.get('start')
+                end = request.GET.get('end')
+            else:
+                start = datetime.datetime(int(start_year),int(start_month),int(start_day))
+                end = datetime.datetime(int(end_year),int(end_month),int(end_day))
             all_room_obj = Room.objects.filter(hotel = trip , date__gte = start , date__lte = end)
 
             rooms = []
@@ -47,8 +50,12 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
-            start = datetime.datetime(int(start_year),int(start_month),int(start_day))
-            end = datetime.datetime(int(end_year),int(end_month),int(end_day))
+            if start_year == '':
+                start = request.GET.get('start')
+                end = request.GET.get('end')
+            else:
+                start = datetime.datetime(int(start_year),int(start_month),int(start_day))
+                end = datetime.datetime(int(end_year),int(end_month),int(end_day))
             all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end )
 
             tables = []
@@ -85,9 +92,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
 
         return render(request,html_file , returned_dic)
 
-    else:
-        print(request.POST.get('returned_id_list'))
-        return None
+
 
 
 
