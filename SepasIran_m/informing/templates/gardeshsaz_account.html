@@ -38,7 +38,7 @@
                     {% for item in restaurant_list %}
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                                <a href="/show/restaurant/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
 رستوران
                         {{ item.restaurant.gardesh.name }}
                         {% if user_kind == 'gardeshsaz' %}
@@ -57,7 +57,7 @@
                     {% for item in airplane_list %}
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                                <a href="/show/airplane/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
 هواپیما
                         {{ item.gardesh.name }}
 مبدا
@@ -74,7 +74,7 @@
                     {% for item in train_list %}
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+                                <a href="/show/train/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
 قطار
                         {{ item.gardesh.name }}
 مبدا
