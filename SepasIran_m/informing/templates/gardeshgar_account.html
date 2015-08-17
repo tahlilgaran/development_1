@@ -1,0 +1,205 @@
+{% extends 'account.html' %}
+{% load staticfiles %}
+{% block item_list %}
+    {% if tour_list %}
+                    <h3>تور:</h3>
+                    {% for item in tour_list %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record"></a></div>
+زمان برگزاری تور
+                        {{ item.gardesh.name }}
+                        {{ item.start }}
+                         الی
+                        {{ item.end }}
+
+                         می باشد.
+
+                        </li>
+                        </div>
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in tour_list_all %}
+                                {% if one.gardesh == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            {% if one.info.status == 'reserve' %}
+                                            <a type="button" class="col-md-6 , btn btn-success" href="{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% elif one.info.status == 'buy' %}
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ one.info.first_name }} {{ one.info.last_name }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if hotel_list %}
+                    <h3>هتل:</h3>
+                    {% for item in hotel_list %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/hotel/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+هتل
+                        {{ item.gardesh.name }}
+                        </li>
+                        </div>
+
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in hotel_list_all %}
+                                {% if one.gardesh.hotel == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            {% if one.info.status == 'reserve' %}
+                                            <a type="button" class="col-md-6 , btn btn-success" href="{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% elif one.info.status == 'buy' %}
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            اتاق
+                                            {{ one.gardesh.number }}
+                                            تاریخ
+                                            {{ one.gardesh.date }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if restaurant_list %}
+                    <h3>رستوران:</h3>
+                    {% for item in restaurant_list %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+رستوران
+                        {{ item.gardesh.name }}
+                        </li>
+                        </div>
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in restaurant_list_all %}
+                                {% if one.gardesh.restaurant == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            {% if one.info.status == 'reserve' %}
+                                            <a type="button" class="col-md-6 , btn btn-success" href="{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% elif one.info.status == 'buy' %}
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            میز
+                                            {{ one.gardesh.number }}
+                                            تاریخ
+                                            {{ one.gardesh.date }}
+                                            ساعت
+                                            {{ one.gardesh.start_clock }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if airplane_list %}
+                    <h3>هواپیما:</h3>
+                    {% for item in airplane_list %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/airplane/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+هواپیما
+                        {{ item.gardesh.name }}
+مبدا
+                        {{ item.source }}
+مقصد
+                        {{ item.destination }}
+تاریخ
+                        {{ item.start }}
+                        </li>
+                        </div>
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in airplane_list_all %}
+                                {% if one.gardesh.airplane == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            {% if one.info.status == 'reserve' %}
+                                            <a type="button" class="col-md-6 , btn btn-success" href="{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% elif one.info.status == 'buy' %}
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ one.info.first_name }} {{ one.info.last_name }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if train_list %}
+                    <h3>قطار:</h3>
+                    {% for item in train_list %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/train/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+قطار
+                        {{ item.gardesh.name }}
+مبدا
+                        {{ item.source }}
+مقصد
+                        {{ item.destination }}
+تاریخ
+                        {{ item.start }}
+                        </li>
+                        </div>
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in train_list_all %}
+                                {% if one.gardesh.train == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            {% if one.info.status == 'reserve' %}
+                                            <a type="button" class="col-md-6 , btn btn-success" href="{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% elif one.info.status == 'buy' %}
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="{{ one.info.id }}">انصراف</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ one.info.first_name }} {{ one.info.last_name }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+     {% endif %}
+{% endblock %}
