@@ -67,9 +67,8 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
             trip = Train.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
 
-        elif kind == 'pack':
-            return render(request , "one_trip.html", {'kind':kind})
-
+        # elif kind == 'pack':
+        #     return render(request , "one_trip.html", {'kind':kind})
 
         if not pic_q:
             pic_list.append(trip.gardesh.builder.user.picture)
@@ -80,22 +79,6 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
 
-
-        # ** access of gardeshsaz **
-        print(request.user)
-        if request.user == 'AnonymousUser':
-            print('error')
-        else:
-            user_kind = request.user.userm.kind
-            if user_kind == 'gardeshsaz':
-                builder = request.user.userm.bprofile
-                print(builder)
-                trip_builder = trip.gardesh.builder
-                print(trip_builder)
-                if trip_builder == builder:
-                    returned_dic['access'] = True
-                else:
-                    returned_dic['access'] = False
         return render(request,html_file , returned_dic)
 
     else:
@@ -182,8 +165,6 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
         return render(request , html_file , return_dic)
     else:
         return None
-
-
 
 
 

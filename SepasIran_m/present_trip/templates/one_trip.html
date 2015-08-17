@@ -111,7 +111,7 @@
                             <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
 
                                    وضعیت گردش
@@ -184,7 +184,7 @@
                             <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             <button type="submit" class="btn btn-success , col-md-12">خرید</button>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
 
                                    وضعیت گردش
@@ -265,7 +265,7 @@
                             <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">خرید</button>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
 
                                    وضعیت گردش
