@@ -141,14 +141,18 @@
               </div>
 
               <div class="modal-footer">
-              <form action="" method="post">{% csrf_token %}
-              <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('reserve')">رزرو</button>
-                            <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('buy')">خرید</button>
+                            <form action="" method="post">{% csrf_token %}
+                                <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
+                                <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked('reserve')">رزرو</button>
+                            </form>
+                            <form action="" method="post">{% csrf_token %}
+                                <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
+                                <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked('buy')">خرید</button>
+                            </form>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and access == true %}
                         <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
@@ -166,7 +170,6 @@
                     {% endif %}
                 </div>
                 <div class="col-md-4"></div>
-              </form>
               </div>
                 {% endif %}
             </div>
