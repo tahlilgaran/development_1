@@ -207,6 +207,54 @@
 {% endblock %}
 
 {% block current_trip %}
+    {% if current_tour %}
+     <div class="col-md-6">
+        <div class=" panel panel-info">
+        <div class="panel-heading">
+                <h4 class="panel-title">
+                    تور در حال اجرا
+                </h4>
+            </div>
 
+            <div class="panel-body">
+
+        {% for item in current_tour %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record"></a></div>
+زمان برگزاری تور
+                        {{ item.gardesh.name }}
+                        {{ item.start }}
+                         الی
+                        {{ item.end }}
+
+                         می باشد.
+
+                        </li>
+                        </div>
+                        <div class="col-md-12">
+                        <ul>
+                            {% for one in current_tour_all %}
+                                {% if one.gardesh == item %}
+                                    <li class="col-md-12">
+                                        <div class="col-md-6">
+                                            <a type="button" class="col-md-12 , btn btn-info" href="{{ one.gardesh.id }}">
+                                                نظر دهی برخط
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ one.info.first_name }} {{ one.info.last_name }}
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endfor %}
+            </div>
+    </div>
+    </div>
+    {% endif %}
 {% endblock %}
 {% block nazarsangi %}{% endblock %}

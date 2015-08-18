@@ -66,6 +66,17 @@ def account(requst):
             returned_dic['restaurant_list_all'] = restaurant_list_all
             returned_dic['user'] = user
 
+
+            # current_trip:
+            current_tour_all = Wanted_Tour.objects.filter(info__gardeshgar = user , gardesh__start__lte = now , gardesh__end__gte = now)
+            current_tour = []
+            for item in current_tour_all:
+                if not item.gardesh in current_tour:
+                    current_tour.append(item.gardesh)
+
+            returned_dic['current_tour'] = current_tour
+            returned_dic['current_tour_all'] = current_tour_all
+
             return render(requst , 'gardeshgar_account.html' , returned_dic)
 
 
