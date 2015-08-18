@@ -18,37 +18,38 @@
 
 <!--###############################----HOTEL-----#########################################################################-->
                      {% if kind == 'hotel' %}
-                            <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}</div>
+                             <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}</div>
 
-
+                         <div class="col-md-12">
+                                {% for room in roomList %}
+                                    <div class="col-md-3" style="direction: rtl;float: right">
                             <div><span style="font-weight: bold;">شماره ی اتاق: </span>{{ room.number }}</div>
                             <div><span style="font-weight: bold;">قیمت اتاق:</span>{{ room.cost_perNight }}تومان</div>
                             <div><span style="font-weight: bold;">ظرفیت اتاق:</span>{{ room.capacity }}نفر</div>
-
-
+                            <div><span style="font-weight: bold;">تاریخ اتاق:</span>{{ room.date}}</div>
+                                </div>
+                                {% endfor %}
 
                              <div id="down_part" class="col-md-12" style="right: 20px;">
-                                         <form action="reserving/status/hotel/{{ room.id }}/" method="POST">
+                                         <form action="/payment/hotel/{{ hotel.id }}/" method="POST">
 
                                             {%  csrf_token %}
-                                            <p>
-                                                <div><span style="font-weight: bold;">مدت زمان اقامت:</span>{{ hotelform.num_day }} روز</div>
-                                                <div><span style="font-weight: bold;">تاریخ اقامت:</span></div>
-                                               از:
-                                                {{ hotelform.start_date }}
-                                               تا:
-                                                {{ hotelform.end_date }}
+                                           <p style="margin-top: 30px">
 
-                                                <span style="font-weight: bold;">تعداد رزروکنندگان:</span>
-                                                 {{ form.number }}نفر
-                                                  <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
+                                         <span><span style="font-weight: bold;margin: 10px">نام رزرو کننده: </span>{{ peopleform.first_name }}</span>
 
-                                               <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
-                                               <div id="t" class="col-md-12" ></div>
-                                               <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
+                                         <span><span style="font-weight: bold;margin: 10px">نام خانوادگی رزرو کننده: </span>{{ peopleform.last_name }}</span>
+
+                                         <span><span style="font-weight: bold;margin: 10px">شماره ی ملی رزرو کننده: </span> {{ peopleform.melli_number }}
+</span>
 
 
-                                                 <div id="total"></div>
+                                         <input type="hidden" value="{{ ID }}" name="ID">
+
+                                         <input type="submit" class="btn btn-success" value="تایید خرید" style="float:left;margin:20px;"/>
+                                         </p>
+
+                                         <div id="total"></div>
 
                                          </form>
                                 </div>
@@ -56,29 +57,36 @@
                              </div>
 
 <!--###############################----RESTURANT-----#########################################################################-->
-                          {% elif kind == 'resturant' %}
-                               <div><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}</div>
-
-
-                                <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}تومان</div>
-                                <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}نفر</div>
-
+                          {% elif kind == 'restaurant' %}
+                                <div style=";margin-top: 40px;"><span style="font-weight: bold;">نام رستوران:</span>{{ gardesh.name }}</div>
+                                <div class="col-md-12">
+                                {% for table in tableList %}
+                                    <div class="col-md-3" style="direction: rtl;float: right">
+                                    <div><span style="font-weight: bold;">شماره ی میز:</span>{{ table.number }}</div>
+                                    <div><span style="font-weight: bold;">قیمت میز در هر ساعت:</span>{{ table.cost_perClock }}تومان</div>
+                                    <div><span style="font-weight: bold;">ظرفیت میز:</span>{{ table.capacity }}نفر</div>
+                                    <div><span style="font-weight: bold;">تاریخ رزرو میز:</span>{{ table.date }}</div>
+                                    <div><span style="font-weight: bold;">ساعت رزرو میز:</span>{{ table.start_clock}}</div>
+                                    </div>
+                                {% endfor %}
+                                </div>
                                 <div id="down_part" class="col-md-12" style="right: 20px;">
-                                     <form action="/reserving/status/resturant/{{ table.id }}/" method="POST">
+                                     <form action="/reserving/status/restaurant/{{ restaurant.id }}/" method="POST">
 
                                         {%  csrf_token %}
-                                        <p>
+                                        <p style="margin-top: 30px">
 
+                                         <span><span style="font-weight: bold;margin: 10px">نام رزرو کننده: </span>{{ peopleform.first_name }}</span>
 
-                                         <div><span style="font-weight: bold;">نام رزرو کننده:</span></div>
-                                             {{ peopleform.first_name }}
-                                         <div><span style="font-weight: bold;">نام خانوادگی رزرو کننده:</span></div>
-                                             {{ peopleform.last_name }}
-                                         <div><span style="font-weight: bold;">شماره ی ملی رزرو کننده:</span></div>
-                                             {{ peopleform.melli_number }}
+                                         <span><span style="font-weight: bold;margin: 10px">نام خانوادگی رزرو کننده: </span>{{ peopleform.last_name }}</span>
 
+                                         <span><span style="font-weight: bold;margin: 10px">شماره ی ملی رزرو کننده: </span> {{ peopleform.melli_number }}
+</span>
 
-                                         <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:20px;"/>
+                                         <input type="hidden" value="{{ total_cost }}" name="total_cost">
+                                         <input type="hidden" value="{{ ID }}" name="ID">
+
+                                         <input type="submit" class="btn btn-success" value="تایید خرید" style="float:left;margin:20px;"/>
                                          </p>
 
                                          <div id="total"></div>

@@ -61,7 +61,7 @@ urlpatterns = [
 
    # url(r'reserve/(P?<tour_id>\d+)/$', 'buy_cancel.views.reserve'),
 
-   url(r'reserving/restaurant/<(P?<id>\d+)/$', 'buy_cancel.views.reserveResturant'),
+
     url(r'reserving/restaurant/(\d+)/$', 'buy_cancel.views.reserveRestaurant'),
 
    url(r'reserving/hotel/<(P?<room_id>\d+)/>/$', 'buy_cancel.views.reserveHotel'),
@@ -113,6 +113,7 @@ urlpatterns = [
          url(r'payment/tour/cancel/(\d+)/$', 'accounting.views.cancelTour'),
 
      url(r'tasviye/$', 'accounting.views.tasviye'),
+     url(r'tasviye/gardeshsaz/$', 'accounting.views.tasviyeGar'),
     url(r'tasviye/confirm/$', 'accounting.views.tasviyeConfirm'),
 
      url(r'payment/$', 'accounting.views.ozviyat'),

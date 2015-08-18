@@ -120,7 +120,7 @@ def purchaseHotel(request ,id=''):
 
      })
 
-def reserveResturant(request ,id=''):
+def reserveRestaurant(request ,id=''):
     username=request.user.username
     user2=request.user
     restaurant=Restaurant.objects.get(id = id)
@@ -218,7 +218,7 @@ def reserveHotel(request ,id=''):
     for table in roomID:
 
         room_list.append(Table.objects.get(id=table))
-        total += room_list[i].cost_perClock
+        total += room_list[i].cost_perNight
         i += 1
     gardesh=hotel.gardesh
     peopleform=peopleForm(request.POST)
@@ -289,91 +289,61 @@ def statusReserve(request,kind='', id=''):
 
 
     if kind == 'hotel':
+          hotel=Hotel.objects.get(id = id)
+          user= request.user.userm
 
-            hotel = Hotel.objects.get(id = id)
-            gardesh = hotel.gardesh
-            if hotel.entire_capacity >= int(number):
-                if hotel.capacity >= int(number):
-                    hotel.capacity = hotel.capacity - int(number)
-                    hotel.entire_capacity= hotel.entire_capacity-int(number)
-                    hotel.save()
+          list= request.POST.get("ID")
+          roomIDList=list.split(',')
+
+          for t in roomIDList:
+                room=Room.objects.get(id = t)
+                room.full=True
+                room.save()
+
+                gardeshgar=TouristProfile.objects.get(user =user)
+                wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                       first_name = first_name,last_name= last_name,
+                                                       meli_code = melli_num,
+                                                       peygiry_code = 'hotel'+'-'+str(hotel.id)+'-'+request.user.username)
+                wantedtour = Wanted_Tour.objects.create(gardesh = room,info=wantedtrip);
 
 
-                    for i in range(number):
-
-                        userm=request.user.userm
-                        gardeshgar=TouristProfile.objects.get(user =userm)
-                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
-                                                               first_name = first_name,last_name= last_name,
-                                                               meli_code = melli_num,
-                                                               peygiry_code = 'tour'+'-'+str(hotel.id)+'-'+request.user.username)
-                        wantedtour = Wanted_Tour.objects.create(gardesh = hotel,info=wantedtrip);
-
-            else:
-             wrong=True
-             form=numberForm(request.POST)
-             peopleform=peopleForm(request.POST)
-
-             return render(request, "information_of_reserver_service.html" , {
-                         'username':username,
-                         'kind': kind,
-                         'hotel':hotel,
-                         'gardesh':gardesh,
-                         'form':form,
-                         'peopleform':peopleform,
-                         'wrong': wrong,
-            })
-            return render( request , "reserve_status.html",{
+          return render( request , "reserve_status.html",{
                         'username':username,
                         'number': number,
                         'kind': kind,
-                        'gardesh': gardesh,
+                        'gardesh': hotel.gardesh,
                         'hotel': hotel,
-            })
+          })
 
     if kind == 'restaurant':
 
-            restaurant = Restaurant.objects.get(id = id)
-            gardesh = restaurant.gardesh
-            if restaurant.entire_capacity >= int(number):
-                if restaurant.capacity >= int(number):
-                    restaurant.capacity = restaurant.capacity - int(number)
-                    restaurant.entire_capacity= restaurant.entire_capacity-int(number)
-                    restaurant.save()
+          restaurant=Restaurant.objects.get(id = id)
+          user= request.user.userm
 
-                    number=int(number)
-                    for i in range(number):
+          list= request.POST.get("ID")
+          tableIDList=list.split(',')
 
-                        userm=request.user.userm
-                        gardeshgar=TouristProfile.objects.get(user =userm)
-                        wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
-                                                               first_name = first_name,last_name= last_name,
-                                                               meli_code = melli_num,
-                                                               peygiry_code = 'restaurant'+'-'+str(restaurant.id)+'-'+request.user.username)
-                        wantedrestaurant = Wanted_Restaurant.objects.create(gardesh = restaurant,info=wantedtrip);
-               # else render
-            else:
-                 wrong=True
-                 form=numberForm(request.POST)
-                 peopleform=peopleForm(request.POST)
+          for t in tableIDList:
+                table=Table.objects.get(id = t)
+                table.full=True
+                table.save()
 
-                 return render(request, "information_of_reserver_service.html" , {
-                             'username':username,
-                             'restaurant':restaurant,
-                             'kind':kind,
-                             'gardesh':gardesh,
-                             'form':form,
-                             'peopleform':peopleform,
-                             'wrong': wrong,
-            })
-            return render( request , "reserve_status.html",{
+                gardeshgar=TouristProfile.objects.get(user =user)
+                wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='reserve',
+                                                       first_name = first_name,last_name= last_name,
+                                                       meli_code = melli_num,
+                                                       peygiry_code = 'restaurant'+'-'+str(table.id)+'-'+request.user.username)
+                wantedtour = Wanted_Tour.objects.create(gardesh = table,info=wantedtrip);
+
+
+          return render( request , "reserve_status.html",{
                         'username':username,
                         'number': number,
                         'kind': kind,
-                        'gardesh': gardesh,
+                        'gardesh': restaurant.gardesh,
                         'restaurant': restaurant,
-            })
-
+          })
 
     if kind == 'airplane':
 
@@ -533,8 +503,32 @@ def cancel(request , id=''):
             wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
         elif codes[0] == 'restaurant':
+            id=int(codes[1])
+            seat=Table.objects.get(id= id)
+            seat.full=False
+            seat.save()
 
-            return
+            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
+                                                   first_name = first_name,last_name= last_name,
+                                                   meli_code = melli_num,
+                                                   peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
+            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+            return  HttpResponseRedirect('/userpage/')
+
+        elif codes[0] == 'hotel':
+            id=int(codes[1])
+            seat=Room.objects.get(id= id)
+            seat.full=False
+            seat.save()
+
+            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
+                                                   first_name = first_name,last_name= last_name,
+                                                   meli_code = melli_num,
+                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
+            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+            return  HttpResponseRedirect('/userpage/')
+
+
 
     else:
         if codes[0] == 'tour':
@@ -625,8 +619,64 @@ def cancel(request , id=''):
                 'bankform':bankform,
             })
 
+        elif codes[0] == 'hotel':
+            id=int(codes[1])
+            seat=Room.objects.get(id= id)
+            seat.full=False
+            seat.save()
+
+            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
+                                                   first_name = first_name,last_name= last_name,
+                                                   meli_code = melli_num,
+                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
+            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+            cost=seat.cost_perNight
+
+            free=float(seat.hotel.gardesh.free)
+            percent=int(float(free)*100)
+            account=int(cost-cost*free)
+            gardesh=seat.hotel.gardesh
+            gardeshID = int(gardesh.id)
+            gardeshgarID = int(gardeshgar.id)
+            print(gardeshID)
+            return  render(request, "tasviye_gardeshgar.html",{
+                'account':account,
+                'gardesh':gardesh,
+                'gardeshID': gardeshID,
+                'percent':percent,
+                'gardeshgarID':gardeshgarID,
+                'bankform':bankform,
+            })
+
         elif codes[0] == 'restaurant':
-            return
+                id=int(codes[1])
+                seat=Table.objects.get(id= id)
+                seat.full=False
+                seat.save()
+
+                wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
+                                                       first_name = first_name,last_name= last_name,
+                                                       meli_code = melli_num,
+                                                       peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
+                wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+                cost=seat.cost_perClock
+
+                free=float(seat.restaurant.gardesh.free)
+                percent=int(float(free)*100)
+                account=int(cost-cost*free)
+                gardesh=seat.restaurant.gardesh
+                gardeshID = int(gardesh.id)
+                gardeshgarID = int(gardeshgar.id)
+                print(gardeshID)
+                return  render(request, "tasviye_gardeshgar.html",{
+                    'account':account,
+                    'gardesh':gardesh,
+                    'gardeshID': gardeshID,
+                    'percent':percent,
+                    'gardeshgarID':gardeshgarID,
+                    'bankform':bankform,
+                })
+
 #####################################################################################################################
 
 def purchaseReserved(request, id=''):
@@ -691,3 +741,42 @@ def purchaseReserved(request, id=''):
             'train':train,
             'kind':'train',
          })
+    elif codes[0]=='hotel':
+         seat= Room.objects.get(id = int(codes[1]))
+         hotel=seat.hotel
+         total_cost=seat.cost_perNight
+
+
+         wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='buy',
+                                                first_name = first_name,last_name= last_name,
+                                                meli_code = melli_num,
+                                                peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+'reserved')
+         wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+
+         return render(request, "payment_bank.html",{
+            'total_cost': total_cost,
+            'hotel':hotel,
+            'kind':'hotel',
+            'ID':seat.id,
+            'number':1,
+         })
+
+    elif codes[0]=='restaurant':
+             seat= Table.objects.get(id = int(codes[1]))
+             restaurant=seat.restaurant
+             total_cost=seat.cost_perClock
+
+
+             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='buy',
+                                                    first_name = first_name,last_name= last_name,
+                                                    meli_code = melli_num,
+                                                    peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+'reserved')
+             wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
+
+             return render(request, "payment_bank.html",{
+                'total_cost': total_cost,
+                'hotel':restaurant,
+                'kind':'hotel',
+                'ID':seat.id,
+                'number':1,
+             })

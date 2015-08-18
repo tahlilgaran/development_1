@@ -8,6 +8,7 @@ from buy_cancel.forms import numberForm,peopleForm
 from accounting.forms import bankForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
 
 # Create your views here.
 def paymentTour(request, tour_id=''):
@@ -21,6 +22,7 @@ def paymentTour(request, tour_id=''):
     last_name = request.POST.getlist("last_name")
     melli_num =request.POST.getlist("melli_number")
     userm=request.user.userm
+    user2=request.user
     gardeshgar=TouristProfile.objects.get(user =userm)
 
     if tour.capacity >= int(number):
@@ -49,12 +51,14 @@ def paymentTour(request, tour_id=''):
                          'form':form,
                          'peopleform':peopleform,
                          'wrong': wrong,
+                         'user2':user2,
              })
 
     return render(request, "payment_bank.html",{
         'total_cost': total_cost,
         'tour':tour,
         'kind':'tour',
+
 
 
     })
@@ -65,6 +69,7 @@ def confirmTour(request,tour_id=''):
 
         tour=Tour.objects.get(id = tour_id)
         user= request.user.userm
+        user2=request.user
         sender= TouristProfile.objects.get(user = user)
         date = datetime.today()
         amount=request.POST.get("total_cost")
@@ -81,6 +86,7 @@ def confirmTour(request,tour_id=''):
         return render(request, "transaction-status.html",{
             'transaction':transaction,
             'kind':'1',
+            'user2':user2,
         })
 
 
@@ -88,18 +94,21 @@ def cancelTour(request , id=''):
     amount=request.POST.get("total_cost")
     tour=Tour.objects.get(id =id)
     number=int(int(amount)/tour.cost)
-
+    user2=request.user
     for i in range(number):
 
         Wanted_Trip.objects.last().delete()
 
 
-    return render(request, "payment_cancel.html")
+    return render(request, "payment_cancel.html",{
+        'user2':user2
+    })
 
 ##################################################################################################
 def paymentAirplane(request, airplane_id=''):
 
     number=request.POST.get("number")
+    user2=request.user
     airplane= AirPlane.objects.get(id = airplane_id)
     cost=airplane.cost
     total_cost=cost * int(number)
@@ -141,6 +150,7 @@ def paymentAirplane(request, airplane_id=''):
                          'form':form,
                          'peopleform':peopleform,
                          'wrong': wrong,
+                         'user2':user2
              })
 
     return render(request, "payment_bank.html", {
@@ -156,6 +166,7 @@ def confirmAirplane(request,airplane_id=''):
 
         airplane=AirPlane.objects.get(id = airplane_id)
         user= request.user.userm
+        user2=request.user
         sender= TouristProfile.objects.get(user = user)
         date = datetime.today()
         amount=request.POST.get("total_cost")
@@ -177,10 +188,12 @@ def confirmAirplane(request,airplane_id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
+            'user2':user2
         })
 
 def cancelAirplane(request , id=''):
     amount=request.POST.get("total_cost")
+    user2=request.user
     airplane=AirPlane.objects.get(id =id)
     number=int(int(amount)/airplane.cost)
 
@@ -189,7 +202,9 @@ def cancelAirplane(request , id=''):
         Wanted_Trip.objects.last().delete()
 
 
-    return render(request, "payment_cancel.html")
+    return render(request, "payment_cancel.html",{
+        'user2':user2,
+    })
 
 ##############################TRAIN######################################################################################
 
@@ -201,6 +216,7 @@ def paymentTrain(request, train_id=''):
     cost=train.cost
     total_cost=cost * int(number)
     gardesh = train.gardesh
+    user2=request.user
     first_name = request.POST.getlist("first_name")
     last_name = request.POST.getlist("last_name")
     melli_num =request.POST.getlist("melli_number")
@@ -238,6 +254,7 @@ def paymentTrain(request, train_id=''):
                          'form':form,
                          'peopleform':peopleform,
                          'wrong': wrong,
+                         'user2':user2,
              })
 
     return render(request, "payment_bank.html",{
@@ -252,6 +269,7 @@ def confirmTrain(request,train_id=''):
 
 
         train=Train.objects.get(id = train_id)
+        user2=request.user
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
         date = datetime.today()
@@ -274,10 +292,12 @@ def confirmTrain(request,train_id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
+            'user2':user2,
         })
 
 def cancelTrain(request , id=''):
     amount=request.POST.get("total_cost")
+    user2=request.user
     train=Train.objects.get(id =id)
     number=int(int(amount)/train.cost)
 
@@ -286,7 +306,9 @@ def cancelTrain(request , id=''):
         Wanted_Trip.objects.last().delete()
 
 
-    return render(request, "payment_cancel.html")
+    return render(request, "payment_cancel.html",{
+        'user2':user2,
+    })
 
 ####################################RESTAURANT########################################################################
 def paymentRestaurant(request,id=''):
@@ -331,7 +353,7 @@ def confirmRestaurant(request,id=''):
         number=request.POST.get("number")
         list= request.POST.get("ID")
         tableIDList=list.split(',')
-
+        user2=request.user
         for t in tableIDList:
             table=Table.objects.get(id = t)
             table.full=True
@@ -341,18 +363,20 @@ def confirmRestaurant(request,id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
-
+            'user2':user2,
         })
 
 
 
 def cancelRestaurant(request , id=''):
-
+    user2=request.user
     number=int(request.POST.get("number"))
     for i in range(number):
         Wanted_Trip.objects.last().delete()
 
-    return render(request, "payment_cancel.html")
+    return render(request, "payment_cancel.html",{
+        'user2':user2,
+    })
 
 ##################################HOTEL###############################################################################
 
@@ -393,10 +417,10 @@ def confirmHotel(request,id=''):
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
         date = datetime.today()
-        number=request.POST.get("number")
+
         list= request.POST.get("ID")
         roomIDList=list.split(',')
-
+        user2=request.user
         for t in roomIDList:
             room=Room.objects.get(id = t)
             room.full=True
@@ -406,16 +430,19 @@ def confirmHotel(request,id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
+            'user2':user2
 
         })
 
 def cancelHotel(request , id=''):
-
+    user2=request.user
     number=int(request.POST.get("number"))
     for i in range(number):
         Wanted_Trip.objects.last().delete()
 
-    return render(request, "payment_cancel.html")
+    return render(request, "payment_cancel.html",{
+        'user2':user2,
+    })
 
 #####################################################################################################################
 def ozviyat(request):
@@ -431,6 +458,7 @@ def tasviye(request):
     user = TouristProfile.objects.get(user= userm)
     account= user.account
     intaccount=int(account)
+    user2=request.user
     bankform=bankForm(request.POST)
     if intaccount == 0:
         return render(request, "tasviye_gardeshgar.html",{
@@ -442,7 +470,9 @@ def tasviye(request):
             'user': request.user,
             'account': intaccount,
             'bankform':bankForm,
+            'user2':user2,
         })
+
 
 def tasviyeConfirm(request):
 
@@ -452,10 +482,25 @@ def tasviyeConfirm(request):
     gardeshgarID=int(request.POST.get("gardeshgarID"))
     print(gardeshID)
     print(account)
-
+    user2=request.user
     gardesh=Gardesh.objects.get(id= gardeshID)
     receiver=TouristProfile.objects.get( id = gardeshgarID)
     info= Trans_info.objects.create(date=date,amount=account,gardesh=gardesh)
     transaction = Trans_Kind3.objects.create(info=info,receiver=receiver)
 
-    return HttpResponseRedirect('/userpage/')
+    return HttpResponseRedirect('/userpage/',{
+        'user2':user2,
+    })
+
+############################################################################################################
+def tasviyeGar(request):
+    user=request.user
+    userm=user.userm
+
+    if user.userm.kind == 'gardeshgar':
+        return HttpResponseNotFound()
+    else:
+        date=datetime.now()
+        builderP=TourBuilderProfile.objects.get(user=userm)
+        agree=builderP
+        transactions=Trans_info.objects.filter(date.__lt__(date),gardesh=builderP)

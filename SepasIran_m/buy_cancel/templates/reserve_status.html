@@ -14,24 +14,20 @@
 <p>
     {% if kind == 'tour' %}
 
-    {{ gardesh.name }}  برای شما به تعداد  {{ number }} رزرو شد .
-        <p class="random-number">
+    {{ gardesh.name }}  برای شما به تعداد  {{ number }} نفر  رزرو شد .
 
-        </p>
     {% elif kind == 'restaurant' %}
         میز شما در رستوران{{ gardesh.name }}انجام شد.
-        <p class="random-number">
 
-        </p>
-         {% elif kind == 'train' %}
+    {% elif kind == 'train' %}
          برای شما به تعداد {{ number }} صندلی قطار {{ gardesh.name }}
 
             رزرو شد.
-         {% elif kind == 'airplane' %}
+    {% elif kind == 'airplane' %}
         برای شما به تعداد {{ number }} صندلی هواپیما{{ gardesh.name }}
 
             رزرو شد.
-         {% elif kind == 'hotel' %}
+    {% elif kind == 'hotel' %}
     {% endif %}
 </p>
 
