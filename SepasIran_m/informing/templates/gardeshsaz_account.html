@@ -1,0 +1,92 @@
+{% extends 'account.html' %}
+{% load staticfiles %}
+{% block item_list %}
+    {% if tour_list %}
+                    <h3>تور:</h3>
+                    {% for item in tour_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record"></a></div>
+زمان برگزاری تور
+                        {{ item.gardesh.name }}
+                        {{ item.start }}
+                         الی
+                        {{ item.end }}
+                         می باشد.
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                {% if hotel_list %}
+                    <h3>هتل:</h3>
+                    {% for item in hotel_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/hotel/{{ item.id }}/"></button></div>
+هتل
+                        {{ item.hotel.gardesh.name }}
+                        {% if user_kind == 'gardeshsaz' %}
+                            اتاق
+                        {{ item.number }}
+                         تاریخ
+                        {{ item.date }}
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                {% if restaurant_list %}
+                    <h3>رستوران:</h3>
+                    {% for item in restaurant_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/restaurant/{{ item.id }}/"></button></div>
+رستوران
+                        {{ item.restaurant.gardesh.name }}
+                        {% if user_kind == 'gardeshsaz' %}
+                        میز
+                        {{ item.number }}
+                        تاریخ
+                        {{ item.date }}
+                        ساعت
+                        {{ item.start_clock }}
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                {% if airplane_list %}
+                    <h3>هواپیما:</h3>
+                    {% for item in airplane_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/airplane/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+هواپیما
+                        {{ item.gardesh.name }}
+مبدا
+                        {{ item.source }}
+مقصد
+                        {{ item.destination }}
+تاریخ
+                        {{ item.start }}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                {% if train_list %}
+                    <h3>قطار:</h3>
+                    {% for item in train_list %}
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/train/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
+قطار
+                        {{ item.gardesh.name }}
+مبدا
+                        {{ item.source }}
+مقصد
+                        {{ item.destination }}
+تاریخ
+                        {{ item.start }}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+    
+{% endblock %}

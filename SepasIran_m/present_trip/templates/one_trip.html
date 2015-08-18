@@ -111,7 +111,7 @@
                             <a type="submit" href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
                             <a type="submit" href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
 
                                    وضعیت گردش
@@ -184,7 +184,7 @@
                              <a type="submit" href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
                             <a type="submit" href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
 
                                    وضعیت گردش
@@ -265,7 +265,7 @@
                             <a  href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
                             <a  href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
-                    {% elif user.userm.kind == 'gardeshsaz' and access == true %}
+                    {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
 
                                    وضعیت گردش

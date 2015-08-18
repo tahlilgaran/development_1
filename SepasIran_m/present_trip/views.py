@@ -10,18 +10,17 @@ from present_trip.forms import SearchForm
 def home(request , username = ''):
     return render(request, 'home.html', {'username':username})
 
-def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today() , end = datetime.datetime.today()):
+def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',start_day='',end_year='',end_month='',end_day=''):
     returned_dic = {}
+    returned_dic['kind'] = kind
+    returned_dic['user'] = request.user
+
+    trip =''
+    pic_list = []
+    pic_q = ''
+    html_file = 'one_trip.html'
+
     if request.method == "GET":
-        returned_dic['kind'] = kind
-        returned_dic['user'] = request.user
-
-        # returned_dic['username'] = 'username'
-        trip =''
-        pic_list = []
-        pic_q = ''
-        html_file = 'one_trip.html'
-
         if kind == 'tour':
             trip = Tour.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
@@ -29,6 +28,12 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         elif kind == 'hotel':
             trip = Hotel.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+            if start_year == '':
+                start = request.GET.get('start')
+                end = request.GET.get('end')
+            else:
+                start = datetime.datetime(int(start_year),int(start_month),int(start_day))
+                end = datetime.datetime(int(end_year),int(end_month),int(end_day))
             all_room_obj = Room.objects.filter(hotel = trip , date__gte = start , date__lte = end)
 
             rooms = []
@@ -45,6 +50,12 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+            if start_year == '':
+                start = request.GET.get('start')
+                end = request.GET.get('end')
+            else:
+                start = datetime.datetime(int(start_year),int(start_month),int(start_day))
+                end = datetime.datetime(int(end_year),int(end_month),int(end_day))
             all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end )
 
             tables = []
@@ -67,9 +78,8 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
             trip = Train.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
 
-        elif kind == 'pack':
-            return render(request , "one_trip.html", {'kind':kind})
-
+        # elif kind == 'pack':
+        #     return render(request , "one_trip.html", {'kind':kind})
 
         if not pic_q:
             pic_list.append(trip.gardesh.builder.user.picture)
@@ -80,27 +90,9 @@ def show_one_trip(request, kind = ''  , id = 0 , start = datetime.datetime.today
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
 
-
-        # ** access of gardeshsaz **
-        print(request.user)
-        if request.user == 'AnonymousUser':
-            print('error')
-        else:
-            user_kind = request.user.userm.kind
-            if user_kind == 'gardeshsaz':
-                builder = request.user.userm.bprofile
-                print(builder)
-                trip_builder = trip.gardesh.builder
-                print(trip_builder)
-                if trip_builder == builder:
-                    returned_dic['access'] = True
-                else:
-                    returned_dic['access'] = False
         return render(request,html_file , returned_dic)
 
-    else:
-        print(request.POST.get('returned_id_list'))
-        return None
+
 
 
 
@@ -185,8 +177,6 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
 
 
 
-
-
 def search(request , ispack = '' ):
     returned_dic = {}
     if request.method == 'GET':
@@ -201,6 +191,9 @@ def search(request , ispack = '' ):
             start = form.cleaned_data['start']
             end = form.cleaned_data['end']
             kinds = form.cleaned_data['kind']
+
+            returned_dic['start'] = start
+            returned_dic['end'] = end
 
             for item in kinds:
                 if  item == 'tour':
@@ -232,7 +225,7 @@ def search(request , ispack = '' ):
                             hotel.append(room.hotel)
                     returned_dic['hotel'] = hotel
 
-                returned_dic['form'] = SearchForm(request.POST)
+                returned_dic['form'] = form
         else:
             print("error in form getting")
         return render(request , "search_result.html" , returned_dic)

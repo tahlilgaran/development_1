@@ -6,23 +6,20 @@
 {% block content %}
         <div class="col-md-12 , box">
             <span>
-                {% if user_kind == 'gardeshsaz' %}
                     سلام،
                    <span>{{ user.user.user.first_name }} {{ user.user.user.last_name }}</span>
-                {% else %}
-                {% endif %}
             </span>
         {% if user_kind == 'gardeshgar' %}
             <div class="btn-group , col-md-5" role="group" aria-label="...">
                 <a href="/profile/tourist/{{user.user.user.username}}" type="button" class="btn btn-danger">
                     مشخصات کاربری
                 </a>
-                <a href="/quality/userRating" type="button" class="btn btn-success">
-                    نظرسنجی
-                </a>
-                <a href="/quality/onlineComment" type="button" class="btn btn-warning">
-                    نظردهی برخط
-                </a>
+{#                <a href="/quality/userRating" type="button" class="btn btn-success">#}
+{#                    نظرسنجی#}
+{#                </a>#}
+{#                <a href="/quality/onlineComment" type="button" class="btn btn-warning">#}
+{#                    نظردهی برخط#}
+{#                </a>#}
             </div>
             {% else %}
         <div class="col-md-5">
@@ -40,141 +37,12 @@
                 </span>
             </div>
                 <ul class="panel-body , nav nav-pills nav-stacked">
-                {% if tour_list %}
-                    <h3>تور:</h3>
-                    {% for item in tour_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-زمان برگزاری تور
-                        {{ item.gardesh.name }}
-                        {{ item.start }}
-                         الی
-                        {{ item.end }}
-                         می باشد.
-                        </li>
-                    {% endfor %}
-                {% endif %}
-                {% if hotel_list %}
-                    <h3>هتل:</h3>
-                    {% for item in hotel_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-هتل
-                        {{ item.hotel.gardesh.name }}
-                            اتاق
-                        {{ item.number }}
-                         تاریخ
-                        {{ item.date }}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-                {% if restaurant_list %}
-                    <h3>رستوران:</h3>
-                    {% for item in restaurant_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-رستوران
-                        {{ item.restaurant.gardesh.name }}
-                        میز
-                        {{ item.number }}
-                        تاریخ
-                        {{ item.date }}
-                        ساعت
-                        {{ item.start_clock }}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-                {% if train_list %}
-                    <h3>هواپیما:</h3>
-                    {% for item in train_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-هواپیما
-                        {{ item.gardesh.name }}
-مبدا
-                        {{ item.source }}
-مقصد
-                        {{ item.destination }}
-تاریخ
-                        {{ item.start }}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-                {% if airplane_list %}
-                    <h3>قطار:</h3>
-                    {% for item in airplane_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-قطار
-                        {{ item.gardesh.name }}
-مبدا
-                        {{ item.source }}
-مقصد
-                        {{ item.destination }}
-تاریخ
-                        {{ item.start }}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-                {% if gardeshgar_list %}
-                    {% for item in gardeshgar_list %}
-                        <li>
-                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
-                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"></a></div>
-                            {% if item.wanted_tour %}
-تور
-                                {{ item.wanted_tour.gardesh.gardesh.name }}
-                                زمان
-                                {{ item.wanted_tour.gardesh.start }}
-                                الی
-                                {{ item.wanted_tour.gardesh.end }}
-                            {% elif item.wanted_hotel %}
-هتل
-                                {{ item.wanted_hotel.gardesh.hotel.gardesh.name }}
-                                اتاق
-                                {{ item.wanted_hotel.gardesh.number }}
-تاریخ
-                                {{ item.wanted_hotel.gardesh.date }}
-
-                            {% elif item.wanted_restaurant %}
-رستوران
-                                {{ item.wanted_restaurant.gardesh.restaurant.gardesh.name }}
-                                میز
-                                {{ item.wanted_restaurant.gardesh.number }}
-تاریخ
-                                {{ item.wanted_restaurant.gardesh.date }}
-                                زمان
-                                {{ item.wanted_restaurant.gardesh.start_clock }}
-                            {% elif item.wanted_airplane %}
-                                هواپیمای
-                                {{ item.wanted_airplane.gardesh.airpalne.gardesh.name }}
-                                تاریخ
-                                {{ item.wanted_airplane.gardesh.airpalne.start }}
-                                زمان
-                                {{ item.wanted_airplane.gardesh.airpalne.start_t }}
-                                شماره صندلی
-                                {{ item.wanted_airplane.gardesh.number }}
-                            {% elif item.wanted_train %}
-                                قطار
-                                {{ item.wanted_train.gardesh.train.gardesh.name }}
-                                تاریخ
-                                {{ item.wanted_train.gardesh.train.start }}
-                                زمان
-                                {{ item.wanted_train.gardesh.train.start_t }}
-                                شماره صندلی
-                                {{ item.wanted_train.gardesh.number }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                {% endif %}
+                {% block item_list %}{% endblock %}
                 </ul>
         </div>
         </div>
+
+
 
         <div class="col-md-6">
         <div class=" panel panel-success">
@@ -220,58 +88,47 @@
         </div>
 
 
-    {% if user_kind == 'gardeshgar' %}
-        <div id="down_part">
-            {#    {% if login  %}#}
-            <div class=" col-md-6 , box">
-                <h4>تور های تخفیفی</h4>
-                <img class="col-md-12 " id="promotion_pic" src="{% static 'define_and_validate_trip/img/ax5.jpg' %}">
-                <div class="col-md-12">
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_1(this)"
-                           name="{% static 'define_and_validate_trip/img/ax5.jpg' %}">
-                                                       تور جنگل ابر تا ابشار مجن - شرکت گردشگری دالاهو
-                        </a>
-                    </p>
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_1(this)"
-                           name="{% static 'define_and_validate_trip/img/ax6.jpg' %}">
-                                        اکو تور گیلان - ماسوله - آستارا - شرکت گردشگری مارکوپولو
-                        </a>
-                    </p>
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_1(this)"
-                           name="{% static 'define_and_validate_trip/img/ax7.jpg' %}">
-                                                          هتل پنج ستاره پارمیس کیش
-                        </a>
-                    </p>
-                </div>
-            </div>
+     <!-- Modal -->
+    <form action="" method="get" class="date_form">{% csrf_token %}
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    تعیین بازه زمانی
+                </h4>
+              </div>
+              <div class="modal-body">
+                      <input name="start" type="date" class="form-control" />
+                      <input name="end" type="date" class="form-control" />
 
-            <div class=" col-md-6 , box">
-                <h4>تور های تشویقی</h4>
-                <img class="col-md-12 " id="off_pic" src="{% static 'define_and_validate_trip/img/ax5.jpg' %}">
-                <div class="col-md-12">
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_2(this)"
-                           name="{% static 'define_and_validate_trip/img/ax5.jpg' %}">
-                                                       تور جنگل ابر تا ابشار مجن - شرکت گردشگری دالاهو
-                        </a>
-                    </p>
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_2(this)"
-                           name="{% static 'define_and_validate_trip/img/ax6.jpg' %}">
-                                        اکو تور گیلان - ماسوله - آستارا - شرکت گردشگری مارکوپولو
-                        </a>
-                    </p>
-                    <p>
-                        <a href="takGardesh.html" onmouseover="change_pic_2(this)"
-                           name="{% static 'define_and_validate_trip/img/ax7.jpg' %}">
-                                                          هتل پنج ستاره پارمیس کیش
-                        </a>
-                    </p>
-                </div>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="col-md-4 , btn btn-success">
+                          مشاهده
+                      </button>
+              </div>
             </div>
+          </div>
         </div>
-    {% endif %}
+    </form>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        function fill_modal(a) {
+
+            var new_action = a.id;
+            var form = document.querySelector('.date_form');
+            form.action = new_action;
+
+            console.log('salam');
+
+
+        }
+
+    </script>
 {% endblock %}
