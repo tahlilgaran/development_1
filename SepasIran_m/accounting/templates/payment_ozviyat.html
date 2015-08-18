@@ -17,44 +17,57 @@
     {% csrf_token %}}
     <div class="container" style="direction: rtl" >
     <div class='row'>
-        <div class='col-md-4'></div>
-        <div class='col-md-4'>
+        <div class='col-md-3'></div>
+        <div class='col-md-5'>
           <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
           <form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
             <div class='form-row'>
-              <div class='col-xs-12 form-group required' style="margin-top: 80px;">
-                <label class='control-label'>شماره ی کارت</label>
-                 <input class='form-control' size='4' type='text'>
+              <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
+                <label class='control-label'>شماره ی کارت:</label>
+                    <span class="col-md-1"></span>
+                  <input class='col-md-2' size='1' type='text' style="margin-left: 5px"/>
+                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
+                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
+                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
               </div>
             </div>
             <div class='form-row'>
               <div class='col-xs-12 form-group card required'>
-                <label class='control-label'>رمز دوم</label>
-                <input type="password" autocomplete='off' class='form-control card-number' size='20' type='text'>
+                <label class='control-label'>رمز دوم:</label>
+                  <span class="col-md-6"></span>
+                <input type="password" autocomplete='off' class='col-md-4  card-number' size='10' type='text'>
               </div>
             </div>
-            <div class='form-row'>
+            <!--<div class='form-row'>-->
+              <div class='col-md-12 form-group cvc required'>
+                <label class='control-label'>CVV2:</label>
+                  <span class="col-md-6"></span>
+                <input autocomplete='off' class='col-md-4 card-cvc'  size='4' type='text'>
+              </div>
+              <div class="col-md-12" style="margin-bottom: 10px">
+              <label class='control-label'>تاریخ انقضا:</label>
+                   <span class="col-md-5"></span>
+              <input class='col-md-2 card-expiry-year' placeholder='سال' size='2' type='text' style="margin-left: 10px">
 
-              <div class='col-xs-4 form-group expiration required'>
+              <input class='col-md-2 card-expiry-month' placeholder='ماه' size='2' type='text' style="margin-left: 10px">
+              </div>
+              <!--<div class='col-md-6 form-group expiration required'>
                 <label class='control-label'></label>
-                <input class='form-control card-expiry-year' placeholder='سال' size='4' type='text'>
+                <input class='card-expiry-year' placeholder='سال' size='4' type='text'>
               </div>
-              <div class='col-xs-4 form-group expiration required'>
-                <label class='control-label'>تاریخ انقضا</label>
-                <input class='form-control card-expiry-month' placeholder='ماه' size='2' type='text'>
-              </div>
-              <div class='col-xs-4 form-group cvc required'>
-                <label class='control-label'>CVV2</label>
-                <input autocomplete='off' class='form-control card-cvc'  size='4' type='text'>
-              </div>
+              <div class='col-md-12 form-group expiration required'>
+                <label class='control-label'>تاریخ انقضا:</label>
+                <input class='card-expiry-month' placeholder='ماه' size='2' type='text'>
+              </div>-->
 
 
-            </div>
+
+            <!--</div>-->
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
                   مبلغ کل پرداختی:{{ total_cost }}ریال
-                    <input name="total" value={{ total_cost }} hidden/>
+                    <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
@@ -62,8 +75,8 @@
             </div>
             <div class='form-row'>
               <div class='col-md-12 form-group'>
-                <a class='form-control btn btn-primary submit-button' href="/userpage/"style=" margin-top: 10px;
-;background-color:#CD6600;">پرداخت</a>
+                <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
+;background-color:#CD6600;"/>
               </div>
             </div>
             <div class='form-row'>
@@ -84,7 +97,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<!--<script type="javascript">
+<script type="javascript">
     $(function() {
   $('form.require-validation').bind('submit', function(e) {
     var $form         = $(e.target).closest('form'),

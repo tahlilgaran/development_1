@@ -10,7 +10,7 @@
             <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
                      <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما:{{ username }}</h2>
-                        <p> {% if wrong == True %}
+                        <p style="color: red"> {% if wrong == True %}
                             ظرفیت خالی به میزان کافی وجود ندارد
                             {% endif %}
                         </p>
@@ -114,8 +114,8 @@
                                                <div id="t" class="col-md-12" ></div>
                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
+<div id="total"></div>
 
-                                                 <div id="total"></div>
 
                                      </form>
                                 </div>
@@ -148,8 +148,8 @@
                                                <div id="t" class="col-md-12" ></div>
                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
+<div id="total"></div>
 
-                                                 <div id="total"></div>
 
                                      </form>
                                 </div>
@@ -190,8 +190,8 @@
                          }
                          var tfooter = '</table>';
                           document.getElementById('t').innerHTML = theader + tbody + tfooter;
+ document.getElementById('total').innerHTML = '<div style="top: 100px;">شما به مدت {{ gardesh.max_cancel_time }} روز فرصت دارید رزرو خود را بخرید</div>';
 
-                          document.getElementById('total').innerHTML = '<div style="top: 100px;">شما به مدت یک هفته فرصت دارید رزرو خود را بخرید </div>';
                       }
             $(function() {
                 $('input[name="daterange"]').daterangepicker({
