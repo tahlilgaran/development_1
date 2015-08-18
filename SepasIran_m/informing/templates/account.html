@@ -3,6 +3,7 @@
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
+
 {% block content %}
         <div class="col-md-12 , box">
             <span>
@@ -43,7 +44,8 @@
         </div>
 
 
-
+        {% block current_trip %}{% endblock %}
+        {% block nazarsangi %}{% endblock %}
         <div class="col-md-6">
         <div class=" panel panel-success">
 

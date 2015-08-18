@@ -28,7 +28,7 @@
                                             <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}/">خرید</a>
                                             <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
                                             {% elif one.info.status == 'buy' %}
-                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% endif %}
                                         </div>
                                         <div class="col-md-6">
@@ -61,10 +61,10 @@
                                     <li class="col-md-12">
                                         <div class="col-md-6">
                                             {% if one.info.status == 'reserve' %}
-                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}/">خرید</a>
-                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% elif one.info.status == 'buy' %}
-                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% endif %}
                                         </div>
                                         <div class="col-md-6">
@@ -101,10 +101,10 @@
                                     <li class="col-md-12">
                                         <div class="col-md-6">
                                             {% if one.info.status == 'reserve' %}
-                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}/">خرید</a>
-                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% elif one.info.status == 'buy' %}
-                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% endif %}
                                         </div>
                                         <div class="col-md-6">
@@ -148,10 +148,10 @@
                                     <li class="col-md-12">
                                         <div class="col-md-6">
                                             {% if one.info.status == 'reserve' %}
-                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}/">خرید</a>
-                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% elif one.info.status == 'buy' %}
-                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% endif %}
                                         </div>
                                         <div class="col-md-6">
@@ -188,10 +188,10 @@
                                     <li class="col-md-12">
                                         <div class="col-md-6">
                                             {% if one.info.status == 'reserve' %}
-                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/resrving/{{ one.info.id }}/">خرید</a>
-                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-6 , btn btn-success" href="/purchase/reserving/{{ one.info.id }}">خرید</a>
+                                            <a type="button" class="col-md-6 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% elif one.info.status == 'buy' %}
-                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}/">انصراف</a>
+                                            <a type="button" class="col-md-12 , btn btn-danger" href="/cancel/{{ one.info.id }}">انصراف</a>
                                             {% endif %}
                                         </div>
                                         <div class="col-md-6">
@@ -205,3 +205,8 @@
                     {% endfor %}
      {% endif %}
 {% endblock %}
+
+{% block current_trip %}
+
+{% endblock %}
+{% block nazarsangi %}{% endblock %}
