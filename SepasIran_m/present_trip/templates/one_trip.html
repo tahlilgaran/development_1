@@ -108,8 +108,8 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" href="/purchase/{{ kind }}/{{ table.id }}" class="btn btn-success , col-md-12">خرید</button>
+                            <a type="submit" href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
+                            <a type="submit" href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
@@ -181,8 +181,8 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" class="btn btn-success , col-md-12">خرید</button>
+                             <a type="submit" href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
+                            <a type="submit" href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" href="/show/{{ kind }}/{{ trip.id }}/{{ table.number }}/status" class="btn btn-info , col-md-12">
@@ -262,8 +262,8 @@
 
             {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
-                            <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">خرید</button>
+                            <a  href="/reserving/{{ kind }}/{{ trip.id }}/" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</a>
+                            <a  href="/purchase/{{ kind }}/{{ trip.id }}/" class="btn btn-success , col-md-12">خرید</a>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
                         <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">

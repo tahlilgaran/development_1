@@ -141,13 +141,13 @@
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <form action="" method="post">{% csrf_token %}
+                            <form action="/reserving/restaurant/{{ trip.id }}/" method="post">{% csrf_token %}
                                 <input type="hidden" value="null" name="returned_id_list" class="returned_id_list" >
-                                <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
+                                <input type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()" value="رزرو"/>
                             </form>
-                            <form action="" method="post">{% csrf_token %}
+                            <form action="/purchase/restaurant/{{ trip.id }}/" method="post">{% csrf_token %}
                                 <input type="hidden" value="null" name="returned_id_list" class="returned_id_list" >
-                                <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">خرید</button>
+                                <input type="submit" class="btn btn-success , col-md-12" onclick="get_checked()" value="خرید"/>
                             </form>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile%}

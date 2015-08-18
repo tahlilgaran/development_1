@@ -67,7 +67,7 @@ class Gardesh(models.Model):
 
 
     def __str__(self):
-        return "{} - {}".format(self.builder , self.name)
+        return "{}-{}".format(self.name,self.builder)
 
 
 class TransferDevice(models.Model):

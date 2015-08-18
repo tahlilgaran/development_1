@@ -6,12 +6,12 @@
 
 {% block content %}
 <div  class="col-md-12 container">
-
-            <div id="top_part" class="col-md-12">
+            <!--<div class="col-md-2"></div>-->
+            <div id="top_part" class="col-md-11">
                    <!-- <div class="col-md-10">-->
 
                         <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما: {{ username }}</h2>
-                        <p> {% if wrong == True %}
+                        <p style="color: red"> {% if wrong == True %}
                             ظرفیت خالی به میزان کافی وجود ندارد
                             {% endif %}
                         </p>
@@ -21,7 +21,7 @@
 
 
             </div>
-             <div id="down_part" class="col-md-12" style="right: 20px;">
+             <div id="down_part" class="col-md-11" style="right: 20px;">
                          <form action="/payment/tour/{{ tour.id }}/" method="POST">
                              {%  csrf_token %}
                             <p>
@@ -42,8 +42,7 @@
              </div>
     </div>
     </div>
-    <div class="col-md-1">
-    </div>
+
 {% endblock %}
 
 {% block script %}

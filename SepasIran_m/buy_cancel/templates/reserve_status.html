@@ -14,15 +14,20 @@
 <p>
     {% if kind == 'tour' %}
 
-    {{ gardesh.name }}  برای شما به تعداد  {{ number }} رزرو شد .
-        <p class="random-number">
-        کد پیگیری :{{ kind }}-{{ tour.id }}-{{ username }}
-        </p>
+    {{ gardesh.name }}  برای شما به تعداد  {{ number }} نفر  رزرو شد .
+
     {% elif kind == 'restaurant' %}
         میز شما در رستوران{{ gardesh.name }}انجام شد.
-        <p class="random-number">
-        کد پیگیری :{{ table.id}}-{{ kind }}
-        </p>
+
+    {% elif kind == 'train' %}
+         برای شما به تعداد {{ number }} صندلی قطار {{ gardesh.name }}
+
+            رزرو شد.
+    {% elif kind == 'airplane' %}
+        برای شما به تعداد {{ number }} صندلی هواپیما{{ gardesh.name }}
+
+            رزرو شد.
+    {% elif kind == 'hotel' %}
     {% endif %}
 </p>
 
