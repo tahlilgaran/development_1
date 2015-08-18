@@ -305,7 +305,7 @@ def statusReserve(request,kind='', id=''):
                                                        first_name = first_name,last_name= last_name,
                                                        meli_code = melli_num,
                                                        peygiry_code = 'hotel'+'-'+str(hotel.id)+'-'+request.user.username)
-                wantedtour = Wanted_Tour.objects.create(gardesh = room,info=wantedtrip);
+                wantedtour = Wanted_Hotel.objects.create(gardesh = room,info=wantedtrip);
 
 
           return render( request , "reserve_status.html",{
@@ -334,7 +334,7 @@ def statusReserve(request,kind='', id=''):
                                                        first_name = first_name,last_name= last_name,
                                                        meli_code = melli_num,
                                                        peygiry_code = 'restaurant'+'-'+str(table.id)+'-'+request.user.username)
-                wantedtour = Wanted_Tour.objects.create(gardesh = table,info=wantedtrip);
+                wantedtour = Wanted_Restaurant.objects.create(gardesh = table,info=wantedtrip);
 
 
           return render( request , "reserve_status.html",{
