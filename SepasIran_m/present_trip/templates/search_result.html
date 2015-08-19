@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
+
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
@@ -47,15 +49,15 @@
                     <td>
                         نوع:
                     </td>
-                    <td>{{ item.tour_kind }}</td>
+                    <td>{{ item.get_tour_kind_display }}</td>
                 </tr>
                 <tr>
                     <td>مکان:</td>
-                    <td>{{ item.destination }}</td>
+                    <td>{{ item.get_destination_display }}</td>
                 </tr>
                 <tr>
                     <td>زمان:</td>
-                    <td>{{ item.start }} الی {{ item.end }}</td>
+                    <td>{{ item.start | miladitoshamsi }} الی {{ item.end |miladitoshamsi }}</td>
                 </tr>
             </table>
             <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-success , col-md-12">
@@ -84,15 +86,15 @@
                     <td>
 مبدا:
                     </td>
-                    <td>{{ item.source }}</td>
+                    <td>{{ item.get_source_display }}</td>
                 </tr>
                 <tr>
                     <td>مقصد:</td>
-                    <td>{{ item.destination }}</td>
+                    <td>{{ item.get_destination_display }}</td>
                 </tr>
                 <tr>
                     <td>زمان:</td>
-                    <td>{{ item.start }}</td>
+                    <td>{{ item.start |miladitoshamsi}}</td>
                 </tr>
             </table>
             <a href="/show/train/{{ item.id }}" type="button" class="btn btn-success , col-md-12">
@@ -122,15 +124,15 @@
                     <td>
 مبدا:
                     </td>
-                    <td>{{ item.source }}</td>
+                    <td>{{ item.get_source_display }}</td>
                 </tr>
                 <tr>
                     <td>مقصد:</td>
-                    <td>{{ item.destination }}</td>
+                    <td>{{ item.get_destination_display }}</td>
                 </tr>
                 <tr>
                     <td>زمان:</td>
-                    <td>{{ item.start }}</td>
+                    <td>{{ item.start |miladitoshamsi}}</td>
                 </tr>
             </table>
             <a href="/show/airplane/{{ item.id }}" type="button" class="btn btn-success , col-md-12">
@@ -159,7 +161,7 @@
                     <td>
 شهر:
                     </td>
-                    <td>{{ item.city }}</td>
+                    <td>{{ item.get_city_display }}</td>
                 </tr>
             </table>
             <a href="/show/restaurant/{{ item.id }}/{{ start.year }}/{{ start.month }}/{{ start.day }}/{{ end.year }}/{{ end.month }}/{{ end.day }}" type="button" class="btn btn-success , col-md-12">
@@ -170,7 +172,7 @@
     {% endif %}
 </div>
 
-{#    =========================== restaurant =========================== #}
+{#    =========================== hotel =========================== #}
 <div class="col-md-12">
     {% if hotel %}
     <h3>هتل:</h3>
@@ -189,10 +191,10 @@
                     <td>
 شهر:
                     </td>
-                    <td>{{ item.city }}</td>
+                    <td>{{ item.get_city_display }}</td>
                 </tr>
             </table>
-            <a href="/show/restaurant/{{ item.id }}/{{ start.year }}/{{ start.month }}/{{ start.day }}/{{ end.year }}/{{ end.month }}/{{ end.day }}" type="button" class="btn btn-success , col-md-12">
+            <a href="/show/hotel/{{ item.id }}/{{ start.year }}/{{ start.month }}/{{ start.day }}/{{ end.year }}/{{ end.month }}/{{ end.day }}" type="button" class="btn btn-success , col-md-12">
                 مشاهده
             </a>
             </div>

@@ -6,11 +6,12 @@
 {% block content %}
 
     <h1>
-تعریف خدمت    </h1>
+    تعریف پرواز
+    </h1>
 
-{% if username != 'gardeshsaz' %}
+{% if gardesh.builder.id != user2.userm.bprofile.id %}
     <p>
-        این صفحه مخصوص گردشسازان می باشد.
+این صفحه مخصوص گردش سازان هواپیما می باشد.
     </p>
     <p>
         در صورتی که گردشساز هستید وارد سامانه شوید.
@@ -22,7 +23,7 @@
         <br>
 درجه خدمت ارائه شده توسط شما
     {{ gardesh.degree }}
-    تشخیص داده شده است و درصد قرارداد به ازای هر خرید 10 درصد می باشد.
+    تشخیص داده شده است و درصد قرارداد به ازای هر خرید {{gardesh.agreement.percent}} درصد می باشد.
     <br>
 مبلغ دریافت شده از خریداران پس از هر خرید به حساب شما واریز خواهد شد.
     </p>
@@ -125,62 +126,22 @@
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-امکان انصراف اعضا
+امکان انصراف اعضا (چند روز قبل)
                     </label>
 
             </div>
 
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-شماره صندلی هایی که می خواهید بفروشید
+                <div class="col-md-4"></div>
+                <div class="col-md-3">{{ airplane.capacity }}</div>
+                <div class="col-md-5">
+تعداد صندلی هایی که می خواهید بفروشید
                 </div>
 
             </div>
 
-            <table class="col-md-12">
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-                            از
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-120                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            تا
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-127                    </td>
 
-                                        <td class="col-md-7"></td>
-
-
-                </tr>
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-                            از
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-130                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            تا
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-150                    </td>
-
-                                        <td class="col-md-7"></td>
-
-
-                </tr>
-            </table>
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">

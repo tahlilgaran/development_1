@@ -28,7 +28,7 @@ urlpatterns = [
 
 
 
-    # url(r'help/$', 'informing.views.help'),
+   # url(r'help/$', 'informing.views.help'),
     url(r'cancelselling/(\w+)$','define_trip.views.cancel'),
     url(r'tourdefine/$', 'define_trip.views.tarif_kind'),
     url(r'tourdefine/(\w+)$', 'define_trip.views.tarif_kind'),
@@ -40,7 +40,9 @@ urlpatterns = [
     url(r'tourdefine/airplane/2/(\d+)$','define_trip.views.airplane_define_2'),
     url(r'tourdefine/train/$','define_trip.views.train_define'),
     url(r'tourdefine/train/2/(\d+)/$','define_trip.views.train_define_2'),
-    url(r'tourdefine/hotel/$','define_trip.views.hotel_define'),
+    url(r'tourdefine/hotel/$','define_trip.views.hotel_define_first'),
+    url(r'tourdefine/hotel/define/$','define_trip.views.hotel_define'),
+    url(r'tourdefine/hotel/rooms/(\w+)/$','define_trip.views.hotel_define_rooms'),
     url(r'tourdefine/hotel/2/(\d+)/$','define_trip.views.hotel_define_2'),
     url(r'tourdefine/restaurant/$','define_trip.views.restaurant_define'),
     url(r'tourdefine/restaurant/2/(\d+)/$','define_trip.views.restaurant_define_2'),
@@ -50,13 +52,14 @@ urlpatterns = [
     url(r'forgetpassword/$', 'user.views.forget_password'),
     url(r'signup/tourist/$', 'user.views.tourist_signup'),
     url(r'signup/tourist/2/(\w+)/$', 'user.views.tourist_signup_2'),
-    url(r'signup/tourBuilder/(\w+)$', 'user.views.servant_signup'),
+    url(r'signup/tourist/3/(\w+)/$', 'user.views.tourist_signup_3'),
     url(r'signup/tourBuilder/$', 'user.views.servant_signup'),
-    url(r'signup/tourBuilder/2/(\d+)/(\d+)$', 'user.views.servant_signup_2'),
+    url(r'signup/tourBuilder/2/(\w+)$', 'user.views.servant_signup_2'),
     url(r'edit/tourist/(\w+)$','user.views.edit_tourist'),
     url(r'profile/tourist/(\w+)$','user.views.tourist_profile'),
     url(r'profile/tourbuilder/(\w+)$','user.views.tourbuilder_profile'),
     url(r'edit/tourbuilder/(\w+)$','user.views.edit_tourbuilder'),
+
 
 
    # url(r'reserve/(P?<tour_id>\d+)/$', 'buy_cancel.views.reserve'),
@@ -115,8 +118,10 @@ urlpatterns = [
      url(r'tasviye/$', 'accounting.views.tasviye'),
      url(r'tasviye/gardeshsaz/$', 'accounting.views.tasviyeGar'),
     url(r'tasviye/confirm/$', 'accounting.views.tasviyeConfirm'),
+    url(r'tasviye/(\d+)/$', 'accounting.views.tasviyeID'),
 
-     url(r'payment/$', 'accounting.views.ozviyat'),
+     url(r'payment/(\w+)/$', 'accounting.views.ozviyat'),
+    url(r'ozviyat/confirm/(\w+)/$', 'accounting.views.confirmOzv'),
 
      url(r'cancel/(\d+)/$', 'buy_cancel.views.cancel'),
      url(r'purchase/reserving/(\d+)/$', 'buy_cancel.views.purchaseReserved'),

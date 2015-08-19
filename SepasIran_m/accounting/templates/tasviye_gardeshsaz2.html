@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>دریافت اطلاعات برای تسویه حساب</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+<link rel="stylesheet" type="text/css" href="css/transaction-status.css">
+</head>
+<body>
+<div class="col-md-12">
+
+
+<h3 style="color: chocolate;font-weight: bold;">
+  دریافت اطلاعات برای تسویه حساب با شما :
+</h3>
+
+<form action="/tasviye/confirm/" method="post">
+        {% csrf_token %}
+<p>
+ شما در این صفحه با وارد کردن نام بانک و شماره ی حساب خود به سامانه ی سپاس ایران این اجازه را میدهید تا با شما تسویه حساب کند .
+</p>
+<p>
+    مبلغ حساب شما : {{ final }}
+</p>
+<p class="col-md-12">
+   <span class="col-md-7"> نام بانک مقصد:  {{ bankform.bank_name }}</span>
+
+
+<span class="col-md-5">شماره ی حساب شما در بانک مقصد :{{ bankform.account_number }}</span>
+</p>
+
+<p class="col-md-8" style="margin-top: 30px;"> <input type="submit" class="btn btn-success" value="تسویه حساب"/>
+   <input type="hidden" value={{ final }} name="account">
+
+</p>
+
+</form>
+</div>
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="css/transaction-status.css"></script>
+{% endblock %}

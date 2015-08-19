@@ -17,20 +17,18 @@
 {% csrf_token %}
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.email.errors }}</div>
                 <div class="col-md-4">
 {{ form.email }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 {{ form.email.label }}                    </label>
 
             </div>
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.lastname.errors }}</div>
                 <div class="col-md-4">
 {{ form.lastname }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 {{ form.lastname.label }}
@@ -39,10 +37,9 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.password.errors }}</div>
                 <div class="col-md-4">
 {{ form.password }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 {{ form.password.label }}
@@ -50,10 +47,9 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.confirm_password.errors }}</div>
                 <div class="col-md-4">
 {{ form.confirm_password }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 {{ form.confirm_password.label }}
@@ -62,20 +58,6 @@
 
             </div>
 
-
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-
-
-                <div class="col-md-4">
-
-              {{ form.kind }}
-
-                </div>
-        <label  class="col-md-2 ">
-{{ form.kind.label }}
-                    </label>
-        </div>
 
 
 <div class="col-md-10 ">

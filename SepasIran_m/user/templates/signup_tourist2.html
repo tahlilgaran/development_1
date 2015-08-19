@@ -11,7 +11,6 @@
 
     <p>
  لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت درستی به صفحه پرداخت حق عضویت وارد شوید<br>
-مبلغ لازم برای عضویت در سایت و بهره گیری از امکانات سایت 5000 تومان می باشد
     </p>
 <form method="post" action="">
 {% csrf_token %}
@@ -103,25 +102,11 @@
 
             </div>
 
-    <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
-                <div class="col-md-4">
-                        <a class="btn btn-success" href='\payment\' name ="send">
-پرداخت
-    </a>
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-ورود به صفحه پرداخت حق عضویت
-                    </label>
-
-
-            </div>
 
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-
+    <input class="btn btn-success" type="submit" name="confirm"   value = "تایید">
     <input class="btn btn-info" type="submit" name="return"   value = "بازگشت">
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 

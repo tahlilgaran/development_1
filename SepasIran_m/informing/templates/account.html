@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
@@ -84,24 +85,52 @@
 
         var header = document.querySelector('.taghvim');
         var body = document.querySelector('.jalali');
+        var nex = document.querySelector('.next');
+        var pre = document.querySelector('.previous');
 
         function next_month(a){
+            console.log(nex);
+            console.log(pre);
+
             if (a.id == 'tir'){
 {#                show mordad#}
                 $(header).html("<h4 class='panel-title'><span style='font-size: 20px;'><span >مرداد</span> <span >۱۳۹۴</span></span></h4>");
+
+                $(body).html(
+                     '   <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>'+
+                    '<tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>'+
+                    '<tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>'+
+                    '<tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>'+
+                    '<tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>'+
+                    '<tr><td>31</td></tr>'
+                )
+
+                nex.id = 'mordad';
+                pre.id = 'mordad';
+
+
             }
             else
             if(a.id == 'mordad'){
 {#                show shahrivar#}
                 $(header).html("<h4 class='panel-title'><span style='font-size: 20px;'><span >شهریور</span> <span >۱۳۹۴</span></span></h4>");
+
+                $(body).html(
+                    '<tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>'+
+                    '<tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>'+
+                    '<tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>'+
+                    '<tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>'+
+                    '<tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>'
+                );
+
+                nex.id = 'shahrivar';
+                pre.id = 'shahrivar';
             }
         }
 
         function previous_month(a){
-            var n = document.querySelector('.next');
-            var p = document.querySelector('.previous');
-            console.log(n);
-            console.log(p);
+            console.log(nex);
+            console.log(pre);
 
             if(a.id == 'mordad'){
 {#                show tir#}
@@ -122,17 +151,25 @@
                     '</tr>'
                 );
 
-                var all_mordad = document.querySelectorAll('.mordad');
-                for (var i = 0 ; i < all_mordad.length ; i++){
-                    all_mordad[i].id = 'tir';
-                    console.log(all_mordad[i].getAttribute('id'));
-                }
-
+                nex.id = 'tir';
+                pre.id = 'tir';
 
             }else
             if(a.id == 'shahrivar'){
 {#                show mordad#}
-                $(header).append("<h4 class='panel-title'><span style='font-size: 20px;'><span >مرداد</span> <span >۱۳۹۴</span></span></h4>");
+                $(header).html("<h4 class='panel-title'><span style='font-size: 20px;'><span >مرداد</span> <span >۱۳۹۴</span></span></h4>");
+
+                $(body).html(
+                     '   <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>'+
+                    '<tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>'+
+                    '<tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>'+
+                    '<tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>'+
+                    '<tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>'+
+                    '<tr><td>31</td></tr>'
+                );
+
+                nex.id = 'mordad';
+                pre.id = 'mordad';
             }
         }
 

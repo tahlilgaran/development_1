@@ -6,11 +6,12 @@
 {% block content %}
 
     <h1>
-تعریف خدمت    </h1>
+    تعریف هتل
+    </h1>
 
-    {% if username != 'gardeshsaz' %}
+{% if b.kind != 'Hotel' %}
     <p>
-        این صفحه مخصوص گردشسازان می باشد.
+        این صفحه مخصوص گردشسازان هتل می باشد.
     </p>
     <p>
         در صورتی که گردشساز هستید وارد سامانه شوید.
@@ -18,33 +19,30 @@
 {% else %}
 
     <p>
-لطفا اطلاعات اتاق هایی را که میخواهید در اینجا عرضه کنید وارد نمایید
+لظفا اطلاعات هتل خود را در اینجا وارد نمایید
             پر کردن فیلدهای ستاره دار الزامی می باشد.<br>
-    در قسمت قیمت ، قیمت رزرو اتاق به ازای هر شب را وارد نمایید. قیمت ها به ریال باشند.
-    <br>
-در صورت ورود شماره اتاقها تمام فیلدهایش را پر نمایید
-    <br>
+
     </p>
 
     <div class="col-md-11">
-        <form method="post" action="">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.name.errors }}</div>
                 <div class="col-md-4">
-{{ b.user.user.last_name }}
+{{ form.name }}
                     </div>
                     <label  class="col-md-2 ">
-نام هتل
+*نام هتل
                     </label>
 
 
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.city.errors }}</div>
                 <div class="col-md-4">
 {{ form.city }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *نام شهر مکان هتل
@@ -52,32 +50,69 @@
 
             </div>
 
-
             <div class="col-md-12 , form-group">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">
-{{ form.start_day }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*تاریخ شروع رزرو
-                        </label>
+                <div class="col-md-5"></div>
                 <div class="col-md-4">
-{{ form.end_day }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*تاریخ پایان رزرو
+                </div>
+
+                    <label  class="col-md-3 ">
+*تصاویری از هتل
                     </label>
 
             </div>
 
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic1.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic1 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+*تصویر اول
+                    </label>
+
+            </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <div class="col-md-5">{{ form.pic2.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic2 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر دوم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic3.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic3 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر سوم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic4.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic4 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر چهارم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-4">{{ form.free.errors }}</div>
                 <div class="col-md-3">
 {{ form.free }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 درصد تخفیف برای اعضای سامانه سپاس ایران
@@ -93,69 +128,27 @@
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <div class="col-md-4">{{ form.max_cancel_time.errors }}</div>
                 <div class="col-md-3">
                     {{ form.max_cancel_time }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟
+گردشگران تا چند روز قبل از روز خرید امکان انصراف دارند؟
                     </label>
 
             </div>
 
+
             <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-*شماره اتاق هایی که میخواهید به عرضه فروش بگذارید به همراه قیمت:
-                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <textarea  style=" min-width: 300px"  name="address" id="tourexplain" ></textarea>
+                    </div>
+                    <label  class="col-md-5 ">
+*آدرس دقیق هتل را در اینجا درج نمایید
+                    </label>
 
             </div>
-
-            <table class="col-md-12">
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-                            از
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
-                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            تا
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
-                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            قیمت
-                        </label>
-                    </td>
-
-                    <td class="col-md-2">
-                        <input type="text" class="form-control ,i">
-                    </td>
-
-                    <td class="col-md-2">
-                        <label>
-ظرفیت (تعداد افراد)
-                        </label>
-                    </td>
-
-                    <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
-                    </td>
-                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                    <td class="col-md-1"></td>
-
-                </tr>
-            </table>
-<p><br></p>
 <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
@@ -170,10 +163,10 @@
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-{#<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-    <a href="/tourdefine/hotel/2/5/" class="btn btn-success">
-        گام بعد
-    </a>
+<input class="btn btn-success" type="submit" name="save"   value = "تایید و ارائه اتاق">
+{#    <a href="/tourdefine/hotel/2/5/" class="btn btn-success">#}
+{#        گام بعد#}
+{#    </a>#}
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 </div>
 
@@ -183,51 +176,5 @@
 
     {% endif %}
 
-    <script>
-    function add1(button){
-    var table = button.parentNode.parentNode.parentNode;
-    var length = table.getElementsByTagName("tr").length;
-    var newrow = table.insertRow(length-1);
-        newrow.setAttribute("class","col-md-12");
-    var cells = ["","","","","","",""];
-
-        cells[0] = newrow.insertCell(0);
-        cells[0].innerHTML = "<label>از </label>";
-        cells[0].setAttribute("class","col-md-1");
-
-        cells[1] = newrow.insertCell(1);
-        cells[1].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[1].setAttribute("class","col-md-1");
-
-        cells[2] = newrow.insertCell(2);
-        cells[2].innerHTML = "<label> تا </label>";
-        cells[2].setAttribute("class","col-md-1");
-
-        cells[3] = newrow.insertCell(3);
-        cells[3].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[3].setAttribute("class","col-md-1");
-
-        cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = "<label> قیمت </label>";
-        cells[4].setAttribute("class","col-md-1");
-
-        cells[5] = newrow.insertCell(5);
-        cells[5].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[5].setAttribute("class","col-md-2");
-
-        cells[6] = newrow.insertCell(6);
-        cells[6].innerHTML = "<label> ظرفیت (تعداد افراد) </label>";
-        cells[6].setAttribute("class","col-md-2");
-
-        cells[7] = newrow.insertCell(7);
-        cells[7].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[7].setAttribute("class","col-md-1");
-
-        cells[8] = newrow.insertCell(8);
-        cells[8].innerHTML = ".";
-        cells[8].setAttribute("class","col-md-2");
-
-}
-    </script>
 
 {% endblock %}

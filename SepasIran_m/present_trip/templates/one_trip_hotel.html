@@ -1,5 +1,6 @@
 {% extends 'one_trip.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
@@ -29,13 +30,13 @@
                             <td>
                                 شهر:
                             </td>
-                            <td>{{ trip.city }}</td>
+                            <td>{{ trip.get_city_display }}</td>
                         </tr>
                         <tr>
                             <td>
                                 درجه:
                             </td>
-                            <td>{{ trip.gardesh.degree }}</td>
+                            <td>{{ trip.gardesh.get_degree_display }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -44,22 +45,6 @@
                     برای مشاهده ی اطلاعات اتاق ها کلید کنید.
         </button>
         </div>
-{#        <form class="col-md-12" action="/" method="POST">{% csrf_token %}#}
-
-
-{#            <div class="col-md-4">#}
-{#                <div class="col-md-10"><input type="date" class="col-md-8 , form-control"/></div>#}
-{#                <label class="col-md-2">#}
-{#تا:#}
-{#                </label>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#                <div class="col-md-10"><input type="date"  class="form-control"/></div>#}
-{#                <label class="col-md-2">#}
-{#از:#}
-{#                </label>#}
-{#            </div>#}
-{#        </form>#}
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -110,7 +95,7 @@
                                                 <td>
                                             تاریخ:
                                                 </td>
-                                                <td>{{ item.date }}</td>
+                                                <td>{{ item.date | miladitoshamsi}}</td>
                                             </tr>
                                             <tr class="danger">
                                                 <td>وضعیت:</td>
@@ -121,7 +106,7 @@
                                                 <td>
                                             تاریخ:
                                                 </td>
-                                                <td>{{ item.date }}</td>
+                                                <td>{{ item.date | miladitoshamsi}}</td>
                                             </tr>
                                             <tr class="success">
                                                 <td>

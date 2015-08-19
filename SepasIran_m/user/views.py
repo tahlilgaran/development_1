@@ -9,11 +9,14 @@ from .models import TouristProfile,TourBuilderProfile,UserM
 
 def signin(request):
 
+    user2 = request.user
+    position = 'ورود به سایت'
     if request.POST.get("signup","") != "":
         return HttpResponseRedirect('/signup/')
     if request.POST.get("forget","") != "":
         return HttpResponseRedirect('/forgetpassword/')
     wrong = 'false'
+    usernamep = ''
     if request.POST.get("login","")!= "":
         username = request.POST.get("username", "")
         password = request.POST.get("pwd", "")
@@ -28,6 +31,7 @@ def signin(request):
                     return HttpResponseRedirect('/userpage/')
                 else:
                     wrong = 'notpayed'
+                    usernamep = username
             else :
                 login(request, user)
                 if username == 'admin':
@@ -40,12 +44,16 @@ def signin(request):
     return render(request, "login.html",{
         'username': "",
         'wrong':wrong,
+        'usernamep': usernamep,
+        'user2': user2,
+        'position': position,
     })
 
 
 def forget_password(request):
     sended = 1
-
+    user2 = request.user
+    position = 'فراموشی رمز عبور'
     if request.POST.get("cancel","") != "":
         return HttpResponseRedirect('/signIn/')
     if request.method == 'POST':
@@ -60,10 +68,15 @@ def forget_password(request):
     return render(request, "forget.html", {
             'has_send': sended,
             'username': "",
+            'user2':user2,
+            'position': position,
             })
 
 
 def signup(request):
+
+    user2 = request.user
+    position = 'ثبت نام کاربران'
     if request.POST.get("next","") != "":
         print(request.POST.get("optradio"))
         if request.POST.get("optradio")== '1' :
@@ -75,21 +88,21 @@ def signup(request):
         return HttpResponseRedirect('/signIn/')
     return render(request, "signup.html",{
         'username': "",
+        'user2': user2,
+        'position': position,
     })
 
 
 def tourist_signup(request):
 
+    user2 = request.user
+    position = 'ثبت نام گردشگران> ورود اطلاعات'
     if request.POST.get("save","") != "":
-        form = TouristSignUpForm(request.POST)
+        form = TouristSignUpForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            userl = authenticate(username=username,password=password)
-            if userl:
-                login(request, userl)
-                return HttpResponseRedirect('/signup/tourist/2/'+username)
+            return HttpResponseRedirect('/signup/tourist/2/'+username)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/signIn/')
@@ -99,14 +112,21 @@ def tourist_signup(request):
     return render(request, "signup_tourist.html",{
         'username':'',
         'form': form,
+        'user2': user2,
+        'position': position,
     })
 
 
 def tourist_signup_2(request,username):
+
+    user2 = request.user
+    position = 'ثبت نام گردشگران> ورود اطلاعات> تایید اطلاعات'
     user = User.objects.get(username = username)
     userm = UserM.objects.get(user = user)
     profile = TouristProfile.objects.get(user = userm)
 
+    if request.POST.get("confirm","") != "":
+        return HttpResponseRedirect('/signup/tourist/3/'+username)
     if request.POST.get("return","") != "":
         profile.delete()
         userm.delete()
@@ -122,6 +142,32 @@ def tourist_signup_2(request,username):
         'user': user,
         'profile': profile,
         'username': "",
+        'user2': user2,
+        'position': position,
+    })
+
+def tourist_signup_3(request,username):
+
+    user2 = request.user
+    position = 'ثبت نام گردشگران> ورود اطلاعات> تایید اطلاعات> پرداخت هزینه عضویت'
+    user = User.objects.get(username = username)
+    userm = UserM.objects.get(user = user)
+    profile = TouristProfile.objects.get(user = userm)
+
+    if request.POST.get("confirm","") != "":
+        return HttpResponseRedirect('/payment/'+username)
+
+    if request.POST.get("cancel","") != "":
+        profile.delete()
+        userm.delete()
+        user.delete()
+        return HttpResponseRedirect('/signIn/')
+
+    return render(request,"signup_tourist3.html",{
+        'user': user,
+        'username': "",
+        'user2': user2,
+        'position': position,
     })
 
 
@@ -132,13 +178,15 @@ def logout_view(request):
 
 def servant_signup(request):
 
+    user2 = request.user
+    position = 'ثبت نام گردش سازان> ورود اطلاعات'
     if request.POST.get("save","") != "":
-        form = TourBuilderSignUpForm(request.POST)
+        form = TourBuilderSignUpForm(request.POST ,request.FILES)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            return HttpResponseRedirect('/signup/tourBuilder/2/'+username+'/'+password)
+            return HttpResponseRedirect('/signup/tourBuilder/2/'+username)
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/signIn/')
@@ -148,10 +196,15 @@ def servant_signup(request):
     return render(request, "signup_tourBuilder.html",{
         'username': "",
         'form': form,
+        'user2': user2,
+        'position': position,
     })
 
 
-def servant_signup_2(request,username,password):
+def servant_signup_2(request,username):
+
+    user2 = request.user
+    position = 'ثبت نام گردش سازان> ورود اطلاعات> تایید اطلاعات و قرارداد'
     user = User.objects.get(username = username)
     userm = UserM.objects.get(user = user)
     profile = TourBuilderProfile.objects.get(user = userm)
@@ -167,19 +220,23 @@ def servant_signup_2(request,username,password):
         user.delete()
         return HttpResponseRedirect('/signIn/')
     if request.POST.get("save","") != "":
-        userl = authenticate(username=username,password=password)
-        if user:
-            login(request, userl)
-            return HttpResponseRedirect('/userpage/')
+        # userl = authenticate(username=username,password=password)
+        # if user:
+        #     login(request, userl)
+        return HttpResponseRedirect('/signIn/')
 
     return render(request, "signup_tourBuilder2.html",{
         'user': user,
         'profile': profile,
         'username':"",
+        'user2': user2,
+        'position': position,
     })
 
 
 def edit_tourist(request,username):
+
+    position = 'تغییر اطلاعات گردشگر'
     user = request.user
     user2 = User.objects.get(username = username)
     if user != user2:
@@ -223,10 +280,14 @@ def edit_tourist(request,username):
     return render(request, "edit_tourist.html",{
         'username':"gardeshgar",
         'form': form,
+        'user2': user,
+        'position': position,
     })
 
 
 def edit_tourbuilder(request,username):
+
+    position = 'تغییر اطلاعات گردش ساز'
     user = request.user
     user2 = User.objects.get(username = username)
     if user != user2:
@@ -246,9 +307,6 @@ def edit_tourbuilder(request,username):
             if lastname:
                 user.last_name = lastname
             user.save()
-            kind = form.cleaned_data['kind']
-            if kind:
-                profile.kind = kind
             muser.save()
             profile.save()
             u = authenticate(username = username,password = password)
@@ -264,10 +322,14 @@ def edit_tourbuilder(request,username):
     return render(request, "edit_tourbuilder.html",{
         'username':"gardeshsaz",
         'form': form,
+        'user2': user,
+        'position': position,
     })
 
 
 def tourist_profile(request,username):
+
+    position = 'مشاهده اطلاعات گردشگر'
 
     if User.objects.filter(username = username):
         user = User.objects.filter(username = username)[0]
@@ -289,9 +351,13 @@ def tourist_profile(request,username):
         'username': "gardeshgar",
         'profile': profile,
         'user': user,
+        'user2': user2,
+        'position': position,
     })
 
 def tourbuilder_profile(request,username):
+
+    position = 'مشاهده اطلاعات گردش ساز'
     user2 = request.user
     me= False
 
@@ -316,4 +382,6 @@ def tourbuilder_profile(request,username):
         'profile': profile,
         'user': user,
         'me': me,
+        'user2': user2,
+        'position': position,
     })
