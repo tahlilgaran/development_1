@@ -4,37 +4,41 @@
 
     <div class="col-md-9">
 
-    <h2> نظرات برخط کاربران</h2>
-            <table>
-                {% for comment in onlineComments %}
-             <tr>
-                <td>
-                    <div>
+        <h2> نظرات برخط کاربران</h2>
+        <table>
+            {% for comment in onlineComments %}
+                <tr>
+                    <td>
+                        <div>
                 <span>
-                    <img class="gardeshgar_img" src="../../{{comment.user.picture}}">
+                    <img class="gardeshgar_img" src="../../{{ comment.user.picture }}">
                 </span>
                 <span class="gardeshgar_name_box">
                <a href="profile/tourist/{{ comment.user.user.username }}">{{ comment.user.user.username }}</a>
 {#                    todo#}
                     <br>
-                    {{ comment.user.user.first_name}} {{ comment.user.user.last_name }}
+                    {{ comment.user.user.first_name }} {{ comment.user.user.last_name }}
                     تور
                   <a href="/show/tour/status/{{ comment.tour.id }}"> {{ comment.tour.gardesh.name }}</a>
 {#                    todo #}
                 </span>
 
-                        <div class="col-md-12 gardeshgar_comment_box">
-                            {{ comment.body }}
-                            <br>
-                            {{ comment.date }}
+                            <div class="col-md-12 gardeshgar_comment_box">
+                                {{ comment.body }}
+                                <br>
+                                {{ comment.date }}
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-                {% endfor %}
-            </table>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
 
 
     </div>
+
+    <script>
+        var objCal1 = new AMIB.persianCalendar('pcal1');
+    </script>
 
 {% endblock content_dashboard %}
