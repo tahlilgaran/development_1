@@ -95,10 +95,9 @@ class HotelRoomForm(forms.Form):
 
 
 class RestaurantForm(forms.ModelForm):
-    max_cancel_time = forms.CharField(label="گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟")
-    free = forms.CharField(label="درصد تخفیف برای اعضای سامانه سپاس ایران")
-    name = forms.CharField(required= True, label="*نام تور")
-    # other_explain = forms.CharField()
+    max_cancel_time = forms.CharField(required=False,label="گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟")
+    free = forms.CharField(required=False,label="درصد تخفیف برای اعضای سامانه سپاس ایران")
+    name = forms.CharField(required= True)
     pic1 = forms.FileField(required=True)
     pic2 = forms.FileField(required=False)
     pic3 = forms.FileField(required=False)
@@ -106,4 +105,9 @@ class RestaurantForm(forms.ModelForm):
 
     class Meta:
         model = Restaurant
-        fields = ('city','start_day','end_day')
+        fields = ('city',)
+
+class RestaurantRoomForm(forms.Form):
+
+    start = forms.DateField(initial=datetime.date.today,widget=SelectDateWidget(attrs={'type':"date" ,'class':'col-md-2 , form-control'}))
+    end = forms.DateField(initial=datetime.date.today,widget=SelectDateWidget(attrs={'type':"date" ,'class':'col-md-2 , form-control'}))

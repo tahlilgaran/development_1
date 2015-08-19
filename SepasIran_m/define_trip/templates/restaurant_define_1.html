@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+
+    <h1>
+    تعریف رستوران
+    </h1>
+
+    {% if b.kind != 'Restaurant' and b.kind != 'Hotel'%}
+    <p>
+        این صفحه مخصوص رستوران داران می باشد.
+    </p>
+    <p>
+        در صورتی که گردشساز هستید وارد سامانه شوید.
+    </p>
+{% else %}
+    <p>
+لطفا در صورتی که می خواهید اتاق هایی برای یکی از هتل های زیر ارائه دهید روی ان کلیک نمایید و در صورتی که رستوران مورد نظر در لیست موجود نمی باشد یک رستوران تعریف نمایید.
+        <br>
+    </p>
+
+    <div class="col-md-11">
+        <form method="post" action="">
+            {% csrf_token %}
+
+            {% for i in names %}
+
+            <div class="col-md-10 ">
+                <div class="col-md-6"></div>
+           <a href="/tourdefine/restaurant/tables/{{ i }}/" >
+رستوران {{ i }}
+    </a>
+
+                </div>
+            {% endfor %}
+
+
+
+            <div class="col-md-10 ">
+                <div class="col-md-6"></div>
+<input class="btn btn-success" type="submit" name="define"   value = "تعریف رستوران جدید">
+
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
+</div>
+
+
+</form>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

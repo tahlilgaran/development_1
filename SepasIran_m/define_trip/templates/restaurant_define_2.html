@@ -6,29 +6,34 @@
 {% block content %}
 
     <h1>
-تعریف خدمت    </h1>
+    تعریف رستوران
+    </h1>
 
-{% if username != 'gardeshsaz' %}
+{% if gardesh.builder.id != user2.userm.bprofile.id %}
     <p>
-        این صفحه مخصوص گردشسازان می باشد.
+        این صفحه مخصوص گردشسازان رستوران می باشد.
     </p>
     <p>
         در صورتی که گردشساز هستید وارد سامانه شوید.
     </p>
 {% else %}
 
+
     <p>
 لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
         <br>
 درجه خدمت ارائه شده توسط شما
     {{ gardesh.degree }}
-    تشخیص داده شده است و درصد قرارداد به ازای هر خرید 5 درصد می باشد.
+    تشخیص داده شده است و درصد قرارداد به ازای هر خرید
+        {{ gardesh.agreement.percent }}
+        درصد می باشد.
     <br>
 مبلغ دریافت شده از خریداران پس از هر خرید به حساب شما واریز خواهد شد.
     </p>
 
 <div class="col-md-11">
         <form method="post" action="">
+            {% csrf_token %}
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
@@ -48,27 +53,20 @@
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*نام شهر مکان رستوران
+نام شهر مکان رستوران
                     </label>
 
             </div>
 
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">
-{{ restaurant.start_day }}
-                        <span class="error"></span>
-                    </div>
-                    <label  class="col-md-2 ">
-*تاریخ شروع رزرو
-                        </label>
+                <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ restaurant.end_day }}
+{{ hotel.address }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*تاریخ پایان رزرو
+آدرس رستوران
                     </label>
 
             </div>
@@ -93,148 +91,10 @@
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
-امکان انصراف اعضا
+امکان انصراف اعضا (چند روز قبل)
                     </label>
 
             </div>
-
-            <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-*شماره میزهایی که میخواهید به فروش بگذارید:
-                </div>
-
-            </div>
-
-            <table class="col-md-12">
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-شماره
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-3                    </td>
-                    <td class="col-md-1">
-                        <label>
-از ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-14                    </td>
-                    <td class="col-md-1">
-                        <label>
-تا ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-15                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            قیمت
-                        </label>
-                    </td>
-
-                    <td class="col-md-2">
-50000                    </td>
-
-                    <td class="col-md-1">
-                        <label>
-ظرفیت
-                        </label>
-                    </td>
-
-                    <td class="col-md-1">
-6                    </td>
-                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                </tr>
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-شماره
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-5                    </td>
-                    <td class="col-md-1">
-                        <label>
-از ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-14                    </td>
-                    <td class="col-md-1">
-                        <label>
-تا ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-15                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            قیمت
-                        </label>
-                    </td>
-
-                    <td class="col-md-2">
-60000                    </td>
-
-                    <td class="col-md-1">
-                        <label>
-ظرفیت
-                        </label>
-                    </td>
-
-                    <td class="col-md-1">
-4                    </td>
-                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                </tr>
-                <tr class="col-md-12">
-                    <td class="col-md-1">
-                        <label>
-شماره
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-10                    </td>
-                    <td class="col-md-1">
-                        <label>
-از ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-14                    </td>
-                    <td class="col-md-1">
-                        <label>
-تا ساعت
-                        </label>
-                    </td>
-                    <td class="col-md-1">
-15                    </td>
-                    <td class="col-md-1">
-                        <label>
-                            قیمت
-                        </label>
-                    </td>
-
-                    <td class="col-md-2">
-70000                    </td>
-
-                    <td class="col-md-1">
-                        <label>
-ظرفیت
-                        </label>
-                    </td>
-
-                    <td class="col-md-1">
-8                    </td>
-                    <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                </tr>
-            </table>
-<p><br></p>
 
 
 <div class="col-md-12 , form-group">
