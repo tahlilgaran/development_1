@@ -5,11 +5,32 @@
     <div class="col-md-9">
         <h2>رتبه بندی تورها</h2>
 
-        <div class="col-md-4" style="    border-radius: 25px;
-    border: 2px solid #795b00;
+        <div class="col-md-4">
+            <div style="width: 100%">
+                <canvas id="canvas-bar" height="450" width="600"></canvas>
+            </div>
+            تعداد تورهای ارائه شده در ماه گذشته
+        </div>
+        <div class="col-md-4">
+            <div id="canvas-holder" style="width:70%; ; margin-right: 15%">
+                <canvas id="chart-area" width="300" height="300"/>
+            </div>
+            نسبت
+
+            تورهای ارائه شده در ماه گذشته
+        </div>
+        <div class="col-md-4">
+            <div style="width:100%">
+                <div>
+                    <canvas id="canvas3" height="450" width="600"></canvas>
+                </div>
+            </div>
+            تعداد تورهای ارائه شده در شش ماه گذشته
+        </div>
+        <div class="col-md-4" style="
     padding: 20px;">
-            <table>
-                <tr>
+            <table >
+                <tr >
                     <td><strong>
                         برنزی
                     </strong></td>
@@ -26,8 +47,8 @@
                         </td>
                         <td>
                             <a href="/show/tour/{{ tour.id }}/status/">
-                            تور
-                            {{ tour.gardesh.name }}</a></td>
+                                تور
+                                {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}
@@ -36,8 +57,7 @@
             </table>
 
         </div>
-        <div class="col-md-4" style="    border-radius: 25px;
-    border: 2px solid #bdc0b2;
+        <div class="col-md-4" style="
     padding: 20px;">
             <table>
                 <tr>
@@ -56,8 +76,8 @@
                         </td>
                         <td>
                             <a href="/show/tour/{{ tour.id }}/status/">
-                            تور
-                            {{ tour.gardesh.name }}</a></td>
+                                تور
+                                {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}
@@ -65,8 +85,7 @@
             </table>
 
         </div>
-        <div class="col-md-4" style=" border-radius: 25px;
-    border: 2px solid #fff200;
+        <div class="col-md-4" style="
     padding: 20px;">
             <table>
                 <tr>
@@ -85,8 +104,8 @@
                         </td>
                         <td>
                             <a href="/show/tour/{{ tour.id }}/status/">
-                            تور
-                            {{ tour.gardesh.name }}</a></td>
+                                تور
+                                {{ tour.gardesh.name }}</a></td>
 
                     </tr>
                 {% endfor %}
@@ -97,3 +116,105 @@
     </div>
 
 {% endblock content_dashboard %}
+
+{% block script %}
+
+    <script src="/static/Chart.js-master/src/Chart.Core.js"></script>
+    <script src="/static/Chart.js-master/src/Chart.Doughnut.js"></script>
+    <script src="/static/chart.js-master/Chart.js"></script>
+    <script>
+
+        var doughnutData = [
+            {
+                value: 8,
+                label: "طلایی",
+                color: "#FFD700"
+            },
+            {
+                value: 18,
+                label: "نقره ای",
+                color: "#C0C0C0"
+            } ,
+            {
+                value: 10,
+                label: "برنزی",
+                color: "#B27300"
+            }
+
+        ];
+
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 50)
+        };
+
+        var barChartData = {
+            labels: ["طلایی" , "نقره ای" , "برنزی"],
+            datasets: [
+                {
+                    fillColor: "#800080",
+                    strokeColor: "rgba(220,220,220,1)",
+                    {#				highlightFill: "rgba(220,220,220,0.75)",#}
+                    {#				highlightStroke: "rgba(220,220,220,1)",#}
+                    data: [ randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50)]
+                }
+            ]
+
+        }
+
+
+        var lineChartData = {
+            labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],
+            datasets: [
+                {
+                    label: "طلایی",
+                    fillColor: "rgba(255,215,0,0.4)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                },
+                {
+                    label: "نقره ای",
+                    fillColor: "rgba(192,192,192,0.4)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                } ,
+                {
+                    label: "برنزی",
+                    fillColor: "rgba(178,115,0,0.4)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                }
+            ]
+
+        }
+
+        window.onload = function () {
+            var ctx = document.getElementById("chart-area").getContext("2d");
+            window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive: true});
+
+            var ctx3 = document.getElementById("canvas-bar").getContext("2d");
+            window.myBar = new Chart(ctx3).Bar(barChartData, {
+                responsive: true
+            });
+
+            var ctx4 = document.getElementById("canvas3").getContext("2d");
+            window.myLine = new Chart(ctx4).Line(lineChartData, {
+                responsive: true
+            });
+        };
+
+
+    </script>
+
+{% endblock %}

@@ -4,7 +4,15 @@
 {% load time %}
 {% block content_dashboard %}
 
-    <div class="col-md-9">
+       <div class="col-md-4">
+
+        <div id="canvas-holder" style="width:45%; margin-right: 30% ; margin-top: 10%">
+            <canvas id="chart-area" width="300" height="300"/>
+        </div>
+       نسبت گردشگرانی که حداقل یک نظر برخط داده اند به گردشگرانی که هیچ نظر برخطی نداده اند.
+       </div>
+
+    <div class="col-md-5">
 
         <h2> نظرات برخط کاربران</h2>
         <table>
@@ -47,3 +55,34 @@
     </script>
 
 {% endblock content_dashboard %}
+
+
+{% block script %}
+    <script src="/static/Chart.js-master/src/Chart.Core.js"></script>
+    <script src="/static/Chart.js-master/src/Chart.Doughnut.js"></script>
+    <script src="/static/chart.js-master/Chart.js"></script>
+    <script>
+
+        var doughnutData = [
+            {
+                value: 1,
+                label: "شرکت کرده اند",
+                color: "#F7464A"
+            },
+            {
+                value: 12,
+                label: "شرکت نکرده اند",
+                color: "#F7904A"
+            }
+
+        ];
+
+        window.onload = function () {
+
+
+            var ctx = document.getElementById("chart-area").getContext("2d");
+            window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive: true});
+        };
+
+    </script>
+{% endblock %}

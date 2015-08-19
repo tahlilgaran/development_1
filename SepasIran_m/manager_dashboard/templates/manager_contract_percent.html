@@ -2,16 +2,69 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-<div class="col-md-9">
-<form role="form" action="/manager/saveContractPercent/">
-  <div class="form-group">
-    <label><h2>ورود درصد پیشنهادی قراردادها</h2></label>
-      <br>
-    <input type="number" class="" style="width: 150px">
-    <input type="submit" value="تایید" class="btn btn-success">
-      </div>
-</form>
+    <div class="col-md-4">
 
-</div>
+        <div style="width:100% ; margin-left: 20% ; margin-top: 40%" >
+            <div>
+                <canvas id="canvas3" height="450" width="600"></canvas>
+            </div>
+           نمودار درصد قراردادها در شش ماه گذشته
+        </div>
+
+    </div>
+    <div class="col-md-5">
+        <form role="form" action="/manager/saveContractPercent/">
+            <div class="form-group">
+                <label><h2>ورود درصد قرارداد</h2></label>
+
+                <br>
+
+                <p> درصد پیشنهادی قراردادها مقداری است که به گردش ساز تعلق میگیرد . این مقدار تنها توسط مدیر قابل تغییر
+                    است . </p>
+
+                <p><b>مقدار فعلی درصد قراردادها 90 درصد است.</b></p>
+
+                <p>درصد جدید را در جعبه زیر وارد کنید .</p>
+                <input type="number" class="" style="width: 150px">
+                <input type="submit" value="تایید" class="btn btn-success">
+            </div>
+        </form>
+
+    </div>
 
 {% endblock content_dashboard %}
+
+
+{% block script %}
+    <script src="/static/Chart.js-master/src/Chart.Core.js"></script>
+    <script src="/static/Chart.js-master/src/Chart.Doughnut.js"></script>
+    <script src="/static/chart.js-master/Chart.js"></script>
+    <script>
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 50)
+        };
+        var lineChartData = {
+            labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],
+            datasets: [
+                {
+                    label: "ظرفیت(نفر)",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                }
+            ]
+
+        }
+        window.onload = function () {
+            var ctx4 = document.getElementById("canvas3").getContext("2d");
+            window.myLine = new Chart(ctx4).Line(lineChartData, {
+                responsive: true
+            });
+        };
+
+    </script>
+{% endblock %}

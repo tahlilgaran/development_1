@@ -44,18 +44,27 @@
     </div>
 
     <div class="col-md-5" style="padding-right: 60px">
-
+    <p> شرکت در نظرسنجی</p>
         <div id="canvas-holder" style="width:45%; display: inline-block">
             <canvas id="chart-area" width="300" height="300"/>
         </div>
         <div id="canvas-holder2" style="width:45%;  display: inline-block">
             <canvas id="chart-area2" width="300" height="300"/>
         </div>
+          <div id="canvas-holder" style="width:45%; display: inline-block">
+              نسبت کاربرانی که در نظرسنجی تور شرکت کرده اند به کسانی که شرکت نکرده اند .
+          </div>
+        <div id="canvas-holder2" style="width:45%;  display: inline-block">
+            نسبت رضایت کاربران از خدمات تور
+        </div>
+
+        <hr>
+        <p> تعداد گردشگرانی که ثبت نام کرده اند و تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . </p>
 
         <div style="width: 100%">
             <canvas id="canvas-bar" height="450" width="600"></canvas>
         </div>
-
+<hr>
         <p>
             کل ظرفیت ارائه شده و میزانی که توسط سپاس ایران فروخته شده است .
         </p>
@@ -67,46 +76,46 @@
         </div>
 
 
-        {#        <div class="box col-md-12">#}
-        {#            <table>#}
-        {#                <tr>#}
-        {#                    <td><strong>#}
-        {#                        تورهای در حال اجرا#}
-        {#                    </strong></td>#}
-        {#                </tr>#}
-        {##}
-        {#                {% for tour in runningTours %}#}
-        {#                    <tr>#}
-        {##}
-        {#                        <td>#}
-        {#                <span>#}
-        {##}
-        {#                    <img class="tour_image_large" src="../../{{ tour.gardesh.builder.user.picture }}">#}
-        {#                    todo #}
-        {#                </span>#}
-        {#                        </td>#}
-        {#                        <td>#}
-        {#                            تور#}
-        {#                            {{ tour.gardesh.name }}#}
-        {#                            <br>#}
-        {#                            مسئول تور :#}
-        {#                            {{ tour.leader }}#}
-        {#                            <br>#}
-        {#                            ظرفیت فروش :#}
-        {#                            {{ tour.capacity }}#}
-        {#                            نفر#}
-        {#                            <br>#}
-        {#                            <a href="/show/tour/{{ tour.id }}/status">#}
-        {#                            todo #}
-        {#                                اطلاعات بیشتر#}
-        {#                            </a></td>#}
-        {##}
-        {#                    </tr>#}
-        {#                {% endfor %}#}
-        {##}
-        {#            </table>#}
-        {#            <a href="/manager/tourLists/">مشاهده ی همه ی تورها</a>#}
-        {#        </div>#}
+                <div class="box col-md-12">
+                    <table>
+                        <tr>
+                            <td><strong>
+                                تورهای در حال اجرا
+                            </strong></td>
+                        </tr>
+
+                        {% for tour in runningTours %}
+                            <tr>
+
+                                <td>
+                        <span>
+
+                            <img class="tour_image_large" src="../../{{ tour.gardesh.builder.user.picture }}">
+{#                            todo#}
+                        </span>
+                                </td>
+                                <td>
+                                    تور
+                                    {{ tour.gardesh.name }}
+                                    <br>
+                                    مسئول تور :
+                                    {{ tour.leader }}
+                                    <br>
+                                    ظرفیت فروش :
+                                    {{ tour.capacity }}
+                                    نفر
+                                    <br>
+                                    <a href="/show/tour/{{ tour.id }}/status">
+{#                                    todo#}
+                                        اطلاعات بیشتر
+                                    </a></td>
+
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                    <a href="/manager/tourLists/">مشاهده ی همه ی تورها</a>
+                </div>
         {#        <div class="box col-md-12">#}
         {#            <table>#}
         {#                <tr>#}
@@ -156,19 +165,14 @@
 
         var doughnutData = [
             {
-                value: 1,
-                label: "One",
+                value: 7,
+                label: "شرکت کرده اند",
                 color: "#F7464A"
             },
             {
                 value: 12,
-                label: "Two",
+                label: "شرکت نکرده اند",
                 color: "#F7904A"
-            },
-            {
-                value: 3,
-                label: "Three",
-                color: "#95604A"
             }
 
         ];
@@ -185,15 +189,15 @@
                     strokeColor: "rgba(220,220,220,1)",
                     {#				highlightFill: "rgba(220,220,220,0.75)",#}
                     {#				highlightStroke: "rgba(220,220,220,1)",#}
-                    data: [randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50)]
-                }
-                {#			{#}
-                {#				fillColor : "rgba(151,187,205,0.5)",#}
-                {#				strokeColor : "rgba(151,187,205,0.8)",#}
-                {#				highlightFill : "rgba(151,187,205,0.75)",#}
-                {#				highlightStroke : "rgba(151,187,205,1)",#}
-                {#				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]#}
-                {#			}#}
+                    data: [10,12,15,20,15,8]
+                } ,
+                			{
+                				fillColor : "rgba(151,187,205,0.5)",
+                				strokeColor : "rgba(151,187,205,0.8)",
+                				highlightFill : "rgba(151,187,205,0.75)",
+                				highlightStroke : "rgba(151,187,205,1)",
+                				data : [8,9,7,16,10,6]
+                			}
             ]
 
         }
@@ -201,18 +205,28 @@
    var doughnutData2 = [
             {
                 value: 1,
-                label: "One",
-                color: "#99364A"
+                label: "نظم",
+                color: "#dfdfdf"
             },
             {
-                value: 12,
-                label: "Two",
-                color: "#F74AAA"
+                value: 5,
+                label: "کیفیت خدمات",
+                color: "#ff0066"
             },
             {
                 value: 3,
-                label: "Three",
+                label: "رفتار مجریان",
+                color: "#e6aaad"
+            } ,
+             {
+                value: 4,
+                label: "وسایل نقلیه",
                 color: "#95667A"
+            } ,
+             {
+                value: 5,
+                label: "اسکان",
+                color: "#0000ff"
             }
 
         ];
@@ -220,25 +234,25 @@
             labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],
             datasets: [
                 {
-                    label: "My First dataset",
+                    label: "ظرفیت(نفر)",
                     fillColor: "rgba(220,220,220,0.2)",
                     strokeColor: "rgba(220,220,220,1)",
                     pointColor: "rgba(220,220,220,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                },
+                    data: [10,12,15,20,15,8]
+                 },
                 {
-                    label: "My Second dataset",
+                    label: "فروخته شده(نفر)",
                     fillColor: "rgba(151,187,205,0.2)",
                     strokeColor: "rgba(151,187,205,1)",
                     pointColor: "rgba(151,187,205,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                }
+                  data : [8,11,10,18,10,8]
+                     }
             ]
 
         }
