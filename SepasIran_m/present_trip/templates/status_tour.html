@@ -7,26 +7,26 @@
      {% if not error %}
         <div id="down_part" class="col-md-12">
             <h3>{{ trip.gardesh.name }}</h3>
-            {% if trip.gardesh.kind == 'TR' %}
+            {% if kind == 'train' %}
                 <span>
-                    {{ trip.source }}
+                    {{ trip.get_source_display }}
                 به
-                {{ trip.destination }}
+                {{ trip.get_destination_display }}
                 </span>
-            {% elif trip.gardesh.kind == 'A' %}
+            {% elif kind == 'airplane' %}
                 <span>
-                    {{ trip.source }}
+                    {{ trip.get_source_display }}
                 به
-                {{ trip.destination }}
+                {{ trip.get_destination_display }}
                 </span>
-            {% elif trip.gardesh.kind == 'R' %}
+            {% elif kind == 'restaurant' %}
                 <span>
                 میز شماره
                 {{ sub_trip.number }}
                 ظرفیت
                 {{ sub_trip.capacity }}
                 </span>
-            {% elif trip.gardesh.kind == 'H' %}
+            {% elif kind == 'hotel' %}
                 اتاق شماره
                 {{ sub_trip.number }}
                 ظرفیت
@@ -39,12 +39,11 @@
                 <table class="table">
                     <thead>
                     <tr>
-                    {{ trip.gardesh.kind }}
-                        {% if trip.gardesh.kind == 'R' %}
+                        {% if kind == 'restaurant' %}
                             <td>
                             ساعت
                             </td>
-                        {% elif trip.gardesh.kind == 'H' %}
+                        {% elif kind == 'hotel' %}
                             <td>
                             تاریخ
                             </td>
@@ -63,9 +62,9 @@
                     <tbody>
                     {% for buyer in buy_trips %}
                         <tr>
-                            {% if trip.gardesh.kind == 'R' %}
+                            {% if kind == 'restaurant' %}
                                 <td>{{ buyer.gardesh.start_clock }}</td>
-                            {% elif trip.gardesh.kind == 'H' %}
+                            {% elif kind == 'hotel' %}
                                 <td>{{ buyer.gardesh.date }}</td>
                             {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
@@ -89,11 +88,11 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        {% if trip.gardesh.kind == 'R' %}
+                        {% if kind == 'restaurant' %}
                             <td>
                             ساعت
                             </td>
-                        {% elif trip.gardesh.kind == 'H' %}
+                        {% elif kind == 'hotel' %}
                             <td>
                             تاریخ
                             </td>
@@ -112,9 +111,9 @@
                     <tbody>
                     {% for buyer in reserve_trip %}
                         <tr>
-                            {% if trip.gardesh.kind == 'R' %}
+                            {% if kind == 'restaurant' %}
                                 <td>{{ buyer.gardesh.start_clock }}</td>
-                            {% elif trip.gardesh.kind == 'H' %}
+                            {% elif kind == 'hotel' %}
                                 <td>{{ buyer.gardesh.date }}</td>
                             {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
@@ -158,28 +157,3 @@
          <div>{{ error }}</div>
     {% endif %}
 {% endblock %}
-
-
-{#{% block script %}#}
-{#    <script>#}
-{#        function togglelist(a){#}
-{#            class_number = a.name;#}
-{#            list = document.querySelectorAll('.u'+class_number);#}
-{#            if(a.className === 'btn btn-default , glyphicon glyphicon-minus'){#}
-{#                console.log('hihi');#}
-{#                a.setAttribute("class","btn btn-default , glyphicon glyphicon-plus");#}
-{#                for(var i=0 ; i < list.length ; i++){#}
-{#                    list[i].setAttribute("class","hidden , nav nav-pills nav-stacked , u"+class_number);#}
-{#                }#}
-{##}
-{#            }else#}
-{#            if(a.className === 'btn btn-default , glyphicon glyphicon-plus') {#}
-{#                a.setAttribute("class","btn btn-default , glyphicon glyphicon-minus");#}
-{#                for(var i=0 ; i < list.length ; i++){#}
-{#                    list[i].setAttribute("class","nav nav-pills nav-stacked , u"+class_number);#}
-{#                }#}
-{##}
-{#            }#}
-{#        }#}
-{#    </script>#}
-{#{% endblock %}#}

@@ -41,8 +41,13 @@
                     </tbody>
                 </table>
             </div>
+
         <button type="button" class="btn btn-warning , col-md-4" data-toggle="modal" data-target="#myModal">
-                    برای مشاهده ی اطلاعات اتاق ها کلید کنید.
+            {% if user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile%}
+            وضعیت گردش
+            {% else %}
+                برای مشاهده اطلاعات اتاق ها کلیک کنید.
+            {% endif %}
         </button>
         </div>
 
@@ -131,20 +136,16 @@
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
                         <div class="col-md-12"  style="float: left; direction: ltr">
-                            <form action="/reserving/hoteh/{{ trip.id }}/" method="post">{% csrf_token %}
+                            <form action="" method="post">{% csrf_token %}
                                 <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
                                 <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">رزرو</button>
                             </form>
-                            <form action="/purchase/hotel/{{ trip.id }}/" method="post">{% csrf_token %}
+                            <form action="" method="post">{% csrf_token %}
                                 <input type="hidden" value="gol" name="returned_id_list" class="returned_id_list" >
                                 <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">خرید</button>
                             </form>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
-                        <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
-
-                                   وضعیت گردش
-                        </button>
                         <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>
                         <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
                     {% elif user.userm.kind == 'gardeshsaz' %}

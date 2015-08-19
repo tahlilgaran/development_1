@@ -18,8 +18,6 @@ def Dashboard(request):
 def tourLists(request):
     tours = Tour.objects.filter(end__gt=datetime.datetime.today(),
                             start__lt=datetime.date.today())
-    tour =tours[0]
-    print(tour.gardesh.builder.user.picture)
     pics =[]
     for tour in tours :
         pic = Picture.objects.filter(gardesh = tour.gardesh)
