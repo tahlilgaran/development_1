@@ -25,9 +25,10 @@ def user_rating(request , tour_id):
 
 
 def show_user_rating_form(request , tour_id):
+    tour = Tour.objects.filter(id= tour_id)[0]
     return render(request, "quality_user_rating.html",
                   {'user2': request.user, 'position': "سامانه کنترل کیفت - نظرسنجی پایان تور",
-                   'tarikh': datetime.datetime.now(), 'tour_id' : tour_id})
+                   'tarikh': datetime.datetime.now(), 'tour_id' : tour_id , 'tour': tour})
 
 
 def online_comment(request , tour_id):  #todo bayad tour_id ro ham begiram tu url
@@ -45,9 +46,9 @@ def online_comment(request , tour_id):  #todo bayad tour_id ro ham begiram tu ur
 
 
 def show_online_comment_form(request , tour_id):
-    tour = Tour.objects.filter(id= tour_id)
+    tour = Tour.objects.filter(id= tour_id)[0]
     return render(request, "quality_online_comment.html",
                   {'user2': request.user, 'position': "سامانه کنترل کیفیت - نظرسنجی برخط",
-                   'tarikh': datetime.datetime.now() , "tour_id" : tour_id
+                   'tarikh': datetime.datetime.now() , "tour_id" : tour_id , 'tour': tour
                   })
 

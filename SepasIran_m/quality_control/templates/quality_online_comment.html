@@ -11,14 +11,14 @@
 ارسال بازخورد برخط
 </h2>
     <p>
-    کاربر گرامی {{ user2.first_name }}{{ user2.last_name }}
+    کاربر گرامی {{ user2.first_name }} {{ user2.last_name }}
     لطفاً نظر خود را در خصوص
-    <a>
+    <a href="/show/tour/{{ tour.id }}">
         تور
         {{ tour.gardesh.name }}
     </a>
     در میان بگذارید . نظر شما به طور مستقیم به مدیریت سامانه سپاس ایران ارسال میگردد. </p>
-<form method="post" action="/quality/saveOnlineComment/{{ tour_id }} ">
+<form method="post" action="/quality/saveOnlineComment/{{ tour.id }} ">
 {% csrf_token %}
 <textarea name="body" cols="60"   rows="5"></textarea>
     <br>

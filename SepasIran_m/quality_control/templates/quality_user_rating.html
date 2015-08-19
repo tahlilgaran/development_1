@@ -14,11 +14,11 @@
     کاربر گرامی
         {{ user2.first_name }} {{  user2.last_name }}
         لطفاً برای مدیریت بهتر تورها و ارائه ی خدمات بهتر سوالات زیر را در خصوص تور
-         <a>{{ tour.gardesh.name }}</a>
+         <a href="/show/tour/{{ tour.id }}">{{ tour.gardesh.name }}</a>
         که در آن شرکت کردید با ما درمیان بگذارید .<br>
         از صداقت شما متشکریم
     </p>
-    <form method="post" action="/quality/saveUserRating/{{ tour_id }}">
+    <form method="post" action="/quality/saveUserRating/{{ tour.id }}">
         {% csrf_token %}
         1- تور را از لحاظ نظم چگونه ارزیابی میکنید ؟
         <br>
