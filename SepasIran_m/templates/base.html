@@ -30,7 +30,7 @@
                        onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'"> گردش
                     ها</a></li>
                 {% if username != 'admin' %}
-                    <li><a href="/userpage/{{ username }}" style="color:rgb(255,196,0);font-weight:bold;"
+                    <li><a href="/userpage/" style="color:rgb(255,196,0);font-weight:bold;"
                            onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">حساب
                         من</a></li>
                 {% else %}
@@ -38,7 +38,7 @@
                            onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">حساب
                         من</a></li>
                 {% endif %}
-                <li><a href="/home/{{ username }}" style="color:rgb(255,196,0);font-weight:bold;"
+                <li><a href="/home/" style="color:rgb(255,196,0);font-weight:bold;"
                        onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">خانه</a>
                 </li>
             </ul>
@@ -49,9 +49,8 @@
     <div class="finish_nav , rtl , col-md-12">
         <header class='blog-header , container'>
             <div class="login_box">
-                {% if user2 %}
-                    عکس کاربر
-                    <img src="/">
+                {% if user2.userm %}
+                    <img class="login_box" src="/{{ user2.userm.picture }}" style="margin-left: 0px;">
                 {% else %}
                 <h3 class="col-me-12" style="color:#228b22;"><br>
                     <a href="/signIn/">
@@ -84,6 +83,8 @@
             {% else %}
                 شما هنوز وارد سایت نشدید.
             {% endif %}</span>
+
+            <span style="margin-right: 400px;"> امروز {{ tarikh | miladitoshamsi }} - ساعت: {{ tarikh | time }}</span>
             <span style="float: left">{{ position }}</span>
         </div>
 
@@ -94,12 +95,12 @@
 
         <aside class='right_aside , col-md-3 sidebar'>
             <div class="list-group , col-md-10" style="color:green;font-weight:bold;">
-                <a href="/home/{{ username }}" class="list-group-item"
+                <a href="/home/" class="list-group-item"
                    onmouseover="this.style.backgroundColor='#fff8dc'" onmouseout="this.style.backgroundColor=''">
                     <span class='glyphicon glyphicon-home ,col-md-1' aria-hidden='true'></span>
                     <span class='col-md-11'>خانه</span>
                 </a>
-                <a href="/userpage/{{ username }}" class="list-group-item"
+                <a href="/userpage/" class="list-group-item"
                    onmouseover="this.style.backgroundColor='#fff8dc'" onmouseout="this.style.backgroundColor=''">
                     <span class='glyphicon glyphicon-user ,col-md-1' aria-hidden='true'></span>
                     <span class='col-md-11'>حساب من</span>
@@ -141,36 +142,43 @@
             <div class="footer_links , col-md-12">
                 <div class="col-md-4 , container">
                     <table class="table">
-
                         <tr>
-                            <td><a href="/signIn/">عضویت در سامانه</a></td>
+                            <td><a href="%">قوانین سایت</a></td>
                         </tr>
-
                         <tr>
-                            <td><a href="/rotbe/">نحوه ی رتبه دهی</a></td>
+                            <td><a href="%">عضویت در سامانه</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="%">تسویه حساب</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="%">نحوه ی رتبه دهی</a></td>
                         </tr>
                     </table>
                 </div>
                 <div class="col-md-4 , list-group ,container">
                     <table class="table">
                         <tr>
-                            <td><a href="/tahlilgaran/">شرکت تحلیلگران</a></td>
+                            <td><a href="%">شرکت تحلیلگران</a></td>
                         </tr>
                         <tr>
-                            <td><a href="http://tahlilgaran-ce.blog.ir/">وبلاگ شرکت</a></td>
+                            <td><a href="%">وبلاگ شرکت</a></td>
                         </tr>
                         <tr>
-                            <td><a href="http://tahlilgaran-ce.blog.ir/page/%D8%AA%D9%85%D8%A7%D8%B3-%D8%A8%D8%A7-%D9%85%D8%A7">ارتباط با شرکت</a></td>
+                            <td><a href="%">ارتباط با شرکت</a></td>
                         </tr>
                     </table>
                 </div>
                 <div class="col-md-4 ,list-group , container ">
                     <table class="col-md-12 , table">
                         <tr>
-                            <td><a href="/sepas/">سپاس ایران</a></td>
+                            <td><a href="%">سپاس ایران</a></td>
                         </tr>
                         <tr>
-                            <td><a href="/hadaf/">هدف از راه اندازی سامانه</a></td>
+                            <td><a href="%">هدف از راه اندازی سامانه</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="%">شمیم جم چیست؟</a></td>
                         </tr>
                         <tr>
                             <td><a href="%">راهنمای استفاده از سامانه</a></td>
