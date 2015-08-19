@@ -3,10 +3,6 @@ from django import forms
 
 class numberForm(forms.Form):
     number = forms.IntegerField(required=True)
-    def clean_number(self):
-        number= self.cleaned_data['number']
-        if number <= 0:
-            raise forms.validationError("تعداد افراد نمیتواند منفی باشد")
 
 class peopleForm(forms.Form):
     first_name= forms.CharField(max_length=200,label="نام",required=True)
