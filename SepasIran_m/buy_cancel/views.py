@@ -47,17 +47,10 @@ def purchaseTour(request ,id=''):
     user2=request.user
     tour=Tour.objects.get(id = id);
     gardesh=tour.gardesh
-    if request.POST.get("save","") != "":
-        form=numberForm(request.POST)
-        peopleform=peopleForm(request.POST)
-        if form.is_valid():
-            num = form.cleaned_data['number']
-            return HttpResponseRedirect('/payment/tour/'+str(tour.id))
 
-    else:
 
-        form=numberForm()
-        peopleform=peopleForm()
+    form=numberForm(request.POST)
+    peopleform=peopleForm(request.POST)
 
     return render(request, "information_of_buyer_tour.html" , {
              'username':username,
@@ -66,7 +59,7 @@ def purchaseTour(request ,id=''):
              'form':form,
              'peopleform':peopleform,
             'user2':user2,
-        'position':'زیر سامانه ی خرید',
+             'position':'زیر سامانه ی خرید',
 
     })
 

@@ -22,30 +22,29 @@
 
             </div>
              <div id="down_part" class="col-md-11" style="right: 20px;">
-                         <form action="" method="POST">
+                         <form action="/payment/tour/{{ tour.id }}/" method="POST">
                              {%  csrf_token %}
                             <p>
                             <span style="font-weight: bold;">تعداد خریداران:</span>
 
-                                {{ form.number }}نفر
+                                {{ form.number }} نفر
 
 
 
-                            <div style="font-weight: bold; color: darkred" >{{ form.number.errors }}</div>
-                             <input type="hidden" value={{ form.number }}
+
+
                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
                                   <div id="t" class="col-md-12" ></div>
-                                    <input type="submit" class="btn btn-success" name="save" value="تایید خرید" style="float:left;margin-left:40px;margin-top: 10px;"/>
+                                    <input type="submit" class="btn btn-success"  value="تایید خرید" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
 
                                     <div id="total"></div>
 
                          </form>
              </div>
-    </div>
-    </div>
 
+</div>
 {% endblock %}
 
 {% block script %}
