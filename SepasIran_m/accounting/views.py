@@ -484,7 +484,7 @@ def confirmOzv(request,username=''):
     user=User.objects.get(username= username)
     user2=request.user
     userm=user.userm
-    y=TouristProfile.objects.get(userm= userm)
+    y=TouristProfile.objects.get(user= userm)
     y.has_payed=True
     y.save()
     return render(request, "transaction-status.html",{
@@ -548,7 +548,7 @@ def tasviyeGar(request):
     if user.userm.kind == 'gardeshgar':
         return HttpResponseNotFound()
     else:
-        date=datetime.now()
+        date=datetime.datetime.now()
         builderP=TourBuilderProfile.objects.get(user=userm)
 
         gardesh=Gardesh.objects.filter(builder=builderP,)
@@ -559,7 +559,7 @@ def tasviyeGar(request):
             'tarikh':tarikh
         })
 def tasviyeID(request,id=''):
-    date=datetime.now()
+    date=datetime.datetime.now()
     tarikh=datetime.datetime.now()
     gardesh= Gardesh.objects.get(id =id)
     agree=gardesh.agreement
