@@ -5,6 +5,7 @@ from user.models import TourBuilderProfile
 
 class Agreement(models.Model):
     percent = models.FloatField()    # between 0 and 1
+    date = models.DateField(default=datetime.date.today)
     kind = models.CharField(max_length=30)   # tr-b /tr-s /tr-g/ a-b /...
 
 KIND = (
