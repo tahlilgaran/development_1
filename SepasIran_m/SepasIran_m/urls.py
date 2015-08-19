@@ -115,8 +115,10 @@ urlpatterns = [
      url(r'tasviye/$', 'accounting.views.tasviye'),
      url(r'tasviye/gardeshsaz/$', 'accounting.views.tasviyeGar'),
     url(r'tasviye/confirm/$', 'accounting.views.tasviyeConfirm'),
+    url(r'tasviye/(\d+)/$', 'accounting.views.tasviyeID'),
 
-     url(r'payment/$', 'accounting.views.ozviyat'),
+     url(r'payment/(\w+)/$', 'accounting.views.ozviyat'),
+    url(r'ozviyat/confirm/(\w+)/$', 'accounting.views.confirmOzv'),
 
      url(r'cancel/(\d+)/$', 'buy_cancel.views.cancel'),
      url(r'purchase/reserving/(\d+)/$', 'buy_cancel.views.purchaseReserved'),

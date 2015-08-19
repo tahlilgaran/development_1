@@ -14,16 +14,16 @@
 
 
 <h3 style="color: chocolate;font-weight: bold;">
-  دریافت اطلاعات برای تسویه حساب با شما : <span style="color: chocolate;">{{ user.username }}</span>
+  دریافت اطلاعات برای تسویه حساب با شما :
 </h3>
-    <p>تسویه حساب با شما برای انصراف شما از خرید {{ gardesh.name }}میباشد . بدین منظور مطابق با قرارداد ۵  درصد از مبلغ پرداختی شما کسر خواهد شد و به شما باقی مبلغ پرداخت خواهد شد .</p>
+
 <form action="/tasviye/confirm/" method="post">
         {% csrf_token %}
 <p>
  شما در این صفحه با وارد کردن نام بانک و شماره ی حساب خود به سامانه ی سپاس ایران این اجازه را میدهید تا با شما تسویه حساب کند .
 </p>
 <p>
-    مبلغ حساب شما : {{ account }}
+    مبلغ حساب شما : {{ final }}
 </p>
 <p class="col-md-12">
    <span class="col-md-7"> نام بانک مقصد:  {{ bankform.bank_name }}</span>
@@ -33,9 +33,8 @@
 </p>
 
 <p class="col-md-8" style="margin-top: 30px;"> <input type="submit" class="btn btn-success" value="تسویه حساب"/>
-   <input type="hidden" value={{ account }} name="account">
-    <input type="hidden" value={{ gardeshID }} name="gardeshID">
-        <input type="hidden" value={{ gardeshgarID }} name="gardeshgarID">
+   <input type="hidden" value={{ final }} name="account">
+
 </p>
 
 </form>

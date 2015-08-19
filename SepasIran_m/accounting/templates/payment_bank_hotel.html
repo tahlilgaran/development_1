@@ -13,9 +13,10 @@
 
 </head>
 <body style="background-color:#FFE4C4;font-family: 'B Mitra';">
-<form action="/ozviyat/confirm/{{ username }}" method="POST">
+
+<form action="/payment/hotel/confirm/{{ hotel.id }}/" method="POST">
     {% csrf_token %}}
-    <div class="container" style="direction: rtl" >
+     <div class="container" style="direction: rtl" >
     <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-5'>
@@ -66,9 +67,10 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
-                  مبلغ کل پرداختی:{{ total_cost }}ریال
+                  مبلغ کل پرداختی:{{ total_cost }} تومان
+                    <input name="number" value={{ number }} hidden/>
                     <input name="total_cost" value={{ total_cost }} hidden/>
-
+                    <input name="ID" value={{ ID }} hidden/>
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
               </div>
@@ -76,7 +78,8 @@
             <div class='form-row'>
               <div class='col-md-12 form-group'>
                 <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
-;background-color:#CD6600;"/>
+;background-color:green;"/>
+
               </div>
             </div>
             <div class='form-row'>
@@ -87,6 +90,22 @@
               </div>
             </div>
           </form>
+            <form action="/payment/hotel/cancel/{{ hotel.id }}/" method="POST">
+                 {% csrf_token %}
+                 <input name="number" value={{ number }} hidden/>
+
+                  <div class='col-md-12'>  <input class='form-control btn btn-primary submit-button' type='submit' value="انصراف" style="
+;background-color:#CD6600;"/></div>
+
+
+</form>
+        </div>
+
+        <div class='col-md-4'></div>
+    </div>
+</div>
+</form>
+
         </div>
         <div class='col-md-4'></div>
     </div>
@@ -97,7 +116,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="javascript">
+<!--<script type="javascript">
     $(function() {
   $('form.require-validation').bind('submit', function(e) {
     var $form         = $(e.target).closest('form'),

@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>درگاه بانک</title>
-    <style>
-        body {
-            margin-top:20px;
-            background-color:#FFE4C4;
-        }
-    </style>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
-<body style="background-color:#FFE4C4;font-family: 'B Mitra';">
+<body style="background-color:darkgray;margin-top: 40px;font-family: 'B Mitra';">
+<img class="img" src="pic/ax2.jpg">
 {%  if kind == 'tour' %}
 <form action="/payment/tour/confirm/{{ tour.id }}/" method="POST">
-    {% csrf_token %}}
+    {% csrf_token %}
+
      <div class="container" style="direction: rtl" >
+         <img class="img" src="pic/ax2.jpg">
     <div class='row'>
-        <div class='col-md-3'></div>
+        <div class='col-md-4'></div>
         <div class='col-md-5'>
-          <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+
           <form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
             <div class='form-row'>
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
@@ -67,7 +65,7 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
-                  مبلغ کل پرداختی:{{ total_cost }}ریال
+                 مبلغ قابل پرداخت:{{ total_cost }} تومان
                     <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
@@ -100,19 +98,19 @@
 </form>
         </div>
 
-        <div class='col-md-4'></div>
+        <div class='col-md-3'></div>
     </div>
 </div>
 </form>
 
 {%  elif kind == 'airplane' %}
     <form action="/payment/airplane/confirm/{{ airplane.id }}/" method="POST">
-    {% csrf_token %}}
+    {% csrf_token %}
    <div class="container" style="direction: rtl" >
+       <img  src="pic/mellat.jpg"/>
     <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-5'>
-          <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
           <form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
             <div class='form-row'>
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
@@ -159,7 +157,7 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
-                  مبلغ کل پرداختی:{{ total_cost }}ریال
+                  مبلغ قابل پرداخت:{{ total_cost }}تومان
                     <input name="total_cost" value={{ total_cost }} hidden/>
 
                      <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
@@ -201,10 +199,11 @@
 <form action="/payment/train/confirm/{{ train.id }}/" method="POST">
     {% csrf_token %}}
     <div class="container" style="direction: rtl" >
+        <img  src="pic/mellat.jpg"/>
     <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-5'>
-          <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+
           <form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
             <div class='form-row'>
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
@@ -251,7 +250,7 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
-                  مبلغ کل پرداختی:{{ total_cost }}ریال
+                  مبلغ قابل پرداخت:{{ total_cost }} تومان
                     <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
