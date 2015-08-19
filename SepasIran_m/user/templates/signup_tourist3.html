@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+
+<h1>
+    پرداخت حق عضویت
+    </h1>
+<p>
+کاربر گرامی،
+    {{ user.username }}
+    <br>
+    اطلاعات شما با موفقیت در سیستم ثبت گردید. اما برای تکمیل عضویت در سایت
+
+ و بهره گیری از امکانات سایت
+    می بایست مبلغ 5000 تومان به عنوان حق عضویت پرداخت نمایید
+    در غیر این صورت امکان ورود به سایت را نخواهید داشت
+
+</p>
+
+<form method="post" action="">
+{% csrf_token %}
+
+    <div class="col-md-10 ">
+                <div class="col-md-6"></div>
+    <input class="btn btn-success" type="submit" name="confirm"   value = "ورود به صفحه پرداخت">
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف از عضویت"  >
+
+</div>
+
+</form>
+
+{% endblock %}

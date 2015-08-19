@@ -8,9 +8,9 @@
     <h1>
     تعریف تور
     </h1>
-{% if username != 'gardeshsaz' %}
+{% if b.kind != 'Tour' %}
     <p>
-        این صفحه مخصوص گردشسازان می باشد.
+        این صفحه مخصوص گردشسازان تور می باشد.
     </p>
     <p>
         در صورتی که گردشساز هستید وارد سامانه شوید.
@@ -20,6 +20,9 @@
     لطفا اطلاعات زیر را در مورد تور خود با دقت تکمیل فرمایید.<br>
         پر کردن فیلدهای ستاره دار الزامی می باشد.<br>
     در صورت انتخاب یک وسیله نقلیه یا محل اقامت باید نام شرکت یا نوع آن نوشته شود.<br>
+    میزان ظرفیت تور تعداد کل اعضای تور است و شما میتوانید هر تعدادی که مایل هستید اعلام کنید تا ما برای شما تا آن تعداد بفروشیم.
+    <br>
+
     </p>
 
     <div class="col-md-11">
@@ -36,7 +39,7 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.name.errors }}</div>
                 <div class="col-md-4">
 {{ form.name }}
                     <span class="error"></span>
@@ -48,7 +51,7 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.tour_kind.errors }}</div>
                 <div class="col-md-4">
                     {{ form.tour_kind }}
                     <span class="error"></span>
@@ -60,7 +63,7 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.destination.errors }}</div>
                 <div class="col-md-4">
 {{ form.destination }}
                     <span class="error"></span>
@@ -72,7 +75,7 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.source.errors }}</div>
                 <div class="col-md-4">
 
                     {{ form.source }}
@@ -84,10 +87,9 @@
                 </div>
 
                 <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.start.errors }}</div>
                 <div class="col-md-4">
 {{ form.start }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *زمان حرکت
@@ -95,10 +97,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.start_t.errors }}</div>
                 <div class="col-md-4">
 {{ form.start_t }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *ساعت حرکت
@@ -106,10 +107,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.end.errors }}</div>
                 <div class="col-md-4">
 {{ form.end }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *زمان بازگشت
@@ -117,10 +117,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.end_t.errors }}</div>
                 <div class="col-md-4">
 {{ form.end_t }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *ساعت بازگشت
@@ -128,10 +127,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.entire_capacity.errors }}</div>
                 <div class="col-md-4">
 {{ form.entire_capacity }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *تعداد نفرات
@@ -139,10 +137,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.capacity.errors }}</div>
                 <div class="col-md-4">
 {{ form.capacity }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *تعداد درخواست برای فروش
@@ -150,10 +147,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.leader.errors }}</div>
                 <div class="col-md-4">
 {{ form.leader }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *نام مسئول
@@ -161,29 +157,28 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.leader_c.errors }}</div>
                 <div class="col-md-4">
 {{ form.leader_c }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
-*معاون مسئول
+معاون مسئول
                     </label>
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">{{ form.airplane.errors }}</div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" name="company" placeholder="نام شرکت هواپیمایی">
+{{ form.airplane }}
                 </div>
                 <label class="col-md-2">
                     *نام شرکت
                 </label>
 
                 <div class="col-md-2">
-                        <div class="checkbox">
+                        <div class="radio">
                           <label>
-                            <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                            <input type="radio" name="rt" value="1" aria-label="..." checked>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هواپیما
                           </label>
                         </div>
@@ -195,18 +190,18 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">{{ form.train.errors }}</div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" placeholder="نام قطار رجا">
+{{ form.train }}
                 </div>
                 <label class="col-md-2">
 *نام قطار
                 </label>
 
                 <div class="col-md-2">
-                        <div class="checkbox">
+                        <div class="radio">
                           <label>
-                            <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                            <input type="radio" name="rt" value="2" aria-label="...">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; قطار
                           </label>
                         </div>
@@ -219,23 +214,16 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    <select class="form-control">
-                      <option>
-VIP
-                      </option>
-                      <option>
-معمولی
-                      </option>
-                    </select>
+                    {{ form.bus }}
                 </div>
                 <label class="col-md-2">
                     *نوع اتوبوس
                 </label>
 
                 <div class="col-md-2">
-                        <div class="checkbox">
+                        <div class="radio">
                           <label>
-                            <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                            <input type="radio" name="rt" value="3" aria-label="...">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; اتوبوس
                           </label>
                         </div>
@@ -247,14 +235,9 @@ VIP
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="des" placeholder="تعداد ستاره">
-                </div>
-                <Label class="col-md-1">
-                    *درجه
-                </Label>
+<div class="col-md-3"></div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" name="hotel" placeholder="نام هتل">
+{{ form.hotel }}
                 </div>
                 <label class="col-md-2">
                     *نام هتل
@@ -263,8 +246,8 @@ VIP
                 <div class="col-md-2">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هتل
+                            <input type="radio" name="rm" value="1" aria-label="..." checked>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هتل
                           </label>
                         </div>
                     </div>
@@ -275,10 +258,10 @@ VIP
 
             </div>
              <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">{{ form.apartment.errors }}</div>
 
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" placeholder=" نام هتل آپارتمان">
+{{ form.apartment }}
                 </div>
                 <label class="col-md-2">
 *نام هتل آپارتمان
@@ -287,8 +270,8 @@ VIP
                 <div class="col-md-2">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;هتل آپارتمان (سوئیت)
+                            <input type="radio" name="rm" value="2" aria-label="...">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; هتل آپارتمان
                           </label>
                         </div>
                     </div>
@@ -298,10 +281,10 @@ VIP
 
             </div>
              <div class="col-md-12 , form-group">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">{{ form.mosaferkhane.errors }}</div>
 
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="des" placeholder="نام مسافرخانه">
+{{ form.mosaferkhane }}
                 </div>
                 <label class="col-md-2">
                     *نام مسافرخانه
@@ -310,8 +293,8 @@ VIP
                 <div class="col-md-2">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; مسافرخانه
+                            <input type="radio" name="rm" value="3" aria-label="...">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; مسافرخانه
                           </label>
                         </div>
                     </div>
@@ -321,50 +304,23 @@ VIP
 
             </div>
 
-            <table class="col-md-12">
-                <tr class="col-md-12">
-                    <td class="col-md-2">
-                        <label >
-نام مکان
-                </label>
-                    </td>
-
-                    <td class="col-md-1">
-                    <input type="text" class="form-control,i" name="m1" id="des">
-                    </td>
-
-                    <td class="col-md-2">
-                        <label>
-زمان بازدید
-                </label>
-                    </td>
-                    <td class="col-md-2">
-
-                    <input type="date" class="form-control,i" name="d1" id="des">
-
-                    </td>
-
-
-                <td class="col-md-3"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                </tr>
-            </table>
-
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <p><br></p>
+
+                <div class="col-md-6">{{ form.cost.errors }}</div>
                 <div class="col-md-3">
-{{ form.cost }}                        <span class="error"></span>
+{{ form.cost }}
                     </div>
-                    <label  class="col-md-5 ">
+                    <label  class="col-md-3 ">
 *هزینه سفر و مکان
                     </label>
 
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <div class="col-md-4">{{ form.free.errors }}</div>
                 <div class="col-md-3">
-{{ form.free }}                        <span class="error"></span>
+{{ form.free }}
                     </div>
                     <label  class="col-md-5 ">
 درصد تخفیف برای اعضای سامانه سپاس ایران
@@ -390,16 +346,11 @@ VIP
 
             </div>
 
-
             <div class="col-md-12 , form-group">
                 <div class="col-md-5"></div>
-                <div class="col-md-2">
-                    <input type="button" class="btn btn-info" value="upload"/>
+                <div class="col-md-4">
                 </div>
-                <div class="col-md-2">
-                        <input type="text" class="form-control" id="des" placeholder="browse file">
-                        <span class="error"></span>
-                    </div>
+
                     <label  class="col-md-3 ">
 *تصاویری از مکان تور
                     </label>
@@ -407,10 +358,57 @@ VIP
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-1"></div>
+                <div class="col-md-5">{{ form.pic1.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic1 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+*تصویر اول
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic2.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic2 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر دوم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic3.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic3 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر سوم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-5">{{ form.pic4.errors }}</div>
+                <div class="col-md-4">
+                    {{ form.pic4 }}
+                </div>
+
+                    <label  class="col-md-3 ">
+تصویر چهارم
+                    </label>
+
+            </div>
+
+            <div class="col-md-12 , form-group">
+                <div class="col-md-1">{{ form.destination_explain.errors }}</div>
                 <div class="col-md-6">
 {{ form.destination_explain }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
                         توضیحاتی در مورد مقصد تور و جاذبه هایش بنویسید
@@ -419,7 +417,7 @@ VIP
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-1"></div>
+                <div class="col-md-1">{{ form.move_explain.errors }}</div>
                 <div class="col-md-6">
 {{ form.move_explain }}
                         <span class="error"></span>
@@ -434,7 +432,6 @@ VIP
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
                         <textarea  style="min-height: 100px"  name="other_explain" class="form-control" id="tourexplain" ></textarea>
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
@@ -443,13 +440,14 @@ VIP
             </div>
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-{#            <input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-    <a href="/tourdefine/tour/2/1" class="btn btn-success">
-        گام بعد
-    </a>
+            <input class="btn btn-success" type="submit" name="save"   value = "گام بعد">
+{#    <a href="/tourdefine/tour/2/1" class="btn btn-success">#}
+{#        گام بعد#}
+{#    </a>#}
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 </div>
-
+<div style="display: none" id="bazdid">{{ form.bazdid }}</div>
+            <div style="display: none" id="number">2</div>
         </form>
 
     </div>
@@ -459,29 +457,26 @@ VIP
     function add1(button){
     var table = button.parentNode.parentNode.parentNode;
     var length = table.getElementsByTagName("tr").length;
+    var b = document.getElementById("bazdid");
+        var a = document.getElementById("number");
     var newrow = table.insertRow(length-1);
         newrow.setAttribute("class","col-md-12");
-    var cells = ["","","",""];
+    var cells = ["","",""];
 
         cells[0] = newrow.insertCell(0);
         cells[0].innerHTML = "<label > نام مکان </label>";
         cells[0].setAttribute("class","col-md-2");
 
         cells[1] = newrow.insertCell(1);
-        cells[1].innerHTML = "<input type="+"text"+" class="+"form-control,i"+" id="+"des"+">";
-        cells[1].setAttribute("class","col-md-1");
+        cells[1].innerHTML = b.innerHTML;
+        cells[1].setAttribute("class","col-md-3");
+        cells[1].setAttribute("name","b"+ a.innerHTML);
+
+        a.innerHTML = parseInt(a.innerHTML)+1;
 
         cells[2] = newrow.insertCell(2);
-        cells[2].innerHTML = "<label> زمان بازدید </label>";
-        cells[2].setAttribute("class","col-md-2");
-
-        cells[3] = newrow.insertCell(3);
-        cells[3].innerHTML = "<input type="+"date"+" class="+"form-control,i"+">";
-        cells[3].setAttribute("class","col-md-2");
-
-        cells[4] = newrow.insertCell(4);
-        cells[4].innerHTML = "";
-        cells[4].setAttribute("class","col-md-3");
+        cells[2].innerHTML = "";
+        cells[2].setAttribute("class","col-md-7");
 }
     </script>
 
