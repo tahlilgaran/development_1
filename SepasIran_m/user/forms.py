@@ -87,15 +87,18 @@ class TouristSignUpForm(forms.ModelForm):
         profile.save()
 
 
-class TourBuilderSignUpForm(forms.Form):
+class TourBuilderSignUpForm(forms.ModelForm):
     lastname = forms.CharField(required=True, label="*نام شرکت (مرکز ارائه)")
     email = forms.EmailField(required=True,label="*ایمیل شرکت")
     username = forms.CharField(required=True,label="*شماره ثبت")
     password = forms.CharField(required=True,label="*رمز عبور")
     confirm_password = forms.CharField(required=True,label="*تکرار رمز عبور")
-    kind = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=KIND)
+    # kind = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=KIND)
     pic1 = forms.FileField(required=False)
 
+    class Meta:
+        model = TourBuilderProfile
+        fields = ('kind',)
 
     def __init__(self , *args , **kwargs):
         super(TourBuilderSignUpForm, self).__init__(*args, **kwargs)

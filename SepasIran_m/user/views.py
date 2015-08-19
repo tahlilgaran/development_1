@@ -107,6 +107,11 @@ def tourist_signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
+            us = User.objects.get(username = username)
+            usm = UserM.objects.get(user = us)
+            if form.cleaned_data['pic1']:
+                usm.picture = form.cleaned_data['pic1']
+                usm.save()
             return HttpResponseRedirect('/signup/tourist/2/'+username)
 
     elif request.POST.get("cancel","")!= "":
@@ -192,8 +197,21 @@ def servant_signup(request):
         form = TourBuilderSignUpForm(request.POST ,request.FILES)
         if form.is_valid():
             form.save()
+            # user = User.objects.create_user(password=form.cleaned_data['password'], username=form.cleaned_data['username']
+            #                             ,email=form.cleaned_data['email'])
+            # muser = UserM()
+            # muser.user = user
+            # muser.user.last_name = form.cleaned_data['lastname']
+            # if form.cleaned_data['pic1']:
+            #     muser.picture = form.cleaned_data['pic1']
+            # muser.user.save()
+            # muser.kind = 'gardeshsaz'
+            # muser.save()
+            # profile = TourBuilderProfile()
+            # profile.user = muser
+            # profile.kind = form.cleaned_data['kind']
+            # profile.save()
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
             return HttpResponseRedirect('/signup/tourBuilder/2/'+username)
 
     elif request.POST.get("cancel","")!= "":

@@ -35,12 +35,12 @@ class TourForm(forms.ModelForm):
             'class': 'form-control','placeholder': 'hh:mm'})
         self.fields['start_t'].widget = forms.TimeInput(attrs={
             'class': 'form-control','placeholder': 'hh:mm'})
-        self.fields['capacity'].widget = forms.IntegerField(attrs={
-            'class': 'form-control'})
-        self.fields['entire_capacity'].widget = forms.IntegerField(attrs={
-            'class': 'form-control'})
-        self.fields['cost'].widget = forms.TimeInput(attrs={
-            'class': 'form-control','placeholder': 'تومان'})
+        # self.fields['capacity'].widget = forms.IntegerField(attrs={
+        #     'class': 'form-control'})
+        # self.fields['entire_capacity'].widget = forms.IntegerField(attrs={
+        #     'class': 'form-control'})
+        # self.fields['cost'].widget = forms.TimeInput(attrs={
+        #     'class': 'form-control','placeholder': 'تومان'})
 
 class AirPlaneForm(forms.ModelForm):
     max_cancel_time = forms.CharField(required=False,label="گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟")
