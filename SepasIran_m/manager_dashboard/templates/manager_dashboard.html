@@ -1,6 +1,7 @@
 {% extends "manager_base.html" %}
 {% load staticfiles %}
-
+{% load time %}
+{% load miladitoshamsi %}
 {% block content_dashboard %}
     <div class="box col-md-4" style="padding-left: 20px ; margin-left: 20px">
         <table>
@@ -27,7 +28,10 @@
                         <div class="col-md-12 gardeshgar_comment_box">
                             {{ comment.body }}
                             <br>
-                            {{ comment.date }}
+                                                          {{ comment.date | miladitoshamsi }}
+                                 -
+                                ساعت
+                                {{ comment.date | time }}
                         </div>
                     </div>
                 </td>

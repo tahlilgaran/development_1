@@ -1,5 +1,7 @@
 {% extends "manager_dashboard.html" %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
+{% load time %}
 {% block content_dashboard %}
 
     <div class="col-md-9">
@@ -26,7 +28,10 @@
                             <div class="col-md-12 gardeshgar_comment_box">
                                 {{ comment.body }}
                                 <br>
-                                {{ comment.date }}
+                                {{ comment.date | miladitoshamsi }}
+                                 -
+                                ساعت
+                                {{ comment.date | time }}
                             </div>
                         </div>
                     </td>
