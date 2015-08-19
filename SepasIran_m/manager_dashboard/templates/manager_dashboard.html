@@ -59,14 +59,21 @@
        در سه ماهه گذشته</div>
 
         <hr>
-        <p> تعداد گردشگرانی که ثبت نام کرده اند و تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . </p>
+        <p>
+            نمودار خاکستری : تعداد گردشگرانی که ثبت نام کرده اند.
+            <br>
+            نمودار آبی : تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . (گردشگران فعال)
+
+        </p>
 
         <div style="width: 100%">
             <canvas id="canvas-bar" height="450" width="600"></canvas>
         </div>
 <hr>
         <p>
-            کل ظرفیت ارائه شده و میزانی که توسط سپاس ایران فروخته شده است .
+            نمودار آبی : تعداد گردش هایی که فروخته شده است .
+            <br>
+            نمودار خاکستری : تعداد گردش هایی که می توانستیم بفروشیم ولی خالی ماند.
         </p>
 
         <div style="width:100%">
@@ -188,14 +195,14 @@
                     strokeColor: "rgba(220,220,220,1)",
                     {#				highlightFill: "rgba(220,220,220,0.75)",#}
                     {#				highlightStroke: "rgba(220,220,220,1)",#}
-                    data: [10,12,15,20,15,8]
+                    data: [10,12,15,20,15,{{ user_activity.0 }}]
                 } ,
                 			{
                 				fillColor : "rgba(151,187,205,0.5)",
                 				strokeColor : "rgba(151,187,205,0.8)",
                 				highlightFill : "rgba(151,187,205,0.75)",
                 				highlightStroke : "rgba(151,187,205,1)",
-                				data : [8,9,7,16,10,6]
+                				data : [8,9,7,16,10,{{ user_activity.1 }}]
                 			}
             ]
 
@@ -240,7 +247,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [10,12,15,20,15,8]
+                    data: [10,12,15,20,15,{{ cap }}]
                  },
                 {
                     label: "فروخته شده(نفر)",
@@ -250,7 +257,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                  data : [8,11,10,18,10,8]
+                  data : [8,30,10,25,10,{{ sold }}]
                      }
             ]
 

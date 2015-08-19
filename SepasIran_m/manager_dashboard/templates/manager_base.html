@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
+{% load time %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'manager_dashboard/css/main.css' %}">
 {% endblock %}
@@ -17,6 +19,10 @@
                     <br>
                     داشبورد مدیریتی سامانه سپاس ایران
                 </strong>
+                <br>
+                {{ datetime | miladitoshamsi }}
+                - ساعت
+                {{ datetime | time }}
             </div>
             <div class="col-md-12 ">
                 <hr>
