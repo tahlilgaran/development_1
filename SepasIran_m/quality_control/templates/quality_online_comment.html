@@ -4,10 +4,23 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 {% endblock %}
 {% block content %}
+<p id="mess">
 
+</p>
 <h2>
 ارسال بازخورد برخط
 </h2>
+
+    <p>کاربر :
+    {{ user.first_name }} {{ user.last_name }}
+    </p>
+    <p> شناسه کاربری :
+    {{ user.id }}
+    </p>
+    <p>
+    تور :
+    {{ tour.id }}
+    </p>
 
     <p>
     لطفا نظر خود را در خصوص تور با ما در میان بگذارید .</p>
@@ -16,7 +29,12 @@
 <textarea name="body" cols="60"   rows="5"></textarea>
     <br>
 
- <button type="submit" class="btn btn-success">ارسال</button>
+ <button type="submit" class="btn btn-success" onclick="alert_func()">ارسال</button>
 </form>
+<script>
+    function alert_func(){
+        document.getElementById("mess").innerHTML = '<div class="alert alert-success" ><strong>از بازخورد شما متشکریم . این بازخورد برای مدیر سامانه ارسال خواهد شد .</div>';
 
+    }
+</script>
 {% endblock %}

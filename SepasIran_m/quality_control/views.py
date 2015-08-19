@@ -28,7 +28,7 @@ def user_rating(request):
 
 
 def show_user_rating_form(request):
-    return render(request, "quality_user_rating.html", {"username": "gardeshgar"})
+    return render(request, "quality_user_rating.html", {'user': request.user})
 
 
 def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
@@ -46,5 +46,7 @@ def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
 
 
 def show_online_comment_form(request):
-    return render(request, "quality_online_comment.html", {"username": "gardeshgar"})
+    #user = request.user.userm.tprofile
+    #print(user.user.user.first_name)
+    return render(request, "quality_online_comment.html", {'user': request.user})
 
