@@ -6,8 +6,9 @@ from buy_cancel.forms import numberForm,peopleForm,bankForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
-
+tarikh=datetime.datetime.now()
 def purchaseRestaurant(request ,id=''):
+    tarikh=datetime.datetime.now()
     username=request.user.username
     user2=request.user
     restaurant=Restaurant.objects.get(id = id)
@@ -36,6 +37,7 @@ def purchaseRestaurant(request ,id=''):
              'total_cost':total,
              'user2':user2,
               'position':'زیر سامانه ی خرید',
+                'tarikh':tarikh,
 
 
      })
@@ -51,7 +53,7 @@ def purchaseTour(request ,id=''):
 
     form=numberForm(request.POST)
     peopleform=peopleForm(request.POST)
-
+    tarikh=datetime.datetime.now()
     return render(request, "information_of_buyer_tour.html" , {
              'username':username,
              'tour':tour,
@@ -60,6 +62,7 @@ def purchaseTour(request ,id=''):
              'peopleform':peopleform,
             'user2':user2,
              'position':'زیر سامانه ی خرید',
+            'tarikh':tarikh,
 
     })
 
@@ -67,6 +70,7 @@ def purchaseTour(request ,id=''):
 def purchaseAirplane(request ,id=''):
          username=request.user.username
          user2=request.user
+         tarikh=datetime.datetime.now()
          airplane=AirPlane.objects.get(id = id);
         # airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
          gardesh=airplane.gardesh
@@ -81,12 +85,15 @@ def purchaseAirplane(request ,id=''):
              'gardesh': gardesh,
              'user2':user2,
              'position':'زیر سامانه ی خرید',
+             'tarikh':tarikh
+
 
             })
 
 def purchaseTrain(request ,id=''):
     username=request.user.username
     user2=request.user
+    tarikh=datetime.datetime.now()
     train=Train.objects.get(id = id);
     gardesh = train.gardesh
     form=numberForm(request.POST)
@@ -101,6 +108,7 @@ def purchaseTrain(request ,id=''):
              'peopleform':peopleform,
         'user2':user2,
         'position':'زیر سامانه ی خرید',
+        'tarikh':tarikh,
 
 
             })
@@ -108,6 +116,7 @@ def purchaseTrain(request ,id=''):
 def purchaseHotel(request ,id=''):
     username=request.user.username
     user2=request.user
+    tarikh=datetime.datetime.now()
     hotel=Hotel.objects.get(id = id)
     ID=request.POST.get("returned_id_list")
 
@@ -134,6 +143,7 @@ def purchaseHotel(request ,id=''):
              'total_cost':total,
              'user2':user2,
         'position':'زیر سامانه ی خرید',
+        'tarikh':tarikh,
 
 
      })
@@ -143,7 +153,7 @@ def reserveRestaurant(request ,id=''):
     user2=request.user
     restaurant=Restaurant.objects.get(id = id)
     ID=request.POST.get("returned_id_list")
-
+    tarikh=datetime.datetime.now()
     tableID = ID.split(',')
     print(tableID)
     table_list=[]
@@ -167,6 +177,7 @@ def reserveRestaurant(request ,id=''):
              'total_cost':total,
              'user2':user2,
                 'position':'زیر سامانه ی رزرو',
+        'tarikh':tarikh,
 
 
      })
@@ -180,6 +191,7 @@ def reserveTour(request ,id='',number=''):
     gardesh=tour.gardesh
     form=numberForm(request.POST)
     peopleform=peopleForm(request.POST)
+    tarikh=datetime.datetime.now()
 
     return render(request, "information_of_reserver_tour.html" , {
              'username':username,
@@ -189,6 +201,7 @@ def reserveTour(request ,id='',number=''):
              'gardesh':gardesh,
         'user2':user2,
         'position':'زیر سامانه ی رزرو',
+        'tarikh':tarikh,
 
     })
 
@@ -199,6 +212,7 @@ def reserveAirplane(request ,id=''):
          username=request.user.username
          airplane=AirPlane.objects.get(id = id);
          user2=request.user
+         tarikh=datetime.datetime.now()
         # airplaneseat=AirplaneSeat.objects.filter(airplane = airplane).filter(full = False)[0]
          gardesh=airplane.gardesh
          form=numberForm(request.POST)
@@ -212,6 +226,7 @@ def reserveAirplane(request ,id=''):
              'gardesh': gardesh,
              'user2':user2,
               'position':'زیر سامانه ی رزرو',
+             'tarikh':tarikh,
 
             })
 
@@ -222,7 +237,7 @@ def reserveTrain(request ,id=''):
     form=numberForm(request.POST)
     peopleform=peopleForm(request.POST)
     user2=request.user
-
+    tarikh=datetime.datetime.now()
     return render(request, "information_of_reserver_service.html" , {
             'username':username,
              'kind':'train',
@@ -232,6 +247,7 @@ def reserveTrain(request ,id=''):
              'peopleform':peopleform,
         'user2':user2,
          'position':'زیر سامانه ی رزرو',
+        'tarikh':tarikh,
 
 
             })
@@ -241,7 +257,7 @@ def reserveHotel(request ,id=''):
     user2=request.user
     hotel=Hotel.objects.get(id = id)
     ID=request.POST.get("returned_id_list")
-
+    tarikh=datetime.datetime.now()
     roomID = ID.split(',')
 
     room_list=[]
@@ -265,6 +281,7 @@ def reserveHotel(request ,id=''):
              'total_cost':total,
              'user2':user2,
          'position':'زیر سامانه ی رزرو',
+        'tarikh':tarikh,
 
 
      })
@@ -272,7 +289,7 @@ def reserveHotel(request ,id=''):
 
 def statusReserve(request,kind='', id=''):
 
-
+    tarikh=datetime.datetime.now()
     username = request.user.username
     user2= request.user
     number = request.POST.get("number")
@@ -314,6 +331,7 @@ def statusReserve(request,kind='', id=''):
                          'wrong': wrong,
                  'user2':user2,
                   'position':'زیر سامانه ی رزرو',
+                 'tarikh':tarikh,
 
              })
 
@@ -325,6 +343,7 @@ def statusReserve(request,kind='', id=''):
                     'tour': tour,
             'user2':user2,
              'position':'زیر سامانه ی رزرو',
+            'tarikh':tarikh,
 
         })
 
@@ -357,6 +376,7 @@ def statusReserve(request,kind='', id=''):
                         'hotel': hotel,
               'user2':user2,
                'position':'زیر سامانه ی رزرو',
+              'tarikh':tarikh,
 
           })
 
@@ -388,6 +408,7 @@ def statusReserve(request,kind='', id=''):
                         'kind': kind,
                         'gardesh': restaurant.gardesh,
                         'restaurant': restaurant,
+              'tarikh':tarikh,
               'user2':user2,
                'position':'زیر سامانه ی رزرو',
 
@@ -434,6 +455,7 @@ def statusReserve(request,kind='', id=''):
                              'form':form,
                              'peopleform':peopleform,
                              'wrong': wrong,
+                     'tarikh':tarikh,
                      'user2':user2,
                       'position':'زیر سامانه ی رزرو',
 
@@ -446,6 +468,7 @@ def statusReserve(request,kind='', id=''):
                         'airplane': airplane,
                 'user2':user2,
                  'position':'زیر سامانه ی رزرو',
+                'tarikh':tarikh,
 
             })
 
@@ -494,6 +517,7 @@ def statusReserve(request,kind='', id=''):
                              'form':form,
                              'peopleform':peopleform,
                              'wrong': wrong,
+                     'tarikh':tarikh,
                      'user2':user2,
                       'position':'زیر سامانه ی رزرو',
 
@@ -505,6 +529,7 @@ def statusReserve(request,kind='', id=''):
                         'gardesh': gardesh,
                         'train': train,
                 'user2':user2,
+                'tarikh':tarikh,
                  'position':'زیر سامانه ی رزرو',
 
 
@@ -531,14 +556,9 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
-            wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/',{
                 'user2':user2,
             })
@@ -549,14 +569,9 @@ def cancel(request , id=''):
             seat.save()
             airplane=seat.airplane
             airplane.capacity +=1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'airplane'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Airplane.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
         elif codes[0] == 'train':
             id=int(codes[1])
@@ -565,28 +580,18 @@ def cancel(request , id=''):
             seat.save()
             train=seat.train
             train.capacity +=1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'train'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
         elif codes[0] == 'restaurant':
             id=int(codes[1])
             seat=Table.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Restaurant.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Restaurant.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
 
         elif codes[0] == 'hotel':
@@ -594,14 +599,9 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Hotel.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
 
 
@@ -612,14 +612,8 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
-
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
-            wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
 
             cost=tour.cost
 
@@ -635,6 +629,7 @@ def cancel(request , id=''):
                 'gardeshgarID':gardeshgarID,
                 'bankform':bankform,
                  'position':'زیر سامانه ی حسابداری',
+                'tarikh':tarikh,
 
             })
         elif codes[0] == 'airplane':
@@ -644,14 +639,8 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             airplane.capacity += 1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
-
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'airplane'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Airplane.objects.create(gardesh = seat,info=wantedtrip);
 
             cost=airplane.cost
 
@@ -664,7 +653,7 @@ def cancel(request , id=''):
                 'account':account,
                 'gardesh':gardesh,
                 'gardeshID': gardeshID,
-
+                'tarikh':tarikh,
                 'gardeshgarID':gardeshgarID,
                 'bankform':bankform,
                  'position':'زیر سامانه ی حسابداری',
@@ -679,14 +668,9 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             train.capacity += 1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'train'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
             cost=train.cost
 
 
@@ -699,7 +683,7 @@ def cancel(request , id=''):
                 'account':account,
                 'gardesh':gardesh,
                 'gardeshID': gardeshID,
-
+                'tarikh':tarikh,
                 'gardeshgarID':gardeshgarID,
                 'bankform':bankform,
                  'position':'زیر سامانه ی حسابداری',
@@ -710,14 +694,9 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Hotel.objects.create(gardesh = seat,info=wantedtrip);
             cost=seat.cost_perNight
 
 
@@ -730,7 +709,7 @@ def cancel(request , id=''):
                 'account':account,
                 'gardesh':gardesh,
                 'gardeshID': gardeshID,
-
+                'tarikh':tarikh,
                 'gardeshgarID':gardeshgarID,
                 'bankform':bankform,
                  'position':'زیر سامانه ی حسابداری',
@@ -741,14 +720,9 @@ def cancel(request , id=''):
                 seat=Table.objects.get(id= id)
                 seat.full=False
                 seat.save()
-                Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+                Wanted_Restaurant.objects.get(info=wanted_trip).delete()
                 wanted_trip.delete()
 
-                wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                       first_name = first_name,last_name= last_name,
-                                                       meli_code = melli_num,
-                                                       peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
-                wantedtour = Wanted_Restaurant.objects.create(gardesh = seat,info=wantedtrip);
                 cost=seat.cost_perClock
 
 
@@ -761,7 +735,7 @@ def cancel(request , id=''):
                     'account':account,
                     'gardesh':gardesh,
                     'gardeshID': gardeshID,
-
+                    'tarikh':tarikh,
                     'gardeshgarID':gardeshgarID,
                     'bankform':bankform,
                      'position':'زیر سامانه ی حسابداری',

@@ -9,13 +9,14 @@ from accounting.forms import bankForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-
+import datetime
 # Create your views here.
 def paymentTour(request, tour_id=''):
 
     number=request.POST.get("number")
     tour= Tour.objects.get(id = tour_id)
     cost=tour.cost
+    tarikh=datetime.datetime.now()
     total_cost=cost * int(number)
     gardesh = tour.gardesh
     first_name = request.POST.getlist("first_name")
@@ -53,6 +54,7 @@ def paymentTour(request, tour_id=''):
                          'wrong': wrong,
                          'user2':user2,
                          'position':'زیر سامانه ی خرید',
+                 'tarikh':tarikh,
              })
 
     return render(request, "payment_bank.html",{
@@ -79,7 +81,7 @@ def confirmTour(request,tour_id=''):
         tour.capacity=tour.capacity-number
         tour.entire_capacity=tour.entire_capacity-number
         tour.save()
-
+        tarikh=datetime.datetime.now()
 
         info= Trans_info.objects.create(date=date,amount=int(amount),gardesh=gardesh)
         transaction = Trans_Kind1.objects.create(info=info,sender=sender)
@@ -89,6 +91,7 @@ def confirmTour(request,tour_id=''):
             'kind':'1',
             'user2':user2,
             'position':'زیر سامانه ی حسابداری',
+            'tarikh':tarikh,
         })
 
 
@@ -97,6 +100,7 @@ def cancelTour(request , id=''):
     tour=Tour.objects.get(id =id)
     number=int(int(amount)/tour.cost)
     user2=request.user
+    tarikh=datetime.datetime.now()
     for i in range(number):
 
         Wanted_Trip.objects.last().delete()
@@ -105,11 +109,12 @@ def cancelTour(request , id=''):
     return render(request, "payment_cancel.html",{
         'user2':user2,
         'position':'زیر سامانه ی حسابداری',
+        'tarikh':tarikh
     })
 
 ##################################################################################################
 def paymentAirplane(request, airplane_id=''):
-
+    tarikh=datetime.datetime.now()
     number=request.POST.get("number")
     user2=request.user
     airplane= AirPlane.objects.get(id = airplane_id)
@@ -155,6 +160,7 @@ def paymentAirplane(request, airplane_id=''):
                          'wrong': wrong,
                          'user2':user2,
                          'position':'زیر سامانه ی خرید',
+                 'tarikh':tarikh
              })
 
     return render(request, "payment_bank.html", {
@@ -167,7 +173,7 @@ def paymentAirplane(request, airplane_id=''):
 
 def confirmAirplane(request,airplane_id=''):
 
-
+        tarikh=datetime.datetime.now()
         airplane=AirPlane.objects.get(id = airplane_id)
         user= request.user.userm
         user2=request.user
@@ -194,6 +200,7 @@ def confirmAirplane(request,airplane_id=''):
             'transaction':transaction,
             'user2':user2,
             'position':'زیر سامانه ی حسابداری',
+            'tarikh':tarikh,
         })
 
 def cancelAirplane(request , id=''):
@@ -216,7 +223,7 @@ def cancelAirplane(request , id=''):
 
 
 def paymentTrain(request, train_id=''):
-
+    tarikh=datetime.datetime.now()
     number=request.POST.get("number")
     train= Train.objects.get(id = train_id)
     cost=train.cost
@@ -262,6 +269,7 @@ def paymentTrain(request, train_id=''):
                          'wrong': wrong,
                          'user2':user2,
                         'position':'زیر سامانه ی خرید',
+                 'tarikh':tarikh,
              })
 
     return render(request, "payment_bank.html",{
@@ -274,7 +282,7 @@ def paymentTrain(request, train_id=''):
 
 def confirmTrain(request,train_id=''):
 
-
+        tarikh=datetime.datetime.now()
         train=Train.objects.get(id = train_id)
         user2=request.user
         user= request.user.userm
@@ -301,9 +309,11 @@ def confirmTrain(request,train_id=''):
             'transaction':transaction,
             'user2':user2,
             'position':'زیر سامانه ی حسابداری',
+            'tarikh':tarikh,
         })
 
 def cancelTrain(request , id=''):
+    tarikh=datetime.datetime.now()
     amount=request.POST.get("total_cost")
     user2=request.user
     train=Train.objects.get(id =id)
@@ -355,7 +365,7 @@ def paymentRestaurant(request,id=''):
 
 
 def confirmRestaurant(request,id=''):
-
+        tarikh=datetime.datetime.now()
         restaurant=Restaurant.objects.get(id = id)
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
@@ -375,6 +385,7 @@ def confirmRestaurant(request,id=''):
             'transaction':transaction,
             'user2':user2,
             'position':'زیر سامانه ی حسابداری',
+            'tarikh':tarikh,
         })
 
 
@@ -396,7 +407,7 @@ def paymentHotel(request,id=''):
     total_cost=request.POST.get("total_cost")
     hotel= Hotel.objects.get(id = id)
 
-
+    tarikh=datetime.datetime.now()
     first_name = request.POST.get("first_name")
     last_name = request.POST.get("last_name")
     melli_num =request.POST.get("melli_number")
@@ -420,6 +431,7 @@ def paymentHotel(request,id=''):
         'hotel':hotel,
         'ID':list,
         'number':i,
+        'tarikh':tarikh,
     })
 
 
@@ -429,7 +441,7 @@ def confirmHotel(request,id=''):
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
         date = datetime.today()
-
+        tarikh=datetime.datetime.now()
         list= request.POST.get("ID")
         roomIDList=list.split(',')
         user2=request.user
@@ -444,11 +456,13 @@ def confirmHotel(request,id=''):
             'transaction':transaction,
             'user2':user2,
             'position':'زیر سامانه ی حسابداری',
+            'tarikh':tarikh
 
         })
 
 def cancelHotel(request , id=''):
     user2=request.user
+
     number=int(request.POST.get("number"))
     for i in range(number):
         Wanted_Trip.objects.last().delete()
@@ -466,6 +480,7 @@ def ozviyat(request,username=''):
         'username':username,
     })
 def confirmOzv(request,username=''):
+    tarikh=datetime.datetime.now()
     user=User.objects.get(username= username)
     user2=request.user
     userm=user.userm
@@ -473,7 +488,7 @@ def confirmOzv(request,username=''):
     y.has_payed=True
     y.save()
     return render(request, "transaction-status.html",{
-
+        'tarikh':tarikh,
         'user2':user2,
         'position':'زیر سامانه ی  حسابداری',
 
@@ -481,6 +496,7 @@ def confirmOzv(request,username=''):
 ########################################################################################################
 
 def tasviye(request):
+    tarikh=datetime.datetime.now()
     userm =request.user.userm
     user = TouristProfile.objects.get(user= userm)
     account= user.account
@@ -490,6 +506,7 @@ def tasviye(request):
     if intaccount == 0:
         return render(request, "tasviye_gardeshgar.html",{
             'zero':True,
+            'tarikh':tarikh
         })
     else :
         return  render(request, "tasviye_gardeshgar.html",{
@@ -499,11 +516,12 @@ def tasviye(request):
             'bankform':bankForm,
             'user2':user2,
             'position':'زیر سامانه ی  حسابداری',
+            'tarikh':tarikh,
         })
 
 
 def tasviyeConfirm(request):
-
+    tarikh=datetime.datetime.now()
     date = datetime.today()
     gardeshID=int(request.POST.get("gardeshID"))
     account=int(request.POST.get("account"))
@@ -519,13 +537,14 @@ def tasviyeConfirm(request):
     return HttpResponseRedirect('/userpage/',{
         'user2':user2,
         'position':'زیر سامانه ی  حسابداری',
+        'tarikh':tarikh,
     })
 
 ############################################################################################################
 def tasviyeGar(request):
     user=request.user
     userm=user.userm
-
+    tarikh=datetime.datetime.now()
     if user.userm.kind == 'gardeshgar':
         return HttpResponseNotFound()
     else:
@@ -537,9 +556,11 @@ def tasviyeGar(request):
             'gardesh':gardesh,
             'user2':user,
             'position':'زیر سامانه ی  حسابداری',
+            'tarikh':tarikh
         })
 def tasviyeID(request,id=''):
     date=datetime.now()
+    tarikh=datetime.datetime.now()
     gardesh= Gardesh.objects.get(id =id)
     agree=gardesh.agreement
     percent=agree.percent
@@ -549,6 +570,7 @@ def tasviyeID(request,id=''):
         return render(request,"nothing.html",{
             'position':'زیر سامانه ی  حسابداری',
             'user2':user,
+            'tarikh':tarikh,
         })
     total=0
     for tr in trans:
@@ -562,5 +584,6 @@ def tasviyeID(request,id=''):
         'bankform':bankform,
         'position':'زیر سامانه ی  حسابداری',
         'user2':user,
+        'tarikh':tarikh
 
     })
