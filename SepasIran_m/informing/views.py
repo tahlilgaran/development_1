@@ -9,11 +9,13 @@ from buy_cancel.models import Wanted_Trip,Wanted_Tour,Wanted_Train,Wanted_Hotel,
 
 @login_required()
 def account(requst):
+    returned_dic = {}
+    returned_dic['user2'] = requst.user
+    returned_dic['position'] = 'سامانه اطلاع رسانی و تقویم - صفحه ی کاربری'
     if requst.method == 'GET':
         now = datetime.datetime.now()
         future_ten_day = [now + datetime.timedelta(days = 1) , now + datetime.timedelta(days=10)]
         last_ten_day = [now - datetime.timedelta(days = 10) , now]
-        returned_dic = {}
         user_kind = requst.user.userm.kind
         returned_dic['user_kind'] = user_kind
 

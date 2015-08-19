@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}"
           xmlns="http://www.w3.org/1999/html">
@@ -44,51 +45,9 @@
                     <label class="col-md-12">
 نوع
                     </label>
-{#                    <div class="col-md-2"></div>#}
                     <div class="col-md-12">
                         {{ form.kind }}
-{#                    <div class="checkbox-inline ">#}
-{#                        <label>#}
-{#                            <input type="checkbox" value="" onclick="tour_func(this)">#}
-{#                            <div class="checkbox_text">#}
-{#تور#}
-{#                            </div>#}
-{#                        </label>#}
-{#                    </div>#}
-{#                        <div class="checkbox-inline">#}
-{#                            <label>#}
-{#                                <input type="checkbox" value="" onclick="hotel_func(this)">#}
-{#                                <div class="checkbox_text">#}
-{#    هتل#}
-{#                                </div>#}
-{#                            </label>#}
-{#                        </div>#}
-{#                        <div class="checkbox-inline">#}
-{#                            <label>#}
-{#                                <input type="checkbox" value="" onclick="restooran_func(this)">#}
-{#                                <div class="checkbox_text">#}
-{#    رستوران#}
-{#                                </div>#}
-{#                            </label>#}
-{#                        </div>#}
-{#                        <div class="checkbox-inline">#}
-{#                            <label>#}
-{#                                <input type="checkbox" value="" onclick="airplane_func(this)">#}
-{#                                <div class="checkbox_text">#}
-{#    هواپیما#}
-{#                                </div>#}
-{#                            </label>#}
-{#                        </div>#}
-{#                        <div class="checkbox-inline">#}
-{#                            <label>#}
-{#                                <input type="checkbox" value=""  onclick="train_func(this)">#}
-{#                                <div class="checkbox_text">#}
-{#    قطار#}
-{#                                </div>#}
-{#                            </label>#}
-{#                        </div>#}
                     </div>
-{#                    <div class="col-md-3"></div>#}
                 </td></tr>
 {# =============================== more information ================================== #}
                 <tr class="hidden" id="tour_info"></tr>

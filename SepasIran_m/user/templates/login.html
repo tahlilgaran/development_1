@@ -21,7 +21,13 @@
     {% if wrong == "wrongpass" %}
         نام کاربری یا رمز عبور اشتباه است
         {% elif wrong == "notpayed" %}
-        هزینه عضویت پرداخت نشده است
+کاربر گرامی،
+        {{ usernamep }}
+        <br>
+        هزینه عضویت شما طی مراحل ثبت نام پرداخت نگشته است. برای ورود به سایت باید هزینه عضویت خود را بپردازید.
+        <a class="btn btn-success" href="/payment/{{ usernamep }}">
+        پرداخت هزینه ثبت نام
+        </a>
     {% endif %}
     </p>
 <form method="post">

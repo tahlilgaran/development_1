@@ -50,6 +50,44 @@ CITY = (
     ('Semnan' , 'سمنان'),
 )
 
+AirPlaneC = (
+    ('Mahan','ماهان'),
+    ('Aseman','آسمان'),
+    ('Ata','آتا'),
+    ('Meraj','معراج'),
+
+)
+TrainC = (
+    ('Simorgh','سیمرغ'),
+    ('sabz','سبز'),
+    ('kavir','کویر'),
+    ('busTrain','اتوبوسی'),
+)
+BusC = (
+    ('VIP','ویژه'),
+    ('non-VIP','معمولی')
+)
+HotelC = (
+    ('sarina','سارینا'),
+    ('daryoush','داریوش'),
+    ('Royal-Hilton','رویال هیلتون'),
+    ('Parsian','پارسیان'),
+)
+ApartmentC = (
+    ('soroosh','سروش'),
+    ('ehsan','احسان'),
+    ('sepehr','سپهر'),
+    ('roz','رز'),
+)
+Mosaferkhane = (
+    ('Arian','آرین'),
+    ('Keshavarz','کشاورز'),
+    ('Saba','صبا'),
+    ('Shabaviz','شباویز'),
+    ('Moghadam','مقدم'),
+)
+
+
 class Gardesh(models.Model):
     name = models.CharField(max_length=255)
     builder = models.ForeignKey(TourBuilderProfile)
@@ -60,14 +98,14 @@ class Gardesh(models.Model):
     degree = models.CharField(max_length=2,
                                       choices=DEGREE)     # g/s/b
     max_cancel_time = models.IntegerField(default= 2)
-    free = models.FloatField(default=1)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
+    free = models.FloatField(default=0)     # between 0 and 1 --> be nazaram inja darsad takhfif gozashte shavad behtar ast.
     define_time = models.DateTimeField(default= datetime.datetime.now)
     agreement = models.ForeignKey(Agreement)
     other_explain = models.TextField(blank=True , null=True) #farzaneh add
 
 
     def __str__(self):
-        return "{}-{}".format(self.name,self.builder)
+        return "{} - {}".format(self.builder , self.name)
 
 
 class TransferDevice(models.Model):
@@ -89,6 +127,7 @@ class Location(models.Model):
 
     def __self__(self):
         return "{}-{}".format(self.kind , self.name)
+
 
 class Tour(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='tour')
@@ -115,15 +154,13 @@ class Tour(models.Model):
 
 
 
-class Bazdid(models.Model):
-    tour = models.ForeignKey(Tour)
-    location_name = models.CharField(max_length=255)
-    time = models.DateField()
-
-    def __str__(self):
-        return "{}".format(self.tour)
-
-
+# class Bazdid(models.Model):
+#     tour = models.ForeignKey(Tour)
+#     location_name = models.CharField(max_length=255,choices=BazdidC)
+#     time = models.DateField()
+#
+#     def __str__(self):
+#         return "{}".format(self.tour)
 
 
 class Picture(models.Model):
@@ -141,7 +178,7 @@ class AirPlane(models.Model):
     source = models.CharField(max_length=255,choices=CITY)         # city name
     start = models.DateField()
     start_t = models.TimeField()
-    capacity = models.IntegerField()    # number of un sell seats
+    capacity = models.IntegerField(default=0)    # number of un sell seats
     cost = models.IntegerField()
     def __str__(self):
         return "{}".format(self.gardesh.name)#bug fixed by yeganeh
@@ -161,7 +198,7 @@ class Train(models.Model):
     source = models.CharField(max_length=255,choices=CITY)         # city name
     start = models.DateField()
     start_t = models.TimeField()
-    capacity = models.IntegerField()    # number of un sell seats
+    capacity = models.IntegerField(default=0)    # number of un sell seats
     cost = models.IntegerField()
     def __str__(self):
         return str(self.gardesh.name) + str(self.source) +'_' + str(self.destination)#bug fixed by yeganeh
@@ -203,8 +240,8 @@ class Hotel(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='hotel')
     city = models.CharField(max_length=255 , choices=CITY)
     address = models.TextField()
-    start_day = models.DateField()      # az che roozi bara foroosh mizari
-    end_day = models.DateField() #in field bara chie????? FARZANEH
+    start_day = models.DateField(default=datetime.datetime.now())      # az che roozi bara foroosh mizari
+    end_day = models.DateField(default=datetime.datetime.now()) #in field bara chie????? FARZANEH
     # other_explain = models.TextField(blank=True , null=True) #farzaneh add
     def __str__(self):
         return str(self.gardesh.name)
