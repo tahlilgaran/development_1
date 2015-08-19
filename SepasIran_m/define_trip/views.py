@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def tarif_kind(request):
+    date = datetime.datetime.now()
     position = 'تعریف خدمت'
     username = ''
     u1 = request.user
@@ -35,11 +36,12 @@ def tarif_kind(request):
          'username': username,
          'user2':u1,
         'position':position,
+         'tarikh':date,
     })
 
 @login_required()
 def tour_define_2(request,id):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'تعریف تور> ورود اطلاعات> تایید اطلاعات'
     gardesh = Gardesh.objects.get(id = id)
@@ -61,10 +63,12 @@ def tour_define_2(request,id):
         'username':"gardeshsaz",
         'user2':user2,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def tour_define(request):
+    date = datetime.datetime.now()
     username = ''
     builder = ''
     position = 'تعریف تور> ورود اطلاعات'
@@ -101,7 +105,6 @@ def tour_define(request):
                 gardesh.other_explain = request.POST.get('other_explain')
                 print(gardesh.other_explain)
             gardesh.save()
-            f.gardesh = gardesh
             if form.cleaned_data['pic1']:
                 pic1 = Picture()
                 pic1.picture = form.cleaned_data['pic1']
@@ -173,8 +176,12 @@ def tour_define(request):
                 l.degree = 'B'
                 l.save()
                 f.stay_location = l
+
+            gardesh.degree = 'g'
+
             f.start = form.cleaned_data['start']
             f.end = form.cleaned_data['end']
+            f.gardesh = gardesh
             f.save()
             u = gardesh.id
             return HttpResponseRedirect('/tourdefine/tour/2/'+ str(u))
@@ -190,10 +197,12 @@ def tour_define(request):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def airplane_define(request):
+    date = datetime.datetime.now()
     username = ''
     builder = ''
     u1 = request.user
@@ -263,11 +272,12 @@ def airplane_define(request):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def airplane_define_2(request,id):
-
+    date = datetime.datetime.now()
     gardesh = Gardesh.objects.get(id = id)
     airplane = AirPlane.objects.get(gardesh = gardesh)
     user2 = request.user
@@ -290,10 +300,12 @@ def airplane_define_2(request,id):
         'username':"gardeshsaz",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 @login_required()
 def train_define(request):
+    date = datetime.datetime.now()
     username = ''
     builder = ''
     u1 = request.user
@@ -363,12 +375,13 @@ def train_define(request):
         'b': builder,
         'user2': u1,
         'position': position,
+        'tarikh':date,
     })
 
 
 @login_required()
 def train_define_2(request,id):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'تعریف خدمت> تعریف قطار> ورود اطلاعات> تایید اطلاعات'
     gardesh = Gardesh.objects.get(id = id)
@@ -390,11 +403,12 @@ def train_define_2(request,id):
         'username':"gardeshsaz",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 @login_required()
 def hotel_define_first(request):
-
+    date = datetime.datetime.now()
     u1 = request.user
     position = 'لیست هتل ها'
     username = ''
@@ -422,10 +436,12 @@ def hotel_define_first(request):
         'user2': u1,
         'position': position,
         'names': names,
+        'tarikh':date,
     })
 
 @login_required()
 def hotel_define(request):
+    date = datetime.datetime.now()
     username = ''
     builder = ''
     u1 = request.user
@@ -497,6 +513,7 @@ def hotel_define(request):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 def daterange(start_date, end_date):
@@ -505,6 +522,7 @@ def daterange(start_date, end_date):
 
 @login_required()
 def hotel_define_rooms (request,name):
+    date = datetime.datetime.now()
     gardesh = Gardesh.objects.get(name = name)
     hotel = Hotel.objects.get(gardesh = gardesh)
     position = 'ارائه اتاق های هتل'
@@ -559,10 +577,12 @@ def hotel_define_rooms (request,name):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def hotel_define_2(request,id):
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'تعریف یک هتل> تایید اطلاعات'
     gardesh = Gardesh.objects.get(id = id)
@@ -584,10 +604,12 @@ def hotel_define_2(request,id):
         'username':"gardeshsaz",
         'user2':user2,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def restaurant_define(request):
+    date = datetime.datetime.now()
     username = ''
     builder = ''
     u1 = request.user
@@ -659,10 +681,12 @@ def restaurant_define(request):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def restaurant_define_rooms (request,name):
+    date = datetime.datetime.now()
     gardesh = Gardesh.objects.get(name = name)
     res = Restaurant.objects.get(gardesh = gardesh)
     username = ''
@@ -718,10 +742,12 @@ def restaurant_define_rooms (request,name):
         'b': builder,
         'user2':u1,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def restaurant_define_2(request,id):
+    date = datetime.datetime.now()
     position = 'تعریف یک رستوران> تایید اطلاعات'
     user2 = request.user
     gardesh = Gardesh.objects.get(id = id)
@@ -743,18 +769,20 @@ def restaurant_define_2(request,id):
         'username':"gardeshsaz",
         'user2':user2,
         'position':position,
+        'tarikh':date,
     })
 
 @login_required()
 def cancel(request,name):
-
+    date = datetime.datetime.now()
     return render(request,"cancel.html",{
         'username': 'gardeshsaz',
+        'tarikh':date,
     })
 
 @login_required()
 def restaurant_define_first(request):
-
+    date = datetime.datetime.now()
     u1 = request.user
     position = 'لیست رستوران ها'
     username = ''
@@ -782,4 +810,5 @@ def restaurant_define_first(request):
         'user2': u1,
         'position': position,
         'names': names,
+        'tarikh':date,
     })

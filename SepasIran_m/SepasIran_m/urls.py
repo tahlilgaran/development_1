@@ -8,6 +8,10 @@ urlpatterns = [
     # present trip urls :
     url(r'home/$', 'present_trip.views.home'),
     url(r'home/(\w+)/$', 'present_trip.views.home'),
+    url(r'sepas/$', 'user.views.sepas'),
+    url(r'hadaf/$', 'user.views.hadaf'),
+    url(r'rotbe/$', 'user.views.rotbe'),
+    url(r'tahlilgaran/$', 'user.views.tahlilgaran'),
     url(r'show/(\w+)/(\d+)/$' , 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/$', 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),

@@ -22,7 +22,7 @@
 لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
         <br>
 درجه خدمت ارائه شده توسط شما
-    {{ gardesh.degree }}
+    {{ gardesh.get_degree_display }}
     تشخیص داده شده است و درصد قرارداد به ازای هر خرید {{gardesh.agreement.percent}} درصد می باشد.
     <br>
 مبلغ دریافت شده از خریداران پس از هر خرید به حساب شما واریز خواهد شد.
@@ -55,7 +55,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ airplane.source }}
+{{ airplane.get_source_display }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
