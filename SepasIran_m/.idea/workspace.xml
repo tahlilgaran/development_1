@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quality_control/views.py">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="46" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0" vertical-offset="641" max-vertical-offset="1020">
+            <state line="87" column="0" selection-start="3401" selection-end="3401" vertical-scroll-proportion="0.28096676" vertical-offset="1386" max-vertical-offset="1938">
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -34,55 +34,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quality_online_comment.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quality_control/templates/quality_online_comment.html">
+      <file leaf-file-name="manager_contract_percent.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_contract_percent.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="39" selection-start="269" selection-end="269" vertical-scroll-proportion="-4.576923" vertical-offset="102" max-vertical-offset="680">
+            <state line="34" column="55" selection-start="1071" selection-end="1071" vertical-scroll-proportion="-8.5" vertical-offset="357" max-vertical-offset="1445">
+              <folding>
+                <element signature="e#134#189#0" expanded="true" />
+                <element signature="e#1192#1212#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manager_tours_rating.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_tours_rating.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="126.65385" vertical-offset="3293" max-vertical-offset="3774">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_dashboard.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="51" selection-start="3878" selection-end="3878" vertical-scroll-proportion="-22.884615" vertical-offset="1156" max-vertical-offset="4845">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manager_tours.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_tours.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="50" selection-start="920" selection-end="920" vertical-scroll-proportion="-3.9230769" vertical-offset="442" max-vertical-offset="1581">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gardeshsaz_account.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/informing/templates/gardeshsaz_account.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="47" selection-start="519" selection-end="519" vertical-scroll-proportion="-1.5454545" vertical-offset="51" max-vertical-offset="1649">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manager_gardeshgar_info.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="44" selection-start="1107" selection-end="1107" vertical-scroll-proportion="-1.1558442" vertical-offset="489" max-vertical-offset="2193">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/define_trip/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="10" selection-start="455" selection-end="455" vertical-scroll-proportion="0.73913044" vertical-offset="0" max-vertical-offset="4505">
+            <state line="14" column="21" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4505">
               <folding />
             </state>
           </provider>
@@ -108,13 +84,16 @@
         <option value="$PROJECT_DIR$/informing/templates/gardeshsaz_account.html" />
         <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html" />
         <option value="$PROJECT_DIR$/define_trip/models.py" />
+        <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_contract_percent.html" />
+        <option value="$PROJECT_DIR$/manager_dashboard/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="width" value="1260" />
-    <option name="height" value="760" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="776" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -157,6 +136,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="quality_control" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager_dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager_dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templatetags" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SepasIran_m" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager_dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,7 +435,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="0" width="1260" height="760" extended-state="0" />
+    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -401,11 +444,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294702" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958263" sideWeight="0.6705298" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24230146" sideWeight="0.67903227" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294702" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32096773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -459,7 +502,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quality_control/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="46" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0" vertical-offset="641" max-vertical-offset="1020">
+        <state line="48" column="46" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.39465874" vertical-offset="683" max-vertical-offset="1020">
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -468,43 +511,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quality_control/templates/quality_online_comment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="269" selection-end="269" vertical-scroll-proportion="-4.576923" vertical-offset="102" max-vertical-offset="680">
+        <state line="13" column="39" selection-start="269" selection-end="269" vertical-scroll-proportion="0.37304077" vertical-offset="102" max-vertical-offset="680">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="51" selection-start="3878" selection-end="3878" vertical-scroll-proportion="-22.884615" vertical-offset="1156" max-vertical-offset="4845">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_tours.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="50" selection-start="920" selection-end="920" vertical-scroll-proportion="-3.9230769" vertical-offset="442" max-vertical-offset="1581">
+        <state line="103" column="51" selection-start="3878" selection-end="3878" vertical-scroll-proportion="-17.0" vertical-offset="1309" max-vertical-offset="4845">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/informing/templates/gardeshsaz_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="47" selection-start="519" selection-end="519" vertical-scroll-proportion="-1.5454545" vertical-offset="51" max-vertical-offset="1649">
+        <state line="10" column="47" selection-start="519" selection-end="519" vertical-scroll-proportion="0.44402984" vertical-offset="51" max-vertical-offset="1649">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_tours.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="50" selection-start="920" selection-end="920" vertical-scroll-proportion="0.3197492" vertical-offset="442" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="69" selection-start="866" selection-end="866" vertical-scroll-proportion="0.762533" vertical-offset="0" max-vertical-offset="408">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="44" selection-start="1107" selection-end="1107" vertical-scroll-proportion="-1.1558442" vertical-offset="489" max-vertical-offset="2193">
+        <state line="34" column="44" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.55737704" vertical-offset="408" max-vertical-offset="2193">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templatetags/miladitoshamsi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="395">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/define_trip/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="10" selection-start="455" selection-end="455" vertical-scroll-proportion="0.73913044" vertical-offset="0" max-vertical-offset="4505">
+        <state line="14" column="21" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4505">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_tours_rating.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="126.65385" vertical-offset="3293" max-vertical-offset="3774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_contract_percent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="55" selection-start="1071" selection-end="1071" vertical-scroll-proportion="-8.5" vertical-offset="357" max-vertical-offset="1445">
+          <folding>
+            <element signature="e#134#189#0" expanded="true" />
+            <element signature="e#1192#1212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="0" selection-start="3401" selection-end="3401" vertical-scroll-proportion="0.28096676" vertical-offset="1386" max-vertical-offset="1938">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

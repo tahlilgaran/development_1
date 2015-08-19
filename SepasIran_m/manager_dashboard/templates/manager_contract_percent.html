@@ -4,11 +4,16 @@
 
     <div class="col-md-4">
 
-        <div style="width:100% ; margin-left: 20% ; margin-top: 40%" >
+        <div style="width:100% ; margin-left: 20% ; margin-top: 10%" >
             <div>
                 <canvas id="canvas3" height="450" width="600"></canvas>
             </div>
            نمودار درصد قراردادها در شش ماه گذشته
+ - محور عمودی بر حسب درصد می باشد .
+    <p>تاریخ آخرین تغییرات</p>
+       {% for d in dates %}
+        <p>{{ d }}</p>
+       {% endfor %}
         </div>
 
     </div>
@@ -22,10 +27,14 @@
                 <p> درصد پیشنهادی قراردادها مقداری است که به گردش ساز تعلق میگیرد . این مقدار تنها توسط مدیر قابل تغییر
                     است . </p>
 
-                <p><b>مقدار فعلی درصد قراردادها 90 درصد است.</b></p>
+                <p><b>مقدار فعلی درصد قراردادها
+                {{ percents.5 }}
+                    درصد است .
+                </b></p>
 
-                <p>درصد جدید را در جعبه زیر وارد کنید .</p>
-                <input type="number" class="" style="width: 150px">
+                <p>درصد جدید را در جعبه زیر وارد کنید .
+                عدد باید از صد کوچکتر باشد .</p>
+                <input type="number" name="percent" class="" value="0" style="width: 150px">
                 <input type="submit" value="تایید" class="btn btn-success">
             </div>
         </form>
@@ -44,7 +53,7 @@
             return Math.round(Math.random() * 50)
         };
         var lineChartData = {
-            labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],
+            labels: [ "1", "2", "3", "4", "5 ","6"],
             datasets: [
                 {
                     label: "ظرفیت(نفر)",
@@ -54,7 +63,8 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    data : {{ percents }}
+
                 }
             ]
 
