@@ -30,7 +30,7 @@
                        onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'"> گردش
                     ها</a></li>
                 {% if username != 'admin' %}
-                    <li><a href="/userpage/{{ username }}" style="color:rgb(255,196,0);font-weight:bold;"
+                    <li><a href="/userpage/" style="color:rgb(255,196,0);font-weight:bold;"
                            onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">حساب
                         من</a></li>
                 {% else %}
@@ -38,7 +38,7 @@
                            onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">حساب
                         من</a></li>
                 {% endif %}
-                <li><a href="/home/{{ username }}" style="color:rgb(255,196,0);font-weight:bold;"
+                <li><a href="/home/" style="color:rgb(255,196,0);font-weight:bold;"
                        onmouseover="this.style.color='#d2691e'" onmouseout="this.style.color='rgb(255,196,0)'">خانه</a>
                 </li>
             </ul>
@@ -93,12 +93,12 @@
 
         <aside class='right_aside , col-md-3 sidebar'>
             <div class="list-group , col-md-10" style="color:green;font-weight:bold;">
-                <a href="/home/{{ username }}" class="list-group-item"
+                <a href="/home/" class="list-group-item"
                    onmouseover="this.style.backgroundColor='#fff8dc'" onmouseout="this.style.backgroundColor=''">
                     <span class='glyphicon glyphicon-home ,col-md-1' aria-hidden='true'></span>
                     <span class='col-md-11'>خانه</span>
                 </a>
-                <a href="/userpage/{{ username }}" class="list-group-item"
+                <a href="/userpage/" class="list-group-item"
                    onmouseover="this.style.backgroundColor='#fff8dc'" onmouseout="this.style.backgroundColor=''">
                     <span class='glyphicon glyphicon-user ,col-md-1' aria-hidden='true'></span>
                     <span class='col-md-11'>حساب من</span>
