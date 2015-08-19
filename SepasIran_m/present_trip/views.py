@@ -58,6 +58,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
             if start_year == '':
                 start = request.GET.get('start')
                 end = request.GET.get('end')
@@ -97,6 +98,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         returned_dic['trip'] = trip
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
+
 
         return render(request,html_file , returned_dic)
 
@@ -173,6 +175,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
         if trip.gardesh.builder == builder or user_kind == 'manager':
             return_dic['builder'] = trip.gardesh.builder
             print(trip)
+            return_dic['kind'] = kind
             return_dic['trip'] = trip
             return_dic['buy_trips'] = buy_trips
             return_dic['reserve_trip'] = reserve_trip
