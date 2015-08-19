@@ -30,19 +30,18 @@
                     </td>
                     <td>
                         تور
-                        {{ tour.gardesh.name }}
+                      <a href="/show/tour/{{ tour.id }}">   {{ tour.gardesh.name }} </a>
                         <br>
                         مسئول تور :
                         {{ tour.leader }}
                         <br>
-                        ظرفیت فروش :
-                        {{ tour.capacity }}
+                        ظرفیت باقیمانده :
+                      {{ tour.capacity }}
                         نفر
                         <br>
                         <a href="/show/tour/{{ tour.id }}/status">
 {#                            todo #}
-                            اطلاعات بیشتر
-                        </a></td>
+                            اطلاعات خرید</a></td>
 
                 </tr>
             {% endfor %}

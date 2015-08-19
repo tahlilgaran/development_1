@@ -74,7 +74,7 @@ def confirmTour(request,tour_id=''):
         user= request.user.userm
         user2=request.user
         sender= TouristProfile.objects.get(user = user)
-        date = datetime.today()
+        date = datetime.date.today()
         amount=request.POST.get("total_cost")
         gardesh=tour.gardesh
         number=int(int(amount)/tour.cost)
@@ -178,7 +178,7 @@ def confirmAirplane(request,airplane_id=''):
         user= request.user.userm
         user2=request.user
         sender= TouristProfile.objects.get(user = user)
-        date = datetime.today()
+        date = datetime.date.today()
         amount=request.POST.get("total_cost")
         gardesh=airplane.gardesh
         number=int(amount)/airplane.cost
@@ -287,7 +287,7 @@ def confirmTrain(request,train_id=''):
         user2=request.user
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
-        date = datetime.today()
+        date = datetime.date.today()
         amount=request.POST.get("total_cost")
         gardesh=train.gardesh
         number=int(amount)/train.cost
@@ -369,7 +369,7 @@ def confirmRestaurant(request,id=''):
         restaurant=Restaurant.objects.get(id = id)
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
-        date = datetime.today()
+        date = datetime.date.today()
         number=request.POST.get("number")
         list= request.POST.get("ID")
         tableIDList=list.split(',')
@@ -440,7 +440,7 @@ def confirmHotel(request,id=''):
         hotel=Hotel.objects.get(id = id)
         user= request.user.userm
         sender= TouristProfile.objects.get(user = user)
-        date = datetime.today()
+        date = datetime.date.today()
         tarikh=datetime.datetime.now()
         list= request.POST.get("ID")
         roomIDList=list.split(',')
@@ -522,7 +522,7 @@ def tasviye(request):
 
 def tasviyeConfirm(request):
     tarikh=datetime.datetime.now()
-    date = datetime.today()
+    date = datetime.date.today()
     gardeshID=int(request.POST.get("gardeshID"))
     account=int(request.POST.get("account"))
     gardeshgarID=int(request.POST.get("gardeshgarID"))
