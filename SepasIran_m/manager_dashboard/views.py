@@ -55,6 +55,7 @@ def showTourBuilderList(request):
 
 
 def touristSearch(request):
+    print("search")
     user = User.objects.filter(username__contains=request.GET.get("username"))
     print(user)
     userM = UserM.objects.filter(user=user)

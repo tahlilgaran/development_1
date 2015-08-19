@@ -5,16 +5,16 @@
 {% endblock %}
 {% block content %}
 
-<p id="mess"></p>
+
     <h2>
         نظرسنجی تور
     </h2>
 
     <p>
-    کاربر گرامی
-        {{ user2.first_name }} {{  user2.last_name }}
+        کاربر گرامی
+        {{ user2.first_name }} {{ user2.last_name }}
         لطفاً برای مدیریت بهتر تورها و ارائه ی خدمات بهتر سوالات زیر را در خصوص تور
-         <a href="/show/tour/{{ tour.id }}">{{ tour.gardesh.name }}</a>
+        <a href="/show/tour/{{ tour.id }}">{{ tour.gardesh.name }}</a>
         که در آن شرکت کردید با ما درمیان بگذارید .<br>
         از صداقت شما متشکریم
     </p>
@@ -63,12 +63,18 @@
         <br>
         <hr>
 
-        <button type="submit" class="btn btn-success" onclick="alert_func()">ارسال</button>
-    </form>
 
+        <button type="button" class="btn btn-success" onclick="alert_func()">ارسال</button>
+        <button id="submit" type="submit" hidden=""></button>
+    </form>
+    <p id="mess"></p>
     <script>
         function alert_func() {
-            document.getElementById("mess").innerHTML = '<div class="alert alert-success" ><strong>از این که در نظرسنجی شرکت کردید متشکریم . نظرات شما در تعیین درجه ی گردش ساز تاثیرکذار است .</div>';
+            document.getElementById("mess").innerHTML = '<div class="alert alert-success" ><strong>از این که در نظرسنجی شرکت کردید متشکریم . نظرات شما در تعیین درجه ی گردش ساز تاثیرگذار است<br>شما تا پایان مهلت نظرسنجی ( 10 روز پس از پایان تور) ' +
+                    'میتوانید نظرسنجی را تکمیل کنید و یا نظرسنجی فعلی را تغییر دهید .</div>';
+            setTimeout(function () {
+                document.getElementById('submit').click();
+            }, 7000);
 
         }
     </script>

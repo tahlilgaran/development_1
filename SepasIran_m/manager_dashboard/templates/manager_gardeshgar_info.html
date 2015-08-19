@@ -25,12 +25,13 @@
 
         {% ifequal header "گردش سازان" %}
             <form method="get" action="/manager/tourBuilder/search/">
+             <input type="text" style="margin: 10px" name="username" placeholder="شماره ثبت">
         {% endifequal %}
-        {% ifequal header "گردش گران" %}
+        {% ifequal header "گردشگران"%}
             <form method="get" action="/manager/tourist/search/">
+             <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
         {% endifequal %}
 
-        <input type="text" style="margin: 10px" name="username" placeholder="نام">
 
         <input type="submit" value="جست و جو" class="btn btn-success">
         </form>

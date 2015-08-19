@@ -22,12 +22,13 @@
 {% csrf_token %}
 <textarea name="body" cols="60"   rows="5"></textarea>
     <br>
-
- <button type="submit" class="btn btn-success" onclick="alert_func()">ارسال</button>
+ <button type="button" class="btn btn-success" onclick="alert_func()">ارسال</button>
+ <button id="submit" type="submit"  hidden=""></button>
 </form>
 <script>
     function alert_func(){
         document.getElementById("mess").innerHTML = '<div class="alert alert-success" ><strong>از بازخورد شما متشکریم . این بازخورد برای مدیر سامانه ارسال خواهد شد .</div>';
+        setTimeout(function(){document.getElementById('submit').click();},3000);
 
     }
 </script>
