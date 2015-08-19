@@ -23,7 +23,6 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav">
-                {#            	<li><img class="nav_img" src="{% static 'user/img/def.jpg' %}" /></li>#}
                 <li><a href="/logout/" style="color:rgb(255,196,0)">خروج</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -49,27 +48,17 @@
 {% block manager_content %}
     <div class="finish_nav , rtl , col-md-12">
         <header class='blog-header , container'>
-            {#    		<form class="col-md-3 , login_box">#}
-            {#    			<h3 class="col-md-12"  style="color:#228b22;">ورود</h3>#}
-            {#  				<div class="form-group , col-md-12">#}
-            {#     				<input class="form-control , col-md-12" id="inputEmail3" placeholder="نام کاربری">#}
-            {#  				</div>#}
-            {#  				<div class="form-group , col-md-12">#}
-            {#      				<input class="form-control , col-md-12" id="inputEmail3" placeholder="رمز عبور">#}
-            {#  				</div>#}
-            {# 				<div class="form-group , col-md-12">#}
-            {#  					<button type="submit" class="btn btn-success">ورود</button>#}
-            {#  					<a type="button" class="btn btn-default" onmouseover="this.style.backgroundColor='#ffa07a'"onmouseout="this.style.backgroundColor=''">ثبت نام</a>#}
-            {#  					<a style="color:#228b22" onmouseover="this.style.color='#d2691e'"onmouseout="this.style.color='#228b22'">#}
-            {#                        فراموشی رمز عبور</a>#}
-            {#  				</div>#}
-            {# 			</form>#}
             <div class="login_box">
+                {% if user2 %}
+                    عکس کاربر
+                    <img src="/">
+                {% else %}
                 <h3 class="col-me-12" style="color:#228b22;"><br>
                     <a href="/signIn/">
                         ورود
                     </a>
                 </h3>
+                {% endif %}
             </div>
             <div>
                 <h1 class="blog-title">
@@ -82,6 +71,21 @@
             </div>
 
         </header>
+        <div class="col-md-12" style="background-color:#eee; padding-right: 45px; padding-left: 45px; margin-top: -10px; margin-left:auto; margin-right:auto;">
+            <span>{% if user2 %}
+            سلام
+            {%  if user2.userm.kind  == 'gardeshsaz' %}
+                گردشساز
+            {% elif user2.userm.kind == 'gardeshgar' %}
+                گردشگر
+            {% endif %}
+            {{ user2.userm.user.first_name }}
+            {{ user2.userm.user.last_name }}
+            {% else %}
+                شما هنوز وارد سایت نشدید.
+            {% endif %}</span>
+            <span style="float: left">{{ position }}</span>
+        </div>
 
         <main class='col-md-9 , container'>
             {% block content %}{% endblock %}
