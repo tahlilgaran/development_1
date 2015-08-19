@@ -538,7 +538,7 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -556,7 +556,7 @@ def cancel(request , id=''):
             seat.save()
             airplane=seat.airplane
             airplane.capacity +=1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -572,7 +572,7 @@ def cancel(request , id=''):
             seat.save()
             train=seat.train
             train.capacity +=1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -586,7 +586,7 @@ def cancel(request , id=''):
             seat=Table.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Restaurant.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -601,7 +601,7 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -619,7 +619,7 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -651,7 +651,7 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             airplane.capacity += 1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -686,7 +686,7 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             train.capacity += 1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -717,7 +717,7 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
             wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
@@ -748,7 +748,7 @@ def cancel(request , id=''):
                 seat=Table.objects.get(id= id)
                 seat.full=False
                 seat.save()
-                Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+                Wanted_Restaurant.objects.get(info=wanted_trip).delete()
                 wanted_trip.delete()
 
                 wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
