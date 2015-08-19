@@ -8,7 +8,7 @@
     <h1>
     تعریف تور
     </h1>
-{% if username != 'gardeshsaz' %}
+{% if gardesh.builder.id != user2.userm.bprofile.id %}
     <p>
         این صفحه مخصوص گردشسازان می باشد.
     </p>
@@ -227,35 +227,6 @@
 
             </div>
 
-            <table class="col-md-12">
-                {% for bazdid in bazdids %}
-                <tr class="col-md-12">
-                    <td class="col-md-2">
-                        <label >
-نام مکان
-                </label>
-                    </td>
-
-                    <td class="col-md-1">
-{{ bazdid.location_name }}                    </td>
-
-                    <td class="col-md-2">
-                        <label>
-زمان بازدید
-                </label>
-                    </td>
-                    <td class="col-md-2">
-
-{{ bazdid.time }}
-                    </td>
-
-
-                <td class="col-md-3"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
-
-                </tr>
-                {% endfor %}
-            </table>
-
             <div class="col-md-12 , form-group">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
@@ -284,7 +255,7 @@
 {{ gardesh.max_cancel_time }}                        <span class="error"></span>
                     </div>
                     <label  class="col-md-6 ">
-امکان انصراف اعضا
+ امکان انصراف اعضا(چند روز قبل)
                     </label>
 
             </div>

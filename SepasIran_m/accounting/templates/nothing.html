@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>دریافت اطلاعات برای تسویه حساب</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+<link rel="stylesheet" type="text/css" href="css/transaction-status.css">
+</head>
+<body>
+<div class="col-md-8">
+
+هنوز گردش شما به پایان نرسیده است تا بتوانیم با شما همکار گرامی تسویه حساب کنیم
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="css/transaction-status.css"></script>
+{% endblock %}

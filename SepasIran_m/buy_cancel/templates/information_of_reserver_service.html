@@ -46,7 +46,7 @@
 
                                          <input type="hidden" value="{{ ID }}" name="ID">
 
-                                         <input type="submit" class="btn btn-success" value="تایید خرید" style="float:left;margin:20px;"/>
+                                         <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin:20px;"/>
                                          </p>
 
                                          <div id="total"></div>
@@ -86,7 +86,7 @@
                                          <input type="hidden" value="{{ total_cost }}" name="total_cost">
                                          <input type="hidden" value="{{ ID }}" name="ID">
 
-                                         <input type="submit" class="btn btn-success" value="تایید خرید" style="float:left;margin:20px;"/>
+                                         <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin:20px;"/>
                                          </p>
 
                                          <div id="total"></div>
@@ -98,12 +98,12 @@
 <!--###############################----TRAIN-----#########################################################################-->
                           {% elif kind == 'train' %}
                                  <div style="margin-top: 40px;"><span style="font-weight: bold;">نام قطار:</span> {{ gardesh.name }}</div>
-                                <div > <span style="font-weight: bold;">مبدا:</span> {{ train.source }}</div>
-                                <div > <span style="font-weight: bold;">مقصد:</span> {{ train.destination }}</div>
+                                <div > <span style="font-weight: bold;">مبدا:</span> {{ train.get_source_display }}</div>
+                                <div > <span style="font-weight: bold;">مقصد:</span> {{ train.get_destination_display }}</div>
 
 
 
-                                <div><span style="font-weight: bold;">قیمت:</span>{{ train.cost}}تومان</div>
+                                <div><span style="font-weight: bold;">قیمت:</span>{{ train.cost}} تومان</div>
                                 <div><span style="font-weight: bold;">تاریخ حرکت:</span>{{ train.start }}</div>
                                 <div><span style="font-weight: bold;">زمان حرکت:</span>{{ train.start_t }}</div>
                                      </div>
@@ -115,10 +115,10 @@
 
 
                                                 <span style="font-weight: bold;">تعداد رزرو کنندگان :</span>
-                                                 {{ form.number }}نفر
+                                                 {{ form.number }}نفر<div style="font-weight: bold; color: darkred" >{{ form.number.errors }}</div>
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
-                                               <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+
                                                <div id="t" class="col-md-12" ></div>
                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
@@ -132,8 +132,8 @@
 <!--###############################----AIRPLANE-----#########################################################################-->
                           {% elif kind == 'airplane' %}
                                    <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هواپیما:</span> {{ gardesh.name }}</div>
-                                <div > <span style="font-weight: bold;">مبدا:</span> {{ airplane.source }}</div>
-                                <div > <span style="font-weight: bold;">مقصد:</span> {{ airplane.destination }}</div>
+                                <div > <span style="font-weight: bold;">مبدا:</span> {{ airplane.get_source_display }}</div>
+                                <div > <span style="font-weight: bold;">مقصد:</span> {{ airplane.get_destination_display }}</div>
 
 
 
@@ -149,10 +149,10 @@
 
 
                                                 <span style="font-weight: bold;">تعداد رزرو کنندگان:</span>
-                                                 {{ form.number }}نفر
+                                                 {{ form.number }}نفر <div style="font-weight: bold; color: darkred" >{{ form.number.errors }}</div>
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
-                                               <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+
                                                <div id="t" class="col-md-12" ></div>
                                                <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 

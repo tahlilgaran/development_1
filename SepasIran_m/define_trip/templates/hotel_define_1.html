@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+
+    <h1>
+        تعریف هتل
+        </h1>
+
+{% if b.kind != 'Hotel' and b.kind != 'Tour' %}
+    <p>
+این صفحه مخصوص هتل داران می باشد.
+    </p>
+    <p>
+        در صورتی که گردشساز هستید وارد سامانه شوید.
+    </p>
+{% else %}
+    <p>
+        لطفا در صورتی که می خواهید اتاق هایی برای یکی از هتل های زیر ارائه دهید روی آن کلیک نموده و در صورتی که هتل در لیست موجود نمی باشد یک هتل جدید بسازید.
+        <br>
+    </p>
+
+    <div class="col-md-11">
+        <form method="post" action="">
+            {% csrf_token %}
+
+            {% for i in names %}
+
+            <div class="col-md-10 ">
+                <div class="col-md-6"></div>
+           <a href="/tourdefine/hotel/rooms/{{ i }}/" >
+هتل {{ i }}
+    </a>
+
+                </div>
+            {% endfor %}
+
+
+
+            <div class="col-md-10 ">
+                <div class="col-md-6"></div>
+<input class="btn btn-success" type="submit" name="define"   value = "تعریف هتل جدید">
+
+    <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
+</div>
+
+
+</form>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

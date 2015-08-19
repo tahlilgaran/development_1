@@ -34,7 +34,11 @@
                             <td>
 مکان:
                             </td>
+<<<<<<< HEAD
                             <td>{{ trip.get_city_display }}</td>
+=======
+                            <td>{{ trip.city_display }}</td>
+>>>>>>> origin/master
                         </tr>
                     </tbody>
                 </table>
@@ -137,7 +141,7 @@
 
               </div>
               <div class="modal-footer">
-              <form action="" method="post">{% csrf_token %}
+
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     {% if user.userm.kind == 'gardeshgar' %}
@@ -168,7 +172,6 @@
                     {% endif %}
                 </div>
                 <div class="col-md-4"></div>
-              </form>
               </div>
                     {% endif %}
             </div>

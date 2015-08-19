@@ -6,7 +6,7 @@
     <style>
         body {
             margin-top:20px;
-            background-color:darkgray;
+            background-color:#FFE4C4;
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,9 +14,8 @@
 </head>
 <body style="background-color:gainsboro;font-family: 'B Mitra';">
 
-<form action="/payment/restaurant/confirm/{{ restaurant.id }}/" method="POST">
+<form action="/payment/hotel/confirm/{{ hotel.id }}/" method="POST">
     {% csrf_token %}}
-    <img src="pic/mellat.jpg">
      <div class="container" style="direction: rtl" >
     <div class='row'>
         <div class='col-md-3'></div>
@@ -68,7 +67,7 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
-                  مبلغ کل پرداختی:{{ total_cost }} تومان
+                 مبلغ قابل پرداخت:{{ total_cost }} تومان
                     <input name="number" value={{ number }} hidden/>
                     <input name="total_cost" value={{ total_cost }} hidden/>
                     <input name="ID" value={{ ID }} hidden/>
@@ -91,7 +90,7 @@
               </div>
             </div>
           </form>
-            <form action="/payment/restaurant/cancel/{{ restaurant.id }}/" method="POST">
+            <form action="/payment/hotel/cancel/{{ hotel.id }}/" method="POST">
                  {% csrf_token %}
                  <input name="number" value={{ number }} hidden/>
 

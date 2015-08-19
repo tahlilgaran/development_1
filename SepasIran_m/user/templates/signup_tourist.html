@@ -13,11 +13,11 @@
     لطفا اطلاعات زیر را با دقت تکمیل نمایید.<br>
     فیلدهای ستاره دار الزامی هستند.
     </p>
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 {% csrf_token %}
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.email.errors }}</div>
                 <div class="col-md-4">
                         {{ form.email }}
                         <span class="error"></span>
@@ -28,7 +28,7 @@
 
             </div>
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.username.errors }}</div>
                 <div class="col-md-4">
 {{ form.username }}
                     <span class="error"></span>
@@ -39,7 +39,7 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.firstname.errors }}</div>
                 <div class="col-md-4">
 {{ form.firstname }}
                     <span class="error"></span>
@@ -51,7 +51,7 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.lastname.errors }}</div>
                 <div class="col-md-4">
 {{ form.lastname }}                        <span class="error"></span>
                     </div>
@@ -62,7 +62,7 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.password.errors }}</div>
                 <div class="col-md-4">
 {{ form.password }}
                     <span class="error"></span>
@@ -72,7 +72,7 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.confirm_password.errors }}</div>
                 <div class="col-md-4">
 {{ form.confirm_password }}
                     <span class="error"></span>
@@ -84,17 +84,21 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.pic1.errors }}</div>
                 <div class="col-md-4">
-{#                        <select class="form-control">#}
-{#                      <option>#}
-{#زن#}
-{#                      </option>#}
-{#                      <option>#}
-{#مرد#}
-{#                      </option>#}
-{##}
-{#                    </select>#}
+{{ form.pic1 }}
+                    <span class="error"></span>
+                    </div>
+                    <label  class="col-md-2 ">
+تصویر پروفایل
+                   </label>
+
+            </div>
+
+    <div class="col-md-12 , form-group">
+                <div class="col-md-6">{{ form.gender.errors }}</div>
+                <div class="col-md-4">
+
                     {{ form.gender }}
                         <span class="error"></span>
                     </div>
@@ -105,10 +109,9 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.birthday.errors }}</div>
                 <div class="col-md-4">
 {{ form.birthday }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 {{ form.birthday.label }}                    </label>
@@ -116,7 +119,7 @@
             </div>
 
     <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.location.errors }}</div>
                 <div class="col-md-4">
 {{ form.location }}                        <span class="error"></span>
                     </div>
@@ -126,20 +129,6 @@
 
             </div>
 
-{#    <div class="col-md-12 , form-group">#}
-{#                <div class="col-md-6"></div>#}
-{#                <div class="col-md-4">#}
-{#                        <a class="btn btn-success" href="\payment\" name ="send">#}
-{#پرداخت#}
-{#    </a>#}
-{#                        <span class="error"></span>#}
-{#                    </div>#}
-{#                    <label  class="col-md-2 ">#}
-{#ورود به صفحه پرداخت حق عضویت#}
-{#                    </label>#}
-
-
-{#            </div>#}
 
 
 <div class="col-md-10 ">

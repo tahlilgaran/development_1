@@ -6,11 +6,11 @@
 {% block content %}
 
     <h1>
-تعریف خدمت    </h1>
-
-    {% if username != 'gardeshsaz' %}
+ارائه پرواز
+    </h1>
+    {% if b.kind != 'AirPlane' %}
     <p>
-        این صفحه مخصوص گردشسازان می باشد.
+این صفحه مخصوص گردش سازان هواپیما می باشد.
     </p>
     <p>
         در صورتی که گردشساز هستید وارد سامانه شوید.
@@ -37,10 +37,9 @@
 
             </div>
 <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.name.errors }}</div>
                 <div class="col-md-4">
 {{ form.name }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *نام هواپیما
@@ -48,10 +47,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.source.errors }}</div>
                 <div class="col-md-4">
 {{ form.source }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *مبدا پرواز
@@ -60,7 +58,7 @@
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.destination.errors }}</div>
                 <div class="col-md-4">
 {{ form.destination }}
                         <span class="error"></span>
@@ -73,17 +71,15 @@
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-1"></div>
+                <div class="col-md-1">{{ form.start_t.errors }}</div>
                 <div class="col-md-3">
 {{ form.start_t }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *ساعت حرکت
                         </label>
                 <div class="col-md-4">
 {{ form.start }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
 *تاریخ حرکت
@@ -92,7 +88,7 @@
             </div>
 
             <div class="col-md-12 , form-group">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">{{ form.cost.errors }}</div>
                 <div class="col-md-4">
 {{ form.cost }}
                         <span class="error"></span>
@@ -103,10 +99,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <div class="col-md-4">{{ form.free.errors }}</div>
                 <div class="col-md-3">
                     {{ form.free }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 درصد تخفیف برای اعضای سامانه سپاس ایران
@@ -121,10 +116,9 @@
 
             </div>
             <div class="col-md-12 , form-group">
-                <div class="col-md-4"></div>
+                <div class="col-md-4">{{ form.max_cancel_time.errors }}</div>
                 <div class="col-md-3">
                     {{ form.max_cancel_time }}
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 گردشگران تا چند روز قبل از آغاز تور امکان انصراف دارند؟
@@ -148,20 +142,20 @@
                             از
                         </label>
                     </td>
-                    <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
+                    <td class="col-md-2">
+                        <input type="text" class="form-control ,i" name="s1">
                     </td>
                     <td class="col-md-1">
                         <label>
                             تا
                         </label>
                     </td>
-                    <td class="col-md-1">
-                        <input type="text" class="form-control ,i">
+                    <td class="col-md-2">
+                        <input type="text" class="form-control ,i" name="e1">
                     </td>
                                         <td class="col-md-1"><input id="add" class="btn btn-success" type="button" value="اضافه" onclick="add1(this)" /></td>
 
-                                        <td class="col-md-7"></td>
+                                        <td class="col-md-5"></td>
 
 
                 </tr>
@@ -170,20 +164,18 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
                     <textarea  style=" min-width: 300px"  name="other_explain" id="tourexplain" ></textarea>
-                        <span class="error"></span>
                     </div>
                     <label  class="col-md-5 ">
 تمامی توضیحات باقیمانده در مورد شرایط سفر را در اینجا درج کنید
                     </label>
 
             </div>
+            <input style="display: none" name="number" id="number" value="2">
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
-{#<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">#}
-<a href="/tourdefine/airplane/2/4" class="btn btn-success">
-        گام بعد
-    </a>
+<input class="btn btn-success" type="submit" name="save"   value = "گام بعد">
+
     <input class="btn btn-danger" type="submit"  name ="cancel" value="انصراف"  >
 </div>
 
@@ -197,6 +189,7 @@
     var table = button.parentNode.parentNode.parentNode;
     var length = table.getElementsByTagName("tr").length;
     var newrow = table.insertRow(length-1);
+    var a = document.getElementById("number");
         newrow.setAttribute("class","col-md-12");
     var cells = ["","","","","",""];
 
@@ -206,7 +199,9 @@
 
         cells[1] = newrow.insertCell(1);
         cells[1].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[1].setAttribute("class","col-md-1");
+        cells[1].setAttribute("class","col-md-2");
+        cells[1].setAttribute("name","s"+ a.value);
+
 
         cells[2] = newrow.insertCell(2);
         cells[2].innerHTML = "<label> تا </label>";
@@ -214,11 +209,13 @@
 
         cells[3] = newrow.insertCell(3);
         cells[3].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
-        cells[3].setAttribute("class","col-md-1");
+        cells[3].setAttribute("class","col-md-2");
+        cells[3].setAttribute("name","e"+ a.value);
+        a.value = parseInt(a.value)+1;
 
         cells[4] = newrow.insertCell(4);
         cells[4].innerHTML = ".";
-        cells[4].setAttribute("class","col-md-8");
+        cells[4].setAttribute("class","col-md-6");
 
 }
     </script>

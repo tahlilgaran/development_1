@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import *
+from datetime import timedelta, date
 from .forms import *
 from user.models import TourBuilderProfile,UserM
 from django.contrib.auth.decorators import login_required
@@ -35,9 +36,11 @@ def tarif_kind(request):
 
 @login_required()
 def tour_define_2(request,id):
+
+    user2 = request.user
+    position = 'تعریف تور> ورود اطلاعات> تایید اطلاعات'
     gardesh = Gardesh.objects.get(id = id)
     tour = Tour.objects.get(gardesh = gardesh)
-    bazdid = Bazdid.objects.filter(tour = tour)
     if request.POST.get("return","") != "":
         tour.delete()
         gardesh.delete()
@@ -52,14 +55,16 @@ def tour_define_2(request,id):
     return render(request, "tour_define_2.html",{
         'gardesh': gardesh,
         'tour': tour,
-        'bazdids': bazdid,
         'username':"gardeshsaz",
+        'user2':user2,
+        'position':position,
     })
 
 @login_required()
 def tour_define(request):
     username = ''
     builder = ''
+    position = 'تعریف تور> ورود اطلاعات'
     u1 = request.user
     if u1:
         if UserM.objects.filter(user = u1):
@@ -70,9 +75,8 @@ def tour_define(request):
 
 
     if request.POST.get("save","") != "":
-        form = TourForm(request.POST)
-        d = request.POST['company']
-        print(d)
+        form = TourForm(request.POST,request.FILES)
+
         if form.is_valid():
             print('valid')
             f = form.save(commit=False)
@@ -90,25 +94,87 @@ def tour_define(request):
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
                 gardesh.max_cancel_time = form.cleaned_data['max_cancel_time']
-            if form.cleaned_data['other_explain']:
-                gardesh.other_explain = request.POST.get(['other_explain'])
+            if request.POST.get('other_explain'):
+                gardesh.other_explain = request.POST.get('other_explain')
                 print(gardesh.other_explain)
             gardesh.save()
             f.gardesh = gardesh
-            t = TransferDevice()
-            t.name = request.POST.get(['company'])
-            print(t.name)
-            t.degree = "G"
-            t.kind = "A"
-            f.transfer_device = t
-            l = Location()
-            l.name = request.POST.get(['hotel'])
-            l.kind = 'H'
-            l.degree = 'G'
-            l.save()
-            f.stay_location = l
+            if form.cleaned_data['pic1']:
+                pic1 = Picture()
+                pic1.picture = form.cleaned_data['pic1']
+                pic1.gardesh = gardesh
+                pic1.save()
+            if form.cleaned_data['pic2']:
+                pic2 = Picture()
+                pic2.picture = form.cleaned_data['pic2']
+                pic2.gardesh = gardesh
+                pic2.save()
+            if form.cleaned_data['pic3']:
+                pic3 = Picture()
+                pic3.picture = form.cleaned_data['pic3']
+                pic3.gardesh = gardesh
+                pic3.save()
+            if form.cleaned_data['pic4']:
+                pic4 = Picture()
+                pic4.picture = form.cleaned_data['pic4']
+                pic4.gardesh = gardesh
+                pic4.save()
+
+            print(request.POST.get("rt"))
+            if request.POST.get("rt") == '1':
+                t = TransferDevice()
+                print(t.id)
+                t.name = form.cleaned_data['airplane']
+                print(t.name)
+                t.degree = "G"
+                t.kind = "A"
+                t.save()
+                f.transfer_device = t
+            elif request.POST.get("rt") == '2':
+                t = TransferDevice()
+                t.name = form.cleaned_data['train']
+                print(t.name)
+                t.degree = "S"
+                t.kind = "T"
+                t.save()
+                f.transfer_device = t
+            elif request.POST.get("rt") == '3':
+                t = TransferDevice()
+                t.name = form.cleaned_data['bus']
+                print(t.name)
+                t.degree = "B"
+                t.kind = "B"
+                t.save()
+                f.transfer_device = t
+
+            print(request.POST.get("rm"))
+            if request.POST.get("rm") == '1':
+                l = Location()
+                print(l.id)
+                l.name = form.cleaned_data['hotel']
+                l.kind = 'H'
+                l.degree = 'G'
+                l.save()
+                f.stay_location = l
+            elif request.POST.get("rm") == '2':
+                l = Location()
+                l.name = form.cleaned_data['apartment']
+                l.kind = 'A'
+                l.degree = 'S'
+                l.save()
+                f.stay_location = l
+            elif request.POST.get("rm") == '3':
+                l = Location()
+                l.name = form.cleaned_data['mosaferkhane']
+                l.kind = 'M'
+                l.degree = 'B'
+                l.save()
+                f.stay_location = l
+            f.start = form.cleaned_data['start']
+            f.end = form.cleaned_data['end']
             f.save()
-            return HttpResponseRedirect('/tourdefine/tour/2/'+ gardesh.id)
+            u = gardesh.id
+            return HttpResponseRedirect('/tourdefine/tour/2/'+ str(u))
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -119,6 +185,8 @@ def tour_define(request):
         'username': username,
         'form': form,
         'b': builder,
+        'user2':u1,
+        'position':position,
     })
 
 @login_required()
@@ -126,6 +194,7 @@ def airplane_define(request):
     username = ''
     builder = ''
     u1 = request.user
+    position = 'تعریف خدمت>تعریف پرواز'
     if u1:
         if UserM.objects.filter(user = u1):
             muser = UserM.objects.filter(user = u1)[0]
@@ -143,18 +212,42 @@ def airplane_define(request):
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
             gardesh.kind = 'A'
+            a = Agreement()
+            a.kind ='a-g'
+            a.percent = '10'
+            a.save()
+            gardesh.agreement = a
             gardesh.degree = 'g'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
                 gardesh.max_cancel_time = form.cleaned_data['max_cancel_time']
-            if form.cleaned_data['other_explain']:
-                gardesh.other_explain = request.POST.get(['other_explain'])
+            if request.POST.get('other_explain'):
+                gardesh.other_explain = request.POST.get('other_explain')
                 print(gardesh.other_explain)
+
             gardesh.save()
             f.gardesh = gardesh
+            f.start = form.cleaned_data['start']
             f.save()
-            return HttpResponseRedirect('/tourdefine/airplane/2/'+ gardesh.id)
+            num = request.POST.get('number')
+            print(num)
+            ran = range(1,int(num))
+            capa = 0
+            for i in ran :
+                start = request.POST.get('s'+str(i))
+                end = request.POST.get('e'+str(i))
+                ran2 = range(int(start),int(end)+1)
+                for j in ran2:
+                    seat = AirplaneSeat()
+                    seat.number = j
+                    seat.airplane = f
+                    seat.save()
+                    capa += 1
+            f.capacity = capa
+            f.save()
+
+            return HttpResponseRedirect('/tourdefine/airplane/2/'+ str(gardesh.id))
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -165,6 +258,8 @@ def airplane_define(request):
         'username': username,
         'form': form,
         'b': builder,
+        'user2':u1,
+        'position':position,
     })
 
 @login_required()
@@ -172,6 +267,9 @@ def airplane_define_2(request,id):
 
     gardesh = Gardesh.objects.get(id = id)
     airplane = AirPlane.objects.get(gardesh = gardesh)
+    user2 = request.user
+    position = 'تعریف خدمت> تعریف پرواز> تایید اطلاعات پرواز'
+
     if request.POST.get("return","") != "":
         airplane.delete()
         gardesh.delete()
@@ -187,6 +285,8 @@ def airplane_define_2(request,id):
         'gardesh': gardesh,
         'airplane': airplane,
         'username':"gardeshsaz",
+        'user2': user2,
+        'position': position,
     })
 
 @login_required()
@@ -194,6 +294,7 @@ def train_define(request):
     username = ''
     builder = ''
     u1 = request.user
+    position = 'تعریف خدمت> تعریف قطار'
     if u1:
         if UserM.objects.filter(user = u1):
             muser = UserM.objects.filter(user = u1)[0]
@@ -211,18 +312,42 @@ def train_define(request):
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
             gardesh.kind = 'TR'
-            gardesh.degree = 'g'
+            a = Agreement()
+            a.kind ='t-s'
+            a.percent = '8'
+            a.save()
+            gardesh.agreement = a
+            gardesh.degree = 's'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
                 gardesh.max_cancel_time = form.cleaned_data['max_cancel_time']
-            if form.cleaned_data['other_explain']:
-                gardesh.other_explain = request.POST.get(['other_explain'])
+            if request.POST.get('other_explain'):
+                gardesh.other_explain = request.POST.get('other_explain')
                 print(gardesh.other_explain)
             gardesh.save()
             f.gardesh = gardesh
+            f.start = form.cleaned_data['start']
             f.save()
-            return HttpResponseRedirect('/tourdefine/train/2/'+gardesh.id)
+            num = request.POST.get('number')
+            ran = range(1,int(num))
+            capa = 0
+            for i in ran :
+                if request.POST.get('s'+str(i))!="" and request.POST.get('e'+str(i))!="":
+                    start = request.POST.get('s'+str(i))
+                    end = request.POST.get('e'+str(i))
+                    print(str(i)+'s')
+                    ran2 = range(int(start),int(end)+1)
+                    print(str(i)+'p')
+                    for j in ran2:
+                        seat = TrainSeat()
+                        seat.number = j
+                        seat.train = f
+                        seat.save()
+                        capa += 1
+            f.capacity = capa
+            f.save()
+            return HttpResponseRedirect('/tourdefine/train/2/'+str(gardesh.id))
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -233,12 +358,16 @@ def train_define(request):
         'username': username,
         'form': form,
         'b': builder,
+        'user2': u1,
+        'position': position,
     })
 
 
 @login_required()
 def train_define_2(request,id):
 
+    user2 = request.user
+    position = 'تعریف خدمت> تعریف قطار> ورود اطلاعات> تایید اطلاعات'
     gardesh = Gardesh.objects.get(id = id)
     train = Train.objects.get(gardesh = gardesh)
     if request.POST.get("return","") != "":
@@ -256,8 +385,41 @@ def train_define_2(request,id):
         'gardesh': gardesh,
         'train': train,
         'username':"gardeshsaz",
+        'user2': user2,
+        'position': position,
     })
 
+@login_required()
+def hotel_define_first(request):
+
+    u1 = request.user
+    position = 'لیست هتل ها'
+    username = ''
+    builder = ''
+    names = []
+    if u1:
+        if UserM.objects.filter(user = u1):
+            muser = UserM.objects.filter(user = u1)[0]
+            if muser.kind == 'gardeshsaz':
+                username = 'gardeshsaz'
+                builder = TourBuilderProfile.objects.get(user = muser)
+                gardeshs = Gardesh.objects.filter(builder = builder)
+                for g in gardeshs:
+                    names += [g.name]
+
+    if request.POST.get("define","") != "":
+        return HttpResponseRedirect('/tourdefine/hotel/define/')
+
+    elif request.POST.get("cancel","")!= "":
+        return HttpResponseRedirect('/userpage/')
+
+    return render(request,"hotel_define_1.html",{
+        'username': username,
+        'b': builder,
+        'user2': u1,
+        'position': position,
+        'names': names,
+    })
 
 @login_required()
 def hotel_define(request):
@@ -272,26 +434,53 @@ def hotel_define(request):
                 builder = TourBuilderProfile.objects.get(user = muser)
 
     if request.POST.get("save","") != "":
-        form = HotelForm(request.POST)
+        form = HotelForm(request.POST,request.FILES)
         if form.is_valid():
             print('valid')
             f = form.save(commit=False)
             gardesh = Gardesh()
-            gardesh.name = builder.user.user.last_name
+            gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
             gardesh.kind = 'H'
-            gardesh.degree = 's'
+            a = Agreement()
+            a.kind ='h-g'
+            a.percent = '10'
+            a.save()
+            gardesh.agreement = a
+            gardesh.degree = 'g'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
                 gardesh.max_cancel_time = form.cleaned_data['max_cancel_time']
-            if form.cleaned_data['other_explain']:
-                gardesh.other_explain = request.POST.get(['other_explain'])
+            if request.POST.get('other_explain'):
+                gardesh.other_explain = request.POST.get('other_explain')
                 print(gardesh.other_explain)
             gardesh.save()
             f.gardesh = gardesh
+            if form.cleaned_data['pic1']:
+                pic1 = Picture()
+                pic1.picture = form.cleaned_data['pic1']
+                pic1.gardesh = gardesh
+                pic1.save()
+            if form.cleaned_data['pic2']:
+                pic2 = Picture()
+                pic2.picture = form.cleaned_data['pic2']
+                pic2.gardesh = gardesh
+                pic2.save()
+            if form.cleaned_data['pic3']:
+                pic3 = Picture()
+                pic3.picture = form.cleaned_data['pic3']
+                pic3.gardesh = gardesh
+                pic3.save()
+            if form.cleaned_data['pic4']:
+                pic4 = Picture()
+                pic4.picture = form.cleaned_data['pic4']
+                pic4.gardesh = gardesh
+                pic4.save()
+            if request.POST.get('address'):
+                f.address = request.POST.get('address')
             f.save()
-            return HttpResponseRedirect('/tourdefine/hotel/2/'+gardesh.id)
+            return HttpResponseRedirect('/definetour/hotel/2/'+str(gardesh.id))
 
     elif request.POST.get("cancel","")!= "":
         return HttpResponseRedirect('/userpage/')
@@ -299,6 +488,65 @@ def hotel_define(request):
         form = HotelForm()
 
     return render(request,"hotel_define.html",{
+        'username': username,
+        'form': form,
+        'b': builder,
+    })
+
+def daterange(start_date, end_date):
+    for n in range(int ((end_date - start_date).days)):
+        yield start_date + timedelta(n)
+
+@login_required()
+def hotel_define_rooms (request,name):
+    gardesh = Gardesh.objects.get(name = name)
+    hotel = Hotel.objects.get(gardesh = gardesh)
+    username = ''
+    builder = ''
+    u1 = request.user
+    if u1:
+        if UserM.objects.filter(user = u1):
+            muser = UserM.objects.filter(user = u1)[0]
+            if muser.kind == 'gardeshsaz':
+                username = 'gardeshsaz'
+                builder = TourBuilderProfile.objects.get(user = muser)
+
+    if request.POST.get("save","")!= "":
+        form = HotelRoomForm(request.POST)
+        if form.is_valid():
+            print('valid')
+            num = request.POST.get('number')
+            ran = range(1,int(num))
+            for i in ran :
+                if request.POST.get('s'+str(i))!="" and request.POST.get('e'+str(i))!="" and request.POST.get('p'+str(i))!="" and request.POST.get('c'+str(i))!="":
+                    start = request.POST.get('s'+str(i))
+                    end = request.POST.get('e'+str(i))
+                    day_start = form.cleaned_data['start']
+                    day_end = form.cleaned_data['end']
+                    print(str(i)+'s')
+                    ran2 = range(int(start),int(end)+1)
+                    print(str(i)+'p')
+                    for j in ran2:
+                        for single_date in daterange(day_start, day_end):
+                            # print(single_date.strftime("%Y-%m-%d"))
+
+                            room = Room()
+                            room.hotel = hotel
+                            room.capacity = int(request.POST.get('c'+str(i)))
+                            room.cost_perNight = int(request.POST.get('p'+str(i)))
+                            room.number = j
+                            room.date = single_date
+                            room.save()
+            return HttpResponseRedirect('/userpage/')
+
+    elif request.POST.get("cancel","")!= "":
+        return HttpResponseRedirect('/userpage/')
+    else:
+        form = HotelRoomForm()
+
+    return render(request, "hotel_define_rooms.html",{
+        'gardesh': gardesh,
+        'hotel': hotel,
         'username': username,
         'form': form,
         'b': builder,
@@ -318,7 +566,7 @@ def hotel_define_2(request,id):
         gardesh.delete()
         return HttpResponseRedirect('/userpage/')
     if request.POST.get("save","") != "":
-        return HttpResponseRedirect('/userpage/')
+        return HttpResponseRedirect('/tourdefine/hotel/rooms/'+str(gardesh.name))
 
     return render(request, "hotel_define_2.html",{
         'gardesh': gardesh,

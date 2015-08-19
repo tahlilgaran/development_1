@@ -16,7 +16,7 @@
                         <div style="margin: 20px;margin-top: 40px;"><span style="font-weight: bold;">نام تور:</span> {{ gardesh.name }}
 
                             <p>
-                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>{{ tour.cost }}ریال
+                            <span style="font-weight: bold;">قیمت برای هر نفر:</span>{{ tour.cost }} تومان
                             </p>
 
                         </div>
@@ -28,7 +28,8 @@
                             <p>
                             <span style="font-weight: bold;">تعداد افراد رزرو کننده:</span>
 
-                                {{ form.number }}  نفر
+                                {{ form.number }} نفر  <div style="font-weight: bold; color: darkred" >{{ form.number.errors }}
+                         </div>
 
 
                                 <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
@@ -37,7 +38,8 @@
 
                                  <!--<input type="text" name="number" id ="rows" style="width: 70px;margin:10px; border-radius: 2px;" value={{ number }} />
                                  <button  type="button" class="btn btn-success" value="ورود اطلاعات " id="rows" style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>-->
-                                    <p> توجه : اولین نفری که نام او در فرم اطلاعات رزرو کنندگان وارد میشود به عنوان سرپرست محسوب میگردد</p>
+
+
                                   <div id="t" class="col-md-12" ></div>
                                     <input type="submit" class="btn btn-success" value="تایید رزرو" style="float:left;margin-left:40px;margin-top: 10px;"/>
 
@@ -47,10 +49,7 @@
                          </form>
              </div>
     <div class="col-md-1">
-        {% if error %}
-            <p style="font-weight: 200 ; color: red;">{{ msg }}</p>
-            <a href="/reserving/tour/{{ tour.id }}" >بازگشت </a>
-        {% endif %}
+
     </div>
     </div>
 {% endblock %}

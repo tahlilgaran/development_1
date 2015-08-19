@@ -52,6 +52,7 @@ def paymentTour(request, tour_id=''):
                          'peopleform':peopleform,
                          'wrong': wrong,
                          'user2':user2,
+                         'position':'زیر سامانه ی خرید',
              })
 
     return render(request, "payment_bank.html",{
@@ -87,6 +88,7 @@ def confirmTour(request,tour_id=''):
             'transaction':transaction,
             'kind':'1',
             'user2':user2,
+            'position':'زیر سامانه ی حسابداری',
         })
 
 
@@ -101,7 +103,8 @@ def cancelTour(request , id=''):
 
 
     return render(request, "payment_cancel.html",{
-        'user2':user2
+        'user2':user2,
+        'position':'زیر سامانه ی حسابداری',
     })
 
 ##################################################################################################
@@ -150,7 +153,8 @@ def paymentAirplane(request, airplane_id=''):
                          'form':form,
                          'peopleform':peopleform,
                          'wrong': wrong,
-                         'user2':user2
+                         'user2':user2,
+                         'position':'زیر سامانه ی خرید',
              })
 
     return render(request, "payment_bank.html", {
@@ -188,7 +192,8 @@ def confirmAirplane(request,airplane_id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
-            'user2':user2
+            'user2':user2,
+            'position':'زیر سامانه ی حسابداری',
         })
 
 def cancelAirplane(request , id=''):
@@ -204,6 +209,7 @@ def cancelAirplane(request , id=''):
 
     return render(request, "payment_cancel.html",{
         'user2':user2,
+        'position':'زیر سامانه ی حسابداری',
     })
 
 ##############################TRAIN######################################################################################
@@ -255,6 +261,7 @@ def paymentTrain(request, train_id=''):
                          'peopleform':peopleform,
                          'wrong': wrong,
                          'user2':user2,
+                        'position':'زیر سامانه ی خرید',
              })
 
     return render(request, "payment_bank.html",{
@@ -293,6 +300,7 @@ def confirmTrain(request,train_id=''):
         return render(request, "transaction-status.html",{
             'transaction':transaction,
             'user2':user2,
+            'position':'زیر سامانه ی حسابداری',
         })
 
 def cancelTrain(request , id=''):
@@ -308,6 +316,7 @@ def cancelTrain(request , id=''):
 
     return render(request, "payment_cancel.html",{
         'user2':user2,
+        'position':'زیر سامانه ی حسابداری',
     })
 
 ####################################RESTAURANT########################################################################
@@ -340,6 +349,7 @@ def paymentRestaurant(request,id=''):
         'restaurant':restaurant,
         'ID':list,
         'number':i,
+        'position':'زیر سامانه ی خرید',
     })
 
 
@@ -364,6 +374,7 @@ def confirmRestaurant(request,id=''):
         return render(request, "transaction-status.html",{
             'transaction':transaction,
             'user2':user2,
+            'position':'زیر سامانه ی حسابداری',
         })
 
 
@@ -376,6 +387,7 @@ def cancelRestaurant(request , id=''):
 
     return render(request, "payment_cancel.html",{
         'user2':user2,
+        'position':'زیر سامانه ی حسابداری',
     })
 
 ##################################HOTEL###############################################################################
@@ -430,7 +442,8 @@ def confirmHotel(request,id=''):
 
         return render(request, "transaction-status.html",{
             'transaction':transaction,
-            'user2':user2
+            'user2':user2,
+            'position':'زیر سامانه ی حسابداری',
 
         })
 
@@ -442,15 +455,29 @@ def cancelHotel(request , id=''):
 
     return render(request, "payment_cancel.html",{
         'user2':user2,
+        'position':'زیر سامانه ی حسابداری',
     })
 
 #####################################################################################################################
-def ozviyat(request):
+def ozviyat(request,username=''):
 
     return render(request, "payment_ozviyat.html",{
         'total_cost':'۵۰۰۰',
+        'username':username,
     })
+def confirmOzv(request,username=''):
+    user=User.objects.get(username= username)
+    user2=request.user
+    userm=user.userm
+    y=TouristProfile.objects.get(userm= userm)
+    y.has_payed=True
+    y.save()
+    return render(request, "transaction-status.html",{
 
+        'user2':user2,
+        'position':'زیر سامانه ی  حسابداری',
+
+    })
 ########################################################################################################
 
 def tasviye(request):
@@ -471,6 +498,7 @@ def tasviye(request):
             'account': intaccount,
             'bankform':bankForm,
             'user2':user2,
+            'position':'زیر سامانه ی  حسابداری',
         })
 
 
@@ -490,6 +518,7 @@ def tasviyeConfirm(request):
 
     return HttpResponseRedirect('/userpage/',{
         'user2':user2,
+        'position':'زیر سامانه ی  حسابداری',
     })
 
 ############################################################################################################
@@ -502,5 +531,36 @@ def tasviyeGar(request):
     else:
         date=datetime.now()
         builderP=TourBuilderProfile.objects.get(user=userm)
-        agree=builderP
-        transactions=Trans_info.objects.filter(date.__lt__(date),gardesh=builderP)
+
+        gardesh=Gardesh.objects.filter(builder=builderP,)
+        return render(request, "tasviye_gardeshsaz.html",{
+            'gardesh':gardesh,
+            'user2':user,
+            'position':'زیر سامانه ی  حسابداری',
+        })
+def tasviyeID(request,id=''):
+    date=datetime.now()
+    gardesh= Gardesh.objects.get(id =id)
+    agree=gardesh.agreement
+    percent=agree.percent
+    user= request.user
+    trans=Trans_info.objects.filter(date__gt=date,gardesh= gardesh)
+    if not trans:
+        return render(request,"nothing.html",{
+            'position':'زیر سامانه ی  حسابداری',
+            'user2':user,
+        })
+    total=0
+    for tr in trans:
+        total += tr.amount
+
+    final= total-total*percent
+    bankform=bankForm()
+    return render(request,"tasviye_gardeshsaz2.html",{
+
+        'final':final,
+        'bankform':bankform,
+        'position':'زیر سامانه ی  حسابداری',
+        'user2':user,
+
+    })
