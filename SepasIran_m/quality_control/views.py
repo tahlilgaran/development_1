@@ -3,12 +3,10 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from define_trip.models import Tour
-from quality_control.models import  OnlineCommentForm, OnlineComment , RatingComment
-from user.models import UserM
+from quality_control.models import OnlineComment, RatingComment
 
 
 def user_rating(request):
-
     if (request.method == 'POST'):
         #user = UserM.objects.filter(user= request.user)
         new_comment = RatingComment()
@@ -26,10 +24,10 @@ def user_rating(request):
     return redirect("/userpage/")  #todo RENDER SUCCESS MSG  /userpage/gardeshgar
 
 
-
-
 def show_user_rating_form(request):
-    return render(request, "quality_user_rating.html", {'user2': request.user , 'position': "سامانه کنترل کیفت - نظرسنجی پایان تور"})
+    return render(request, "quality_user_rating.html",
+                  {'user2': request.user, 'position': "سامانه کنترل کیفت - نظرسنجی پایان تور",
+                   'tarikh': datetime.datetime.now()})
 
 
 def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
@@ -49,5 +47,8 @@ def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
 def show_online_comment_form(request):
     #user = request.user.userm.tprofile
     #print(user.user.user.first_name)
-    return render(request, "quality_online_comment.html", {'user2': request.user , 'position' : "سامانه کنترل کیفیت - نظرسنجی برخط"})
+    return render(request, "quality_online_comment.html",
+                  {'user2': request.user, 'position': "سامانه کنترل کیفیت - نظرسنجی برخط",
+                   'tarikh': datetime.datetime.now()
+                  })
 

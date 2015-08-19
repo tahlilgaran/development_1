@@ -1,9 +1,20 @@
-{% extends "manager_dashboard.html" %}
+{% extends "manager_base.html" %}
 {% load staticfiles %}
 {% load miladitoshamsi %}
 {% block content_dashboard %}
+    <div class="col-md-4">
 
-    <div class="col-md-9">
+        <div style="width:100%; margin-left: 20% ; margin-top: 40%">
+            <div>
+                <canvas id="canvas3" height="450" width="600"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="col-md-5">
         <h2>صورت تراکنش ها</h2>
         <table class="payment_table">
             <tr class="payment_table">
@@ -18,15 +29,50 @@
 
                     <td>{{ trans.id }}</td>
                     <td><a href="profile/tourist/{{ tourist.user.user.username }}">
-                        {{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a>
+                        {% ifequal trans.trans_kind1.sender "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind1.sender.user.user.first_name }}
+                            {{ trans.trans_kind1.sender.user.user.last_name }}
+                        {% endifequal %}
+                        {% ifequal trans.trans_kind2.sender "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind2.sender.user.user.first_name }}
+                            {{ trans.trans_kind2.sender.user.user.last_name }}
+                        {% endifequal %}
+                        {% ifequal trans.trans_kind3.sender "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind3.sender.user.user.first_name }}
+                            {{ trans.trans_kind3.sender.user.user.last_name }}
+                        {% endifequal %}
+                        {#                        {{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}#}
+                    </a>
                     </td>
                     <td>
-                        {{ trans.trans_kind1.receiver }}{{ trans.trans_kind2.receiver }}{{ trans.trans_kind3.receiver }}</td>
-
+                        {% ifequal trans.trans_kind1.receiver "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind1.receiver.first_name }}
+                            {{ trans.trans_kind1.receiver.user.user.last_name }}
+                        {% endifequal %}
+                        {% ifequal trans.trans_kind2.receiver "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind2.receiver.first_name }}
+                            {{ trans.trans_kind2.receiver.user.user.last_name }}
+                        {% endifequal %}
+                        {% ifequal trans.trans_kind3.receiver "SAMANE" %}
+                            سامانه سپاس ایران
+                        {% else %}
+                            {{ trans.trans_kind3.receiver.first_name }}
+                            {{ trans.trans_kind3.receiver.user.user.last_name }}
+                        {% endifequal %}
                     <td>
                         {{ trans.amount }}
                     </td>
-                    <td id="pcal1">{{ trans.date |miladitoshamsi}}</td>
+                    <td id="pcal1">{{ trans.date |miladitoshamsi }}</td>
                 </tr>
             {% endfor %}
         </table>
@@ -35,3 +81,37 @@
     </div>
 
 {% endblock content_dashboard %}
+{##}
+{#{% block script %}#}
+{#    <script src="/static/Chart.js-master/src/Chart.Core.js"></script>#}
+{#    <script src="/static/Chart.js-master/src/Chart.Doughnut.js"></script>#}
+{#    <script src="/static/chart.js-master/Chart.js"></script>#}
+{#    <script>#}
+{#        var randomScalingFactor = function () {#}
+{#            return Math.round(Math.random() * 50)#}
+{#        };#}
+{#        var lineChartData = {#}
+{#            labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],#}
+{#            datasets: [#}
+{#                {#}
+{#                    label: "ظرفیت(نفر)",#}
+{#                    fillColor: "rgba(220,220,220,0.2)",#}
+{#                    strokeColor: "rgba(220,220,220,1)",#}
+{#                    pointColor: "rgba(220,220,220,1)",#}
+{#                    pointStrokeColor: "#fff",#}
+{#                    pointHighlightFill: "#fff",#}
+{#                    pointHighlightStroke: "rgba(220,220,220,1)",#}
+{#                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]#}
+{#                }#}
+{#            ]#}
+{##}
+{#        }#}
+{#        window.onload = function () {#}
+{#            var ctx4 = document.getElementById("canvas3").getContext("2d");#}
+{#            window.myLine = new Chart(ctx4).Line(lineChartData, {#}
+{#                responsive: true#}
+{#            });#}
+{#        };#}
+{##}
+{#    </script>#}
+{#{% endblock %}#}
