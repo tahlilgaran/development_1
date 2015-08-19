@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from .forms import TouristSignUpForm ,TourBuilderSignUpForm,TourBuilderEditForm,TouristEditForm
 from .models import TouristProfile,TourBuilderProfile,UserM
+import datetime
 # Create your views here.
 
 
 def signin(request):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ورود به سایت'
     if request.POST.get("signup","") != "":
@@ -47,10 +48,12 @@ def signin(request):
         'usernamep': usernamep,
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
 def forget_password(request):
+    date = datetime.datetime.now()
     sended = 1
     user2 = request.user
     position = 'فراموشی رمز عبور'
@@ -70,11 +73,12 @@ def forget_password(request):
             'username': "",
             'user2':user2,
             'position': position,
+            'tarikh':date,
             })
 
 
 def signup(request):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام کاربران'
     if request.POST.get("next","") != "":
@@ -90,11 +94,12 @@ def signup(request):
         'username': "",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
 def tourist_signup(request):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام گردشگران> ورود اطلاعات'
     if request.POST.get("save","") != "":
@@ -114,11 +119,12 @@ def tourist_signup(request):
         'form': form,
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
 def tourist_signup_2(request,username):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام گردشگران> ورود اطلاعات> تایید اطلاعات'
     user = User.objects.get(username = username)
@@ -144,10 +150,11 @@ def tourist_signup_2(request,username):
         'username': "",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 def tourist_signup_3(request,username):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام گردشگران> ورود اطلاعات> تایید اطلاعات> پرداخت هزینه عضویت'
     user = User.objects.get(username = username)
@@ -168,6 +175,7 @@ def tourist_signup_3(request,username):
         'username': "",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
@@ -177,7 +185,7 @@ def logout_view(request):
 
 
 def servant_signup(request):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام گردش سازان> ورود اطلاعات'
     if request.POST.get("save","") != "":
@@ -198,11 +206,12 @@ def servant_signup(request):
         'form': form,
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
 def servant_signup_2(request,username):
-
+    date = datetime.datetime.now()
     user2 = request.user
     position = 'ثبت نام گردش سازان> ورود اطلاعات> تایید اطلاعات و قرارداد'
     user = User.objects.get(username = username)
@@ -231,11 +240,12 @@ def servant_signup_2(request,username):
         'username':"",
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 
 def edit_tourist(request,username):
-
+    date = datetime.datetime.now()
     position = 'تغییر اطلاعات گردشگر'
     user = request.user
     user2 = User.objects.get(username = username)
@@ -282,11 +292,12 @@ def edit_tourist(request,username):
         'form': form,
         'user2': user,
         'position': position,
+        'tarikh':date,
     })
 
 
 def edit_tourbuilder(request,username):
-
+    date = datetime.datetime.now()
     position = 'تغییر اطلاعات گردش ساز'
     user = request.user
     user2 = User.objects.get(username = username)
@@ -324,11 +335,12 @@ def edit_tourbuilder(request,username):
         'form': form,
         'user2': user,
         'position': position,
+        'tarikh':date,
     })
 
 
 def tourist_profile(request,username):
-
+    date = datetime.datetime.now()
     position = 'مشاهده اطلاعات گردشگر'
 
     if User.objects.filter(username = username):
@@ -353,10 +365,11 @@ def tourist_profile(request,username):
         'user': user,
         'user2': user2,
         'position': position,
+        'tarikh':date,
     })
 
 def tourbuilder_profile(request,username):
-
+    date = datetime.datetime.now()
     position = 'مشاهده اطلاعات گردش ساز'
     user2 = request.user
     me= False
@@ -384,4 +397,39 @@ def tourbuilder_profile(request,username):
         'me': me,
         'user2': user2,
         'position': position,
+        'tarikh':date,
+    })
+
+def sepas(request):
+    user2 = request.user
+    date = datetime.datetime.now()
+    return render(request,'sepas.html',{
+        'tarikh':date,
+        'user2': user2,
+
+    })
+
+def hadaf(request):
+    user2 = request.user
+    date = datetime.datetime.now()
+    return render(request,'hadaf.html',{
+        'tarikh':date,
+        'user2': user2,
+    })
+
+def tahlilgaran(request):
+    user2 = request.user
+    date = datetime.datetime.now()
+    return render(request,'tahlilgaran.html',{
+        'tarikh':date,
+        'user2': user2,
+
+    })
+
+def rotbe(request):
+    user2 = request.user
+    date = datetime.datetime.now()
+    return render(request,'rotbe.html',{
+        'tarikh':date,
+        'user2': user2,
     })

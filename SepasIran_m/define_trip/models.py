@@ -216,8 +216,8 @@ class Restaurant(models.Model):
     gardesh = models.ForeignKey(Gardesh, related_name='restaurant')
     city = models.CharField(max_length=255, choices=CITY)
     address = models.TextField()
-    start_day = models.DateField()      # az che roozi bara foroosh mizari
-    end_day = models.DateField()
+    start_day = models.DateField(default=datetime.datetime.now())      # az che roozi bara foroosh mizari
+    end_day = models.DateField(default=datetime.datetime.now())
 
 
     def __str__(self):

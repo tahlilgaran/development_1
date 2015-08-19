@@ -20,7 +20,7 @@
 لطفا صحت اطلاعات زیر را بررسی نمایید و در صورت مغایرت کلید بازگشت را بزنید.
         <br>
 درجه اولیه تور ارائه شده توسط شما
-    {{ gardesh.degree }}
+    {{ gardesh.get_degree_display }}
     تشخیص داده شده است و درصد قرارداد به ازای هر خرید 10 درصد می باشد.
     <br>
 مبلغ دریافت شده از خریداران پس از پایان تور به حساب شما واریز خواهد شد.
@@ -54,7 +54,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-                    {{ tour.tour_kind }}
+                    {{ tour.get_tour_kind_display }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -66,7 +66,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
-{{ tour.destination }}
+{{ tour.get_destination_display }}
                     <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -79,7 +79,7 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-4">
 
-                    {{ tour.source }}
+                    {{ tour.get_source_display }}
                         <span class="error"></span>
                     </div>
                     <label  class="col-md-2 ">
@@ -178,7 +178,7 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-1">
-                    {{ tour.transfer_device.degree }}
+                    {{ tour.transfer_device.get_degree_display }}
                 </div>
                 <label class="col-md-1">
                     درجه
@@ -192,7 +192,7 @@
 
                 <div class="col-md-2">
                           <label>
-{{ tour.transfer_device.kind }}
+{{ tour.transfer_device.get_kind_display }}
                           </label>
                     </div>
                     <label  class="col-md-2 ">
@@ -206,19 +206,19 @@
             <div class="col-md-12 , form-group">
                 <div class="col-md-1"></div>
                 <div class="col-md-1">
-                    {{ tour.stay_location.degree }}
+                    {{ tour.stay_location.get_degree_display }}
                 </div>
                 <label class="col-md-1">
                     درجه
                 </label>
                 <div class="col-md-3">
-{{ tour.stay_location.name }}
+{{ tour.stay_location.get_name_display }}
                 </div>
                 <label class="col-md-2">
                     نام
                 </label>
                 <label class="col-md-2">
-{{ tour.stay_location.kind }}                </label>
+{{ tour.stay_location.get_kind_display }}                </label>
 
 
                     <label  class="col-md-2 ">

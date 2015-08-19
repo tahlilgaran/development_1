@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="col-md-12 container" xmlns="http://www.w3.org/1999/html">
-
+            <div id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
 
                        <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات خرید شما: {{ username }}</h2>
@@ -16,7 +16,7 @@
                      {% if kind == 'hotel' %}
                             <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}</div>
 
-
+                         <div class="col-md-12">
                                 {% for room in roomList %}
                                     <div class="col-md-3" style="direction: rtl;float: right">
                             <div><span style="font-weight: bold;">شماره ی اتاق: </span>{{ room.number }}</div>
@@ -48,8 +48,8 @@
 
                                          </form>
                                 </div>
-
-
+                             </div>
+                             </div>
 
 <!--###############################----RESTURANT-----#########################################################################-->
                           {% elif kind == 'restaurant' %}
@@ -111,7 +111,7 @@
 
                                                 <span style="font-weight: bold;">تعداد خریداران:</span>
                                                  {{ form.number }}
-
+                                           <div style="font-weight: bold; color: darkred" >{{ form.number.errors }}</div>
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
 
@@ -123,8 +123,8 @@
 
                                      </form>
                                 </div>
-
-
+                         </div>
+                                </div>
 <!--###############################----AIRPLANE-----#########################################################################-->
                           {% elif kind == 'airplane' %}
                                    <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هواپیما:</span> {{ gardesh.name }}</div>
@@ -146,7 +146,7 @@
 
                                                 <span style="font-weight: bold;">تعداد خریداران:</span>
                                                  {{ form.number }}نفر
-
+                                           <div style="font-weight: bold; color: darkred" >{{ form.number.errors }}</div>
                                                   <button  type="button" class="btn btn-success" value="ورود اطلاعات " style=" margin: 10px" onclick='createTable();' >وارد کردن اطلاعات</button>
 
 
@@ -157,13 +157,13 @@
 
                                      </form>
                                 </div>
-
-
+                         </div>
+                                </div>
                           {% endif %}
 
 
 
-
+</div>
 {% endblock %}
 
 {% block script %}

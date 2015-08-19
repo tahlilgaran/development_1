@@ -41,13 +41,8 @@
                     </tbody>
                 </table>
             </div>
-
         <button type="button" class="btn btn-warning , col-md-4" data-toggle="modal" data-target="#myModal">
-            {% if user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile%}
-            وضعیت گردش
-            {% else %}
-                برای مشاهده اطلاعات اتاق ها کلیک کنید.
-            {% endif %}
+                    برای مشاهده ی اطلاعات اتاق ها کلید کنید.
         </button>
         </div>
 
@@ -146,6 +141,10 @@
                             </form>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
+                        <button type="button" class="btn btn-info , col-md-12" onclick="get_checked()">
+
+                                   وضعیت گردش
+                        </button>
                         <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>
                         <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
                     {% elif user.userm.kind == 'gardeshsaz' %}

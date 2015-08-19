@@ -544,7 +544,7 @@ def tasviyeID(request,id=''):
     agree=gardesh.agreement
     percent=agree.percent
     user= request.user
-    trans=Trans_info.objects.filter(date__lt=date,gardesh= gardesh)
+    trans=Trans_info.objects.filter(date__gt=date,gardesh= gardesh)
     if not trans:
         return render(request,"nothing.html",{
             'position':'زیر سامانه ی  حسابداری',
@@ -554,7 +554,7 @@ def tasviyeID(request,id=''):
     for tr in trans:
         total += tr.amount
 
-    final=int(total-total*percent)
+    final= total-total*percent
     bankform=bankForm()
     return render(request,"tasviye_gardeshsaz2.html",{
 
@@ -562,25 +562,5 @@ def tasviyeID(request,id=''):
         'bankform':bankform,
         'position':'زیر سامانه ی  حسابداری',
         'user2':user,
-        'gardeshID':id,
 
-    })
-
-def tasviyeConfirm2(request):
-    date = datetime.today()
-    user=request.user.userm
-    account=int(request.POST.get("final"))
-    gardeshID=int(request.POST.get("gardeshID"))
-
-
-    print(account)
-    user2=request.user
-    gardesh=Gardesh.objects.get(id= gardeshID)
-    receiver=TourBuilderProfile.objects.get(user=user)
-    info= Trans_info.objects.create(date=date,amount=account,gardesh=gardesh)
-    transaction = Trans_Kind2.objects.create(info=info,receiver=receiver)
-
-    return HttpResponseRedirect('/userpage/',{
-        'user2':user2,
-        'position':'زیر سامانه ی  حسابداری',
     })

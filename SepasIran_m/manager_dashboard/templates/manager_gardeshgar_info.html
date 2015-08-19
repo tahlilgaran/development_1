@@ -2,20 +2,37 @@
 {% load staticfiles %}
 {% block content_dashboard %}
 
-    <div class="col-md-9">
-        <h2>اطلاعات
+
+    <div class="col-md-4">
+        <div style="width:100%; margin-left: 20% ; margin-top: 5%">
+            <div>
+                <canvas id="canvas3" height="450" width="600"></canvas>
+            </div>
+            تعداد {{header}} در شش ماه گذشته
+        </div>
+        <div id="canvas-holder" style="width:45%; margin-right: 30% ; margin-top: 10%">
+            <canvas id="chart-area" width="300" height="300"/></div>
+
+            نسبت {{header}}ی که در حداقل یک تور شرکت کرده اند به {{header}}ی که در هیچ توری شرکت نکرده اند
+
+
+
+    </div>
+
+    <div class="col-md-5">
+        <h2>
             {{ header }}</h2>
 
         {% ifequal header "گردش سازان" %}
             <form method="get" action="/manager/tourBuilder/search/">
         {% endifequal %}
-        {% ifequal header "گردشگران" %}
+        {% ifequal header "گردش گران" %}
             <form method="get" action="/manager/tourist/search/">
         {% endifequal %}
 
         <input type="text" style="margin: 10px" name="username" placeholder="نام">
 
-        <input type="submit" value="جستجو" class="btn btn-success">
+        <input type="submit" value="تجستجو" class="btn btn-success">
         </form>
 
 
@@ -30,13 +47,13 @@
                 </span>
                     </td>
                     <td>
-                        {% ifequal header "گردش سازان" %}
-                            <a href="profile/tourbuilder/{{ tourist.user.user.username }}">شماره ثبت :
-                            {{ tourist.user.user.username }} </a>
+                        {% ifequal header "???? ?????" %}
+                            <a href="profile/tourbuilder/{{ tourist.user.user.username }}">????? ??? :
+                                {{ tourist.user.user.username }} </a>
                         {% endifequal %}
-                        {% ifequal header "گردشگران" %}
-                            <a href="profile/tourist/{{ tourist.user.user.username }}">نام کاربری
-                            :{{ tourist.user.user.username }} </a>
+                        {% ifequal header "????????" %}
+                            <a href="profile/tourist/{{ tourist.user.user.username }}">??? ??????
+                                :{{ tourist.user.user.username }} </a>
                         {% endifequal %}
 
                         <br>
@@ -52,3 +69,56 @@
 
 
 {% endblock content_dashboard %}
+
+
+
+{% block script %}
+    <script src="/static/Chart.js-master/src/Chart.Core.js"></script>
+    <script src="/static/Chart.js-master/src/Chart.Doughnut.js"></script>
+    <script src="/static/chart.js-master/Chart.js"></script>
+    <script>
+
+        var doughnutData = [
+            {
+                value: 1,
+                label: "شرکت کرده اند",
+                color: "#F7464A"
+            },
+            {
+                value: 12,
+                label: "شرکت نکرده اند",
+                color: "#F7904A"
+            }
+
+        ];
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 50)
+        };
+        var lineChartData = {
+            labels: ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"],
+            datasets: [
+                {
+                    label: "ظرفیت(نفر)",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                }
+            ]
+
+        }
+        window.onload = function () {
+            var ctx4 = document.getElementById("canvas3").getContext("2d");
+            window.myLine = new Chart(ctx4).Line(lineChartData, {
+                responsive: true
+            });
+
+            var ctx = document.getElementById("chart-area").getContext("2d");
+            window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive: true});
+        };
+
+    </script>
+{% endblock %}

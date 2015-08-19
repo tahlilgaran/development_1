@@ -136,9 +136,9 @@
 هواپیما
                         {{ item.gardesh.name }}
 مبدا
-                        {{ item.get_source_display }}
+                        {{ item.source }}
 مقصد
-                        {{ item.get_destination_display }}
+                        {{ item.destination }}
 تاریخ
                         {{ item.start |miladitoshamsi}}
                         </li>
@@ -176,9 +176,9 @@
 قطار
                         {{ item.gardesh.name }}
 مبدا
-                        {{ item.get_source_display }}
+                        {{ item.source }}
 مقصد
-                        {{ item.get_destination_display }}
+                        {{ item.destination }}
 تاریخ
                         {{ item.start|miladitoshamsi }}
                         </li>
@@ -237,20 +237,11 @@
                         </div>
                         <div class="col-md-12">
                         <ul>
-                            {% for one in current_tour_all %}
-                                {% if one.gardesh == item %}
-                                    <li class="col-md-12">
                                         <div class="col-md-6">
-                                            <a type="button" class="col-md-12 , btn btn-info" href="/quality/onlineComment/{{ one.id }}">
+                                            <a type="button" class="col-md-12 , btn btn-info" href="/quality/onlineComment/{{ current_tour_all.0.gardesh.id }}">
                                                 نظر دهی برخط
                                             </a>
                                         </div>
-                                        <div class="col-md-6">
-                                            {{ one.info.first_name }} {{ one.info.last_name }}
-                                        </div>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
                         </ul>
                         </div>
                     {% endfor %}
@@ -290,20 +281,11 @@
                         </div>
                         <div class="col-md-12">
                         <ul>
-                            {% for one in last_tour_all %}
-                                {% if one.gardesh == item %}
-                                    <li class="col-md-12">
                                         <div class="col-md-6">
-                                            <a type="button" class="col-md-12 , btn btn-warning" href="/quality/userRating/{{ one.id }}">
+                                            <a type="button" class="col-md-12 , btn btn-warning" href="/quality/userRating/{{ last_tour_all.0.gardesh.id }}">
 نظر سنجی
                                             </a>
                                         </div>
-                                        <div class="col-md-6">
-                                            {{ one.info.first_name }} {{ one.info.last_name }}
-                                        </div>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
                         </ul>
                         </div>
                     {% endfor %}

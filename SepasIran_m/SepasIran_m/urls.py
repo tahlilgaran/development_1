@@ -8,6 +8,10 @@ urlpatterns = [
     # present trip urls :
     url(r'home/$', 'present_trip.views.home'),
     url(r'home/(\w+)/$', 'present_trip.views.home'),
+    url(r'sepas/$', 'user.views.sepas'),
+    url(r'hadaf/$', 'user.views.hadaf'),
+    url(r'rotbe/$', 'user.views.rotbe'),
+    url(r'tahlilgaran/$', 'user.views.tahlilgaran'),
     url(r'show/(\w+)/(\d+)/$' , 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/$', 'present_trip.views.show_one_trip'),
     url(r'show/(\w+)/(\d+)/status/$', 'present_trip.views.show_one_trip_status'),
@@ -44,8 +48,11 @@ urlpatterns = [
     url(r'tourdefine/hotel/define/$','define_trip.views.hotel_define'),
     url(r'tourdefine/hotel/rooms/(\w+)/$','define_trip.views.hotel_define_rooms'),
     url(r'tourdefine/hotel/2/(\d+)/$','define_trip.views.hotel_define_2'),
-    url(r'tourdefine/restaurant/$','define_trip.views.restaurant_define'),
+    url(r'tourdefine/restaurant/$','define_trip.views.restaurant_define_first'),
+    url(r'tourdefine/restaurant/define/$','define_trip.views.restaurant_define'),
+    url(r'tourdefine/restaurant/tables/(\w+)/$','define_trip.views.restaurant_define_rooms'),
     url(r'tourdefine/restaurant/2/(\d+)/$','define_trip.views.restaurant_define_2'),
+
     url(r'signup/$', 'user.views.signup'),
     url(r'signIn/$', 'user.views.signin'),
     url(r'logout/$', 'user.views.logout_view'),
@@ -118,7 +125,6 @@ urlpatterns = [
      url(r'tasviye/$', 'accounting.views.tasviye'),
      url(r'tasviye/gardeshsaz/$', 'accounting.views.tasviyeGar'),
     url(r'tasviye/confirm/$', 'accounting.views.tasviyeConfirm'),
-    url(r'tasviye/confirm2/$', 'accounting.views.tasviyeConfirm2'),
     url(r'tasviye/(\d+)/$', 'accounting.views.tasviyeID'),
 
      url(r'payment/(\w+)/$', 'accounting.views.ozviyat'),

@@ -52,10 +52,10 @@
             <canvas id="chart-area2" width="300" height="300"/>
         </div>
           <div id="canvas-holder" style="width:45%; display: inline-block">
-              سلام سلام
-        </div>
+              نسبت کاربرانی که در نظرسنجی تور شرکت کرده اند به کسانی که شرکت نکرده اند .
+          </div>
         <div id="canvas-holder2" style="width:45%;  display: inline-block">
-            خوب خوب
+            نسبت رضایت کاربران از خدمات تور
         </div>
 
         <hr>
@@ -165,7 +165,7 @@
 
         var doughnutData = [
             {
-                value: 1,
+                value: 7,
                 label: "شرکت کرده اند",
                 color: "#F7464A"
             },
@@ -189,14 +189,14 @@
                     strokeColor: "rgba(220,220,220,1)",
                     {#				highlightFill: "rgba(220,220,220,0.75)",#}
                     {#				highlightStroke: "rgba(220,220,220,1)",#}
-                    data: [randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50)]
+                    data: [10,12,15,20,15,8]
                 } ,
                 			{
                 				fillColor : "rgba(151,187,205,0.5)",
                 				strokeColor : "rgba(151,187,205,0.8)",
                 				highlightFill : "rgba(151,187,205,0.75)",
                 				highlightStroke : "rgba(151,187,205,1)",
-                				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                				data : [8,9,7,16,10,6]
                 			}
             ]
 
@@ -206,17 +206,17 @@
             {
                 value: 1,
                 label: "نظم",
-                color: "#40b000"
+                color: "#dfdfdf"
             },
             {
-                value: 12,
+                value: 5,
                 label: "کیفیت خدمات",
-                color: "#b7fea0"
+                color: "#ff0066"
             },
             {
                 value: 3,
                 label: "رفتار مجریان",
-                color: "#3db8c7"
+                color: "#e6aaad"
             } ,
              {
                 value: 4,
@@ -241,8 +241,8 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                },
+                    data: [10,12,15,20,15,8]
+                 },
                 {
                     label: "فروخته شده(نفر)",
                     fillColor: "rgba(151,187,205,0.2)",
@@ -251,8 +251,8 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                }
+                  data : [8,11,10,18,10,8]
+                     }
             ]
 
         }
