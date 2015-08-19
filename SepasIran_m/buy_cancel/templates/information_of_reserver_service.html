@@ -7,7 +7,7 @@
 {% block content %}
 
 <div  class="col-md-12 container">
-            <div id="top_part" class="col-md-12">
+            < id="top_part" class="col-md-12">
                    <!-- <div class="col-md-10">-->
                      <h2 style="color: chocolate;font-weight: bold;">دریافت اطلاعات رزرو شما:{{ username }}</h2>
                         <p style="color: red"> {% if wrong == True %}
@@ -20,7 +20,7 @@
                      {% if kind == 'hotel' %}
                              <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هتل:</span> {{ gardesh.name }}</div>
 
-                         <div class="col-md-12">
+
                                 {% for room in roomList %}
                                     <div class="col-md-3" style="direction: rtl;float: right">
                             <div><span style="font-weight: bold;">شماره ی اتاق: </span>{{ room.number }}</div>
@@ -53,8 +53,7 @@
 
                                          </form>
                                 </div>
-                             </div>
-                             </div>
+
 
 <!--###############################----RESTURANT-----#########################################################################-->
                           {% elif kind == 'restaurant' %}
@@ -127,8 +126,7 @@
 
                                      </form>
                                 </div>
-                         </div>
-                                </div>
+
 <!--###############################----AIRPLANE-----#########################################################################-->
                           {% elif kind == 'airplane' %}
                                    <div style="margin-top: 40px;"><span style="font-weight: bold;">نام هواپیما:</span> {{ gardesh.name }}</div>
@@ -161,13 +159,12 @@
 
                                      </form>
                                 </div>
-                         </div>
-                                </div>
+
                           {% endif %}
 
 
 
-</div>
+
 {% endblock %}
 
 {% block script %}
