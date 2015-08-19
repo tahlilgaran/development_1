@@ -44,19 +44,19 @@
     </div>
 
     <div class="col-md-5" style="padding-right: 60px">
-    <p> شرکت در نظرسنجی</p>
+    <p> آمارهای مربوط به نظرسنجی  </p>
         <div id="canvas-holder" style="width:45%; display: inline-block">
             <canvas id="chart-area" width="300" height="300"/>
         </div>
         <div id="canvas-holder2" style="width:45%;  display: inline-block">
             <canvas id="chart-area2" width="300" height="300"/>
         </div>
-          <div id="canvas-holder" style="width:45%; display: inline-block">
+          <div id="canvas-holder" style="width:45%; display: inline-block ; padding: 5%">
               نسبت کاربرانی که در نظرسنجی تور شرکت کرده اند به کسانی که شرکت نکرده اند .
           </div>
-        <div id="canvas-holder2" style="width:45%;  display: inline-block">
+        <div id="canvas-holder2" style="width:45%;  display: inline-block ; padding: 5%">
             نسبت رضایت کاربران از خدمات تور
-        </div>
+       در سه ماهه گذشته</div>
 
         <hr>
         <p> تعداد گردشگرانی که ثبت نام کرده اند و تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . </p>
@@ -164,12 +164,12 @@
 
         var doughnutData = [
             {
-                value: 7,
+                value: {{ contributing.0 }},
                 label: "شرکت کرده اند",
                 color: "#F7464A"
             },
             {
-                value: 12,
+                value: {{ contributing.1 }},
                 label: "شرکت نکرده اند",
                 color: "#F7904A"
             }
@@ -203,27 +203,27 @@
 
    var doughnutData2 = [
             {
-                value: 1,
+                value: {{ user_rating.0 }},
                 label: "نظم",
                 color: "#dfdfdf"
             },
             {
-                value: 5,
+                value: {{ user_rating.1 }},
                 label: "کیفیت خدمات",
                 color: "#ff0066"
             },
             {
-                value: 3,
+                value: {{ user_rating.2 }},
                 label: "رفتار مجریان",
                 color: "#e6aaad"
             } ,
              {
-                value: 4,
+                value: {{ user_rating.3 }},
                 label: "وسایل نقلیه",
                 color: "#95667A"
             } ,
              {
-                value: 5,
+                value: {{ user_rating.4 }},
                 label: "اسکان",
                 color: "#0000ff"
             }

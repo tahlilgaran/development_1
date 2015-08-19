@@ -9,8 +9,7 @@
         <div id="canvas-holder" style="width:45%; margin-right: 30% ; margin-top: 10%">
             <canvas id="chart-area" width="300" height="300"/>
         </div>
-       نسبت گردشگرانی که حداقل یک نظر برخط داده اند به گردشگرانی که هیچ نظر برخطی نداده اند.
-       </div>
+       نسبت نظرات برخط به تعداد گردشگرانی که تور خریداری کرده اند و نظر نداده اند .(تعداد)</div>
 
     <div class="col-md-5">
 
@@ -65,14 +64,14 @@
 
         var doughnutData = [
             {
-                value: 1,
+                value: {{ comment_st.0 }},
                 label: "شرکت کرده اند",
-                color: "#F7464A"
+                color: "#ff0066"
             },
             {
-                value: 12,
+                value: {{ comment_st.1 }},
                 label: "شرکت نکرده اند",
-                color: "#F7904A"
+                color: "#66ccff"
             }
 
         ];

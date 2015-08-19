@@ -23,41 +23,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="quality_user_rating.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/quality_control/templates/quality_user_rating.html">
+      <file leaf-file-name="manager_dashboard.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="12" selection-start="3385" selection-end="3385" vertical-scroll-proportion="0.33146068" vertical-offset="1072" max-vertical-offset="1462">
+            <state line="56" column="87" selection-start="2298" selection-end="2298" vertical-scroll-proportion="-5.230769" vertical-offset="816" max-vertical-offset="4845">
               <folding>
-                <element signature="e#737#764#0" expanded="true" />
-                <element signature="e#827#854#0" expanded="true" />
-                <element signature="e#1240#1267#0" expanded="true" />
-                <element signature="e#1330#1357#0" expanded="true" />
-                <element signature="e#1763#1790#0" expanded="true" />
-                <element signature="e#1853#1880#0" expanded="true" />
-                <element signature="e#2269#2296#0" expanded="true" />
-                <element signature="e#2359#2386#0" expanded="true" />
-                <element signature="e#2766#2793#0" expanded="true" />
-                <element signature="e#2856#2883#0" expanded="true" />
+                <element signature="e#2049#2103#0" expanded="true" />
+                <element signature="e#2244#2299#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager_gardeshgar_info.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="69" selection-start="820" selection-end="820" vertical-scroll-proportion="-3.2692308" vertical-offset="357" max-vertical-offset="2210">
-              <folding>
-                <element signature="e#853#873#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="8" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1955">
+            <state line="91" column="0" selection-start="3690" selection-end="3690" vertical-scroll-proportion="0.75654453" vertical-offset="1258" max-vertical-offset="2839">
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -65,22 +46,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quality_control/views.py">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/define_trip/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="47" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.0" vertical-offset="366" max-vertical-offset="1258">
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quality_online_comment.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quality_control/templates/quality_online_comment.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="657" selection-end="1113" vertical-scroll-proportion="-4.3846154" vertical-offset="294" max-vertical-offset="697">
+            <state line="219" column="62" selection-start="6825" selection-end="6826" vertical-scroll-proportion="-2.1568627" vertical-offset="3579" max-vertical-offset="4505">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/buy_cancel/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="1" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,17 +78,18 @@
       <list>
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/accounting/views.py" />
-        <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html" />
         <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_tours.html" />
         <option value="$PROJECT_DIR$/informing/templates/gardeshsaz_account.html" />
         <option value="$PROJECT_DIR$/define_trip/models.py" />
         <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_contract_percent.html" />
         <option value="$PROJECT_DIR$/SepasIran_m/urls.py" />
-        <option value="$PROJECT_DIR$/manager_dashboard/views.py" />
         <option value="$PROJECT_DIR$/quality_control/templates/quality_online_comment.html" />
         <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html" />
         <option value="$PROJECT_DIR$/quality_control/views.py" />
         <option value="$PROJECT_DIR$/quality_control/templates/quality_user_rating.html" />
+        <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html" />
+        <option value="$PROJECT_DIR$/manager_dashboard/views.py" />
+        <option value="$PROJECT_DIR$/manager_dashboard/templates/manager_online_comments.html" />
       </list>
     </option>
   </component>
@@ -186,24 +168,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="manager_dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SepasIran_m" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SepasIran_m" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager_dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templatetags" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,31 +470,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/user/img/ax11.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/user/img/ax4.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/user/img/ax3.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/user/img/018.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/user/img/010.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/user/img/4.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -568,24 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="69" selection-start="820" selection-end="820" vertical-scroll-proportion="-3.2692308" vertical-offset="357" max-vertical-offset="2210">
-          <folding>
-            <element signature="e#853#873#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="8" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1955">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quality_control/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="47" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.0" vertical-offset="366" max-vertical-offset="1258">
@@ -597,7 +518,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quality_control/templates/quality_user_rating.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="12" selection-start="3385" selection-end="3385" vertical-scroll-proportion="0.33146068" vertical-offset="1072" max-vertical-offset="1462">
+        <state line="71" column="31" selection-start="3417" selection-end="3417" vertical-scroll-proportion="0.37921348" vertical-offset="1072" max-vertical-offset="1462">
           <folding>
             <element signature="e#737#764#0" expanded="true" />
             <element signature="e#827#854#0" expanded="true" />
@@ -609,6 +530,64 @@
             <element signature="e#2359#2386#0" expanded="true" />
             <element signature="e#2766#2793#0" expanded="true" />
             <element signature="e#2856#2883#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_gardeshgar_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="69" selection-start="820" selection-end="820" vertical-scroll-proportion="0.23876405" vertical-offset="357" max-vertical-offset="2210">
+          <folding>
+            <element signature="e#853#873#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define_trip/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="62" selection-start="6825" selection-end="6826" vertical-scroll-proportion="-2.1568627" vertical-offset="3579" max-vertical-offset="4505">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quality_control/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="326" selection-end="326" vertical-scroll-proportion="0.33164558" vertical-offset="39" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buy_cancel/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="1" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="87" selection-start="2298" selection-end="2298" vertical-scroll-proportion="-5.230769" vertical-offset="816" max-vertical-offset="4845">
+          <folding>
+            <element signature="e#2049#2103#0" expanded="true" />
+            <element signature="e#2244#2299#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_online_comments.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="31" selection-start="2451" selection-end="2451" vertical-scroll-proportion="0.73712736" vertical-offset="969" max-vertical-offset="1564">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="0" selection-start="3690" selection-end="3690" vertical-scroll-proportion="0.75654453" vertical-offset="1258" max-vertical-offset="2839">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
