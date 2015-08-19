@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
-<body style="background-color:darkgray;margin-top: 40px;font-family: 'B Mitra';">
+<body style="background-color:gainsboro;margin-top: 40px;font-family: 'B Mitra';">
 <img class="img" src="pic/ax2.jpg">
 {%  if kind == 'tour' %}
 <form action="/payment/tour/confirm/{{ tour.id }}/" method="POST">
@@ -64,7 +64,7 @@
             <!--</div>-->
             <div class='form-row'>
               <div class='col-md-12'>
-                <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
+                <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
                  مبلغ قابل پرداخت:{{ total_cost }} تومان
                     <input name="total_cost" value={{ total_cost }} hidden/>
 
@@ -75,7 +75,7 @@
             <div class='form-row'>
               <div class='col-md-12 form-group'>
                 <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
-;background-color:green;"/>
+;background-color:gray;"/>
 
               </div>
             </div>
@@ -92,7 +92,7 @@
                  <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <div class='col-md-12'>  <input class='form-control btn btn-primary submit-button' type='submit' value="انصراف" style="
-;background-color:#CD6600;"/></div>
+;background-color:gray;"/></div>
 
 
 </form>
