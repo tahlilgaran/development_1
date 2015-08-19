@@ -11,7 +11,8 @@ from buy_cancel.models import Wanted_Trip,Wanted_Tour,Wanted_Train,Wanted_Hotel,
 def account(requst):
     if requst.method == 'GET':
         now = datetime.datetime.now()
-        future_ten_day = [now , now + datetime.timedelta(days=10)]
+        future_ten_day = [now + datetime.timedelta(days = 1) , now + datetime.timedelta(days=10)]
+        last_ten_day = [now - datetime.timedelta(days = 10) , now]
         returned_dic = {}
         user_kind = requst.user.userm.kind
         returned_dic['user_kind'] = user_kind
@@ -65,6 +66,29 @@ def account(requst):
             returned_dic['train_list_all'] = train_list_all
             returned_dic['restaurant_list_all'] = restaurant_list_all
             returned_dic['user'] = user
+
+
+            # current_trip:
+            current_tour_all = Wanted_Tour.objects.filter(info__gardeshgar = user , gardesh__start__lte = now , gardesh__end__gte = now)
+            current_tour = []
+            for item in current_tour_all:
+                if not item.gardesh in current_tour:
+                    current_tour.append(item.gardesh)
+
+            returned_dic['current_tour'] = current_tour
+            returned_dic['current_tour_all'] = current_tour_all
+
+            #last_trip
+            last_tour_all = Wanted_Tour.objects.filter(info__gardeshgar = user , gardesh__end__range = last_ten_day)
+            last_tour = []
+            for item in last_tour_all:
+                if not item.gardesh in last_tour:
+                    last_tour.append(item.gardesh)
+
+            returned_dic['last_tour'] = last_tour
+            returned_dic['last_tour_all'] = last_tour_all
+
+
 
             return render(requst , 'gardeshgar_account.html' , returned_dic)
 

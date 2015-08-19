@@ -4,23 +4,24 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from define_trip.models import Tour
 from quality_control.models import  OnlineCommentForm, OnlineComment , RatingComment
+from user.models import UserM
 
 
 def user_rating(request):
 
-    #if (request.method == 'POST'):
-        #f = OnlineCommentForm(request.POST)
-        #new_comment = RatingComment()
-        #new_comment.Q1 = request.POST.get('Q1')
-        #new_comment.Q2 = request.POST.get('Q2')
-        #new_comment.Q3 = request.POST.get('Q3')
-        #new_comment.Q4 = request.POST.get('Q4')
-        #new_comment.Q5 = request.POST.get('Q5')
-        #new_comment.user = request.user
-        ##tour = Tour.objects.get(id=tour_id)  #todo
-        ##new_comment.tour = tour   #todo
-        #new_comment.date = datetime.datetime.now()
-        #new_comment.save()
+    if (request.method == 'POST'):
+        #user = UserM.objects.filter(user= request.user)
+        new_comment = RatingComment()
+        new_comment.Q1 = request.POST.get('Q1')
+        new_comment.Q2 = request.POST.get('Q2')
+        new_comment.Q3 = request.POST.get('Q3')
+        new_comment.Q4 = request.POST.get('Q4')
+        new_comment.Q5 = request.POST.get('Q5')
+        new_comment.user = request.user.userm
+        tour = Tour.objects.get(id=1)  #todo
+        new_comment.tour = tour   #todo
+        new_comment.date = datetime.datetime.now()
+        new_comment.save()
 
     return redirect("/userpage/")  #todo RENDER SUCCESS MSG  /userpage/gardeshgar
 
@@ -28,7 +29,7 @@ def user_rating(request):
 
 
 def show_user_rating_form(request):
-    return render(request, "quality_user_rating.html", {"username": "gardeshgar"})
+    return render(request, "quality_user_rating.html", {'user': request.user})
 
 
 def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
@@ -46,5 +47,7 @@ def online_comment(request):  #todo bayad tour_id ro ham begiram tu url
 
 
 def show_online_comment_form(request):
-    return render(request, "quality_online_comment.html", {"username": "gardeshgar"})
+    #user = request.user.userm.tprofile
+    #print(user.user.user.first_name)
+    return render(request, "quality_online_comment.html", {'user': request.user})
 

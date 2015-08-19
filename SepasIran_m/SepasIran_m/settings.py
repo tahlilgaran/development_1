@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'buy_cancel',
     'define_trip',
     # 'informing',
-    # 'manager_dashboard',
+    'manager_dashboard',
     # 'present_trip',
     'quality_control',
     'user',

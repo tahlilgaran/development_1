@@ -1,5 +1,6 @@
 {% extends "manager_dashboard.html" %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block content_dashboard %}
 
     <div class="col-md-9">
@@ -9,20 +10,23 @@
                 <td> شماره تراکنش</td>
                 <td>از</td>
                 <td>به</td>
-                <td>مقدار</td>
+                <td>مقدار(تومان)</td>
                 <td>تاریخ</td>
             </tr>
             {% for trans in transList %}
                 <tr class="payment_table">
+
                     <td>{{ trans.id }}</td>
-                    <td><a href="profile/tourist/{{ tourist.user.user.username }}">{{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a></td>
-                    <td><a>{{ trans.trans_kind1.receiver }}{{ trans.trans_kind2.receiver }}{{ trans.trans_kind3.receiver }}</a></td>
+                    <td><a href="profile/tourist/{{ tourist.user.user.username }}">
+                        {{ trans.trans_kind1.sender }}{{ trans.trans_kind2.sender }}{{ trans.trans_kind3.sender }}</a>
+                    </td>
+                    <td>
+                        {{ trans.trans_kind1.receiver }}{{ trans.trans_kind2.receiver }}{{ trans.trans_kind3.receiver }}</td>
 
                     <td>
                         {{ trans.amount }}
-                        تومان
                     </td>
-                    <td>{{ trans.date }}</td>
+                    <td id="pcal1">{{ trans.date |miladitoshamsi}}</td>
                 </tr>
             {% endfor %}
         </table>
