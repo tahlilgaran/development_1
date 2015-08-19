@@ -49,9 +49,8 @@
     <div class="finish_nav , rtl , col-md-12">
         <header class='blog-header , container'>
             <div class="login_box">
-                {% if user2 %}
-                    عکس کاربر
-                    <img src="/">
+                {% if user2.userm %}
+                    <img class="login_box" src="/{{ user2.userm.picture }}" style="margin-left: 0px;">
                 {% else %}
                 <h3 class="col-me-12" style="color:#228b22;"><br>
                     <a href="/signIn/">
