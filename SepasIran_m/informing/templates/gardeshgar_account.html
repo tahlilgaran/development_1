@@ -1,5 +1,7 @@
 {% extends 'account.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
+
 {% block item_list %}
     {% if tour_list %}
                     <h3>تور:</h3>
@@ -10,9 +12,9 @@
                                 <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-danger ,glyphicon glyphicon-record"></a></div>
 زمان برگزاری تور
                         {{ item.gardesh.name }}
-                        {{ item.start }}
+                        {{ item.start |miladitoshamsi}}
                          الی
-                        {{ item.end }}
+                        {{ item.end |miladitoshamsi}}
 
                          می باشد.
 
@@ -71,7 +73,7 @@
                                             اتاق
                                             {{ one.gardesh.number }}
                                             تاریخ
-                                            {{ one.gardesh.date }}
+                                            {{ one.gardesh.date |miladitoshamsi}}
                                         </div>
                                     </li>
                                 {% endif %}
@@ -111,7 +113,7 @@
                                             میز
                                             {{ one.gardesh.number }}
                                             تاریخ
-                                            {{ one.gardesh.date }}
+                                            {{ one.gardesh.date |miladitoshamsi}}
                                             ساعت
                                             {{ one.gardesh.start_clock }}
                                         </div>
@@ -138,7 +140,7 @@
 مقصد
                         {{ item.destination }}
 تاریخ
-                        {{ item.start }}
+                        {{ item.start |miladitoshamsi}}
                         </li>
                         </div>
                         <div class="col-md-12">
@@ -178,7 +180,7 @@
 مقصد
                         {{ item.destination }}
 تاریخ
-                        {{ item.start }}
+                        {{ item.start|miladitoshamsi }}
                         </li>
                         </div>
                         <div class="col-md-12">
@@ -225,9 +227,9 @@
                                 <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-info ,glyphicon glyphicon-record"></a></div>
 زمان برگزاری تور
                         {{ item.gardesh.name }}
-                        {{ item.start }}
+                        {{ item.start | miladitoshamsi }}
                          الی
-                        {{ item.end }}
+                        {{ item.end |miladitoshamsi}}
 
                          می باشد.
 
@@ -239,7 +241,7 @@
                                 {% if one.gardesh == item %}
                                     <li class="col-md-12">
                                         <div class="col-md-6">
-                                            <a type="button" class="col-md-12 , btn btn-info" href="{{ one.id }}">
+                                            <a type="button" class="col-md-12 , btn btn-info" href="/quality/onlineComment/{{ one.id }}">
                                                 نظر دهی برخط
                                             </a>
                                         </div>
@@ -278,9 +280,9 @@
                                 <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-warning ,glyphicon glyphicon-record"></a></div>
 زمان برگزاری تور
                         {{ item.gardesh.name }}
-                        {{ item.start }}
+                        {{ item.start | miladitoshamsi }}
                          الی
-                        {{ item.end }}
+                        {{ item.end | miladitoshamsi}}
 
                          می باشد.
 
@@ -292,7 +294,7 @@
                                 {% if one.gardesh == item %}
                                     <li class="col-md-12">
                                         <div class="col-md-6">
-                                            <a type="button" class="col-md-12 , btn btn-warning" href="{{ one.id }}">
+                                            <a type="button" class="col-md-12 , btn btn-warning" href="/quality/userRating/{{ one.id }}">
 نظر سنجی
                                             </a>
                                         </div>

@@ -1,5 +1,6 @@
 {% extends 'one_trip.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
@@ -33,7 +34,7 @@
                             <td>
 مکان:
                             </td>
-                            <td>{{ trip.city }}</td>
+                            <td>{{ trip.get_city_display }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,7 +93,7 @@
                                                 <td>
                                             تاریخ:
                                                 </td>
-                                                <td>{{ item.date }}</td>
+                                                <td>{{ item.date | miladitoshamsi }}</td>
                                             </tr>
                                             <tr class="info">
                                                 <td>
@@ -109,7 +110,7 @@
                                                 <td>
                                             تاریخ:
                                                 </td>
-                                                <td>{{ item.date }}</td>
+                                                <td>{{ item.date | miladitoshamsi}}</td>
                                             </tr>
                                             <tr class="info">
                                                 <td>

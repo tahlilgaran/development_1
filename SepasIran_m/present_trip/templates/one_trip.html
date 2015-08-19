@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load miladitoshamsi %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'present_trip/css/main.css' %}">
 {% endblock %}
@@ -84,15 +85,15 @@
                             <td>
 مبدا:
                             </td>
-                            <td>{{ trip.source }}</td>
+                            <td>{{ trip.get_source_display }}</td>
                         </tr>
                         <tr>
                             <td>مقصد:</td>
-                            <td>{{ trip.destination }}</td>
+                            <td>{{ trip.get_destination_display }}</td>
                         </tr>
                         <tr>
                             <td>روز:</td>
-                            <td>{{ trip.start }}</td>
+                            <td>{{ trip.start | miladitoshamsi }}</td>
                         </tr>
                         <tr>
                             <td>ساعت:</td>
@@ -100,7 +101,7 @@
                         </tr>
                         <tr>
                             <td>قیمت:</td>
-                            <td>{{ trip.cost }}</td>
+                            <td>{{ trip.cost }} تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -157,15 +158,15 @@
                             <td>
 مبدا:
                             </td>
-                            <td>{{ trip.source }}</td>
+                            <td>{{ trip.get_source_display }}</td>
                         </tr>
                         <tr>
                             <td>مقصد:</td>
-                            <td>{{ trip.destination }}</td>
+                            <td>{{ trip.get_destination_display }}</td>
                         </tr>
                         <tr>
                             <td>روز:</td>
-                            <td>{{ trip.start }}</td>
+                            <td>{{ trip.start | miladitoshamsi}}</td>
                         </tr>
                         <tr>
                             <td>ساعت:</td>
@@ -173,7 +174,7 @@
                         </tr>
                         <tr>
                             <td>قیمت:</td>
-                            <td>{{ trip.cost }}</td>
+                            <td>{{ trip.cost }} تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -236,25 +237,27 @@
                             <td>
 مکان:
                             </td>
-                            <td>{{ trip.destination }}</td>
+                            <td>{{ trip.get_destination_display }}</td>
                         </tr>
                         <tr>
                             <td>
                                 زمان:
                             </td>
-                            <td>{{ trip.end }} تا {{ trip.start }}</td>
+                            <td>{{ trip.start |miladitoshamsi}}
+ الی
+                                {{ trip.end |miladitoshamsi}}</td>
                         </tr>
                         <tr>
                             <td>
                                 نوع تور:
                             </td>
-                            <td>{{ trip.tour_kind }}</td>
+                            <td>{{ trip.get_tour_kind_display }}</td>
                         </tr>
                         <tr>
                             <td>
                                 قیمت:
                             </td>
-                            <td>{{ trip.entire_cost }} تومان</td>
+                            <td>{{ trip.cost }} تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -310,7 +313,7 @@
             returned_id_list[i].value = id_list;
         }
 
-        console.log(id_list)
+        console.log(id_list);
     }
 </script>
 {% endblock %}

@@ -8,12 +8,20 @@ import datetime
 from present_trip.forms import SearchForm
 
 def home(request , username = ''):
-    return render(request, 'home.html', {'username':username})
+    pic_q = Picture.objects.all()[:5]
+    range1 = range(0,5)
+    position = 'خانه'
+    pic_list=[]
+    for i in pic_q:
+        pic_list.append(i.picture)
+    return render(request, 'home.html', {'username':'' ,'pic_list':pic_list,'pic_range':range1,'user2': request.user , 'position':position} )
 
 def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',start_day='',end_year='',end_month='',end_day=''):
     returned_dic = {}
     returned_dic['kind'] = kind
     returned_dic['user'] = request.user
+    returned_dic['user2'] = request.user
+    returned_dic['position'] = 'سامانه ارائه خدمت و تور ـ نمایش تک گردش'
 
     trip =''
     pic_list = []
@@ -99,6 +107,8 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
 @login_required()
 def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     return_dic = {}
+    return_dic['user2'] = request.user
+    return_dic['position'] = 'سامانه ارائه خدمت و تور - نمایش وضعیت گردش'
     trip = ''
     html_file = ''
     sub_trip = ''
@@ -179,11 +189,15 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
 
 def search(request , ispack = '' ):
     returned_dic = {}
+    returned_dic['user2'] = request.user
+
     if request.method == 'GET':
+        returned_dic['position'] = 'سامانه ارائه خدمت و تور - جستجو'
         search_form = SearchForm()
-        returned_dic['form']=search_form;
+        returned_dic['form']=search_form
         return render(request,'search.html',returned_dic)
     else: #request.method == POST
+        returned_dic['position'] = 'سامانه ارائه خدمت و تور - نتایج جستجو'
         form = SearchForm(request.POST)
         if form.is_valid():
             source = form.cleaned_data['source']
