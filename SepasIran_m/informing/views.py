@@ -6,12 +6,14 @@ from django.contrib.auth.decorators import login_required
 from define_trip.models import Train,Tour,AirPlane,Room,Table
 from buy_cancel.models import Wanted_Trip,Wanted_Tour,Wanted_Train,Wanted_Hotel,Wanted_Restaurant,Wanted_Airplane
 
-
+tarikh = datetime.datetime.now()
 @login_required()
 def account(requst):
     returned_dic = {}
     returned_dic['user2'] = requst.user
     returned_dic['position'] = 'سامانه اطلاع رسانی و تقویم - صفحه ی کاربری'
+    returned_dic['tarikh'] = tarikh
+    
     if requst.method == 'GET':
         now = datetime.datetime.now()
         future_ten_day = [now + datetime.timedelta(days = 1) , now + datetime.timedelta(days=10)]

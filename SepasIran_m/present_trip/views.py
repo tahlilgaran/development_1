@@ -7,6 +7,7 @@ from django.http import Http404
 import datetime
 from present_trip.forms import SearchForm
 
+tarikh = datetime.datetime.now()
 def home(request , username = ''):
     pic_q = Picture.objects.all()[:5]
     range1 = range(0,5)
@@ -14,7 +15,7 @@ def home(request , username = ''):
     pic_list=[]
     for i in pic_q:
         pic_list.append(i.picture)
-    return render(request, 'home.html', {'username':'' ,'pic_list':pic_list,'pic_range':range1,'user2': request.user , 'position':position} )
+    return render(request, 'home.html', {'tarikh':tarikh , 'username':'' ,'pic_list':pic_list,'pic_range':range1,'user2': request.user , 'position':position} )
 
 def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',start_day='',end_year='',end_month='',end_day=''):
     returned_dic = {}
@@ -22,6 +23,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
     returned_dic['user'] = request.user
     returned_dic['user2'] = request.user
     returned_dic['position'] = 'سامانه ارائه خدمت و تور ـ نمایش تک گردش'
+    returned_dic['tarikh'] = tarikh
 
     trip =''
     pic_list = []
@@ -58,6 +60,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         elif kind == 'restaurant':
             trip = Restaurant.objects.filter(id = id)[0]
             pic_q = Picture.objects.filter(gardesh = trip.gardesh)
+
             if start_year == '':
                 start = request.GET.get('start')
                 end = request.GET.get('end')
@@ -98,6 +101,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
         returned_dic['pic_list'] = pic_list
         returned_dic['pic_range'] = range(0,pic_list.__len__())
 
+
         return render(request,html_file , returned_dic)
 
 
@@ -109,6 +113,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     return_dic = {}
     return_dic['user2'] = request.user
     return_dic['position'] = 'سامانه ارائه خدمت و تور - نمایش وضعیت گردش'
+    return_dic['tarikh'] = tarikh
     trip = ''
     html_file = ''
     sub_trip = ''
@@ -173,6 +178,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
         if trip.gardesh.builder == builder or user_kind == 'manager':
             return_dic['builder'] = trip.gardesh.builder
             print(trip)
+            return_dic['kind'] = kind
             return_dic['trip'] = trip
             return_dic['buy_trips'] = buy_trips
             return_dic['reserve_trip'] = reserve_trip
@@ -190,6 +196,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
 def search(request , ispack = '' ):
     returned_dic = {}
     returned_dic['user2'] = request.user
+    returned_dic['tarikh'] = tarikh
 
     if request.method == 'GET':
         returned_dic['position'] = 'سامانه ارائه خدمت و تور - جستجو'

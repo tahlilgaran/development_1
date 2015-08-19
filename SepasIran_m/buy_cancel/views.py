@@ -538,14 +538,9 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
-            wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/',{
                 'user2':user2,
             })
@@ -556,14 +551,9 @@ def cancel(request , id=''):
             seat.save()
             airplane=seat.airplane
             airplane.capacity +=1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'airplane'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Airplane.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
         elif codes[0] == 'train':
             id=int(codes[1])
@@ -572,28 +562,18 @@ def cancel(request , id=''):
             seat.save()
             train=seat.train
             train.capacity +=1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'train'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
         elif codes[0] == 'restaurant':
             id=int(codes[1])
             seat=Table.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Restaurant.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Restaurant.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
 
         elif codes[0] == 'hotel':
@@ -601,14 +581,9 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Hotel.objects.create(gardesh = seat,info=wantedtrip);
             return  HttpResponseRedirect('/userpage/')
 
 
@@ -619,14 +594,8 @@ def cancel(request , id=''):
             tour=Tour.objects.get(id= id)
             tour.capacity += 1
             tour.save()
-            Wanted_Tour.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Tour.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
-
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'tour'+'-'+str(tour.id)+'-'+request.user.username)
-            wantedtour = Wanted_Tour.objects.create(gardesh = tour,info=wantedtrip);
 
             cost=tour.cost
 
@@ -651,14 +620,8 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             airplane.capacity += 1
-            Wanted_Airplane.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Airplane.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
-
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'airplane'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Airplane.objects.create(gardesh = seat,info=wantedtrip);
 
             cost=airplane.cost
 
@@ -686,14 +649,9 @@ def cancel(request , id=''):
             seat.full=False
             seat.save()
             train.capacity += 1
-            Wanted_Train.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Train.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'train'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Train.objects.create(gardesh = seat,info=wantedtrip);
             cost=train.cost
 
 
@@ -717,14 +675,9 @@ def cancel(request , id=''):
             seat=Room.objects.get(id= id)
             seat.full=False
             seat.save()
-            Wanted_Hotel.objects.get(wanted_trip=wanted_trip).delete()
+            Wanted_Hotel.objects.get(info=wanted_trip).delete()
             wanted_trip.delete()
 
-            wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                   first_name = first_name,last_name= last_name,
-                                                   meli_code = melli_num,
-                                                   peygiry_code = 'hotel'+'-'+str(seat.id)+'-'+request.user.username)
-            wantedtour = Wanted_Hotel.objects.create(gardesh = seat,info=wantedtrip);
             cost=seat.cost_perNight
 
 
@@ -748,14 +701,9 @@ def cancel(request , id=''):
                 seat=Table.objects.get(id= id)
                 seat.full=False
                 seat.save()
-                Wanted_Restaurant.objects.get(wanted_trip=wanted_trip).delete()
+                Wanted_Restaurant.objects.get(info=wanted_trip).delete()
                 wanted_trip.delete()
 
-                wantedtrip= Wanted_Trip.objects.create(gardeshgar=gardeshgar , status='cancel',
-                                                       first_name = first_name,last_name= last_name,
-                                                       meli_code = melli_num,
-                                                       peygiry_code = 'restaurant'+'-'+str(seat.id)+'-'+request.user.username)
-                wantedtour = Wanted_Restaurant.objects.create(gardesh = seat,info=wantedtrip);
                 cost=seat.cost_perClock
 
 
