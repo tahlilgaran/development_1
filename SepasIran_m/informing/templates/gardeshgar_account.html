@@ -294,3 +294,38 @@
     </div>
     {% endif %}
 {% endblock %}
+
+
+{% block takhfifi %}
+    {% if free_tour %}
+    <div class="col-md-6">
+        <div class=" panel panel-primary">
+        <div class="panel-heading">
+                <h4 class="panel-title">
+تور های تخفیف خورده
+                </h4>
+            </div>
+
+            <div class="panel-body">
+
+        {% for item in free_tour %}
+                        <div class="col-md-12">
+                        <li>
+                            <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
+                                <a href="/show/tour/{{ item.id }}" type="button" class="btn btn-primary ,glyphicon glyphicon-record"></a></div>
+زمان برگزاری تور
+                        {{ item.gardesh.name }}
+                        {{ item.start | miladitoshamsi }}
+                         الی
+                        {{ item.end | miladitoshamsi}}
+
+                         می باشد.
+
+                        </li>
+                        </div>
+                    {% endfor %}
+            </div>
+    </div>
+    </div>
+    {% endif %}
+{% endblock %}

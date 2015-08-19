@@ -54,9 +54,9 @@
                         <td>
 کدملی
                         </td>
-                        <td>
-کدپیگیری
-                        </td>
+{#                        <td>#}
+{#کدپیگیری#}
+{#                        </td>#}
                     </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@
                             {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
                             <td>{{ buyer.info.meli_code }}</td>
-                            <td>{{ buyer.info.peygiry_code }}</td>
+{#                            <td>{{ buyer.info.peygiry_code }}</td>#}
                         </tr>
                     {% endfor %}
                     <tr>
@@ -103,9 +103,9 @@
                         <td>
 کدملی
                         </td>
-                        <td>
-کدپیگیری
-                        </td>
+{#                        <td>#}
+{#کدپیگیری#}
+{#                        </td>#}
                     </tr>
                     </thead>
                     <tbody>
@@ -118,7 +118,7 @@
                             {% endif %}
                             <td>{{ buyer.info.first_name }} {{ buyer.info.last_name }}</td>
                             <td>{{ buyer.info.meli_code }}</td>
-                            <td>{{ buyer.info.peygiry_code }}</td>
+{#                            <td>{{ buyer.info.peygiry_code }}</td>#}
                         </tr>
                     {% endfor %}
                     <tr>
@@ -132,18 +132,18 @@
     {% if username == 'admin' %}
 
     {% else %}
-    <div class="col-md-6"  style="float: left; direction: ltr">
-        <a type="button" href="#" class="btn btn-success">
-            فروش در مرکز عرضه
-        </a>
-        <a type="button" href="/tourdefine/tour/change/gardeshsaz" class="btn btn-warning">
-            تغییر اطلاعات گردش
-        </a>
-        <a type="button" href="/cancelselling/gardeshsaz" class="btn btn-danger">
-            لغو ادامه فروش در سامانه
-        </a>
-    </div>
-    <div class="col-md-6">
+{#    <div class="col-md-6"  style="float: left; direction: ltr">#}
+{#        <a type="button" href="#" class="btn btn-success">#}
+{#            فروش در مرکز عرضه#}
+{#        </a>#}
+{#        <a type="button" href="/tourdefine/tour/change/gardeshsaz" class="btn btn-warning">#}
+{#            تغییر اطلاعات گردش#}
+{#        </a>#}
+{#        <a type="button" href="/cancelselling/gardeshsaz" class="btn btn-danger">#}
+{#            لغو ادامه فروش در سامانه#}
+{#        </a>#}
+{#    </div>#}
+    <div class="col-md-12">
     {% if zarfiat == -1 %}
 
     {% else %}

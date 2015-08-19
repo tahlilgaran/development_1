@@ -3,7 +3,7 @@ import time
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
-from define_trip.models import Train,Tour,AirPlane,Room,Table
+from define_trip.models import Train,Tour,AirPlane,Room,Table,Restaurant,Hotel
 from buy_cancel.models import Wanted_Trip,Wanted_Tour,Wanted_Train,Wanted_Hotel,Wanted_Restaurant,Wanted_Airplane
 
 tarikh = datetime.datetime.now()
@@ -92,6 +92,10 @@ def account(requst):
             returned_dic['last_tour'] = last_tour
             returned_dic['last_tour_all'] = last_tour_all
 
+            #takhfifi
+            free_tour = Tour.objects.filter(start__range = future_ten_day).exclude(gardesh__free = 0)
+            returned_dic['free_tour'] = free_tour
+
 
 
             return render(requst , 'gardeshgar_account.html' , returned_dic)
@@ -100,10 +104,10 @@ def account(requst):
         elif user_kind == 'gardeshsaz':
             user = requst.user.userm.bprofile # gardeshsaz
             tour_list = Tour.objects.filter(gardesh__builder = user , start__range = future_ten_day)
-            hotel_list = Room.objects.filter(hotel__gardesh__builder = user , date__range = future_ten_day)
+            hotel_list = Hotel.objects.filter(gardesh__builder = user)
             airplane_list = AirPlane.objects.filter(gardesh__builder = user , start__range = future_ten_day)
             train_list = Train.objects.filter(gardesh__builder = user , start__range = future_ten_day)
-            restaurant_list = Table.objects.filter(restaurant__gardesh__builder = user , date__range = future_ten_day)
+            restaurant_list = Restaurant.objects.filter(gardesh__builder = user)
             returned_dic['tour_list'] = tour_list
             returned_dic['hotel_list'] = hotel_list
             returned_dic['airplane_list'] = airplane_list

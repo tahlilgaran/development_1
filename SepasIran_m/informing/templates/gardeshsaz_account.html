@@ -22,15 +22,10 @@
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
                                 <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
-                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/hotel/{{ item.hotel.id }}/"></button></div>
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/hotel/{{ item.id }}/"></button></div>
 هتل
-                        {{ item.hotel.gardesh.name }}
-                        {% if user_kind == 'gardeshsaz' %}
-                            اتاق
-                        {{ item.number }}
-                         تاریخ
-                        {{ item.date }}
-                        {% endif %}
+                        {{ item.gardesh.name }}
+
                         </li>
                     {% endfor %}
                 {% endif %}
@@ -40,17 +35,10 @@
                         <li>
                             <div class="btn-group btn-group-xs" aria-label="Extra-small button group">
                                 <button  type="button" class="btn btn-warning ,glyphicon glyphicon-record" style="color: #fff"
-                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/restaurant/{{ item.restaurant.id }}/"></button></div>
+                                    data-toggle="modal" data-target="#myModal" onclick="fill_modal(this)" id="/show/restaurant/{{ item.id }}/"></button></div>
 رستوران
-                        {{ item.restaurant.gardesh.name }}
-                        {% if user_kind == 'gardeshsaz' %}
-                        میز
-                        {{ item.number }}
-                        تاریخ
-                        {{ item.date }}
-                        ساعت
-                        {{ item.start_clock }}
-                        {% endif %}
+                        {{ item.gardesh.name }}
+
                         </li>
                     {% endfor %}
                 {% endif %}

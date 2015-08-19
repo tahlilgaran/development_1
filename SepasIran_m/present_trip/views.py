@@ -108,7 +108,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
 
 
 
-@login_required()
+@login_required
 def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
     return_dic = {}
     return_dic['user2'] = request.user
@@ -136,7 +136,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
             if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'buy')
                 reserve_trip = Wanted_Tour.objects.filter(gardesh = trip , info__status = 'reserve')
-                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
+                zarfiat = trip.capacity
 
 
         if kind == 'restaurant':#todo: nahve ye namayesh bayad behtar beshe.
@@ -163,7 +163,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
             if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'buy')
                 reserve_trip = Wanted_Airplane.objects.filter(gardesh__airplane = trip , info__status = 'reserve')
-                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
+                zarfiat = trip.capacity
 
         if kind == 'train':
             trip = Train.objects.filter(id = id )[0]
@@ -171,7 +171,7 @@ def show_one_trip_status(request , kind = '', id = 0 , sub_number = 0):
             if trip.gardesh.builder == builder or builder.user.kind == 'manager':
                 buy_trips = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'buy')
                 reserve_trip = Wanted_Train.objects.filter(gardesh__train = trip , info__status = 'reserve')
-                zarfiat = trip.capacity - buy_trips.__len__() - reserve_trip.__len__()
+                zarfiat = trip.capacity
         # else:
         #     raise Http404("Page not found")
 

@@ -38,6 +38,12 @@
                             </td>
                             <td>{{ trip.gardesh.get_degree_display }}</td>
                         </tr>
+                        <tr>
+                            <td>
+                                آدرس:
+                            </td>
+                            <td>{{ trip.address }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -91,7 +97,7 @@
                             </table>
                             <table>
                             {% for item in all_room_obj %}
-                                {% if forloop.counter == 5 %}
+                                {% if forloop.counter == 6 %}
                                     <tr>
                                 {% endif %}
                                     {% if item.number == room.number %}
@@ -121,7 +127,7 @@
                                         {% endif %}
                                         </table></td>
                                     {% endif %}
-                                {% if forloop.counter == 4 %}
+                                {% if forloop.counter == 5 or forloop.counter == 10 or forloop.counter == 15 or forloop.counter == 20 or forloop.counter == 25 or forloop.counter == 30 or forloop.counter == 35 or forloop == 40 or forloop.counter == 45 or forloop.counter == 50 or forloop.counter == 55 or forloop.counter == 60 or forloop.counter == 65 or forloop.counter == 70 or forloop.counter == 75 or forloop.counter == 80 or forloop.counter == 85 or forloop.counter == 90 or forloop.counter == 95 or forloop.counter == 100%}
                                     </tr>
                                 {% endif %}
                             {% endfor %}
@@ -146,8 +152,8 @@
                             </form>
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile %}
-                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>
-                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+{#                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>#}
+{#                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>#}
                     {% elif user.userm.kind == 'gardeshsaz' %}
                     {% else %}
                         <a type="button" class="btn btn-primary , col-md-12" href="/signIn">ورود</a>

@@ -28,13 +28,19 @@
                             <td>
                                 شرکت گردشگری:
                             </td>
-                            <td>{{ trip.gardesh.name }}</td>
+                            <td>{{ trip.gardesh.builder.user.user.last_name }}</td>
                         </tr>
                         <tr>
                             <td>
 مکان:
                             </td>
                             <td>{{ trip.get_city_display }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                آدرس:
+                            </td>
+                            <td>{{ trip.address }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,7 +140,7 @@
                                         {% endif %}
                                         </table></td>
                                     {% endif %}
-                                {% if forloop.counter == 5 %}
+                                {% if forloop.counter == 5 or forloop.counter == 10 or forloop.counter == 15 or forloop.counter == 20 or forloop.counter == 25 or forloop.counter == 30 or forloop.counter == 35 or forloop == 40 or forloop.counter == 45 or forloop.counter == 50 or forloop.counter == 55 or forloop.counter == 60 or forloop.counter == 65 or forloop.counter == 70 or forloop.counter == 75 or forloop.counter == 80 or forloop.counter == 85 or forloop.counter == 90 or forloop.counter == 95 or forloop.counter == 100%}
                                     </tr>
                                 {% endif %}
                             {% endfor %}
@@ -161,8 +167,8 @@
                         </div>
                     {% elif user.userm.kind == 'gardeshsaz' and trip.gardesh.builder == user.userm.bprofile%}
 
-                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>
-                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>
+{#                        <button type="submit" class="btn btn-success , col-md-12" onclick="get_checked()">فروش در محل عرضه</button>#}
+{#                        <button type="submit" class="btn btn-warning , col-md-12" onclick="get_checked()">تغییر اطلاعات گردش</button>#}
                     {% elif user.userm.kind == 'gardeshsaz' %}
 
                     {% else %}

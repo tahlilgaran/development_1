@@ -32,7 +32,7 @@
 گردش های پیش رو
                 </span>
             </div>
-                <ul class="panel-body , nav nav-pills nav-stacked">
+                <ul class="panel-body , nav nav-pills nav-stacked" id="future_10">
                 {% block item_list %}{% endblock %}
                 </ul>
         </div>
@@ -41,6 +41,7 @@
 
         {% block current_trip %}{% endblock %}
         {% block nazarsangi %}{% endblock %}
+        {% block takhfifi %}{% endblock %}
         {% include 'taghvim.html' %}
 
 
@@ -76,6 +77,7 @@
 
 {% block script %}
     <script>
+
         function fill_modal(a) {
 
             var new_action = a.id;
