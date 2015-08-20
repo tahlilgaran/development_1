@@ -42,16 +42,32 @@ def Dashboard(request):
     finished_tours = Tour.objects.filter(end__lt=datetime.date.today())
     rating_comments = RatingComment.objects.filter(tour=finished_tours)
     tour_contributer = Wanted_Tour.objects.filter(gardesh=finished_tours)
-    contributing=[]
+    contributing = []
     contributing.append(len(rating_comments))
-    contributing.append(len(tour_contributer)-len(rating_comments))
+    contributing.append(len(tour_contributer) - len(rating_comments))
     print(len(tour_contributer))
     print(len(rating_comments))
 
 
 
+    tourist_list = TouristProfile.objects.all()
+    inactive_users = TouristProfile.objects.filter(wanted_trip__isnull=True)
+    users = []
+    users.append(len(tourist_list))
+    users.append(len(tourist_list) - len(inactive_users))
+
+    all_tours = Tour.objects.all()
+    total_cap =0 ;
+    sold =0 ;
+    for t in all_tours:
+        total_cap = total_cap + t.capacity
+        sold = sold+ t.has_sold
+
+    mydatetime = datetime.datetime.now()
+
     return render(request, "manager_dashboard.html",
-                  {"onlineComments": onlineComments, "runningTours": tours, 'user_rating': users_rating , 'contributing': contributing})
+                  {"onlineComments": onlineComments, "runningTours": tours, 'user_rating': users_rating,
+                   'contributing': contributing , 'user_activity' : users , 'cap' : total_cap , 'sold': sold , 'datetime' : mydatetime} )
 
 
 def tourLists(request):
@@ -64,22 +80,36 @@ def tourLists(request):
             pics.append(tour.gardesh.builder.user.picture)
         else:
             pics.append(pic)
+    date_1_month_ago = datetime.date(day=1, month=datetime.date.today().month, year=datetime.date.today().year)
 
-    return render(request, "manager_tours.html", {"runningTours": tours, "pics": pics})
+    lastTours = Tour.objects.filter(start__gt=date_1_month_ago)
+    mydatetime = datetime.datetime.now()
+
+    return render(request, "manager_tours.html", {"runningTours": tours, "pics": pics , 'size': len(lastTours) , 'datetime': mydatetime})
 
 
 def tourRating(request):
-    gold_tours = Tour.objects.filter(gardesh__degree="G")
-    silver_tours = Tour.objects.filter(gardesh__degree="S")
-    bronze_tours = Tour.objects.filter(gardesh__degree="B")
+    #todo momkene month-3 manfi beshe :D
+    date_3_month_ago = datetime.date(day=1, month=datetime.date.today().month - 3, year=datetime.date.today().year)
+
+    gold_tours = Tour.objects.filter(gardesh__degree="G", start__gt=date_3_month_ago)
+    silver_tours = Tour.objects.filter(gardesh__degree="S", start__gt=date_3_month_ago)
+    bronze_tours = Tour.objects.filter(gardesh__degree="B", start__gt=date_3_month_ago)
+
+    tours = []
+    tours.append(len(gold_tours))
+    tours.append(len(silver_tours))
+    tours.append(len(bronze_tours))
+    mydatetime = datetime.datetime.now()
 
     return render(request, "manager_tours_rating.html",
-                  {"gold_tours": gold_tours, "silver_tours": silver_tours, "bronze_tours": bronze_tours})
+                  {"gold_tours": gold_tours, "silver_tours": silver_tours, "bronze_tours": bronze_tours,
+                   'tours': tours, 'datetime' : mydatetime} )
 
 
 def showOnlineComments(request):
     onlineComments = OnlineComment.objects.all()
-    users=[]
+    users = []
     for c in onlineComments:
         if not c.user in users:
             users.append(c.user)
@@ -88,19 +118,29 @@ def showOnlineComments(request):
 
     comment_st = []
     comment_st.append(len(users))
-    comment_st.append(len(toursb)-len(users))
+    comment_st.append(len(toursb) - len(users))
+    mydatetime = datetime.datetime.now()
 
-    return render(request, "manager_online_comments.html", {"onlineComments": onlineComments , 'comment_st' : comment_st})
+    return render(request, "manager_online_comments.html", {"onlineComments": onlineComments, 'comment_st': comment_st, 'datetime' : mydatetime} )
 
 
 def showTouristList(request):
     List = TouristProfile.objects.all()
-    return render(request, "manager_gardeshgar_info.html", {"header": "گردشگران", "list": List})
+    inactive_users = TouristProfile.objects.filter(wanted_trip__isnull=True)
+    users = []
+    users.append(len(List) - len(inactive_users))
+    users.append(len(inactive_users))
+    mydatetime = datetime.datetime.now()
+
+    return render(request, "manager_gardeshgar_info.html",
+                  {"header": "گردشگران", "list": List, 'users': users, 'size': len(List), 'datetime' : mydatetime} )
 
 
 def showTourBuilderList(request):
     List = TourBuilderProfile.objects.all()
-    return render(request, "manager_gardeshgar_info.html", {"header": "گردش سازان", "list": List})
+    mydatetime = datetime.datetime.now()
+
+    return render(request, "manager_gardeshgar_info.html", {"header": "گردش سازان", "list": List, 'datetime' : mydatetime} )
 
 
 def touristSearch(request):
@@ -110,7 +150,9 @@ def touristSearch(request):
     userM = UserM.objects.filter(user=user)
     List = TouristProfile.objects.filter(user=userM)
     print(List)
-    return render(request, "manager_gardeshgar_info.html", {"header": "گردشگران", "list": List})
+    mydatetime = datetime.datetime.now()
+
+    return render(request, "manager_gardeshgar_info.html", {"header": "گردشگران", "list": List, 'datetime' : mydatetime} )
 
 
 def tourBuilderSearch(request):
@@ -118,13 +160,15 @@ def tourBuilderSearch(request):
     print(user)
     userM = UserM.objects.filter(user=user)
     List = TourBuilderProfile.objects.filter(user=userM)
-    return render(request, "manager_gardeshgar_info.html", {"header": "گردش سازان", "list": List})
+    mydatetime = datetime.datetime.now()
+    return render(request, "manager_gardeshgar_info.html", {"header": "گردش سازان", "list": List, 'datetime' : mydatetime} )
 
 
 def paymentLists(request):
     transList = Trans_info.objects.all()
+    mydatetime = datetime.datetime.now()
 
-    return render(request, "manager_paymentList.html", {"transList": transList})
+    return render(request, "manager_paymentList.html", {"transList": transList, 'datetime' : mydatetime} )
 
 
 def contractPercent(request):
@@ -145,10 +189,10 @@ def contractPercent(request):
         percents.append(ag.percent)
 
     dates = reversed(dates)
+    mydatetime = datetime.datetime.now()
 
-    a = ["اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد"]
     return render(request, "manager_contract_percent.html",
-                  {"new_percent": percent, 'dates': dates, 'percents': percents})
+                  {"new_percent": percent, 'dates': dates, 'percents': percents, 'datetime' : mydatetime} )
 
 
 def saveContractPercent(request):

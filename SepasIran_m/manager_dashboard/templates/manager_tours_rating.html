@@ -5,28 +5,21 @@
     <div class="col-md-9">
         <h2>رتبه بندی تورها</h2>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div style="width: 100%">
                 <canvas id="canvas-bar" height="450" width="600"></canvas>
             </div>
-            تعداد تورهای ارائه شده در ماه گذشته
+            تورهای ارائه شده در سه ماه گذشته
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div id="canvas-holder" style="width:70%; ; margin-right: 15%">
                 <canvas id="chart-area" width="300" height="300"/>
             </div>
             نسبت
 
-            تورهای ارائه شده در ماه گذشته
-        </div>
-        <div class="col-md-4">
-            <div style="width:100%">
-                <div>
-                    <canvas id="canvas3" height="450" width="600"></canvas>
-                </div>
-            </div>
-            تعداد تورهای ارائه شده در شش ماه گذشته
-        </div>
+            تورهای ارائه شده در سه ماه گذشته
+      <br><br>  </div>
+
         <div class="col-md-4" style="
     padding: 20px;">
             <table >
@@ -126,17 +119,17 @@
 
         var doughnutData = [
             {
-                value: 8,
+                value: {{ tours.0 }},
                 label: "طلایی",
                 color: "#FFD700"
             },
             {
-                value: 18,
+                value: {{ tours.1 }},
                 label: "نقره ای",
                 color: "#C0C0C0"
             } ,
             {
-                value: 10,
+                value: {{ tours.2 }},
                 label: "برنزی",
                 color: "#B27300"
             }
@@ -155,7 +148,7 @@
                     strokeColor: "rgba(220,220,220,1)",
                     {#				highlightFill: "rgba(220,220,220,0.75)",#}
                     {#				highlightStroke: "rgba(220,220,220,1)",#}
-                    data: [ randomScalingFactor(50), randomScalingFactor(50), randomScalingFactor(50)]
+                    data: [ {{ tours.0 }} , {{ tours.1 }} , {{ tours.2 }}]
                 }
             ]
 
