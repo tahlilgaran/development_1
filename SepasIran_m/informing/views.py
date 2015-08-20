@@ -53,6 +53,7 @@ def account(requst):
                     hotel_list.append(item.gardesh.hotel)
 
             restaurant_list_all = Wanted_Restaurant.objects.filter(info__gardeshgar = user, gardesh__date__range = future_ten_day)
+            print (restaurant_list_all)
             restaurant_list = []
             for item in restaurant_list_all:
                 if not item.gardesh.restaurant in restaurant_list:
