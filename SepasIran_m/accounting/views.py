@@ -482,14 +482,14 @@ def ozviyat(request,username=''):
 def confirmOzv(request,username=''):
     tarikh=datetime.datetime.now()
     user=User.objects.get(username= username)
-    user2=request.user
+
     userm=user.userm
     y=TouristProfile.objects.get(user= userm)
     y.has_payed=True
     y.save()
     return render(request, "transaction-status.html",{
         'tarikh':tarikh,
-        'user2':user2,
+        'user2':user,
         'position':'زیر سامانه ی  حسابداری',
 
     })

@@ -24,11 +24,11 @@
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
                 <label class='control-label'>شماره ی کارت:</label>
                     <span class="col-md-1"></span>
-                  <input class='col-md-2' size='1' type='text' style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-              </div>
+                 <input class='col-md-2' size='1' type='text' maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px"/>
+               </div>
             </div>
             <div class='form-row'>
               <div class='col-xs-12 form-group card required'>
@@ -116,11 +116,11 @@
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
                 <label class='control-label'>شماره ی کارت:</label>
                     <span class="col-md-1"></span>
-                  <input class='col-md-2' size='1' type='text' style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-              </div>
+                  <input class='col-md-2' size='1' type='text' maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px"/>
+               </div>
             </div>
             <div class='form-row'>
               <div class='col-xs-12 form-group card required'>
@@ -209,10 +209,10 @@
               <div class='col-xs-12 form-group required' style="margin-top: 80px;display: inline">
                 <label class='control-label'>شماره ی کارت:</label>
                     <span class="col-md-1"></span>
-                  <input class='col-md-2' size='1' type='text' style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
-                  <input class='col-md-2' size='1' type='text'style="margin-left: 5px"/>
+                  <input class='col-md-2' size='1' type='text' maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'style="margin-left: 5px" />
+                  <input class='col-md-2' size='1' type='text'maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-left: 5px"/>
               </div>
             </div>
             <div class='form-row'>
@@ -290,97 +290,4 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<!--<script type="javascript">
-    $(function() {
-  $('form.require-validation').bind('submit', function(e) {
-    var $form         = $(e.target).closest('form'),
-        inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
-                         'textarea'].join(', '),
-        $inputs       = $form.find('.required').find(inputSelector),
-        $errorMessage = $form.find('div.error'),
-        valid         = true;
 
-    $errorMessage.addClass('hide');
-    $('.has-error').removeClass('has-error');
-    $inputs.each(function(i, el) {
-      var $input = $(el);
-      if ($input.val() === '') {
-        $input.parent().addClass('has-error');
-        $errorMessage.removeClass('hide');
-        e.preventDefault(); // cancel on first error
-      }
-    });
-  });
-});
-
-$(function() {
-  var $form = $("#payment-form");
-
-  $form.on('submit', function(e) {
-    if (!$form.data('cc-on-file')) {
-      e.preventDefault();
-      Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-      Stripe.createToken({
-        number: $('.card-number').val(),
-        cvc: $('.card-cvc').val(),
-        exp_month: $('.card-expiry-month').val(),
-        exp_year: $('.card-expiry-year').val()
-      }, stripeResponseHandler);
-    }
-  });
-
-  function stripeResponseHandler(status, response) {
-    if (response.error) {
-      $('.error')
-        .removeClass('hide')
-        .find('.alert')
-        .text(response.error.message);
-    } else {
-      // token contains id, last4, and card type
-      var token = response['id'];
-      // insert the token into the form so it gets submitted to the server
-      $form.find('input[type=text]').empty();
-      $form.append("<input type='hidden' name='reservation[stripe_token]' value='" + token + "'/>");
-      $form.get(0).submit();
-    }
-</script>-->
-</html>
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>درگاه بانک</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<!--<link rel="stylesheet" type="text/css" href="">-->
-<!--</head>
-<body>
-    <form>
-        <div class="col-md-9,container">شماره ی کارت :
-            <p><input type="text" /><input type="text" /><input type="text" /><input type="text" />
-            </p>
-        </div>
-
-        <div class="col-md-2,container">
-            ccv2:<input type="text" />
-        </div>
-
-        <div class="col-md-2,container">
-            رمز دوم:<input type="password" />
-        </div>
-
-        <div class="col-md-4,container">
-            تاریخ انقضا :
-             <input type="text" />ماه
-             <input type="text" />سال
-
-        </div>
-        <div>
-             <input type="submit" href="confirm.html">تایید پرداخت </input>
-        </div>
-    </form>
-
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</html>-->
