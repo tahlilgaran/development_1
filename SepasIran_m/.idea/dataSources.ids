@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="bb8ef1d4-1c48-4541-afdd-99e91ceb4a87">
-    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-    <jdbc-url>jdbc:sqlite:C:\Users\M\Documents\GitHub\development_1\SepasIran_m\db.sqlite3</jdbc-url>
-    <libraries/>
+  <data-source name="Django default" uuid="bb8ef1d4-1c48-4541-afdd-99e91ceb4a87">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
