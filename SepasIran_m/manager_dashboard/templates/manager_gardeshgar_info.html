@@ -3,8 +3,10 @@
 {% block content_dashboard %}
 
 
-    <div class="col-md-4">
-        <div style="width:100%; margin-left: 20% ; margin-top: 5%">
+<div class="col-md-4">
+      {% ifequal header "گردشگران"%}
+
+               <div style="width:100%; margin-left: 20% ; margin-top: 5%">
             <div>
                 <canvas id="canvas3" height="450" width="600"></canvas>
             </div>
@@ -17,7 +19,11 @@
 
 
 
+
+        {% endifequal %}
     </div>
+
+
 
     <div class="col-md-5">
         <h2>
@@ -25,12 +31,13 @@
 
         {% ifequal header "گردش سازان" %}
             <form method="get" action="/manager/tourBuilder/search/">
+             <input type="text" style="margin: 10px" name="username" placeholder="شماره ثبت">
         {% endifequal %}
-        {% ifequal header "گردش گران" %}
+        {% ifequal header "گردشگران"%}
             <form method="get" action="/manager/tourist/search/">
+             <input type="text" style="margin: 10px" name="username" placeholder="نام کاربری">
         {% endifequal %}
 
-        <input type="text" style="margin: 10px" name="username" placeholder="نام">
 
         <input type="submit" value="جست و جو" class="btn btn-success">
         </form>
@@ -80,12 +87,12 @@
 
         var doughnutData = [
             {
-                value: 1,
+                value: {{ users.0 }},
                 label: "شرکت کرده اند",
                 color: "#F7464A"
             },
             {
-                value: 12,
+                value: {{ users.1 }},
                 label: "شرکت نکرده اند",
                 color: "#F7904A"
             }
@@ -105,7 +112,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    data: [20, 30, 15, 12 , 28, {{ size }}]
                 }
             ]
 

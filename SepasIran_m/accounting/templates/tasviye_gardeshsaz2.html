@@ -17,7 +17,7 @@
   دریافت اطلاعات برای تسویه حساب با شما :
 </h3>
 
-<form action="/tasviye/confirm/" method="post">
+<form action="/tasviye/confirm2/" method="post">
         {% csrf_token %}
 <p>
  شما در این صفحه با وارد کردن نام بانک و شماره ی حساب خود به سامانه ی سپاس ایران این اجازه را میدهید تا با شما تسویه حساب کند .
@@ -33,7 +33,8 @@
 </p>
 
 <p class="col-md-8" style="margin-top: 30px;"> <input type="submit" class="btn btn-success" value="تسویه حساب"/>
-   <input type="hidden" value={{ final }} name="account">
+   <input type="hidden" value={{ final }} name="final">
+     <input type="hidden" value={{ gardeshID }} name="gardeshID">
 
 </p>
 

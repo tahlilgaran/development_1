@@ -31,7 +31,7 @@
                                 {% endfor %}
 
                              <div id="down_part" class="col-md-12" style="right: 20px;">
-                                         <form action="/payment/hotel/{{ hotel.id }}/" method="POST">
+                                         <form action="/reserving/status/hotel/{{ hotel.id }}/" method="POST">
 
                                             {%  csrf_token %}
                                            <p style="margin-top: 30px">

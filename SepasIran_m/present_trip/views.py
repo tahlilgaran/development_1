@@ -44,7 +44,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
             else:
                 start = datetime.datetime(int(start_year),int(start_month),int(start_day))
                 end = datetime.datetime(int(end_year),int(end_month),int(end_day))
-            all_room_obj = Room.objects.filter(hotel = trip , date__gte = start , date__lte = end)
+            all_room_obj = Room.objects.filter(hotel = trip , date__gte = start , date__lte = end).order_by('date')
 
             rooms = []
             room_numbers = []
@@ -67,7 +67,7 @@ def show_one_trip(request, kind = ''  , id = 0 , start_year='',start_month='',st
             else:
                 start = datetime.datetime(int(start_year),int(start_month),int(start_day))
                 end = datetime.datetime(int(end_year),int(end_month),int(end_day))
-            all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end )
+            all_table_obj = Table.objects.filter(restaurant = trip , date__gte = start , date__lte = end ).order_by('number', 'date')
 
             tables = []
             table_numbers = []

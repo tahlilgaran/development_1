@@ -13,7 +13,7 @@
 
 </head>
 <body style="background-color:gainsboro;font-family: 'B Mitra';">
-
+<img class="img" src="../../../static/mellat.jpg" style="width: 100%">
 <form action="/ozviyat/confirm/{{ username }}/" method="POST">
     {% csrf_token %}}
      <div class="container" style="direction: rtl" >
@@ -68,9 +68,9 @@
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
                  مبلغ قابل پرداخت:{{ total_cost }} تومان
-                    <input name="number" value={{ number }} hidden/>
-                    <input name="total_cost" value={{ total_cost }} hidden/>
-                    <input name="ID" value={{ ID }} hidden/>
+                    <input name="number" type="hidden" value={{ number }} />
+                    <input name="total_cost"  type="hidden" value={{ total_cost }} />
+                    <input name="ID"  type="hidden" value={{ ID }} />
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
               </div>

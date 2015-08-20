@@ -44,29 +44,36 @@
     </div>
 
     <div class="col-md-5" style="padding-right: 60px">
-    <p> شرکت در نظرسنجی</p>
+    <p> آمارهای مربوط به نظرسنجی  </p>
         <div id="canvas-holder" style="width:45%; display: inline-block">
             <canvas id="chart-area" width="300" height="300"/>
         </div>
         <div id="canvas-holder2" style="width:45%;  display: inline-block">
             <canvas id="chart-area2" width="300" height="300"/>
         </div>
-          <div id="canvas-holder" style="width:45%; display: inline-block">
+          <div id="canvas-holder" style="width:45%; display: inline-block ; padding: 5%">
               نسبت کاربرانی که در نظرسنجی تور شرکت کرده اند به کسانی که شرکت نکرده اند .
           </div>
-        <div id="canvas-holder2" style="width:45%;  display: inline-block">
+        <div id="canvas-holder2" style="width:45%;  display: inline-block ; padding: 5%">
             نسبت رضایت کاربران از خدمات تور
-        </div>
+       در سه ماهه گذشته</div>
 
         <hr>
-        <p> تعداد گردشگرانی که ثبت نام کرده اند و تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . </p>
+        <p>
+            نمودار خاکستری : تعداد گردشگرانی که ثبت نام کرده اند.
+            <br>
+            نمودار آبی : تعداد گردشگرانی که حداقل در یک تور شرکت کرده اند . (گردشگران فعال)
+
+        </p>
 
         <div style="width: 100%">
             <canvas id="canvas-bar" height="450" width="600"></canvas>
         </div>
 <hr>
         <p>
-            کل ظرفیت ارائه شده و میزانی که توسط سپاس ایران فروخته شده است .
+            نمودار آبی : تعداد گردش هایی که فروخته شده است .
+            <br>
+            نمودار خاکستری : تعداد گردش هایی که می توانستیم بفروشیم ولی خالی ماند.
         </p>
 
         <div style="width:100%">
@@ -164,12 +171,12 @@
 
         var doughnutData = [
             {
-                value: 7,
+                value: {{ contributing.0 }},
                 label: "شرکت کرده اند",
                 color: "#F7464A"
             },
             {
-                value: 12,
+                value: {{ contributing.1 }},
                 label: "شرکت نکرده اند",
                 color: "#F7904A"
             }
@@ -188,14 +195,14 @@
                     strokeColor: "rgba(220,220,220,1)",
                     {#				highlightFill: "rgba(220,220,220,0.75)",#}
                     {#				highlightStroke: "rgba(220,220,220,1)",#}
-                    data: [10,12,15,20,15,8]
+                    data: [10,12,15,20,15,{{ user_activity.0 }}]
                 } ,
                 			{
                 				fillColor : "rgba(151,187,205,0.5)",
                 				strokeColor : "rgba(151,187,205,0.8)",
                 				highlightFill : "rgba(151,187,205,0.75)",
                 				highlightStroke : "rgba(151,187,205,1)",
-                				data : [8,9,7,16,10,6]
+                				data : [8,9,7,16,10,{{ user_activity.1 }}]
                 			}
             ]
 
@@ -203,27 +210,27 @@
 
    var doughnutData2 = [
             {
-                value: 1,
+                value: {{ user_rating.0 }},
                 label: "نظم",
                 color: "#dfdfdf"
             },
             {
-                value: 5,
+                value: {{ user_rating.1 }},
                 label: "کیفیت خدمات",
                 color: "#ff0066"
             },
             {
-                value: 3,
+                value: {{ user_rating.2 }},
                 label: "رفتار مجریان",
                 color: "#e6aaad"
             } ,
              {
-                value: 4,
+                value: {{ user_rating.3 }},
                 label: "وسایل نقلیه",
                 color: "#95667A"
             } ,
              {
-                value: 5,
+                value: {{ user_rating.4 }},
                 label: "اسکان",
                 color: "#0000ff"
             }
@@ -240,7 +247,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [10,12,15,20,15,8]
+                    data: [10,12,15,20,15,{{ cap }}]
                  },
                 {
                     label: "فروخته شده(نفر)",
@@ -250,7 +257,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                  data : [8,11,10,18,10,8]
+                  data : [8,30,10,25,10,{{ sold }}]
                      }
             ]
 
