@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d68f46df-a5ca-48ca-ad9d-c8a63b1a02ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SepasIran_m.iml" afterPath="$PROJECT_DIR$/.idea/SepasIran_m.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounting/templates/payment_bank.html" afterPath="$PROJECT_DIR$/accounting/templates/payment_bank.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounting/templates/payment_bank_hotel.html" afterPath="$PROJECT_DIR$/accounting/templates/payment_bank_hotel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounting/templates/payment_bank_restaurant.html" afterPath="$PROJECT_DIR$/accounting/templates/payment_bank_restaurant.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounting/templates/payment_ozviyat.html" afterPath="$PROJECT_DIR$/accounting/templates/payment_ozviyat.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounting/views.py" afterPath="$PROJECT_DIR$/accounting/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html" afterPath="$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_service.html" afterPath="$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_service.html" />
     </list>
     <ignored path="SepasIran_m.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,38 +29,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manager_base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager_dashboard/templates/manager_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/define_trip/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="payment_bank.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounting/templates/payment_bank.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -107,14 +65,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment_ozviyat.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="payment_ozviyat.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounting/templates/payment_ozviyat.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.3807106">
+            <state vertical-scroll-proportion="52.11111">
               <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="information_of_reserver_tour.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_tour.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48214287">
+              <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="information_of_reserver_service.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_service.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.2068965">
+              <caret line="151" column="69" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="information_of_buyer_tour.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_tour.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1724138">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,8 +124,8 @@
       <file leaf-file-name="information_of_buyer_service.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8888888">
-              <caret line="175" column="75" selection-start-line="175" selection-start-column="39" selection-end-line="175" selection-end-column="75" />
+            <state vertical-scroll-proportion="-4.448276">
+              <caret line="152" column="9" selection-start-line="152" selection-start-column="9" selection-end-line="152" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -170,6 +160,8 @@
         <option value="$PROJECT_DIR$/accounting/templates/payment_bank_hotel.html" />
         <option value="$PROJECT_DIR$/accounting/templates/payment_bank_restaurant.html" />
         <option value="$PROJECT_DIR$/accounting/templates/payment_ozviyat.html" />
+        <option value="$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_service.html" />
+        <option value="$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html" />
       </list>
     </option>
   </component>
@@ -857,14 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8888888">
-          <caret line="175" column="75" selection-start-line="175" selection-start-column="39" selection-end-line="175" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounting/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -907,11 +891,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/accounting/templates/payment_ozviyat.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3807106">
+        <state vertical-scroll-proportion="52.11111">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_service.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2068965">
+          <caret line="151" column="69" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_tour.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1724138">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_buyer_service.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.448276">
+          <caret line="152" column="9" selection-start-line="152" selection-start-column="9" selection-end-line="152" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buy_cancel/templates/information_of_reserver_tour.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48214287">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
