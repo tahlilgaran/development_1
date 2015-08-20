@@ -6,16 +6,17 @@
     <style>
         body {
             margin-top:20px;
-            background-color:#FFE4C4;
+            background-color:darkgray;
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
 <body style="background-color:gainsboro;font-family: 'B Mitra';">
-
+<img class="img" src="../../../static/mellat.jpg" style="width: 100%"/>
 <form action="/payment/hotel/confirm/{{ hotel.id }}/" method="POST">
     {% csrf_token %}}
+
      <div class="container" style="direction: rtl" >
     <div class='row'>
         <div class='col-md-3'></div>
@@ -67,10 +68,10 @@
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
-                 مبلغ قابل پرداخت:{{ total_cost }} تومان
-                    <input name="number" value={{ number }} hidden/>
-                    <input name="total_cost" value={{ total_cost }} hidden/>
-                    <input name="ID" value={{ ID }} hidden/>
+                  مبلغ کل پرداختی:{{ total_cost }} تومان
+                    <input name="number"  type="hidden"  value={{ number }} />
+                    <input name="total_cost" type="hidden"  value={{ total_cost }} />
+                    <input name="ID" type="hidden" value={{ ID }} />
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
               </div>
@@ -92,7 +93,7 @@
           </form>
             <form action="/payment/hotel/cancel/{{ hotel.id }}/" method="POST">
                  {% csrf_token %}
-                 <input name="number" value={{ number }} hidden/>
+                 <input name="number" type="hidden"  value={{ number }} />
 
                   <div class='col-md-12'>  <input class='form-control btn btn-primary submit-button' type='submit' value="انصراف" style="
 ;background-color:gray;"/></div>

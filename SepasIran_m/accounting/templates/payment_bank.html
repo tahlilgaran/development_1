@@ -8,13 +8,13 @@
 
 </head>
 <body style="background-color:gainsboro;margin-top: 40px;font-family: 'B Mitra';">
-<img class="img" src="pic/ax2.jpg">
+<img class="img" src="../../../static/mellat.jpg" style="width: 100%" />
 {%  if kind == 'tour' %}
 <form action="/payment/tour/confirm/{{ tour.id }}/" method="POST">
     {% csrf_token %}
 
      <div class="container" style="direction: rtl" >
-         <img class="img" src="pic/ax2.jpg">
+
     <div class='row'>
         <div class='col-md-4'></div>
         <div class='col-md-5'>
@@ -107,7 +107,7 @@
     <form action="/payment/airplane/confirm/{{ airplane.id }}/" method="POST">
     {% csrf_token %}
    <div class="container" style="direction: rtl" >
-       <img  src="pic/mellat.jpg"/>
+
     <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-5'>
@@ -156,7 +156,7 @@
             <!--</div>-->
             <div class='form-row'>
               <div class='col-md-12'>
-                <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
+                <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
                   مبلغ قابل پرداخت:{{ total_cost }}تومان
                     <input name="total_cost" value={{ total_cost }} hidden/>
 
@@ -167,7 +167,7 @@
             <div class='form-row'>
               <div class='col-md-12 form-group'>
                 <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
-;background-color:green;"/>
+;background-color:gray;"/>
 
               </div>
             </div>
@@ -184,7 +184,7 @@
                  <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <div class='col-md-12'>  <input class='form-control btn btn-primary submit-button' type='submit' value="انصراف" style="
-;background-color:#CD6600;"/></div>
+;background-color:gray;"/></div>
 
 
 </form>
@@ -199,7 +199,7 @@
 <form action="/payment/train/confirm/{{ train.id }}/" method="POST">
     {% csrf_token %}}
     <div class="container" style="direction: rtl" >
-        <img  src="pic/mellat.jpg"/>
+
     <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-5'>
@@ -249,9 +249,9 @@
             <!--</div>-->
             <div class='form-row'>
               <div class='col-md-12'>
-                <div class='form-control total btn btn-info' style="background-color:#FF8C00" name="total_cost">
+                <div class='form-control total btn btn-info' style="background-color:firebrick" name="total_cost">
                   مبلغ قابل پرداخت:{{ total_cost }} تومان
-                    <input name="total_cost" value={{ total_cost }} hidden/>
+                    <input name="total_cost" type="hidden" value={{ total_cost }}/>
 
                   <!--<span class='amount'>۷۶۵۰۰۰۰ ریال</span>-->
                 </div>
@@ -260,7 +260,7 @@
             <div class='form-row'>
               <div class='col-md-6 form-group'>
                 <input class='form-control btn btn-primary submit-button' type='submit' value="پرداخت" style=" margin-top: 10px;
-;background-color:green;"/>
+;background-color:gray;"/>
               </div>
             </div>
             <div class='form-row'>
@@ -276,7 +276,7 @@
                  <input name="total_cost" value={{ total_cost }} hidden/>
 
                   <div class='col-md-12'>  <input class='form-control btn btn-primary submit-button' type='submit' value="انصراف" style="
-;background-color:#CD6600;"/></div>
+;background-color:gray;"/></div>
 
 
 </form>

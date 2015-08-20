@@ -123,6 +123,7 @@ urlpatterns = [
     url(r'tasviye/$', 'accounting.views.tasviye'),
     url(r'tasviye/gardeshsaz/$', 'accounting.views.tasviyeGar'),
     url(r'tasviye/confirm/$', 'accounting.views.tasviyeConfirm'),
+     url(r'tasviye/confirm2/$', 'accounting.views.tasviyeConfirm2'),
     url(r'tasviye/(\d+)/$', 'accounting.views.tasviyeID'),
 
     url(r'payment/(\w+)/$', 'accounting.views.ozviyat'),

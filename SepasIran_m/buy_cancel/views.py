@@ -127,8 +127,8 @@ def purchaseHotel(request ,id=''):
     total=0
     for table in roomID:
 
-        room_list.append(Table.objects.get(id=table))
-        total += room_list[i].cost_perClock
+        room_list.append(Room.objects.get(id=table))
+        total += room_list[i].cost_perNight
         i += 1
     gardesh=hotel.gardesh
     peopleform=peopleForm(request.POST)
@@ -265,7 +265,7 @@ def reserveHotel(request ,id=''):
     total=0
     for table in roomID:
 
-        room_list.append(Table.objects.get(id=table))
+        room_list.append(Room.objects.get(id=table))
         total += room_list[i].cost_perNight
         i += 1
     gardesh=hotel.gardesh

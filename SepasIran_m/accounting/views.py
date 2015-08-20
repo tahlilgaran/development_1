@@ -426,7 +426,7 @@ def paymentHotel(request,id=''):
        wantedrestaurant = Wanted_Hotel.objects.create(gardesh = room,info=wantedtrip);
        i += 1
 
-    return render(request, "payment_bank_restaurant.html",{
+    return render(request, "payment_bank_hotel.html",{
         'total_cost': total_cost,
         'hotel':hotel,
         'ID':list,
@@ -540,6 +540,24 @@ def tasviyeConfirm(request):
         'tarikh':tarikh,
     })
 
+def tasviyeConfirm2(request):
+    tarikh=datetime.datetime.now()
+    date = datetime.date.today()
+    gardeshID=int(request.POST.get("gardeshID"))
+    account=int(request.POST.get("final"))
+
+    user2=request.user
+    gardesh=Gardesh.objects.get(id= gardeshID)
+    receiver=TourBuilderProfile.objects.get( user=request.user.userm)
+    info= Trans_info.objects.create(date=date,amount=account,gardesh=gardesh)
+    transaction = Trans_Kind2.objects.create(info=info,receiver=receiver)
+
+    return HttpResponseRedirect('/userpage/',{
+        'user2':user2,
+        'position':'زیر سامانه ی  حسابداری',
+        'tarikh':tarikh,
+    })
+
 ############################################################################################################
 def tasviyeGar(request):
     user=request.user
@@ -565,7 +583,7 @@ def tasviyeID(request,id=''):
     agree=gardesh.agreement
     percent=agree.percent
     user= request.user
-    trans=Trans_info.objects.filter(date__gt=date,gardesh= gardesh)
+    trans=Trans_info.objects.filter(date__lt=date,gardesh= gardesh)
     if not trans:
         return render(request,"nothing.html",{
             'position':'زیر سامانه ی  حسابداری',
@@ -574,9 +592,9 @@ def tasviyeID(request,id=''):
         })
     total=0
     for tr in trans:
-        total += tr.amount
+        total +=int( tr.amount)
 
-    final= total-total*percent
+    final= int(total-total*percent)
     bankform=bankForm()
     return render(request,"tasviye_gardeshsaz2.html",{
 
@@ -584,6 +602,8 @@ def tasviyeID(request,id=''):
         'bankform':bankform,
         'position':'زیر سامانه ی  حسابداری',
         'user2':user,
-        'tarikh':tarikh
+        'tarikh':tarikh,
+        'gardeshID':gardesh.id,
+
 
     })
