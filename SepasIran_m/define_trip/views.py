@@ -264,15 +264,18 @@ def airplane_define(request):
             ran = range(1,int(num))
             capa = 0
             for i in ran :
-                start = request.POST.get('s'+str(i))
-                end = request.POST.get('e'+str(i))
-                ran2 = range(int(start),int(end)+1)
-                for j in ran2:
-                    seat = AirplaneSeat()
-                    seat.number = j
-                    seat.airplane = f
-                    seat.save()
-                    capa += 1
+                if request.POST.get('s'+str(i)) and request.POST.get('e'+str(i)):
+                    start = request.POST.get('s'+str(i))
+                    print(start +'s'+str(i))
+                    end = request.POST.get('e'+str(i))
+                    print(end +'e'+str(i))
+                    ran2 = range(int(start),int(end)+1)
+                    for j in ran2:
+                        seat = AirplaneSeat()
+                        seat.number = j
+                        seat.airplane = f
+                        seat.save()
+                        capa += 1
             f.capacity = capa
             f.save()
 
@@ -365,7 +368,7 @@ def train_define(request):
             ran = range(1,int(num))
             capa = 0
             for i in ran :
-                if request.POST.get('s'+str(i))!="" and request.POST.get('e'+str(i))!="":
+                if request.POST.get('s'+str(i)) and request.POST.get('e'+str(i)):
                     start = request.POST.get('s'+str(i))
                     end = request.POST.get('e'+str(i))
                     print(str(i)+'s')
@@ -439,8 +442,8 @@ def hotel_define_first(request):
                 builder = TourBuilderProfile.objects.get(user = muser)
                 gardeshs = Gardesh.objects.filter(builder = builder)
                 for g in gardeshs:
-                    if g.kind == 'hotel':
-                        names += [g.name]
+                    # if g.kind == 'hotel':
+                    names += [g.name]
 
     if request.POST.get("define","") != "":
         return HttpResponseRedirect('/tourdefine/hotel/define/')
