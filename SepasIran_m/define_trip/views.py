@@ -90,13 +90,13 @@ def tour_define(request):
             gardesh = Gardesh()
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
-            gardesh.kind = 'tour'
+            gardesh.kind = 'T'
             a = Agreement()
             a.kind ='tr-g'
             a.percent = '10'
             a.save()
             gardesh.agreement = a
-            gardesh.degree = 'G'
+            gardesh.degree = 'g'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
@@ -177,25 +177,8 @@ def tour_define(request):
                 l.save()
                 f.stay_location = l
 
-            if f.stay_location.degree == 'G':
-                if f.transfer_device.degree != 'B':
-                    gardesh.degree = 'G'
-                else:
-                    gardesh.degree = 'S'
+            gardesh.degree = 'g'
 
-            if f.stay_location.degree == 'S':
-                if f.transfer_device.degree != 'B':
-                    gardesh.degree = 'S'
-                else:
-                    gardesh.degree = 'B'
-
-            if f.stay_location.degree == 'B':
-                if f.transfer_device.degree == 'G':
-                    gardesh.degree = 'S'
-                else:
-                    gardesh.degree = 'B'
-
-            gardesh.save()
             f.start = form.cleaned_data['start']
             f.end = form.cleaned_data['end']
             f.gardesh = gardesh
@@ -240,7 +223,7 @@ def airplane_define(request):
             gardesh = Gardesh()
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
-            gardesh.kind = 'airplane'
+            gardesh.kind = 'A'
             a = Agreement()
             a.kind ='a-g'
             a.percent = '10'
@@ -343,13 +326,13 @@ def train_define(request):
             gardesh = Gardesh()
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
-            gardesh.kind = 'train'
+            gardesh.kind = 'TR'
             a = Agreement()
             a.kind ='t-s'
             a.percent = '8'
             a.save()
             gardesh.agreement = a
-            gardesh.degree = 'S'
+            gardesh.degree = 's'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
@@ -439,8 +422,7 @@ def hotel_define_first(request):
                 builder = TourBuilderProfile.objects.get(user = muser)
                 gardeshs = Gardesh.objects.filter(builder = builder)
                 for g in gardeshs:
-                    if g.kind == 'hotel':
-                        names += [g.name]
+                    names += [g.name]
 
     if request.POST.get("define","") != "":
         return HttpResponseRedirect('/tourdefine/hotel/define/')
@@ -479,13 +461,13 @@ def hotel_define(request):
             gardesh = Gardesh()
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
-            gardesh.kind = 'hotel'
+            gardesh.kind = 'H'
             a = Agreement()
             a.kind ='h-g'
             a.percent = '10'
             a.save()
             gardesh.agreement = a
-            gardesh.degree = 'G'
+            gardesh.degree = 'g'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
@@ -647,13 +629,13 @@ def restaurant_define(request):
             gardesh = Gardesh()
             gardesh.name = form.cleaned_data['name']
             gardesh.builder = builder
-            gardesh.kind = 'restaurant'
+            gardesh.kind = 'R'
             a = Agreement()
             a.kind ='r-g'
             a.percent = '7'
             a.save()
             gardesh.agreement = a
-            gardesh.degree = 'G'
+            gardesh.degree = 'g'
             if form.cleaned_data['free']:
                 gardesh.free = form.cleaned_data['free']
             if form.cleaned_data['max_cancel_time']:
