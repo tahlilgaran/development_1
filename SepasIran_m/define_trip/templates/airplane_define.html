@@ -203,9 +203,9 @@
         cells[0].setAttribute("class","col-md-1");
 
         cells[1] = newrow.insertCell(1);
-        cells[1].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[1].innerHTML = "<input type="+"text"+" name="+"s"+ a.value+" class="+"form-control ,i"+">";
         cells[1].setAttribute("class","col-md-2");
-        cells[1].setAttribute("name","s"+ a.value);
+{#        cells[1].setAttribute("name","s"+ a.value);#}
 
 
         cells[2] = newrow.insertCell(2);
@@ -213,9 +213,9 @@
         cells[2].setAttribute("class","col-md-1");
 
         cells[3] = newrow.insertCell(3);
-        cells[3].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[3].innerHTML = "<input type="+"text"+" name="+"e"+ a.value+" class="+"form-control ,i"+">";
         cells[3].setAttribute("class","col-md-2");
-        cells[3].setAttribute("name","e"+ a.value);
+{#        cells[3].setAttribute("name","e"+ a.value);#}
         a.value = parseInt(a.value)+1;
 
         cells[4] = newrow.insertCell(4);

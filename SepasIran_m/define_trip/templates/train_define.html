@@ -146,7 +146,8 @@
             </div>
 
             <table class="col-md-12">
-                <tr class="col-md-12">
+
+                <tr class="col-md-12" id="rf">
                     <td class="col-md-1">
                         <label>
                             از
@@ -184,6 +185,10 @@
             </div>
 
             <input style="display: none" name="number" id="number" value="2">
+{#            <input style="display: none" name="s2" id="s2" value="">#}
+{#            <input style="display: none" name="e2" id="e2" value="">#}
+
+
 
 <div class="col-md-10 ">
                 <div class="col-md-6"></div>
@@ -211,19 +216,19 @@
         cells[0].setAttribute("class","col-md-1");
 
         cells[1] = newrow.insertCell(1);
-        cells[1].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[1].innerHTML = "<input type="+"text"+" name="+"s"+ a.value+" class="+"form-control ,i"+">";
         cells[1].setAttribute("class","col-md-2");
-        cells[1].setAttribute("name","s"+ a.value);
-
+{#        cells[1].setAttribute("name","s"+ a.value);#}
 
         cells[2] = newrow.insertCell(2);
         cells[2].innerHTML = "<label> تا </label>";
         cells[2].setAttribute("class","col-md-1");
 
         cells[3] = newrow.insertCell(3);
-        cells[3].innerHTML = "<input type="+"text"+" class="+"form-control ,i"+">";
+        cells[3].innerHTML = "<input type="+"text"+" name="+"e"+ a.value+" class="+"form-control ,i"+">";
         cells[3].setAttribute("class","col-md-2");
-        cells[3].setAttribute("name","e"+ a.value);
+{#        cells[3].setAttribute("name","e"+ a.value);#}
+
         a.value = parseInt(a.value)+1;
 
         cells[4] = newrow.insertCell(4);
@@ -231,6 +236,11 @@
         cells[4].setAttribute("class","col-md-6");
 
 }
+{#function add2(button) {#}
+{#    var trf = document.getElementById("trf");#}
+{#    var r = document.getElementById("rf");#}
+{#    trf.setAttribute("style",'display: block')#}
+
     </script>
 
 {% endblock %}
